@@ -1,0 +1,39 @@
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
+import './App.css';
+
+import HomePage from './pages/home';
+import CameraPage from './pages/products/cam';
+import DelibotPage from './pages/products/delibot';
+import DronePage from './pages/products/drone';
+import SafetyBandPage from './pages/products/health';
+import SensorsPage from './pages/products/sensors';
+import ServerPage from './pages/products/server';
+
+export default function App() {
+  return (
+    <div className="app-root">
+      {/* Header displayed on every page */}
+      <Header />
+
+      {/* Main Page Content */}
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products/cam" element={<CameraPage />} />
+          <Route path="/products/delibot" element={<DelibotPage />} />
+          <Route path="/products/drone" element={<DronePage />} />
+          <Route path="/products/safety" element={<SafetyBandPage />} />
+          <Route path="/products/sensors" element={<SensorsPage />} />
+          <Route path="/products/server" element={<ServerPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+      </main>
+
+      {/* Footer displayed on every page */}
+      <Footer />
+    </div>
+  );
+}
