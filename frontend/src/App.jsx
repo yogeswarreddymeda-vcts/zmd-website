@@ -11,6 +11,7 @@ import DronePage from './pages/products/drone';
 import SafetyBandPage from './pages/products/health';
 import SensorsPage from './pages/products/sensors';
 import ServerPage from './pages/products/server';
+import EdgeAIPage from './pages/edge_ai';
 
 export default function App() {
   return (
@@ -22,6 +23,8 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/edge-ai" element={<EdgeAIPage />} />
+          <Route path="/solutions" element={<EdgeAIPage />} />
           <Route path="/products/cam" element={<CameraPage />} />
           <Route path="/products/delibot" element={<DelibotPage />} />
           <Route path="/products/drone" element={<DronePage />} />

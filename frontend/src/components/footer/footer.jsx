@@ -72,9 +72,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 2: SOLUTIONS */}
+          {/* Column 2: EDGE AI */}
           <div className="footer-col">
-            <h4 className="footer-col-title">SOLUTIONS</h4>
+            <h4 className="footer-col-title">EDGE AI</h4>
             <ul className="footer-links">
               <li>
                 <a href="#solutions" onClick={(e) => { e.preventDefault(); navigateAndScroll('solutions'); }}>
@@ -114,9 +114,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#solutions" onClick={(e) => { e.preventDefault(); navigateAndScroll('solutions'); }}>
-                  Solutions
-                </a>
+                <Link to="/edge-ai">
+                  Edge AI
+                </Link>
               </li>
             </ul>
           </div>

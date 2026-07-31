@@ -110,18 +110,18 @@ export default function Header() {
               </button>
             </li>
 
-            {/* Solutions Link */}
+            {/* Edge AI Link */}
             <li className="nav-item">
-              <a 
-                href="#solutions" 
-                className="nav-link"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateAndScroll('solutions');
+              <Link 
+                to="/edge-ai" 
+                className={`nav-link ${location.pathname === '/edge-ai' ? 'active' : ''}`}
+                onClick={() => {
+                  setProductsOpen(false);
+                  setMobileMenuOpen(false);
                 }}
               >
-                Solutions
-              </a>
+                Edge AI
+              </Link>
             </li>
           </ul>
         </nav>
