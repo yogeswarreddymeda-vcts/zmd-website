@@ -129,9 +129,9 @@ export default function HomePage() {
   const heroScrollWrapperRef = useRef(null);
   const heroCanvasRef = useRef(null);
   const imagesRef = useRef(new Array(TOTAL_FRAMES));
+  const frameRequestsRef = useRef(new Map());
+  const requestFrameRef = useRef(null);
 
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [loadProgress, setLoadProgress] = useState(0);
   const [isHeroTextVisible, setIsHeroTextVisible] = useState(false);
   const currentFrameIdxRef = useRef(0);
 
@@ -140,8 +140,8 @@ export default function HomePage() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = canvas.clientWidth || window.innerWidth;
+    const height = canvas.clientHeight || window.innerHeight;
 
     if (canvas.width !== width || canvas.height !== height) {
       canvas.width = width;
@@ -173,45 +173,84 @@ export default function HomePage() {
     );
   };
 
-  // Preload frame 0 immediately, then load remaining frames progressively
+  // Paint the first frame immediately. Desktop frames are then fetched in small
+  // batches so the animation never blocks the page or monopolizes the network.
+  // Mobile and data-saver users keep the same visual as a lightweight static hero.
   useEffect(() => {
-    let loadedCount = 0;
+    let cancelled = false;
     const imgArray = imagesRef.current;
+    const frameRequests = frameRequestsRef.current;
 
     if (TOTAL_FRAMES === 0) return;
 
-    // Load Frame 0 first for instant initial display
-    const firstImg = new Image();
-    firstImg.src = frameUrls[0];
-    firstImg.onload = () => {
-      imgArray[0] = firstImg;
-      loadedCount++;
-      setLoadProgress(Math.round((loadedCount / TOTAL_FRAMES) * 100));
-      if (heroCanvasRef.current) {
-        renderCanvasFrame(firstImg, heroCanvasRef.current);
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = navigator.connection?.saveData === true;
+
+    if (isMobile || reduceMotion || saveData) {
+      setIsHeroTextVisible(true);
+    }
+
+    const loadFrame = (index) => {
+      if (imgArray[index]) return Promise.resolve(imgArray[index]);
+      if (frameRequests.has(index)) {
+        return frameRequests.get(index);
+      }
+
+      const request = new Promise((resolve) => {
+        const img = new Image();
+        img.decoding = 'async';
+        img.onload = () => {
+          if (!cancelled) {
+            imgArray[index] = img;
+            if (index === currentFrameIdxRef.current && heroCanvasRef.current) {
+              renderCanvasFrame(img, heroCanvasRef.current);
+            }
+          }
+          resolve(img);
+        };
+        img.onerror = () => resolve(null);
+        img.src = frameUrls[index];
+      });
+
+      frameRequests.set(index, request);
+      return request;
+    };
+
+    requestFrameRef.current = loadFrame;
+
+    const waitForIdle = () => new Promise((resolve) => {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(resolve, { timeout: 800 });
+      } else {
+        window.setTimeout(resolve, 50);
+      }
+    });
+
+    const loadDesktopSequence = async () => {
+      await loadFrame(0);
+      if (isMobile || reduceMotion || saveData || cancelled) return;
+
+      const batchSize = 4;
+      for (let start = 1; start < TOTAL_FRAMES && !cancelled; start += batchSize) {
+        const batch = Array.from(
+          { length: Math.min(batchSize, TOTAL_FRAMES - start) },
+          (_, offset) => loadFrame(start + offset)
+        );
+        await Promise.all(batch);
+        await waitForIdle();
       }
     };
 
-    // Load remaining frames
-    for (let i = 1; i < TOTAL_FRAMES; i++) {
-      const img = new Image();
-      img.src = frameUrls[i];
-      img.onload = () => {
-        imgArray[i] = img;
-        loadedCount++;
-        const pct = Math.round((loadedCount / TOTAL_FRAMES) * 100);
-        setLoadProgress(pct);
-        if (loadedCount === TOTAL_FRAMES) {
-          setImagesLoaded(true);
-        }
-      };
-      img.onerror = () => {
-        loadedCount++;
-        if (loadedCount === TOTAL_FRAMES) {
-          setImagesLoaded(true);
-        }
-      };
-    }
+    loadDesktopSequence();
+
+    return () => {
+      cancelled = true;
+      frameRequests.clear();
+      if (requestFrameRef.current === loadFrame) {
+        requestFrameRef.current = null;
+      }
+    };
   }, []);
 
   // Scroll trigger animation handler
@@ -231,8 +270,13 @@ export default function HomePage() {
       const currentScroll = -rect.top;
       const rawProgress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
 
-      // Reveal the hero copy when the frame sequence enters its second phase.
-      setIsHeroTextVisible(rawProgress >= 0.28);
+      const useStaticHero = window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches
+        || navigator.connection?.saveData === true;
+
+      // Reveal the hero copy immediately on lightweight/static presentations.
+      setIsHeroTextVisible(useStaticHero || rawProgress >= 0.28);
+
+      if (useStaticHero) return;
 
       const targetFrameIndex = Math.min(
         TOTAL_FRAMES - 1,
@@ -245,7 +289,13 @@ export default function HomePage() {
       animFrameId = requestAnimationFrame(() => {
         let img = imagesRef.current[targetFrameIndex];
         if (!img || !img.complete) {
-          img = imagesRef.current.find((f) => f && f.complete) || imagesRef.current[0];
+          requestFrameRef.current?.(targetFrameIndex);
+
+          for (let offset = 1; offset < TOTAL_FRAMES && !img; offset++) {
+            const before = imagesRef.current[targetFrameIndex - offset];
+            const after = imagesRef.current[targetFrameIndex + offset];
+            img = (before?.complete && before) || (after?.complete && after) || null;
+          }
         }
         if (img && heroCanvasRef.current) {
           renderCanvasFrame(img, heroCanvasRef.current);
@@ -493,19 +543,6 @@ export default function HomePage() {
           {/* HTML5 Canvas Frame Renderer */}
           <canvas ref={heroCanvasRef} className="hmpg-hero-canvas" />
 
-          {/* Preloader overlay while frames finish preloading */}
-          {!imagesLoaded && (
-            <div className="hmpg-hero-loader-overlay">
-              <div className="hmpg-loader-content">
-                <span className="hmpg-loader-tag font-mono">LOADING EXPERIENCE</span>
-                <div className="hmpg-loader-bar-bg">
-                  <div className="hmpg-loader-bar-fill" style={{ width: `${loadProgress}%` }} />
-                </div>
-                <span className="hmpg-loader-pct font-mono">{loadProgress}%</span>
-              </div>
-            </div>
-          )}
-
           {/* Hero Branding Overlay Content */}
           <div className="hmpg-hero-overlay-content">
             <div className="hmpg-zmd-container">
@@ -590,6 +627,8 @@ export default function HomePage() {
               <img
                 src={aboutEdgeAiImg}
                 alt="Edge AI ecosystem with a neural brain, cameras, sensors, edge computer, and AI server"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -659,7 +698,7 @@ export default function HomePage() {
             {solutions.map((item, idx) => (
               <div className={`hmpg-solution-card hmpg-reveal-on-scroll stagger-${(idx % 2) + 1}`} key={idx}>
                 <div className="hmpg-solution-visual">
-                  <img src={item.image} alt={item.title} className="hmpg-solution-card-img" />
+                  <img src={item.image} alt={item.title} className="hmpg-solution-card-img" loading="lazy" decoding="async" />
                   <div className="hmpg-solution-badge hmpg-font-mono">{item.badge}</div>
                 </div>
 

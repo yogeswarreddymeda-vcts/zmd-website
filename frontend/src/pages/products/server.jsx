@@ -808,7 +808,7 @@ export default function ServerPage() {
                   <p className="server-overview__feature-desc">{item.description}</p>
                 </div>
                 <div className="server-overview__feature-img-wrap">
-                  <img src={item.image} alt={item.title} className="server-overview__feature-img" />
+                  <img src={item.image} alt={item.title} className="server-overview__feature-img" loading="lazy" decoding="async" />
                 </div>
               </div>
             ))}
@@ -860,6 +860,8 @@ export default function ServerPage() {
                   src={techSpecsTabs[activeTab].visualImage}
                   alt={techSpecsTabs[activeTab].visualLabel}
                   className="server-specs__visual-img"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -972,6 +974,8 @@ export default function ServerPage() {
                 src={archOverviewImg}
                 alt="ZMD Server PCIe Gen5 Switch Fabric Chassis Architecture"
                 className="server-arch__chassis-img"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -1130,6 +1134,8 @@ export default function ServerPage() {
                   src={blueprintData[activeBlueprintTab].image}
                   alt={`${activeBlueprintTab} view blueprint`}
                   className="server-blueprint__diagram-img"
+                  loading="lazy"
+                  decoding="async"
                 />
 
                 <svg className="server-blueprint__svg-overlay">
@@ -1250,6 +1256,8 @@ export default function ServerPage() {
                   src={configuratorBayImg}
                   alt="Drive Bay Configurator Module Blueprint"
                   className="server-configurator__bay-img"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
 
@@ -1476,6 +1484,8 @@ export default function ServerPage() {
                     src={item.image}
                     alt={item.title}
                     className="server-models__img"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
 
