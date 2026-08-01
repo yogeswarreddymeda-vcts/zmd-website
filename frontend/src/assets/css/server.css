@@ -3736,3 +3736,116 @@
     font-size: 0.85rem;
   }
 }
+
+/* Mobile layout hardening for dense interactive sections. */
+@media (max-width: 1100px) {
+  .server-arch__connectors-svg {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .server-blueprint__diagram-card,
+  .server-blueprint__hotspots-card {
+    position: static;
+  }
+}
+
+@media (max-width: 767px) {
+  .server-overview__features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .server-overview__feature-card {
+    grid-template-columns: minmax(0, 1fr) minmax(96px, 30%);
+  }
+}
+
+@media (max-width: 640px) {
+  .server-specs__visual-img-wrap {
+    min-height: clamp(170px, 60vw, 280px);
+  }
+
+  .server-blueprint__diagram-card {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .server-blueprint__image-wrapper {
+    height: auto;
+  }
+
+  .server-blueprint__svg-overlay,
+  .server-blueprint__pin {
+    display: none;
+  }
+
+  .server-blueprint__hotspots-card {
+    height: auto;
+    overflow: visible;
+    padding: 1.25rem;
+  }
+
+  .server-blueprint__hotspots-list {
+    overflow: visible;
+  }
+
+  .server-blueprint__hotspot-row,
+  .server-resources__download-btn {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 540px) {
+  .server-overview__feature-card {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 1.4rem 1.2rem;
+  }
+
+  .server-overview__feature-img-wrap {
+    min-height: 140px;
+  }
+
+  .server-configurator__display-card {
+    padding: 1.25rem;
+  }
+
+  .server-configurator__bay-graphic {
+    height: 190px;
+  }
+
+  .server-configurator__bay-img {
+    transform: scale(1.2);
+  }
+
+  .server-configurator__specs-matrix {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .server-specs__card-header {
+    align-items: flex-start;
+    padding-inline: 1rem;
+  }
+
+  .server-specs__card-title {
+    min-width: 0;
+    white-space: normal;
+    flex-shrink: 1;
+  }
+
+  .server-apps__env-row,
+  .server-ordering__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    padding-inline: 1.25rem;
+  }
+
+  .server-ordering__value {
+    text-align: left;
+  }
+}

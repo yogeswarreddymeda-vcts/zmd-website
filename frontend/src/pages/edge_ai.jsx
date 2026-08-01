@@ -285,6 +285,8 @@ export default function EdgeAIPage() {
                 src={imgPro}
                 alt="ZMD Edge Box Pro"
                 className="edge-system__img"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -603,7 +605,7 @@ export default function EdgeAIPage() {
               <h3 className="edge-lineup__card-title">ZMD Edge Box</h3>
 
               <div className="edge-lineup__img-wrap">
-                <img src={imgSmall} alt="ZMD Edge Box" className="edge-lineup__img" />
+                <img src={imgSmall} alt="ZMD Edge Box" className="edge-lineup__img" loading="lazy" decoding="async" />
               </div>
 
               <div className="edge-lineup__specs">
@@ -657,7 +659,7 @@ export default function EdgeAIPage() {
               <h3 className="edge-lineup__card-title">Edge Box Pro</h3>
 
               <div className="edge-lineup__img-wrap">
-                <img src={imgPro} alt="Edge Box Pro" className="edge-lineup__img" />
+                <img src={imgPro} alt="Edge Box Pro" className="edge-lineup__img" loading="lazy" decoding="async" />
               </div>
 
               <div className="edge-lineup__specs">
@@ -711,7 +713,7 @@ export default function EdgeAIPage() {
               <h3 className="edge-lineup__card-title">Edge Box Flex</h3>
 
               <div className="edge-lineup__img-wrap">
-                <img src={imgFlex} alt="Edge Box Flex" className="edge-lineup__img" />
+                <img src={imgFlex} alt="Edge Box Flex" className="edge-lineup__img" loading="lazy" decoding="async" />
               </div>
 
               <div className="edge-lineup__specs">
@@ -765,7 +767,7 @@ export default function EdgeAIPage() {
               <h3 className="edge-lineup__card-title">Edge Box Ultra</h3>
 
               <div className="edge-lineup__img-wrap">
-                <img src={imgUltra} alt="Edge Box Ultra" className="edge-lineup__img" />
+                <img src={imgUltra} alt="Edge Box Ultra" className="edge-lineup__img" loading="lazy" decoding="async" />
               </div>
 
               <div className="edge-lineup__specs">
@@ -892,6 +894,8 @@ function UseCaseCardItem({ item, idx }) {
                 src={currentHw.image}
                 alt={currentHw.name}
                 className="sm-usecase-card__hw-img"
+                loading="lazy"
+                decoding="async"
               />
               <span className="sm-usecase-card__hw-tag">{currentHw.tag}</span>
             </div>
@@ -930,11 +934,14 @@ function UseCaseCardItem({ item, idx }) {
         {item.hardwareModels && item.hardwareModels.length > 1 && (
           <div className="sm-usecase-card__dots">
             {item.hardwareModels.map((_, dotIdx) => (
-              <span
+              <button
+                type="button"
                 key={dotIdx}
                 className={`sm-usecase-card__dot ${dotIdx === activeHwIdx ? 'sm-usecase-card__dot--active' : ''}`}
                 onClick={() => setActiveHwIdx(dotIdx)}
-              ></span>
+                aria-label={`Show hardware model ${dotIdx + 1}`}
+                aria-pressed={dotIdx === activeHwIdx}
+              />
             ))}
           </div>
         )}
