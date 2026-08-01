@@ -3142,3 +3142,187 @@ section.hmpg-is-visible,
     gap: 1.25rem;
     flex-wrap: wrap;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ZMD RESPONSIVE OVERRIDES: HOME PAGE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Tablet Landscape / Small Laptop (1024px – 1366px) ── */
+@media (min-width: 1024px) and (max-width: 1366px) {
+    .hmpg-hero-text-block .hmpg-hero-title {
+        font-size: clamp(3.2rem, 4.5vw, 4.5rem);
+    }
+
+    .hmpg-hero-text-block .hmpg-hero-description {
+        font-size: 1.15rem;
+        max-width: 600px;
+    }
+
+    .zmd-about-grid {
+        gap: 3rem;
+    }
+
+    .zmd-products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hmpg-solutions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .zmd-why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ── Tablet (768px – 1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hmpg-hero-text-block {
+        max-width: 720px;
+        margin-left: 0;
+    }
+
+    .hmpg-hero-text-block .hmpg-hero-title {
+        font-size: clamp(2.8rem, 6vw, 3.8rem);
+    }
+
+    .zmd-about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .zmd-products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+
+    .hmpg-solutions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .zmd-why-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .zmd-section-about,
+    .zmd-section-products,
+    .hmpg-solutions-section,
+    .zmd-section-why,
+    .zmd-section-technology,
+    .zmd-section-industries,
+    .zmd-section-cta {
+        padding: 4.5rem 0;
+    }
+}
+
+/* ── Mobile (480px – 767px) ── */
+@media (min-width: 480px) and (max-width: 767px) {
+    .hmpg-hero-text-block {
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .hmpg-hero-text-block .hmpg-hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hmpg-hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hmpg-btn-black,
+    .hmpg-btn-outline,
+    .zmd-btn-brand,
+    .zmd-btn-outline-white {
+        width: 100%;
+    }
+
+    .zmd-about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .zmd-products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hmpg-solutions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .zmd-why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .zmd-cta-btns {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* ── Small Mobile (320px – 479px) ── */
+@media (max-width: 479px) {
+    .hmpg-hero-text-block {
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .hmpg-hero-text-block .hmpg-hero-title {
+        font-size: 2.1rem;
+        line-height: 1.05;
+    }
+
+    .hmpg-hero-text-block .hmpg-hero-description {
+        font-size: 0.92rem;
+        line-height: 1.5;
+    }
+
+    .hmpg-hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .hmpg-btn-black,
+    .hmpg-btn-outline,
+    .zmd-btn-brand,
+    .zmd-btn-outline-white {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .zmd-about-grid,
+    .zmd-products-grid,
+    .hmpg-solutions-grid,
+    .zmd-why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .zmd-section-about,
+    .zmd-section-products,
+    .hmpg-solutions-section,
+    .zmd-section-why,
+    .zmd-section-technology,
+    .zmd-section-industries,
+    .zmd-section-cta {
+        padding: 3rem 0;
+    }
+
+    .zmd-cta-heading {
+        font-size: 2rem;
+    }
+
+    .zmd-cta-sub {
+        font-size: 0.95rem;
+    }
+
+    .zmd-cta-btns {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+}
+

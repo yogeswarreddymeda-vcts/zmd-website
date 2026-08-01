@@ -82,20 +82,6 @@ export default function Header() {
                 </Link>
               </li>
 
-              {/* Ecosystem Link */}
-              <li className="nav-item">
-                <a 
-                  href="#ecosystem" 
-                  className="nav-link"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigateAndScroll('ecosystem');
-                  }}
-                >
-                  Ecosystem
-                </a>
-              </li>
-
               {/* Products Dropdown Trigger */}
               <li 
                 className={`nav-item ${productsOpen ? 'active' : ''}`}

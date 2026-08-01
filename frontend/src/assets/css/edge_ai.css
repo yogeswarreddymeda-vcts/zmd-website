@@ -1831,3 +1831,129 @@
     display: none;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ZMD RESPONSIVE OVERRIDES: EDGE AI PAGE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Tablet Landscape / Small Laptop (1024px – 1366px) ── */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .edge-hero {
+    padding: 4rem 3rem;
+  }
+
+  .edge-system__container {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .edge-lineup__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* ── Tablet (768px – 1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .edge-hero {
+    padding: 3.5rem 2rem;
+  }
+
+  .edge-hero__title {
+    font-size: clamp(2.4rem, 5.5vw, 3.5rem);
+  }
+
+  .edge-system__container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .edge-lineup__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .edge-features__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Mobile (480px – 767px) ── */
+@media (min-width: 480px) and (max-width: 767px) {
+  .edge-hero {
+    padding: 2.75rem 1.25rem;
+  }
+
+  .edge-hero__title {
+    font-size: 2.25rem;
+  }
+
+  .edge-hero__desc {
+    font-size: 0.98rem;
+  }
+
+  .edge-system__container {
+    grid-template-columns: 1fr;
+  }
+
+  .edge-lineup__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edge-features__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edge-hero__stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Small Mobile (320px – 479px) ── */
+@media (max-width: 479px) {
+  .edge-hero {
+    padding: 2rem 1rem;
+  }
+
+  .edge-hero__eyebrow-pill {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.85rem;
+  }
+
+  .edge-hero__title {
+    font-size: 1.9rem;
+    line-height: 1.15;
+  }
+
+  .edge-hero__desc {
+    font-size: 0.9rem;
+  }
+
+  .edge-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .edge-hero__btn-primary,
+  .edge-hero__btn-secondary {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .edge-system__container,
+  .edge-lineup__grid,
+  .edge-features__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sm-usecase-card {
+    padding: 1.25rem;
+  }
+
+  .sm-usecase-card__title {
+    font-size: 1.25rem;
+  }
+}

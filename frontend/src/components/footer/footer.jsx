@@ -109,11 +109,6 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#ecosystem" onClick={(e) => { e.preventDefault(); navigateAndScroll('ecosystem'); }}>
-                  Ecosystem
-                </a>
-              </li>
-              <li>
                 <Link to="/edge-ai">
                   Edge AI
                 </Link>

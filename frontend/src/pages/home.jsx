@@ -7,11 +7,6 @@ import hmService2 from '../assets-1/hm_service2.jpeg';
 import hmService3 from '../assets-1/hm_service3.jpeg';
 import hmService4 from '../assets-1/hm_service4.jpeg';
 import aboutEdgeAiImg from '../assets-1/about-edge-ai-v2.png';
-import ecosystemSensorsImg from '../assets-1/ecosystem-sensors-transparent-v2.png';
-import ecosystemEdgeDeviceImg from '../assets-1/ecosystem-edge-device-transparent-v2.png';
-import ecosystemInfrastructureImg from '../assets-1/ecosystem-infrastructure-transparent-v2.png';
-import ecosystemModelsImg from '../assets-1/ecosystem-models-transparent-v2.png';
-import ecosystemApplicationsImg from '../assets-1/ecosystem-applications-transparent-v2.png';
 
 // Eagerly import all 145 frame sequence webp images
 const frameModules = import.meta.glob('../assets/frame_sequence/frame_*.webp', { eager: true, import: 'default' });
@@ -126,69 +121,6 @@ function AboutIndustryIcon({ name }) {
       <circle cx="16" cy="16" r="5" />
       <path d="M16 3v4M16 25v4M3 16h4M25 16h4M6.8 6.8l2.8 2.8M22.4 22.4l2.8 2.8M25.2 6.8l-2.8 2.8M9.6 22.4l-2.8 2.8" />
       <circle cx="16" cy="16" r="10" />
-    </svg>
-  );
-}
-
-function EcosystemStepIcon({ index }) {
-  const iconProps = {
-    width: 25,
-    height: 25,
-    viewBox: '0 0 32 32',
-    fill: 'none',
-    stroke: 'currentColor',
-    strokeWidth: 1.6,
-    strokeLinecap: 'round',
-    strokeLinejoin: 'round',
-    'aria-hidden': true
-  };
-
-  if (index === 0) {
-    return (
-      <svg {...iconProps}>
-        <path d="M5 10h5l3-3h8l3 3h3v13H5z" />
-        <circle cx="16" cy="16.5" r="5" />
-        <circle cx="16" cy="16.5" r="1.5" />
-      </svg>
-    );
-  }
-
-  if (index === 1) {
-    return (
-      <svg {...iconProps}>
-        <rect x="8" y="8" width="16" height="16" rx="2" />
-        <rect x="12" y="12" width="8" height="8" rx="1" />
-        <path d="M3 12h5M3 20h5M24 12h5M24 20h5M12 3v5M20 3v5M12 24v5M20 24v5" />
-      </svg>
-    );
-  }
-
-  if (index === 2) {
-    return (
-      <svg {...iconProps}>
-        <rect x="6" y="4" width="20" height="7" rx="2" />
-        <rect x="6" y="13" width="20" height="7" rx="2" />
-        <rect x="6" y="22" width="20" height="7" rx="2" />
-        <path d="M10 7.5h.01M10 16.5h.01M10 25.5h.01M15 7.5h7M15 16.5h7M15 25.5h7" />
-      </svg>
-    );
-  }
-
-  if (index === 3) {
-    return (
-      <svg {...iconProps}>
-        <path d="M13 5a5 5 0 0 0-7 6 5 5 0 0 0 0 10 5 5 0 0 0 7 6M19 5a5 5 0 0 1 7 6 5 5 0 0 1 0 10 5 5 0 0 1-7 6M13 5v22M19 5v22" />
-        <path d="M9 11h4M19 11h4M9 21h4M19 21h4" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg {...iconProps}>
-      <rect x="4" y="4" width="9" height="9" rx="2" />
-      <rect x="19" y="4" width="9" height="9" rx="2" />
-      <rect x="4" y="19" width="9" height="9" rx="2" />
-      <rect x="19" y="19" width="9" height="9" rx="2" />
     </svg>
   );
 }
@@ -362,49 +294,6 @@ export default function HomePage() {
 
     return () => observer.disconnect();
   }, []);
-
-  const steps = [
-    {
-      num: "01",
-      code: "01 / SENSE",
-      navLabel: "SENSORS & CAMERAS",
-      title: "Sensors & Cameras",
-      description: "Capture real-world data through intelligent vision and sensing systems.",
-      image: ecosystemSensorsImg
-    },
-    {
-      num: "02",
-      code: "02 / PROCESS",
-      navLabel: "EDGE DEVICES",
-      title: "Edge Devices",
-      description: "Process data at the source with low latency and high reliability.",
-      image: ecosystemEdgeDeviceImg
-    },
-    {
-      num: "03",
-      code: "03 / SCALE",
-      navLabel: "AI INFRASTRUCTURE",
-      title: "AI Infrastructure",
-      description: "Scalable GPU and server platforms for training and deployment.",
-      image: ecosystemInfrastructureImg
-    },
-    {
-      num: "04",
-      code: "04 / LEARN",
-      navLabel: "AI MODELS & ANALYTICS",
-      title: "AI Models & Analytics",
-      description: "Transform raw streams into actionable, contextual insight.",
-      image: ecosystemModelsImg
-    },
-    {
-      num: "05",
-      code: "05 / DEPLOY",
-      navLabel: "INDUSTRY APPLICATIONS",
-      title: "Industry Applications",
-      description: "Deploy intelligence across operations and infrastructure.",
-      image: ecosystemApplicationsImg
-    }
-  ];
 
   const products = [
     {
@@ -691,7 +580,7 @@ export default function HomePage() {
                 ))}
               </div>
 
-              <a href="#ecosystem" className="zmd-about-cta">
+              <a href="#products" className="zmd-about-cta">
                 <span>LEARN MORE ABOUT ZMD</span>
                 <span aria-hidden="true">→</span>
               </a>
@@ -703,193 +592,6 @@ export default function HomePage() {
                 alt="Edge AI ecosystem with a neural brain, cameras, sensors, edge computer, and AI server"
               />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section S/03: Ecosystem */}
-      <section id="ecosystem" className="zmd-section-ecosystem">
-        <div className="zmd-ecosystem-grid-bg" aria-hidden="true" />
-        <div className="zmd-ecosystem-rail" aria-hidden="true">
-          {["S/01", "S/02", "S/03", "S/04"].map((label) => (
-            <span className={label === "S/03" ? "zmd-is-current" : ""} key={label}>
-              {label}
-            </span>
-          ))}
-        </div>
-
-        <div className="zmd-container">
-          <div className="zmd-ecosystem-header">
-            <div className="zmd-eyebrow-row">
-              <span className="zmd-mono-tag zmd-ecosystem-kicker">THE DIFFERENTIATORS</span>
-              <span className="zmd-mono-tag">/ S/03</span>
-            </div>
-
-            <h2 className="zmd-ecosystem-heading">
-              One integrated ecosystem<span className="zmd-text-brand">.</span>
-            </h2>
-
-            <p className="zmd-ecosystem-subtitle">
-              A single signal chain — from raw real-world data to deployed intelligence — engineered and supported end-to-end by ZMD.
-            </p>
-          </div>
-
-          <div className="zmd-ecosystem-showcase-scroll">
-            <div className="zmd-ecosystem-showcase">
-              <svg
-                className="zmd-ecosystem-data-bus"
-                viewBox="0 0 1000 300"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <defs>
-                  <linearGradient id="zmd-data-gradient" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#e10600" stopOpacity="0" />
-                    <stop offset="45%" stopColor="#ff4a44" stopOpacity="0.95" />
-                    <stop offset="55%" stopColor="#ffffff" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#e10600" stopOpacity="0" />
-                  </linearGradient>
-                </defs>
-
-                <g className="zmd-bus-glass">
-                  <path d="M156 101 C178 101 184 97 203 97 S225 101 244 101" />
-                  <path d="M356 101 C378 101 384 97 403 97 S425 101 444 101" />
-                  <path d="M556 101 C578 101 584 97 603 97 S625 101 644 101" />
-                  <path d="M756 101 C778 101 784 97 803 97 S825 101 844 101" />
-                  <path d="M100 168 V224 H78 V262 H100 V278" />
-                  <path d="M300 168 V238 H282 V262 H300 V278" />
-                  <path d="M500 168 V278" />
-                  <path d="M700 168 V238 H718 V262 H700 V278" />
-                  <path d="M900 168 V224 H922 V262 H900 V278" />
-                </g>
-
-                <g className="zmd-bus-bundle">
-                  <path d="M156 95 C178 95 184 91 203 91 S225 95 244 95" />
-                  <path d="M156 101 C178 101 184 97 203 97 S225 101 244 101" />
-                  <path className="zmd-is-red" d="M156 107 C178 107 184 103 203 103 S225 107 244 107" />
-                  <path d="M356 95 C378 95 384 91 403 91 S425 95 444 95" />
-                  <path d="M356 101 C378 101 384 97 403 97 S425 101 444 101" />
-                  <path className="zmd-is-red" d="M356 107 C378 107 384 103 403 103 S425 107 444 107" />
-                  <path d="M556 95 C578 95 584 91 603 91 S625 95 644 95" />
-                  <path d="M556 101 C578 101 584 97 603 97 S625 101 644 101" />
-                  <path className="zmd-is-red" d="M556 107 C578 107 584 103 603 103 S625 107 644 107" />
-                  <path d="M756 95 C778 95 784 91 803 91 S825 95 844 95" />
-                  <path d="M756 101 C778 101 784 97 803 97 S825 101 844 101" />
-                  <path className="zmd-is-red" d="M756 107 C778 107 784 103 803 103 S825 107 844 107" />
-                </g>
-
-                <g className="zmd-bus-traces">
-                  <path d="M100 168 V224 H78 V262 H100 V278" />
-                  <path d="M300 168 V238 H282 V262 H300 V278" />
-                  <path d="M500 168 V278" />
-                  <path d="M700 168 V238 H718 V262 H700 V278" />
-                  <path d="M900 168 V224 H922 V262 H900 V278" />
-                </g>
-
-                <g className="zmd-bus-nodes">
-                  <circle cx="100" cy="168" r="2.5" />
-                  <circle cx="300" cy="168" r="2.5" />
-                  <circle cx="500" cy="168" r="2.5" />
-                  <circle cx="700" cy="168" r="2.5" />
-                  <circle cx="900" cy="168" r="2.5" />
-                  <circle cx="100" cy="278" r="3" />
-                  <circle cx="300" cy="278" r="3" />
-                  <circle cx="500" cy="278" r="3" />
-                  <circle cx="700" cy="278" r="3" />
-                  <circle cx="900" cy="278" r="3" />
-                </g>
-
-                <g className="zmd-bus-data-flow">
-                  <path d="M156 101 C178 101 184 97 203 97 S225 101 244 101" />
-                  <path d="M356 101 C378 101 384 97 403 97 S425 101 444 101" />
-                  <path d="M556 101 C578 101 584 97 603 97 S625 101 644 101" />
-                  <path d="M756 101 C778 101 784 97 803 97 S825 101 844 101" />
-                  <path d="M100 168 V224 H78 V262 H100 V278" />
-                  <path d="M300 168 V238 H282 V262 H300 V278" />
-                  <path d="M500 168 V278" />
-                  <path d="M700 168 V238 H718 V262 H700 V278" />
-                  <path d="M900 168 V224 H922 V262 H900 V278" />
-                </g>
-
-                <g className="zmd-bus-packets">
-                  <circle r="2.6">
-                    <animateMotion
-                      dur="1.7s"
-                      repeatCount="indefinite"
-                      path="M156 101 C178 101 184 97 203 97 S225 101 244 101"
-                    />
-                  </circle>
-                  <circle r="2.6">
-                    <animateMotion
-                      begin="0.35s"
-                      dur="1.7s"
-                      repeatCount="indefinite"
-                      path="M356 101 C378 101 384 97 403 97 S425 101 444 101"
-                    />
-                  </circle>
-                  <circle r="2.6">
-                    <animateMotion
-                      begin="0.7s"
-                      dur="1.7s"
-                      repeatCount="indefinite"
-                      path="M556 101 C578 101 584 97 603 97 S625 101 644 101"
-                    />
-                  </circle>
-                  <circle r="2.6">
-                    <animateMotion
-                      begin="1.05s"
-                      dur="1.7s"
-                      repeatCount="indefinite"
-                      path="M756 101 C778 101 784 97 803 97 S825 101 844 101"
-                    />
-                  </circle>
-                </g>
-              </svg>
-
-              <div className="zmd-ecosystem-units">
-                {steps.map((step) => (
-                  <div
-                    className="zmd-ecosystem-unit"
-                    key={step.num}
-                  >
-                    <div className="zmd-ecosystem-unit-heading">
-                      <span className="zmd-ecosystem-unit-num">{step.num}</span>
-                      <strong>{step.navLabel}</strong>
-                    </div>
-
-                    <span className="zmd-ecosystem-unit-dot" aria-hidden="true" />
-
-                    <div className="zmd-ecosystem-media">
-                      <img src={step.image} alt={`${step.title} ecosystem stage`} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="zmd-ecosystem-cards">
-            {steps.map((step, idx) => (
-              <div
-                className="zmd-ecosystem-card"
-                key={step.num}
-              >
-                <div className="zmd-ecosystem-card-top">
-                  <span className="zmd-ecosystem-card-icon">
-                    <EcosystemStepIcon index={idx} />
-                  </span>
-                  <span className="zmd-ecosystem-card-code">{step.code}</span>
-                </div>
-
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
-
-                <div className="zmd-ecosystem-card-footer" aria-hidden="true">
-                  <i />
-                  <span>→</span>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

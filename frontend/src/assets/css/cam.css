@@ -3897,3 +3897,125 @@ html {
   border-style: solid;
   pointer-events: none;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ZMD RESPONSIVE OVERRIDES: CAMERA PRODUCT PAGE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Tablet Landscape / Small Laptop (1024px – 1366px) ── */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .dcam-hero-section {
+    padding: 4rem 3rem;
+  }
+
+  .dcam-hero-title {
+    font-size: clamp(3rem, 4.5vw, 4.2rem);
+  }
+
+  .dcam-arch-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .dcam-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Tablet (768px – 1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .dcam-hero-section {
+    padding: 3.5rem 2rem;
+  }
+
+  .dcam-hero-title {
+    font-size: clamp(2.4rem, 5.5vw, 3.5rem);
+  }
+
+  .dcam-arch-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .dcam-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .dcam-variants-bar {
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* ── Mobile (480px – 767px) ── */
+@media (min-width: 480px) and (max-width: 767px) {
+  .dcam-hero-section {
+    padding: 2.75rem 1.25rem;
+  }
+
+  .dcam-hero-title {
+    font-size: 2.2rem;
+  }
+
+  .dcam-hero-description {
+    font-size: 0.95rem;
+  }
+
+  .dcam-arch-grid,
+  .dcam-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dcam-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dcam-btn-primary,
+  .dcam-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── Small Mobile (320px – 479px) ── */
+@media (max-width: 479px) {
+  .dcam-hero-section {
+    padding: 2rem 1rem;
+  }
+
+  .dcam-hero-title {
+    font-size: 1.85rem;
+    line-height: 1.1;
+  }
+
+  .dcam-hero-description {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .dcam-arch-grid,
+  .dcam-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .dcam-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .dcam-btn-primary,
+  .dcam-btn-secondary {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .dcam-variants-bar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+

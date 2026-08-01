@@ -400,4 +400,40 @@
     font-size: 0.98rem;
     padding: 0.85rem 0.5rem;
   }
+
+  .mobile-card-title {
+    font-size: 0.88rem;
+  }
+
+  .mobile-card-desc {
+    font-size: 0.74rem;
+  }
+
+  .mobile-card-tag {
+    font-size: 0.58rem;
+  }
+
+  .mobile-card-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
 }
+
+/* Tablet drawer adjustments (768px - 992px) */
+@media (min-width: 768px) and (max-width: 992px) {
+  .mobile-top-bar {
+    padding: 0 2rem;
+  }
+
+  .mobile-nav-content {
+    padding: 2rem 2.5rem;
+  }
+
+  .mobile-products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+}
+

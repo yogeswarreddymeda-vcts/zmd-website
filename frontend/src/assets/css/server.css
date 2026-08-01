@@ -3622,3 +3622,117 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ZMD RESPONSIVE OVERRIDES: SERVER PRODUCT PAGE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Tablet Landscape / Small Laptop (1024px – 1366px) ── */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .server-hero {
+    padding: 3.5rem 3rem;
+  }
+
+  .server-hero__title {
+    font-size: clamp(2.6rem, 4vw, 3.8rem);
+  }
+
+  .server-bento__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.15rem;
+  }
+
+  .server-overview__stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ── Tablet (768px – 1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .server-hero {
+    padding: 3rem 2rem;
+  }
+
+  .server-hero__title {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+  }
+
+  .server-bento__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .server-overview__stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .server-overview__header {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ── Mobile (480px – 767px) ── */
+@media (min-width: 480px) and (max-width: 767px) {
+  .server-hero {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .server-hero__title {
+    font-size: 2.1rem;
+  }
+
+  .server-bento__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .server-overview__stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .server-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .server-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── Small Mobile (320px – 479px) ── */
+@media (max-width: 479px) {
+  .server-hero {
+    padding: 2rem 1rem;
+  }
+
+  .server-hero__title {
+    font-size: 1.8rem;
+    line-height: 1.1;
+  }
+
+  .server-hero__description {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .server-bento__grid,
+  .server-overview__stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .server-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .server-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+}
