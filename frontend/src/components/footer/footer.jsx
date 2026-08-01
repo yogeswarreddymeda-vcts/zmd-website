@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import zmdLogo from '../header/zmd_logo.png';
+import zmdLogo from '../header/zmd_logo.webp';
 import './footer.css';
 
 export default function Footer() {
