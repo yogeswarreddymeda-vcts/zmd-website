@@ -1,22 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import serverChassis from '../../assets/images/server/server_chassis.png';
-import overviewCpuImg from '../../assets/images/server/overview_cpu.png';
-import overviewRamImg from '../../assets/images/server/overview_ram.png';
-import overviewSsdImg from '../../assets/images/server/overview_ssd.png';
-import overviewPsuImg from '../../assets/images/server/overview_psu.png';
-import blueprintFrontImg from '../../assets/images/server/blueprint_front.png';
-import blueprintRearImg from '../../assets/images/server/blueprint_rear.png';
-import blueprintInternalImg from '../../assets/images/server/blueprint_internal.png';
-import configuratorBayImg from '../../assets/images/server/configurator_bay.png';
-import archOverviewImg from '../../assets/images/server/arch_overview.png';
-import specsVisual1Img from '../../assets/images/server/specs_visual_1.png';
-import specsVisual2Img from '../../assets/images/server/specs_visual_2.png';
-import specsVisual3Img from '../../assets/images/server/specs_visual_3.png';
-import specsVisual4Img from '../../assets/images/server/specs_visual_4.png';
-import exploreModel1Img from '../../assets/images/server/explore_model_1u.png';
-import exploreModel2Img from '../../assets/images/server/explore_model_2u.png';
-import exploreModel3Img from '../../assets/images/server/explore_model_4u.png';
+import serverChassis from '../../assets/images/server/server_chassis.webp';
+import overviewCpuImg from '../../assets/images/server/overview_cpu.webp';
+import overviewRamImg from '../../assets/images/server/overview_ram.webp';
+import overviewSsdImg from '../../assets/images/server/overview_ssd.webp';
+import overviewPsuImg from '../../assets/images/server/overview_psu.webp';
+import blueprintFrontImg from '../../assets/images/server/blueprint_front.webp';
+import blueprintRearImg from '../../assets/images/server/blueprint_rear.webp';
+import blueprintInternalImg from '../../assets/images/server/blueprint_internal.webp';
+import configuratorBayImg from '../../assets/images/server/configurator_bay.webp';
+import archOverviewImg from '../../assets/images/server/arch_overview.webp';
+import specsVisual1Img from '../../assets/images/server/specs_visual_1.webp';
+import specsVisual2Img from '../../assets/images/server/specs_visual_2.webp';
+import specsVisual3Img from '../../assets/images/server/specs_visual_3.webp';
+import specsVisual4Img from '../../assets/images/server/specs_visual_4.webp';
+import exploreModel1Img from '../../assets/images/server/explore_model_1u.webp';
+import exploreModel2Img from '../../assets/images/server/explore_model_2u.webp';
+import exploreModel3Img from '../../assets/images/server/explore_model_4u.webp';
 import '../../assets/css/server.css';
 
 function TiltCard({
@@ -808,7 +808,7 @@ export default function ServerPage() {
                   <p className="server-overview__feature-desc">{item.description}</p>
                 </div>
                 <div className="server-overview__feature-img-wrap">
-                  <img src={item.image} alt={item.title} className="server-overview__feature-img" loading="lazy" decoding="async" />
+                  <img src={item.image} alt={item.title} className="server-overview__feature-img" />
                 </div>
               </div>
             ))}
@@ -860,8 +860,6 @@ export default function ServerPage() {
                   src={techSpecsTabs[activeTab].visualImage}
                   alt={techSpecsTabs[activeTab].visualLabel}
                   className="server-specs__visual-img"
-                  loading="lazy"
-                  decoding="async"
                 />
               </div>
             </div>
@@ -974,8 +972,6 @@ export default function ServerPage() {
                 src={archOverviewImg}
                 alt="ZMD Server PCIe Gen5 Switch Fabric Chassis Architecture"
                 className="server-arch__chassis-img"
-                loading="lazy"
-                decoding="async"
               />
             </div>
 
@@ -1134,8 +1130,6 @@ export default function ServerPage() {
                   src={blueprintData[activeBlueprintTab].image}
                   alt={`${activeBlueprintTab} view blueprint`}
                   className="server-blueprint__diagram-img"
-                  loading="lazy"
-                  decoding="async"
                 />
 
                 <svg className="server-blueprint__svg-overlay">
@@ -1256,8 +1250,6 @@ export default function ServerPage() {
                   src={configuratorBayImg}
                   alt="Drive Bay Configurator Module Blueprint"
                   className="server-configurator__bay-img"
-                  loading="lazy"
-                  decoding="async"
                 />
               </div>
 
@@ -1484,8 +1476,6 @@ export default function ServerPage() {
                     src={item.image}
                     alt={item.title}
                     className="server-models__img"
-                    loading="lazy"
-                    decoding="async"
                   />
                 </div>
 

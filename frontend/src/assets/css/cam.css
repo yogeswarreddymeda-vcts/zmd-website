@@ -3937,6 +3937,39 @@ html {
     gap: 1.5rem;
   }
 
+  .dcam-arch-row,
+  .dcam-arch-row-reverse {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .dcam-arch-text-col {
+    align-items: center;
+    text-align: center;
+  }
+
+  .dcam-arch-block-title {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+
+  .dcam-arch-block-desc {
+    text-align: center;
+  }
+
+  .dcam-feat-btns {
+    justify-content: center;
+  }
+
+  .dcam-arch-stats-bar {
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .dcam-arch-card-canvas {
+    height: 360px;
+  }
+
   .dcam-stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -3964,6 +3997,77 @@ html {
   .dcam-arch-grid,
   .dcam-stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .dcam-arch-row,
+  .dcam-arch-row-reverse {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .dcam-arch-blocks-container {
+    gap: 50px;
+  }
+
+  .dcam-arch-text-col {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .dcam-arch-block-title {
+    font-size: 2rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .dcam-arch-block-desc {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .dcam-tag-container {
+    justify-content: center;
+    margin-inline: auto;
+  }
+
+  .dcam-feat-btns {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .dcam-feat-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .dcam-arch-stats-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding-top: 18px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .dcam-arch-stat-item {
+    align-items: center;
+    text-align: center;
+  }
+
+  .dcam-arch-stat-val {
+    font-size: 1.1rem;
+  }
+
+  .dcam-arch-stat-lbl {
+    font-size: 0.58rem;
+  }
+
+  .dcam-arch-card-canvas {
+    height: 340px;
+    padding: 16px;
   }
 
   .dcam-hero-actions {
@@ -4000,6 +4104,82 @@ html {
     gap: 1rem;
   }
 
+  .dcam-arch-row,
+  .dcam-arch-row-reverse {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .dcam-arch-blocks-container {
+    gap: 40px;
+  }
+
+  .dcam-arch-text-col {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .dcam-arch-block-title {
+    font-size: 1.75rem;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .dcam-arch-block-desc {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .dcam-tag-container {
+    justify-content: center;
+    margin-inline: auto;
+  }
+
+  .dcam-feat-btns {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .dcam-feat-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.82rem;
+  }
+
+  .dcam-arch-stats-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    padding-top: 16px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .dcam-arch-stat-item {
+    align-items: center;
+    text-align: center;
+  }
+
+  .dcam-arch-stat-val {
+    font-size: 0.98rem;
+  }
+
+  .dcam-arch-stat-lbl {
+    font-size: 0.54rem;
+    letter-spacing: 0.4px;
+  }
+
+  .dcam-arch-card-canvas {
+    height: 320px;
+    padding: 14px;
+  }
+
   .dcam-hero-actions {
     flex-direction: column;
     align-items: stretch;
@@ -4019,110 +4199,178 @@ html {
   }
 }
 
-/* Mobile layout hardening for the camera page's dense sections. */
+/* Phone-specific camera hero composition */
 @media (max-width: 767px) {
   .dcam-hero-section {
+    min-height: calc(100svh - 68px);
+    align-items: stretch;
     padding: 0;
-  }
-
-  .dcam-hero-wrapper {
-    padding: calc(clamp(250px, 72vw, 340px) + 32px) 20px 48px;
-  }
-
-  .dcam-visual-wrapper {
-    inset: 0 0 auto;
-    height: clamp(250px, 72vw, 340px);
+    isolation: isolate;
   }
 
   .dcam-visual-wrapper::after {
     content: '';
     position: absolute;
-    inset: auto 0 0;
-    height: 34%;
-    z-index: 4;
+    inset: 0;
+    z-index: 3;
     pointer-events: none;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 0.1) 68%, rgba(15, 23, 42, 0.18) 100%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.05));
   }
 
   .dcam-hero-img {
-    object-position: 78% center;
+    object-position: 56% center;
+  }
+
+  .dcam-hero-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: none;
+    align-items: center;
+    padding: 2.25rem 1.15rem 1.5rem;
+    transform: translateY(30px);
+  }
+
+  .dcam-hero-content {
+    width: 100%;
+    max-width: 31rem;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+
+  .dcam-tag-container {
+    justify-content: flex-start;
+    margin: 0 0 1rem;
+  }
+
+  .dcam-tag-text {
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+  }
+
+  .dcam-hero-title {
+    max-width: 12ch;
+    margin: 0 0 1.1rem;
+    font-size: clamp(2.05rem, 9.5vw, 2.65rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+  }
+
+  .dcam-hero-subtitle {
+    max-width: 22rem;
+    margin-bottom: 0.55rem;
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+
+  .dcam-hero-description {
+    max-width: 23rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .dcam-hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .dcam-btn-primary,
+  .dcam-btn-secondary {
+    width: 100%;
+    min-height: 47px;
+    justify-content: center;
+    padding: 0.78rem 1rem;
+    font-size: 0.8rem;
   }
 
   .dcam-hero-stats-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px 16px;
-  }
-
-  .dcam-arch-row {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 32px;
-  }
-
-  .dcam-arch-row-reverse .dcam-arch-text-col {
-    order: -1;
-  }
-
-  .dcam-models-heading {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
-    margin-bottom: 34px;
-  }
-
-  .dcam-bw-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 8px 12px;
-  }
-
-  .dcam-bw-label,
-  .dcam-bw-val {
-    flex-basis: auto;
-  }
-
-  .dcam-bw-bar-track {
-    grid-column: 1 / -1;
-    grid-row: 2;
+    gap: 0;
     width: 100%;
-  }
-}
-
-@media (max-width: 640px) {
-  .dcam-tech-profile-body {
-    padding: 0 16px 20px;
-  }
-
-  .dcam-tech-profile-grid {
-    grid-template-columns: minmax(0, 1fr);
-    padding: 14px;
+    margin-top: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(203, 213, 225, 0.92);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.84);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
+    backdrop-filter: blur(10px);
   }
 
-  .dcam-tech-profile-item {
+  .dcam-hero-stat-item {
     min-width: 0;
-    padding: 14px 16px;
+    min-height: 84px;
+    justify-content: center;
+    padding: 0.85rem 0.9rem;
+  }
+
+  .dcam-hero-stat-item:nth-child(odd) {
+    border-right: 1px solid rgba(203, 213, 225, 0.85);
+  }
+
+  .dcam-hero-stat-item:nth-child(-n + 2) {
+    border-bottom: 1px solid rgba(203, 213, 225, 0.85);
+  }
+
+  .dcam-hero-stat-val {
+    margin-bottom: 0.35rem;
+    font-size: 1.75rem;
+  }
+
+  .dcam-hero-stat-lbl {
+    max-width: 13ch;
+    font-size: 0.57rem;
+    letter-spacing: 0.07em;
+    line-height: 1.35;
+  }
+
+  .dcam-hero-img-incoming,
+  .dcam-hero-img-outgoing,
+  .dcam-hero-fade,
+  .dcam-hero-fade .dcam-tag-container,
+  .dcam-hero-fade .dcam-hero-title,
+  .dcam-hero-fade .dcam-hero-subtitle,
+  .dcam-hero-fade .dcam-hero-description,
+  .dcam-hero-fade .dcam-hero-actions,
+  .dcam-hero-fade .dcam-hero-stats-grid {
+    animation: none;
+    filter: none;
+    transform: none;
   }
 }
 
-@media (max-width: 479px) {
+@media (max-width: 480px) {
+  .dcam-hero-section {
+    min-height: calc(100svh - 62px);
+  }
+}
+
+@media (max-width: 374px) {
   .dcam-hero-wrapper {
-    padding: calc(clamp(250px, 72vw, 340px) + 24px) 16px 40px;
+    padding: 1.75rem 0.9rem 1.25rem;
   }
 
-  .dcam-tech-profile-btn {
-    padding: 18px 16px;
+  .dcam-hero-title {
+    font-size: 1.9rem;
   }
 
-  .dcam-tech-profile-left {
-    min-width: 0;
-    gap: 12px;
+  .dcam-hero-subtitle {
+    font-size: 0.98rem;
   }
 
-  .dcam-tech-profile-meta {
-    min-width: 0;
+  .dcam-hero-description {
+    font-size: 0.82rem;
   }
 
-  .dcam-tech-profile-cat-name,
-  .dcam-tech-profile-cat-sub {
-    overflow-wrap: anywhere;
+  .dcam-hero-stat-item {
+    min-height: 78px;
+    padding: 0.7rem 0.75rem;
   }
 }

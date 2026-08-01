@@ -18,7 +18,7 @@
   background-color: #FAFAFC;
   background-image:
     radial-gradient(ellipse at 85% 20%, rgba(220, 38, 38, 0.07) 0%, transparent 50%),
-    url('../images/edge/herosectionedgeai.png');
+    url('../images/edge/herosectionedgeai.webp');
   background-repeat: no-repeat;
   background-position: center right;
   background-size: cover;
@@ -1808,31 +1808,16 @@
 }
 
 .sm-usecase-card__dot {
-  width: 24px;
-  height: 24px;
-  border: 0;
-  padding: 0;
-  position: relative;
-  background: transparent;
-  cursor: pointer;
-}
-
-.sm-usecase-card__dot::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background-color: #CBD5E1;
-  transform: translate(-50%, -50%);
 }
 
-.sm-usecase-card__dot--active::before {
+.sm-usecase-card__dot--active {
+  background-color: #005596;
   width: 8px;
   height: 8px;
-  background-color: #005596;
 }
 
 /* Responsive Grid Breakpoints */
@@ -1872,6 +1857,11 @@
 @media (min-width: 768px) and (max-width: 1023px) {
   .edge-hero {
     padding: 3.5rem 2rem;
+    background-image:
+      radial-gradient(ellipse at 50% 20%, rgba(220, 38, 38, 0.07) 0%, transparent 50%),
+      url('../images/edge/ChatGPT Image Aug 1, 2026, 05_04_57 PM.webp');
+    background-position: center center;
+    background-size: cover;
   }
 
   .edge-hero__title {
@@ -1896,30 +1886,123 @@
 /* ── Mobile (480px – 767px) ── */
 @media (min-width: 480px) and (max-width: 767px) {
   .edge-hero {
-    padding: 2.75rem 1.25rem;
+    padding: 4.5rem 1.25rem 3.5rem 1.25rem;
+    background-image: url('../images/edge/ChatGPT Image Aug 1, 2026, 05_04_57 PM.webp');
+    background-position: center 40%;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: #fafafc;
+  }
+
+  .edge-hero__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .edge-hero__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .edge-hero__eyebrow-pill {
+    margin-inline: auto;
+    text-align: center;
   }
 
   .edge-hero__title {
     font-size: 2.25rem;
+    text-align: center;
+    margin-inline: auto;
   }
 
   .edge-hero__desc {
     font-size: 0.98rem;
+    color: #1e293b;
+    font-weight: 500;
+    text-align: center;
+    margin-inline: auto;
   }
 
-  .edge-system__container {
-    grid-template-columns: 1fr;
+  .edge-hero__actions {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
   }
 
-  .edge-lineup__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .edge-features__grid {
-    grid-template-columns: 1fr;
+  .edge-hero__btn-primary,
+  .edge-hero__btn-secondary {
+    justify-content: center;
+    text-align: center;
   }
 
   .edge-hero__stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin-top: 2rem;
+  }
+
+  .edge-hero__stat-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.1rem 1.25rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .edge-hero__stat-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .edge-hero__stat-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 12px;
+    background: #fef2f2;
+    color: #dc2626;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .edge-hero__stat-val {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .edge-hero__stat-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #64748b;
+    margin: 0;
+    text-align: left;
+  }
+
+  .edge-system__container,
+  .edge-lineup__grid,
+  .edge-features__grid {
     grid-template-columns: 1fr;
   }
 }
@@ -1927,26 +2010,56 @@
 /* ── Small Mobile (320px – 479px) ── */
 @media (max-width: 479px) {
   .edge-hero {
-    padding: 2rem 1rem;
+    padding: 4rem 1rem 3rem 1rem;
+    background-image: url('../images/edge/ChatGPT Image Aug 1, 2026, 05_04_57 PM.webp');
+    background-position: center 40%;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: #fafafc;
+  }
+
+  .edge-hero__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .edge-hero__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
   }
 
   .edge-hero__eyebrow-pill {
     font-size: 0.7rem;
     padding: 0.35rem 0.85rem;
+    margin-inline: auto;
+    text-align: center;
   }
 
   .edge-hero__title {
     font-size: 1.9rem;
     line-height: 1.15;
+    text-align: center;
+    margin-inline: auto;
   }
 
   .edge-hero__desc {
     font-size: 0.9rem;
+    color: #1e293b;
+    font-weight: 500;
+    text-align: center;
+    margin-inline: auto;
   }
 
   .edge-hero__actions {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     gap: 0.75rem;
   }
 
@@ -1956,6 +2069,68 @@
     box-sizing: border-box;
     padding: 0.75rem 1rem;
     font-size: 0.9rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .edge-hero__stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin-top: 1.75rem;
+  }
+
+  .edge-hero__stat-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.15rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .edge-hero__stat-header {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .edge-hero__stat-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 10px;
+    background: #fef2f2;
+    color: #dc2626;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .edge-hero__stat-val {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .edge-hero__stat-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #64748b;
+    margin: 0;
+    text-align: left;
   }
 
   .edge-system__container,
@@ -1973,46 +2148,211 @@
   }
 }
 
-/* Mobile layout hardening for product imagery and dense data. */
+/* Cohesive phone hero: compact content, visible product, shared metrics panel */
 @media (max-width: 767px) {
   .edge-hero {
-    padding-top: calc(clamp(250px, 72vw, 340px) + 2rem);
-    background-image:
-      linear-gradient(to bottom, rgba(250, 250, 252, 0) 48%, #FAFAFC 100%),
-      url('../images/edge/herosectionedgeai.png');
+    min-height: calc(100svh - 68px);
+    align-items: flex-start;
+    padding: 1.25rem 1rem 1.5rem;
+    background-color: #f8fafc;
+    background-image: url('../images/edge/ChatGPT Image Aug 1, 2026, 05_04_57 PM.webp');
+    background-position: center center;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: center top, 72% top;
-    background-size: 100% clamp(250px, 72vw, 340px), auto clamp(250px, 72vw, 340px);
+    isolation: isolate;
   }
 
-  .sm-usecase-card__right {
+  .edge-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(248, 250, 252, 0.97) 0%,
+      rgba(248, 250, 252, 0.92) 42%,
+      rgba(248, 250, 252, 0.32) 56%,
+      rgba(248, 250, 252, 0.08) 72%,
+      rgba(248, 250, 252, 0.16) 100%
+    );
+  }
+
+  .edge-hero__card {
+    width: 100%;
+    max-width: 31rem;
+    margin: 0 auto;
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .edge-hero__left {
+    width: 100%;
+    max-width: none;
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .edge-hero__eyebrow-pill {
+    max-width: 100%;
+    margin: 0 0 1rem;
+    padding: 0.38rem 0.75rem;
+    align-self: flex-start;
+    border-width: 1px;
+    border-radius: 999px;
+    font-size: clamp(0.56rem, 2.45vw, 0.66rem);
+    letter-spacing: 0.075em;
+    line-height: 1.35;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .edge-hero__title {
+    max-width: 13ch;
+    margin: 0 0 0.85rem;
+    font-size: clamp(2.05rem, 9.5vw, 2.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    text-align: left;
+  }
+
+  .edge-hero__desc {
+    max-width: 36rem;
+    margin: 0 0 1.1rem;
+    color: #334155;
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.52;
+    text-align: left;
+  }
+
+  .edge-hero__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    width: 100%;
+  }
+
+  .edge-hero__btn-primary,
+  .edge-hero__btn-secondary {
+    width: 100%;
+    min-height: 46px;
+    box-sizing: border-box;
+    justify-content: center;
+    padding: 0.72rem 1rem;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    text-align: center;
+  }
+
+  .edge-hero__divider {
+    width: 100%;
+    height: clamp(240px, 66vw, 285px);
+    margin: 0;
+    background: transparent;
+  }
+
+  .edge-hero__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.91);
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12);
+    backdrop-filter: blur(10px);
+  }
+
+  .edge-hero__stat-item {
+    display: flex;
     min-width: 0;
+    min-height: 108px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.7rem 0.35rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    text-align: center;
   }
 
-  .sm-usecase-card__hardware-display {
-    gap: 0.5rem;
+  .edge-hero__stat-item:not(:last-child) {
+    border-right: 1px solid #e2e8f0;
   }
 
-  .sm-usecase-card__hw-img-wrap {
-    width: auto;
-    min-width: 0;
-    flex: 1 1 0;
+  .edge-hero__stat-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .edge-hero__stat-icon {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    border-radius: 9px;
+  }
+
+  .edge-hero__stat-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .edge-hero__stat-val {
+    font-size: clamp(0.98rem, 4.3vw, 1.15rem);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .edge-hero__stat-label {
+    max-width: 11ch;
+    color: #64748b;
+    font-size: 0.66rem;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
   }
 }
 
-@media (max-width: 479px) {
-  .edge-system__table-wrap {
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    -webkit-overflow-scrolling: touch;
+@media (max-width: 480px) {
+  .edge-hero {
+    min-height: calc(100svh - 62px);
+    background-position: center bottom 114px;
+    background-size: 100% auto;
   }
 
-  .edge-system__table {
-    min-width: 30rem;
+  .edge-hero__stats {
+    margin-top: 44px;
   }
 }
 
-.edge-system__table-note {
-  color: #475569;
-  font-size: 0.875rem;
+@media (max-width: 350px) {
+  .edge-hero {
+    padding-inline: 0.8rem;
+  }
+
+  .edge-hero__eyebrow-pill {
+    white-space: normal;
+  }
+
+  .edge-hero__title {
+    font-size: 1.9rem;
+  }
+
+  .edge-hero__desc {
+    font-size: 0.82rem;
+  }
+
+  .edge-hero__stat-item {
+    min-height: 102px;
+    padding-inline: 0.2rem;
+  }
 }

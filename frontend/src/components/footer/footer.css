@@ -219,17 +219,13 @@
     height: 32px;
   }
   .footer-tagline {
-    font-size: 0.9rem;
+    font-size: 0.84rem;
   }
   .footer-col-title {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
   }
   .footer-links a {
-    font-size: 0.925rem;
-    line-height: 1.5;
-  }
-  .legal-links {
-    flex-wrap: wrap;
-    row-gap: 0.5rem;
+    font-size: 0.86rem;
   }
 }
+

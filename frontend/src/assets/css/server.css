@@ -3679,8 +3679,64 @@
     padding: 2.5rem 1.25rem;
   }
 
+  .server-hero__grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 2.25rem;
+  }
+
+  .server-hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .server-hero__eyebrow {
+    text-align: center;
+    margin-inline: auto;
+    font-size: 0.82rem;
+  }
+
   .server-hero__title {
-    font-size: 2.1rem;
+    font-size: 2.15rem;
+    text-align: center;
+    margin-inline: auto;
+    max-width: 100%;
+  }
+
+  .server-hero__rule {
+    margin: 1.25rem auto;
+  }
+
+  .server-hero__description {
+    font-size: 0.98rem;
+    text-align: center;
+    margin-inline: auto;
+    max-width: 100%;
+  }
+
+  .server-hero__actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0.85rem;
+  }
+
+  .server-button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  .server-product {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 480px;
   }
 
   .server-bento__grid {
@@ -3690,16 +3746,6 @@
   .server-overview__stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .server-hero__actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .server-button {
-    width: 100%;
-    justify-content: center;
-  }
 }
 
 /* ── Small Mobile (320px – 479px) ── */
@@ -3708,23 +3754,50 @@
     padding: 2rem 1rem;
   }
 
+  .server-hero__grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .server-hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .server-hero__eyebrow {
+    font-size: 0.78rem;
+    text-align: center;
+    margin-inline: auto;
+    letter-spacing: 0.1em;
+  }
+
   .server-hero__title {
-    font-size: 1.8rem;
-    line-height: 1.1;
+    font-size: 1.95rem;
+    line-height: 1.15;
+    text-align: center;
+    margin-inline: auto;
+    max-width: 100%;
+  }
+
+  .server-hero__rule {
+    margin: 1rem auto;
   }
 
   .server-hero__description {
-    font-size: 0.88rem;
-    line-height: 1.45;
-  }
-
-  .server-bento__grid,
-  .server-overview__stats-grid {
-    grid-template-columns: 1fr;
-    gap: 0.85rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    text-align: center;
+    margin-inline: auto;
+    max-width: 100%;
   }
 
   .server-hero__actions {
+    width: 100%;
     flex-direction: column;
     align-items: stretch;
     gap: 0.75rem;
@@ -3732,120 +3805,42 @@
 
   .server-button {
     width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .server-product {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .server-bento__grid,
+  .server-overview__stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
   }
 }
 
-/* Mobile layout hardening for dense interactive sections. */
-@media (max-width: 1100px) {
-  .server-arch__connectors-svg {
-    display: none;
-  }
-}
-
-@media (max-width: 1024px) {
-  .server-blueprint__diagram-card,
-  .server-blueprint__hotspots-card {
-    position: static;
-  }
-}
-
+/* Keep the complete server chassis visible inside the phone hero card. */
 @media (max-width: 767px) {
-  .server-overview__features-grid {
-    grid-template-columns: 1fr;
+  .server-product__image-wrap {
+    height: clamp(210px, 62vw, 280px);
+    padding: 0.5rem;
+    box-sizing: border-box;
   }
 
-  .server-overview__feature-card {
-    grid-template-columns: minmax(0, 1fr) minmax(96px, 30%);
-  }
-}
-
-@media (max-width: 640px) {
-  .server-specs__visual-img-wrap {
-    min-height: clamp(170px, 60vw, 280px);
-  }
-
-  .server-blueprint__diagram-card {
-    min-height: 0;
-    padding: 0;
-  }
-
-  .server-blueprint__image-wrapper {
+  .server-product__image,
+  .server-product:hover .server-product__image {
+    width: auto;
     height: auto;
-  }
-
-  .server-blueprint__svg-overlay,
-  .server-blueprint__pin {
-    display: none;
-  }
-
-  .server-blueprint__hotspots-card {
-    height: auto;
-    overflow: visible;
-    padding: 1.25rem;
-  }
-
-  .server-blueprint__hotspots-list {
-    overflow: visible;
-  }
-
-  .server-blueprint__hotspot-row,
-  .server-resources__download-btn {
-    min-height: 44px;
-  }
-}
-
-@media (max-width: 540px) {
-  .server-overview__feature-card {
-    grid-template-columns: 1fr;
-    min-height: 0;
-    padding: 1.4rem 1.2rem;
-  }
-
-  .server-overview__feature-img-wrap {
-    min-height: 140px;
-  }
-
-  .server-configurator__display-card {
-    padding: 1.25rem;
-  }
-
-  .server-configurator__bay-graphic {
-    height: 190px;
-  }
-
-  .server-configurator__bay-img {
-    transform: scale(1.2);
-  }
-
-  .server-configurator__specs-matrix {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-}
-
-@media (max-width: 479px) {
-  .server-specs__card-header {
-    align-items: flex-start;
-    padding-inline: 1rem;
-  }
-
-  .server-specs__card-title {
-    min-width: 0;
-    white-space: normal;
-    flex-shrink: 1;
-  }
-
-  .server-apps__env-row,
-  .server-ordering__row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.45rem;
-    padding-inline: 1.25rem;
-  }
-
-  .server-ordering__value {
-    text-align: left;
+    max-width: 92%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transform: none;
   }
 }

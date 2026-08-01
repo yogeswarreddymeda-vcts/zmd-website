@@ -2,11 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/css/home.css';
 
-import hmService1 from '../assets-1/hm_service1.jpeg';
-import hmService2 from '../assets-1/hm_service2.jpeg';
-import hmService3 from '../assets-1/hm_service3.jpeg';
-import hmService4 from '../assets-1/hm_service4.jpeg';
-import aboutEdgeAiImg from '../assets-1/about-edge-ai-v2.png';
+import hmService1 from '../assets-1/hm_service1.webp';
+import hmService2 from '../assets-1/hm_service2.webp';
+import hmService3 from '../assets-1/hm_service3.webp';
+import hmService4 from '../assets-1/hm_service4.webp';
+import aboutEdgeAiImg from '../assets-1/about-edge-ai-v2.webp';
+import ecosystemSensorsImg from '../assets-1/ecosystem-sensors-transparent-v2.webp';
+import ecosystemEdgeDeviceImg from '../assets-1/ecosystem-edge-device-transparent-v2.webp';
+import ecosystemInfrastructureImg from '../assets-1/ecosystem-infrastructure-transparent-v2.webp';
+import ecosystemModelsImg from '../assets-1/ecosystem-models-transparent-v2.webp';
+import ecosystemApplicationsImg from '../assets-1/ecosystem-applications-transparent-v2.webp';
 
 // Eagerly import all 145 frame sequence webp images
 const frameModules = import.meta.glob('../assets/frame_sequence/frame_*.webp', { eager: true, import: 'default' });
@@ -15,6 +20,7 @@ const frameUrls = Object.keys(frameModules)
   .map((key) => frameModules[key]);
 
 const TOTAL_FRAMES = frameUrls.length;
+const MOBILE_HERO_FRAME = frameUrls[TOTAL_FRAMES - 1];
 
 function CountDownNumber({ from = 100, to = 50, suffix = '+', duration = 1600 }) {
   const [count, setCount] = useState(from);
@@ -125,12 +131,73 @@ function AboutIndustryIcon({ name }) {
   );
 }
 
+function EcosystemStepIcon({ index }) {
+  const iconProps = {
+    width: 25,
+    height: 25,
+    viewBox: '0 0 32 32',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.6,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    'aria-hidden': true
+  };
+
+  if (index === 0) {
+    return (
+      <svg {...iconProps}>
+        <path d="M5 10h5l3-3h8l3 3h3v13H5z" />
+        <circle cx="16" cy="16.5" r="5" />
+        <circle cx="16" cy="16.5" r="1.5" />
+      </svg>
+    );
+  }
+
+  if (index === 1) {
+    return (
+      <svg {...iconProps}>
+        <rect x="8" y="8" width="16" height="16" rx="2" />
+        <rect x="12" y="12" width="8" height="8" rx="1" />
+        <path d="M3 12h5M3 20h5M24 12h5M24 20h5M12 3v5M20 3v5M12 24v5M20 24v5" />
+      </svg>
+    );
+  }
+
+  if (index === 2) {
+    return (
+      <svg {...iconProps}>
+        <rect x="6" y="4" width="20" height="7" rx="2" />
+        <rect x="6" y="13" width="20" height="7" rx="2" />
+        <rect x="6" y="22" width="20" height="7" rx="2" />
+        <path d="M10 7.5h.01M10 16.5h.01M10 25.5h.01M15 7.5h7M15 16.5h7M15 25.5h7" />
+      </svg>
+    );
+  }
+
+  if (index === 3) {
+    return (
+      <svg {...iconProps}>
+        <path d="M13 5a5 5 0 0 0-7 6 5 5 0 0 0 0 10 5 5 0 0 0 7 6M19 5a5 5 0 0 1 7 6 5 5 0 0 1 0 10 5 5 0 0 1-7 6M13 5v22M19 5v22" />
+        <path d="M9 11h4M19 11h4M9 21h4M19 21h4" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg {...iconProps}>
+      <rect x="4" y="4" width="9" height="9" rx="2" />
+      <rect x="19" y="4" width="9" height="9" rx="2" />
+      <rect x="4" y="19" width="9" height="9" rx="2" />
+      <rect x="19" y="19" width="9" height="9" rx="2" />
+    </svg>
+  );
+}
+
 export default function HomePage() {
   const heroScrollWrapperRef = useRef(null);
   const heroCanvasRef = useRef(null);
   const imagesRef = useRef(new Array(TOTAL_FRAMES));
-  const frameRequestsRef = useRef(new Map());
-  const requestFrameRef = useRef(null);
 
   const [isHeroTextVisible, setIsHeroTextVisible] = useState(false);
   const currentFrameIdxRef = useRef(0);
@@ -140,8 +207,8 @@ export default function HomePage() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const width = canvas.clientWidth || window.innerWidth;
-    const height = canvas.clientHeight || window.innerHeight;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
 
     if (canvas.width !== width || canvas.height !== height) {
       canvas.width = width;
@@ -173,89 +240,46 @@ export default function HomePage() {
     );
   };
 
-  // Paint the first frame immediately. Desktop frames are then fetched in small
-  // batches so the animation never blocks the page or monopolizes the network.
-  // Mobile and data-saver users keep the same visual as a lightweight static hero.
+  // Load all desktop animation frames immediately.
   useEffect(() => {
-    let cancelled = false;
     const imgArray = imagesRef.current;
-    const frameRequests = frameRequestsRef.current;
 
     if (TOTAL_FRAMES === 0) return;
 
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const saveData = navigator.connection?.saveData === true;
-
-    if (isMobile || reduceMotion || saveData) {
-      setIsHeroTextVisible(true);
+    // Mobile uses one static hero image and should not download the frame sequence.
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      return;
     }
 
-    const loadFrame = (index) => {
-      if (imgArray[index]) return Promise.resolve(imgArray[index]);
-      if (frameRequests.has(index)) {
-        return frameRequests.get(index);
-      }
-
-      const request = new Promise((resolve) => {
-        const img = new Image();
-        img.decoding = 'async';
-        img.onload = () => {
-          if (!cancelled) {
-            imgArray[index] = img;
-            if (index === currentFrameIdxRef.current && heroCanvasRef.current) {
-              renderCanvasFrame(img, heroCanvasRef.current);
-            }
-          }
-          resolve(img);
-        };
-        img.onerror = () => resolve(null);
-        img.src = frameUrls[index];
-      });
-
-      frameRequests.set(index, request);
-      return request;
-    };
-
-    requestFrameRef.current = loadFrame;
-
-    const waitForIdle = () => new Promise((resolve) => {
-      if ('requestIdleCallback' in window) {
-        window.requestIdleCallback(resolve, { timeout: 800 });
-      } else {
-        window.setTimeout(resolve, 50);
-      }
-    });
-
-    const loadDesktopSequence = async () => {
-      await loadFrame(0);
-      if (isMobile || reduceMotion || saveData || cancelled) return;
-
-      const batchSize = 4;
-      for (let start = 1; start < TOTAL_FRAMES && !cancelled; start += batchSize) {
-        const batch = Array.from(
-          { length: Math.min(batchSize, TOTAL_FRAMES - start) },
-          (_, offset) => loadFrame(start + offset)
-        );
-        await Promise.all(batch);
-        await waitForIdle();
+    // Load Frame 0 first for instant initial display
+    const firstImg = new Image();
+    firstImg.src = frameUrls[0];
+    firstImg.onload = () => {
+      imgArray[0] = firstImg;
+      if (heroCanvasRef.current) {
+        renderCanvasFrame(firstImg, heroCanvasRef.current);
       }
     };
 
-    loadDesktopSequence();
-
-    return () => {
-      cancelled = true;
-      frameRequests.clear();
-      if (requestFrameRef.current === loadFrame) {
-        requestFrameRef.current = null;
-      }
-    };
+    // Load remaining frames
+    for (let i = 1; i < TOTAL_FRAMES; i++) {
+      const img = new Image();
+      img.src = frameUrls[i];
+      img.onload = () => {
+        imgArray[i] = img;
+      };
+    }
   }, []);
 
   // Scroll trigger animation handler
   useEffect(() => {
     let animFrameId = null;
+
+    // The mobile hero is intentionally static.
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      setIsHeroTextVisible(true);
+      return undefined;
+    }
 
     const updateFrameOnScroll = () => {
       if (!heroScrollWrapperRef.current || !heroCanvasRef.current) return;
@@ -270,13 +294,8 @@ export default function HomePage() {
       const currentScroll = -rect.top;
       const rawProgress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
 
-      const useStaticHero = window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches
-        || navigator.connection?.saveData === true;
-
-      // Reveal the hero copy immediately on lightweight/static presentations.
-      setIsHeroTextVisible(useStaticHero || rawProgress >= 0.28);
-
-      if (useStaticHero) return;
+      // Reveal the hero copy when the frame sequence enters its second phase.
+      setIsHeroTextVisible(rawProgress >= 0.28);
 
       const targetFrameIndex = Math.min(
         TOTAL_FRAMES - 1,
@@ -289,13 +308,7 @@ export default function HomePage() {
       animFrameId = requestAnimationFrame(() => {
         let img = imagesRef.current[targetFrameIndex];
         if (!img || !img.complete) {
-          requestFrameRef.current?.(targetFrameIndex);
-
-          for (let offset = 1; offset < TOTAL_FRAMES && !img; offset++) {
-            const before = imagesRef.current[targetFrameIndex - offset];
-            const after = imagesRef.current[targetFrameIndex + offset];
-            img = (before?.complete && before) || (after?.complete && after) || null;
-          }
+          img = imagesRef.current.find((f) => f && f.complete) || imagesRef.current[0];
         }
         if (img && heroCanvasRef.current) {
           renderCanvasFrame(img, heroCanvasRef.current);
@@ -345,6 +358,49 @@ export default function HomePage() {
     return () => observer.disconnect();
   }, []);
 
+  const steps = [
+    {
+      num: "01",
+      code: "01 / SENSE",
+      navLabel: "SENSORS & CAMERAS",
+      title: "Sensors & Cameras",
+      description: "Capture real-world data through intelligent vision and sensing systems.",
+      image: ecosystemSensorsImg
+    },
+    {
+      num: "02",
+      code: "02 / PROCESS",
+      navLabel: "EDGE DEVICES",
+      title: "Edge Devices",
+      description: "Process data at the source with low latency and high reliability.",
+      image: ecosystemEdgeDeviceImg
+    },
+    {
+      num: "03",
+      code: "03 / SCALE",
+      navLabel: "AI INFRASTRUCTURE",
+      title: "AI Infrastructure",
+      description: "Scalable GPU and server platforms for training and deployment.",
+      image: ecosystemInfrastructureImg
+    },
+    {
+      num: "04",
+      code: "04 / LEARN",
+      navLabel: "AI MODELS & ANALYTICS",
+      title: "AI Models & Analytics",
+      description: "Transform raw streams into actionable, contextual insight.",
+      image: ecosystemModelsImg
+    },
+    {
+      num: "05",
+      code: "05 / DEPLOY",
+      navLabel: "INDUSTRY APPLICATIONS",
+      title: "Industry Applications",
+      description: "Deploy intelligence across operations and infrastructure.",
+      image: ecosystemApplicationsImg
+    }
+  ];
+
   const products = [
     {
       tag: "VISION",
@@ -365,7 +421,7 @@ export default function HomePage() {
       title: "Drones",
       description: "Autonomous aerial vision and real-time edge inspection platforms.",
       big: false,
-      link: "/products/drone",
+      comingSoon: true,
       icon: (
         <svg className="hmpg-icon-drone" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
           <path d="M12 9v6M9 12h6" />
@@ -425,31 +481,14 @@ export default function HomePage() {
       title: "Smart Sensors",
       description: "Real-time sensing solutions for intelligent environments.",
       big: false,
-      link: "/products/sensors",
+      wide: true,
+      comingSoon: true,
       icon: (
         <svg className="hmpg-icon-sensor" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path className="hmpg-sensor-arc-3" d="M6 6a12 12 0 0 1 12 12" />
           <path className="hmpg-sensor-arc-2" d="M6 10a8 8 0 0 1 8 8" />
           <path className="hmpg-sensor-arc-1" d="M6 14a4 4 0 0 1 4 4" />
           <circle cx="6" cy="18" r="2" fill="#e61919" stroke="none" />
-        </svg>
-      )
-    },
-    {
-      tag: "SOFTWARE",
-      title: "AI Solutions",
-      description: "Customized AI applications and analytics platforms.",
-      big: false,
-      link: "/edge-ai",
-      icon: (
-        <svg className="hmpg-icon-software" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <rect x="3" y="3" width="18" height="18" rx="2" />
-          <rect className="hmpg-panel-top" x="3" y="3" width="18" height="6" fill="none" />
-          <rect className="hmpg-panel-left" x="3" y="9" width="6" height="12" fill="none" />
-          <rect className="hmpg-panel-main" x="9" y="9" width="12" height="12" fill="none" />
-          <line x1="3" y1="9" x2="21" y2="9" />
-          <line x1="9" y1="21" x2="9" y2="9" />
-          <circle cx="6" cy="6" r="1" fill="#e61919" stroke="none" />
         </svg>
       )
     }
@@ -540,6 +579,13 @@ export default function HomePage() {
       {/* Scroll-Triggered Hero Section */}
       <section className="hmpg-scroll-hero-wrapper" ref={heroScrollWrapperRef}>
         <div className="hmpg-scroll-hero-sticky">
+          <img
+            src={MOBILE_HERO_FRAME}
+            alt="ZMD Neural Engine X1 edge AI processor"
+            className="hmpg-mobile-hero-image"
+            fetchPriority="high"
+          />
+
           {/* HTML5 Canvas Frame Renderer */}
           <canvas ref={heroCanvasRef} className="hmpg-hero-canvas" />
 
@@ -627,10 +673,222 @@ export default function HomePage() {
               <img
                 src={aboutEdgeAiImg}
                 alt="Edge AI ecosystem with a neural brain, cameras, sensors, edge computer, and AI server"
-                loading="lazy"
-                decoding="async"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section S/03: Ecosystem */}
+      <section id="ecosystem" className="zmd-section-ecosystem">
+        <div className="zmd-ecosystem-grid-bg" aria-hidden="true" />
+        <div className="zmd-ecosystem-rail" aria-hidden="true">
+          {["S/01", "S/02", "S/03", "S/04"].map((label) => (
+            <span className={label === "S/03" ? "zmd-is-current" : ""} key={label}>
+              {label}
+            </span>
+          ))}
+        </div>
+
+        <div className="zmd-container">
+          <div className="zmd-ecosystem-header">
+            <div className="zmd-eyebrow-row">
+              <span className="zmd-mono-tag zmd-ecosystem-kicker">THE DIFFERENTIATORS</span>
+              <span className="zmd-mono-tag">/ S/03</span>
+            </div>
+
+            <h2 className="zmd-ecosystem-heading">
+              One integrated ecosystem<span className="zmd-text-brand">.</span>
+            </h2>
+
+            <p className="zmd-ecosystem-subtitle">
+              A single signal chain — from raw real-world data to deployed intelligence — engineered and supported end-to-end by ZMD.
+            </p>
+          </div>
+
+          <div className="zmd-ecosystem-mobile-flow" aria-label="ZMD ecosystem stages">
+            {steps.map((step, idx) => (
+              <article className="zmd-ecosystem-mobile-step" key={`mobile-${step.num}`}>
+                <div className="zmd-ecosystem-mobile-meta">
+                  <span className="zmd-ecosystem-mobile-number">{step.num}</span>
+                  <span className="zmd-ecosystem-mobile-label">{step.navLabel}</span>
+                </div>
+
+                <div className="zmd-ecosystem-mobile-media">
+                  <img src={step.image} alt={`${step.title} ecosystem stage`} />
+                  <span className="zmd-ecosystem-mobile-node" aria-hidden="true" />
+                </div>
+
+                <div className="zmd-ecosystem-mobile-content">
+                  <div className="zmd-ecosystem-mobile-code-row">
+                    <span className="zmd-ecosystem-card-icon">
+                      <EcosystemStepIcon index={idx} />
+                    </span>
+                    <span className="zmd-ecosystem-card-code">{step.code}</span>
+                  </div>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="zmd-ecosystem-showcase-scroll">
+            <div className="zmd-ecosystem-showcase">
+              <svg
+                className="zmd-ecosystem-data-bus"
+                viewBox="0 0 1000 300"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <defs>
+                  <linearGradient id="zmd-data-gradient" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#e10600" stopOpacity="0" />
+                    <stop offset="45%" stopColor="#ff4a44" stopOpacity="0.95" />
+                    <stop offset="55%" stopColor="#ffffff" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#e10600" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+
+                <g className="zmd-bus-glass">
+                  <path d="M156 101 C178 101 184 97 203 97 S225 101 244 101" />
+                  <path d="M356 101 C378 101 384 97 403 97 S425 101 444 101" />
+                  <path d="M556 101 C578 101 584 97 603 97 S625 101 644 101" />
+                  <path d="M756 101 C778 101 784 97 803 97 S825 101 844 101" />
+                  <path d="M100 168 V224 H78 V262 H100 V278" />
+                  <path d="M300 168 V238 H282 V262 H300 V278" />
+                  <path d="M500 168 V278" />
+                  <path d="M700 168 V238 H718 V262 H700 V278" />
+                  <path d="M900 168 V224 H922 V262 H900 V278" />
+                </g>
+
+                <g className="zmd-bus-bundle">
+                  <path d="M156 95 C178 95 184 91 203 91 S225 95 244 95" />
+                  <path d="M156 101 C178 101 184 97 203 97 S225 101 244 101" />
+                  <path className="zmd-is-red" d="M156 107 C178 107 184 103 203 103 S225 107 244 107" />
+                  <path d="M356 95 C378 95 384 91 403 91 S425 95 444 95" />
+                  <path d="M356 101 C378 101 384 97 403 97 S425 101 444 101" />
+                  <path className="zmd-is-red" d="M356 107 C378 107 384 103 403 103 S425 107 444 107" />
+                  <path d="M556 95 C578 95 584 91 603 91 S625 95 644 95" />
+                  <path d="M556 101 C578 101 584 97 603 97 S625 101 644 101" />
+                  <path className="zmd-is-red" d="M556 107 C578 107 584 103 603 103 S625 107 644 107" />
+                  <path d="M756 95 C778 95 784 91 803 91 S825 95 844 95" />
+                  <path d="M756 101 C778 101 784 97 803 97 S825 101 844 101" />
+                  <path className="zmd-is-red" d="M756 107 C778 107 784 103 803 103 S825 107 844 107" />
+                </g>
+
+                <g className="zmd-bus-traces">
+                  <path d="M100 168 V224 H78 V262 H100 V278" />
+                  <path d="M300 168 V238 H282 V262 H300 V278" />
+                  <path d="M500 168 V278" />
+                  <path d="M700 168 V238 H718 V262 H700 V278" />
+                  <path d="M900 168 V224 H922 V262 H900 V278" />
+                </g>
+
+                <g className="zmd-bus-nodes">
+                  <circle cx="100" cy="168" r="2.5" />
+                  <circle cx="300" cy="168" r="2.5" />
+                  <circle cx="500" cy="168" r="2.5" />
+                  <circle cx="700" cy="168" r="2.5" />
+                  <circle cx="900" cy="168" r="2.5" />
+                  <circle cx="100" cy="278" r="3" />
+                  <circle cx="300" cy="278" r="3" />
+                  <circle cx="500" cy="278" r="3" />
+                  <circle cx="700" cy="278" r="3" />
+                  <circle cx="900" cy="278" r="3" />
+                </g>
+
+                <g className="zmd-bus-data-flow">
+                  <path d="M156 101 C178 101 184 97 203 97 S225 101 244 101" />
+                  <path d="M356 101 C378 101 384 97 403 97 S425 101 444 101" />
+                  <path d="M556 101 C578 101 584 97 603 97 S625 101 644 101" />
+                  <path d="M756 101 C778 101 784 97 803 97 S825 101 844 101" />
+                  <path d="M100 168 V224 H78 V262 H100 V278" />
+                  <path d="M300 168 V238 H282 V262 H300 V278" />
+                  <path d="M500 168 V278" />
+                  <path d="M700 168 V238 H718 V262 H700 V278" />
+                  <path d="M900 168 V224 H922 V262 H900 V278" />
+                </g>
+
+                <g className="zmd-bus-packets">
+                  <circle r="2.6">
+                    <animateMotion
+                      dur="1.7s"
+                      repeatCount="indefinite"
+                      path="M156 101 C178 101 184 97 203 97 S225 101 244 101"
+                    />
+                  </circle>
+                  <circle r="2.6">
+                    <animateMotion
+                      begin="0.35s"
+                      dur="1.7s"
+                      repeatCount="indefinite"
+                      path="M356 101 C378 101 384 97 403 97 S425 101 444 101"
+                    />
+                  </circle>
+                  <circle r="2.6">
+                    <animateMotion
+                      begin="0.7s"
+                      dur="1.7s"
+                      repeatCount="indefinite"
+                      path="M556 101 C578 101 584 97 603 97 S625 101 644 101"
+                    />
+                  </circle>
+                  <circle r="2.6">
+                    <animateMotion
+                      begin="1.05s"
+                      dur="1.7s"
+                      repeatCount="indefinite"
+                      path="M756 101 C778 101 784 97 803 97 S825 101 844 101"
+                    />
+                  </circle>
+                </g>
+              </svg>
+
+              <div className="zmd-ecosystem-units">
+                {steps.map((step) => (
+                  <div
+                    className="zmd-ecosystem-unit"
+                    key={step.num}
+                  >
+                    <div className="zmd-ecosystem-unit-heading">
+                      <span className="zmd-ecosystem-unit-num">{step.num}</span>
+                      <strong>{step.navLabel}</strong>
+                    </div>
+
+                    <span className="zmd-ecosystem-unit-dot" aria-hidden="true" />
+
+                    <div className="zmd-ecosystem-media">
+                      <img src={step.image} alt={`${step.title} ecosystem stage`} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="zmd-ecosystem-cards">
+            {steps.map((step, idx) => (
+              <div
+                className="zmd-ecosystem-card"
+                key={step.num}
+              >
+                <div className="zmd-ecosystem-card-top">
+                  <span className="zmd-ecosystem-card-icon">
+                    <EcosystemStepIcon index={idx} />
+                  </span>
+                  <span className="zmd-ecosystem-card-code">{step.code}</span>
+                </div>
+
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+
+                <div className="zmd-ecosystem-card-footer" aria-hidden="true">
+                  <i />
+                  <span>→</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -648,31 +906,38 @@ export default function HomePage() {
               Engineered for every layer <span className="zmd-text-brand">of the stack.</span>
             </h2>
             <p className="zmd-section-sub">
-              Six product families, one ecosystem — designed to work together or stand alone.
+              Five product families, one ecosystem — designed to work together or stand alone.
             </p>
           </div>
 
           <div className="zmd-products-grid">
-            {products.map((p, i) => (
-              <Link
-                key={p.title}
-                to={p.link}
-                className={`zmd-product-card hmpg-reveal-on-scroll stagger-${(i % 3) + 1} ${p.big ? 'zmd-product-big' : ''}`}
-                style={{ textDecoration: 'none', color: 'inherit' }}
-              >
-                <div className="zmd-product-card-top">
-                  <div className="hmpg-product-icon-box">{p.icon}</div>
-                  <span className="zmd-mono-tag zmd-product-tag">{p.tag}</span>
-                </div>
-                <div className="zmd-product-card-bottom">
-                  <h3 className="zmd-product-title">{p.title}</h3>
-                  <p className="zmd-product-desc">{p.description}</p>
-                  <div className="zmd-explore-link">
-                    EXPLORE <span>→</span>
+            {products.map((p, i) => {
+              const ProductCard = p.comingSoon ? 'article' : Link;
+              const navigationProps = p.comingSoon
+                ? { 'aria-disabled': true }
+                : { to: p.link };
+
+              return (
+                <ProductCard
+                  key={p.title}
+                  {...navigationProps}
+                  className={`zmd-product-card hmpg-reveal-on-scroll stagger-${(i % 3) + 1} ${p.big ? 'zmd-product-big' : ''} ${p.wide ? 'zmd-product-wide' : ''} ${p.comingSoon ? 'zmd-product-card-upcoming' : ''}`}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  <div className="zmd-product-card-top">
+                    <div className="hmpg-product-icon-box">{p.icon}</div>
+                    <span className="zmd-mono-tag zmd-product-tag">{p.tag}</span>
                   </div>
-                </div>
-              </Link>
-            ))}
+                  <div className="zmd-product-card-bottom">
+                    <h3 className="zmd-product-title">{p.title}</h3>
+                    <p className="zmd-product-desc">{p.description}</p>
+                    {p.comingSoon && (
+                      <span className="zmd-product-status">UPDATE SOON</span>
+                    )}
+                  </div>
+                </ProductCard>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -698,7 +963,7 @@ export default function HomePage() {
             {solutions.map((item, idx) => (
               <div className={`hmpg-solution-card hmpg-reveal-on-scroll stagger-${(idx % 2) + 1}`} key={idx}>
                 <div className="hmpg-solution-visual">
-                  <img src={item.image} alt={item.title} className="hmpg-solution-card-img" loading="lazy" decoding="async" />
+                  <img src={item.image} alt={item.title} className="hmpg-solution-card-img" />
                   <div className="hmpg-solution-badge hmpg-font-mono">{item.badge}</div>
                 </div>
 

@@ -112,6 +112,9 @@ export default function CameraPage() {
 
   // Auto-switch between Dual Lens and Single Lens every 5 seconds
   useEffect(() => {
+    // Keep the mobile hero stable; visitors can still switch variants manually.
+    if (window.matchMedia('(max-width: 767px)').matches) return undefined;
+
     const timer = setInterval(() => {
       setActiveVariant((prev) => (prev === 'dual-lens' ? 'single-lens' : 'dual-lens'));
     }, 5000);
@@ -179,6 +182,7 @@ export default function CameraPage() {
         { value: '30fps', label: 'MAX RESOLUTION' },
       ],
       image: dcamImages.dualLens,
+      mobileImage: dcamImages.dualLensMobileHero,
       alt: 'Advanced Dual Lens IP Camera',
     },
     'single-lens': {
@@ -195,6 +199,7 @@ export default function CameraPage() {
         { value: '30fps', label: 'MAX RESOLUTION' },
       ],
       image: dcamImages.singleLens,
+      mobileImage: dcamImages.singleLensMobileHero,
       alt: 'Precision Single Lens IP Camera',
     },
   };
@@ -324,22 +329,28 @@ export default function CameraPage() {
         <div className="dcam-visual-wrapper">
           <div className="dcam-image-space">
             {previousHero && (
-              <img
-                src={previousHero.image}
-                alt=""
-                aria-hidden="true"
-                className="dcam-hero-img dcam-hero-img-outgoing"
-                decoding="async"
-              />
+              <picture>
+                {previousHero.mobileImage && (
+                  <source media="(max-width: 767px)" srcSet={previousHero.mobileImage} />
+                )}
+                <img
+                  src={previousHero.image}
+                  alt=""
+                  aria-hidden="true"
+                  className="dcam-hero-img dcam-hero-img-outgoing"
+                />
+              </picture>
             )}
-            <img
-              key={activeVariant}
-              src={currentHero.image}
-              alt={currentHero.alt}
-              className="dcam-hero-img dcam-hero-img-incoming"
-              decoding="async"
-              fetchPriority="high"
-            />
+            <picture key={activeVariant}>
+              {currentHero.mobileImage && (
+                <source media="(max-width: 767px)" srcSet={currentHero.mobileImage} />
+              )}
+              <img
+                src={currentHero.image}
+                alt={currentHero.alt}
+                className="dcam-hero-img dcam-hero-img-incoming"
+              />
+            </picture>
           </div>
         </div>
 
@@ -1282,13 +1293,13 @@ export default function CameraPage() {
                     <div className="dcam-sim-scene" style={{ '--dcam-track-x': `${(telemetry.coordsX - 381) * 0.7}px`, '--dcam-track-y': `${(telemetry.coordsY - 207) * 0.45}px` }}>
                       {/* Background Feed: dcamImages for Intrusion, Crowd, Line, Re-ID, SVG for others */}
                       {activeAiSubFeature === 'intrusion' ? (
-                        <img src={dcamImages.edc1} className="dcam-sim-bg-img" alt="Intrusion Detection AI Camera Feed" loading="lazy" decoding="async" />
+                        <img src={dcamImages.edc1} className="dcam-sim-bg-img" alt="Intrusion Detection AI Camera Feed" />
                       ) : activeAiSubFeature === 'crowd' ? (
-                        <img src={dcamImages.croden} className="dcam-sim-bg-img" alt="Crowd Density Analysis AI Camera Feed" loading="lazy" decoding="async" />
+                        <img src={dcamImages.croden} className="dcam-sim-bg-img" alt="Crowd Density Analysis AI Camera Feed" />
                       ) : activeAiSubFeature === 'line' ? (
-                        <img src={dcamImages.linecross} className="dcam-sim-bg-img" alt="Line Crossing Detection AI Camera Feed" loading="lazy" decoding="async" />
+                        <img src={dcamImages.linecross} className="dcam-sim-bg-img" alt="Line Crossing Detection AI Camera Feed" />
                       ) : activeAiSubFeature === 'reid' ? (
-                        <img src={dcamImages.peridde} className="dcam-sim-bg-img" alt="Re-Identification AI Camera Feed" loading="lazy" decoding="async" />
+                        <img src={dcamImages.peridde} className="dcam-sim-bg-img" alt="Re-Identification AI Camera Feed" />
                       ) : (
                         <svg className="dcam-sim-bg-svg" viewBox="0 0 800 400" preserveAspectRatio="none">
                           <rect x="0" y="0" width="800" height="400" fill="#090d16" />
@@ -1302,7 +1313,7 @@ export default function CameraPage() {
                         </svg>
                       )}
 
-                      {/* Minimal & Transparent Intrusion Detection Overlay on edc-1.png */}
+                      {/* Minimal & Transparent Intrusion Detection Overlay on edc-1.webp */}
                       {activeAiSubFeature === 'intrusion' && (
                         <>
                           {/* 1. Minimal Dashed Restricted Zone framing the Security Fence */}
@@ -1418,11 +1429,11 @@ export default function CameraPage() {
                     <div className="dcam-sim-scene" style={{ '--dcam-track-x': `${(telemetry.coordsX - 381) * 0.7}px`, '--dcam-track-y': `${(telemetry.coordsY - 207) * 0.45}px` }}>
                       {/* Background Feed: dcamImages for ANPR, Classification, Attributes, SVG for others */}
                       {activeAiSubFeature === 'anpr' ? (
-                        <img src={dcamImages.licp} className="dcam-sim-bg-img" alt="ANPR License Plate AI Camera Feed" loading="lazy" decoding="async" />
+                        <img src={dcamImages.licp} className="dcam-sim-bg-img" alt="ANPR License Plate AI Camera Feed" />
                       ) : activeAiSubFeature === 'classification' ? (
-                        <img src={dcamImages.vehiclass} className="dcam-sim-bg-img" alt="Vehicle Classification AI Camera Feed" loading="lazy" decoding="async" />
+                        <img src={dcamImages.vehiclass} className="dcam-sim-bg-img" alt="Vehicle Classification AI Camera Feed" />
                       ) : activeAiSubFeature === 'attributes' ? (
-                        <img src={dcamImages.vehatri} className="dcam-sim-bg-img" alt="Vehicle Attribute Recognition AI Camera Feed" loading="lazy" decoding="async" />
+                        <img src={dcamImages.vehatri} className="dcam-sim-bg-img" alt="Vehicle Attribute Recognition AI Camera Feed" />
                       ) : (
                         <svg className="dcam-sim-bg-svg" viewBox="0 0 800 400" preserveAspectRatio="none">
                           <rect x="0" y="0" width="800" height="400" fill="#090d16" />
@@ -1502,11 +1513,11 @@ export default function CameraPage() {
                     <div className="dcam-sim-scene" style={{ '--dcam-track-x': `${(telemetry.coordsX - 381) * 0.7}px`, '--dcam-track-y': `${(telemetry.coordsY - 207) * 0.45}px` }}>
                       {/* Background Feed: dcamImages for Face, Demographics, Fall, SVG for others */}
                       {activeAiSubFeature === 'face' ? (
-                        <img src={dcamImages.facrecog} className="dcam-sim-bg-img" alt="Facial Recognition AI Camera Feed" loading="lazy" decoding="async" />
+                        <img src={dcamImages.facrecog} className="dcam-sim-bg-img" alt="Facial Recognition AI Camera Feed" />
                       ) : activeAiSubFeature === 'demographics' ? (
-                        <img src={dcamImages.gencla} className="dcam-sim-bg-img" alt="Age & Gender Analytics AI Camera Feed" loading="lazy" decoding="async" />
+                        <img src={dcamImages.gencla} className="dcam-sim-bg-img" alt="Age & Gender Analytics AI Camera Feed" />
                       ) : activeAiSubFeature === 'fall' ? (
-                        <img src={dcamImages.perfa} className="dcam-sim-bg-img" alt="Fall Detection AI Camera Feed" loading="lazy" decoding="async" />
+                        <img src={dcamImages.perfa} className="dcam-sim-bg-img" alt="Fall Detection AI Camera Feed" />
                       ) : (
                         <svg className="dcam-sim-bg-svg" viewBox="0 0 800 400" preserveAspectRatio="none">
                           <rect x="0" y="0" width="800" height="400" fill="#090d16" />
@@ -1634,9 +1645,9 @@ export default function CameraPage() {
                     <div className="dcam-sim-scene" style={{ '--dcam-track-x': `${(telemetry.coordsX - 381) * 0.7}px`, '--dcam-track-y': `${(telemetry.coordsY - 207) * 0.45}px` }}>
                       {/* Background Feed: dcamImages for PPE, Fire & Smoke, SVG for others */}
                       {activeAiSubFeature === 'ppe' ? (
-                        <img src={dcamImages.ppever} className="dcam-sim-bg-img" alt="PPE Detection AI Camera Feed" loading="lazy" decoding="async" />
+                        <img src={dcamImages.ppever} className="dcam-sim-bg-img" alt="PPE Detection AI Camera Feed" />
                       ) : activeAiSubFeature === 'firesmoke' ? (
-                        <img src={dcamImages.firede} className="dcam-sim-bg-img" alt="Fire & Smoke Detection AI Camera Feed" loading="lazy" decoding="async" />
+                        <img src={dcamImages.firede} className="dcam-sim-bg-img" alt="Fire & Smoke Detection AI Camera Feed" />
                       ) : (
                         <svg className="dcam-sim-bg-svg" viewBox="0 0 800 400" preserveAspectRatio="none">
                           <rect x="0" y="0" width="800" height="400" fill="#090d16" />
@@ -1807,7 +1818,7 @@ export default function CameraPage() {
                 <article className="dcam-model-card" key={model.name}>
                   <div className={`dcam-model-image-slot ${model.image ? 'dcam-model-image-slot-filled' : ''}`} aria-label={`${model.name} ${model.image ? 'product image' : 'image placeholder'}`}>
                     {model.image ? (
-                      <img className={`dcam-model-product-image ${model.imageClass || ''}`} src={model.image} alt={`${model.name} camera`} loading="lazy" decoding="async" />
+                      <img className={`dcam-model-product-image ${model.imageClass || ''}`} src={model.image} alt={`${model.name} camera`} />
                     ) : (
                       <>
                         <span className="dcam-model-image-grid" aria-hidden="true" />

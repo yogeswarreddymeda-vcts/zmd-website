@@ -1,5 +1,7 @@
 import dualLensImg from './duallens.webp';
+import dualLensMobileHeroImg from './dual-lens-mobile-hero.webp';
 import singleLensImg from './singlelens.webp';
+import singleLensMobileHeroImg from './single-lens-mobile-hero.webp';
 import edc1Img from './edc-1.webp';
 import crodenImg from './croden.webp';
 import linecrossImg from './linecross.webp';
@@ -23,7 +25,9 @@ import finalBannerImg from './final_banner.webp';
  */
 export class dcamImages {
   static dualLens = dualLensImg;
+  static dualLensMobileHero = dualLensMobileHeroImg;
   static singleLens = singleLensImg;
+  static singleLensMobileHero = singleLensMobileHeroImg;
   static edc1 = edc1Img;
   static croden = crodenImg;
   static linecross = linecrossImg;

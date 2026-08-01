@@ -2,18 +2,18 @@ import React, { useEffect, useRef, useState } from 'react';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import '../assets/css/home.css';
-import zmdCoreLogoImg from '../components/Header/zmd_logo.png';
+import zmdCoreLogoImg from '../components/Header/zmd_logo.webp';
 
-import hmService1 from '../assets/images/home/hm-services/hm_service1.jpeg';
-import hmService2 from '../assets/images/home/hm-services/hm_service2.jpeg';
-import hmService3 from '../assets/images/home/hm-services/hm_service3.jpeg';
-import hmService4 from '../assets/images/home/hm-services/hm_service4.jpeg';
-import aboutEdgeAiImg from '../assets/images/home/about/about-edge-ai-v2.png';
-import ecosystemSensorsImg from '../assets/images/home/ecosystem/ecosystem-sensors-transparent-v2.png';
-import ecosystemEdgeDeviceImg from '../assets/images/home/ecosystem/ecosystem-edge-device-transparent-v2.png';
-import ecosystemInfrastructureImg from '../assets/images/home/ecosystem/ecosystem-infrastructure-transparent-v2.png';
-import ecosystemModelsImg from '../assets/images/home/ecosystem/ecosystem-models-transparent-v2.png';
-import ecosystemApplicationsImg from '../assets/images/home/ecosystem/ecosystem-applications-transparent-v2.png';
+import hmService1 from '../assets/images/home/hm-services/hm_service1.webp';
+import hmService2 from '../assets/images/home/hm-services/hm_service2.webp';
+import hmService3 from '../assets/images/home/hm-services/hm_service3.webp';
+import hmService4 from '../assets/images/home/hm-services/hm_service4.webp';
+import aboutEdgeAiImg from '../assets/images/home/about/about-edge-ai-v2.webp';
+import ecosystemSensorsImg from '../assets/images/home/ecosystem/ecosystem-sensors-transparent-v2.webp';
+import ecosystemEdgeDeviceImg from '../assets/images/home/ecosystem/ecosystem-edge-device-transparent-v2.webp';
+import ecosystemInfrastructureImg from '../assets/images/home/ecosystem/ecosystem-infrastructure-transparent-v2.webp';
+import ecosystemModelsImg from '../assets/images/home/ecosystem/ecosystem-models-transparent-v2.webp';
+import ecosystemApplicationsImg from '../assets/images/home/ecosystem/ecosystem-applications-transparent-v2.webp';
 
 function CountDownNumber({ from = 100, to = 50, suffix = '+', duration = 1600 }) {
     const [count, setCount] = useState(from);
@@ -191,7 +191,7 @@ const TOTAL_FRAMES = 145;
 
 const getFrameUrl = (index) => {
     const frameNum = String(index + 1).padStart(4, '0');
-    return `/frame_sequence/frame_${frameNum}.png`;
+    return `/frame_sequence/frame_${frameNum}.webp`;
 };
 
 export default function Home() {
@@ -199,8 +199,6 @@ export default function Home() {
     const heroCanvasRef = useRef(null);
     const imagesRef = useRef(new Array(TOTAL_FRAMES));
 
-    const [imagesLoaded, setImagesLoaded] = useState(false);
-    const [loadProgress, setLoadProgress] = useState(0);
     const [isHeroTextVisible, setIsHeroTextVisible] = useState(false);
     const currentFrameIdxRef = useRef(0);
 
@@ -242,9 +240,8 @@ export default function Home() {
         );
     };
 
-    // Preload frame 0 immediately, then load remaining frames progressively
+    // Load all animation frames immediately.
     useEffect(() => {
-        let loadedCount = 0;
         const imgArray = imagesRef.current;
 
         // Load Frame 0 first for instant initial display
@@ -252,8 +249,6 @@ export default function Home() {
         firstImg.src = getFrameUrl(0);
         firstImg.onload = () => {
             imgArray[0] = firstImg;
-            loadedCount++;
-            setLoadProgress(1);
             if (heroCanvasRef.current) {
                 renderCanvasFrame(firstImg, heroCanvasRef.current);
             }
@@ -265,18 +260,6 @@ export default function Home() {
             img.src = getFrameUrl(i);
             img.onload = () => {
                 imgArray[i] = img;
-                loadedCount++;
-                const pct = Math.round((loadedCount / TOTAL_FRAMES) * 100);
-                setLoadProgress(pct);
-                if (loadedCount === TOTAL_FRAMES) {
-                    setImagesLoaded(true);
-                }
-            };
-            img.onerror = () => {
-                loadedCount++;
-                if (loadedCount === TOTAL_FRAMES) {
-                    setImagesLoaded(true);
-                }
             };
         }
     }, []);
@@ -600,19 +583,6 @@ export default function Home() {
                     <div className="hmpg-scroll-hero-sticky">
                         {/* HTML5 Canvas Frame Renderer */}
                         <canvas ref={heroCanvasRef} className="hmpg-hero-canvas" />
-
-                        {/* Preloader overlay while frames finish preloading */}
-                        {!imagesLoaded && (
-                            <div className="hmpg-hero-loader-overlay">
-                                <div className="hmpg-loader-content">
-                                    <span className="hmpg-loader-tag font-mono">LOADING EXPERIENCE</span>
-                                    <div className="hmpg-loader-bar-bg">
-                                        <div className="hmpg-loader-bar-fill" style={{ width: `${loadProgress}%` }} />
-                                    </div>
-                                    <span className="hmpg-loader-pct font-mono">{loadProgress}%</span>
-                                </div>
-                            </div>
-                        )}
 
                         {/* Hero Branding Overlay Content */}
                         <div className="hmpg-hero-overlay-content">
