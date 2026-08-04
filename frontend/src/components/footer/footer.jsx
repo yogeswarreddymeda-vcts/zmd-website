@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import zmdLogo from '../header/zmd_logo.webp';
 import './footer.css';
 
@@ -7,16 +7,42 @@ export default function Footer() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      if (!location.hash) {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        return;
+      }
+
+      const sectionId = decodeURIComponent(location.hash.slice(1));
+      const section = document.getElementById(sectionId);
+
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (sectionId === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [location.pathname, location.hash]);
+
+  const resetPageScroll = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  };
+
   const navigateAndScroll = (sectionId) => {
     if (location.pathname !== '/') {
       navigate(`/#${sectionId}`);
+      return;
+    }
+
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
     } else {
-      const elem = document.getElementById(sectionId);
-      if (elem) {
-        elem.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -24,14 +50,13 @@ export default function Footer() {
     <footer className="zmd-footer">
       <div className="footer-container">
         <div className="footer-grid">
-
           {/* Left Column: Brand Info */}
           <div className="footer-brand-col">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="footer-brand-logo"
-              onClick={(e) => {
-                e.preventDefault();
+              onClick={(event) => {
+                event.preventDefault();
                 navigateAndScroll('home');
               }}
             >
@@ -53,13 +78,13 @@ export default function Footer() {
               </a>
               <a href="#" aria-label="GitHub" className="social-link">
                 <svg fill="currentColor" viewBox="0 0 24 24" width="16" height="16">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                 </svg>
               </a>
             </div>
           </div>
 
-          {/* Column 1: PRODUCTS */}
+          {/* Column 1: Products */}
           <div className="footer-col">
             <h4 className="footer-col-title">PRODUCTS</h4>
             <ul className="footer-links">
@@ -73,7 +98,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 2: SOLUTIONS */}
+          {/* Column 2: Solutions */}
           <div className="footer-col">
             <h4 className="footer-col-title">SOLUTIONS</h4>
             <ul className="footer-links">
@@ -85,23 +110,28 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: NAVIGATION */}
+          {/* Column 3: Navigation */}
           <div className="footer-col">
             <h4 className="footer-col-title">NAVIGATION</h4>
             <ul className="footer-links">
               <li>
-                <a href="#home" onClick={(e) => { e.preventDefault(); navigateAndScroll('home'); }}>
+                <a
+                  href="#home"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    navigateAndScroll('home');
+                  }}
+                >
                   Home
                 </a>
               </li>
               <li>
-                <Link to="/edge-ai">
+                <Link to="/edge-ai" onClick={resetPageScroll}>
                   Edge AI
                 </Link>
               </li>
             </ul>
           </div>
-
         </div>
 
         {/* Footer Bottom Bar */}

@@ -4344,6 +4344,42 @@ html {
     filter: none;
     transform: none;
   }
+
+  /* Disable blur/transform reveal layers on every camera-page section. */
+  .dcam-page-container {
+    animation: none;
+    transform: none;
+    filter: none;
+  }
+
+  .dcam-animated-section,
+  .dcam-animated-section.dcam-section-visible,
+  .dcam-animated-section.dcam-section-hidden {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .dcam-animated-section.dcam-section-visible .dcam-section-header,
+  .dcam-animated-section.dcam-section-visible .dcam-sim-header,
+  .dcam-animated-section.dcam-section-visible .dcam-arch-row {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .dcam-hero-stats-grid,
+  .dcam-canvas-badge,
+  .dcam-dn-overlay-label,
+  .dcam-qr-card,
+  .dcam-hud-side-strip,
+  .dcam-hud-data-panel,
+  .dcam-hud-gauge-strip {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 @media (max-width: 480px) {

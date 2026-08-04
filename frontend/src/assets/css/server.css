@@ -1152,8 +1152,14 @@
 
 .server-page-container {
   width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
+  overflow-x: clip;
+}
+
+.server-page-container > section {
+  max-width: 100%;
 }
 
 .server-specs {
@@ -1682,6 +1688,44 @@
   align-items: center;
   width: 100%;
 }
+
+.server-arch__image-wrap {
+  position: relative;
+  width: min(100%, 680px);
+}
+
+.server-arch__image-markers {
+  display: none;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.server-arch__image-marker {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #ef2b2d;
+  color: #fff;
+  box-shadow: 0 2px 7px rgba(127, 29, 29, 0.3);
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1;
+  transform: translate(-50%, -50%);
+}
+
+.server-arch__image-marker--1 { left: 18%; top: 24%; }
+.server-arch__image-marker--2 { left: 15%; top: 53%; }
+.server-arch__image-marker--3 { left: 82%; top: 21%; }
+.server-arch__image-marker--4 { left: 86%; top: 42%; }
+.server-arch__image-marker--5 { left: 88%; top: 62%; }
+.server-arch__image-marker--6 { left: 82%; top: 78%; }
 
 .server-arch__chassis-img {
   width: 100%;
@@ -3842,5 +3886,490 @@
     object-fit: contain;
     object-position: center;
     transform: none;
+  }
+}
+
+/* Responsive architecture, blueprint, and configurator refinements. */
+@media (max-width: 1024px) {
+  .server-blueprint__grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  .server-blueprint__diagram-card,
+  .server-blueprint__hotspots-card {
+    position: relative;
+    top: auto;
+    align-self: stretch;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  .server-arch__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .server-arch__center-graphic {
+    order: 1;
+  }
+
+  .server-arch__col--left {
+    order: 2;
+  }
+
+  .server-arch__col--right {
+    order: 3;
+  }
+
+  .server-arch__connectors-svg {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .server-blueprint,
+  .server-configurator {
+    padding: 3.5rem 0.9rem;
+  }
+
+  .server-blueprint__header {
+    margin-bottom: 1.5rem;
+  }
+
+  .server-blueprint__title {
+    font-size: 1.8rem;
+  }
+
+  .server-blueprint__tabs-nav {
+    overflow-x: auto;
+  }
+
+  .server-blueprint__tabs-pill-group {
+    width: 100%;
+  }
+
+  .server-blueprint__tab-btn {
+    flex: 1;
+    padding-inline: 0.65rem;
+  }
+
+  .server-blueprint__subheader {
+    margin-bottom: 1.25rem;
+  }
+
+  .server-blueprint__diagram-card {
+    min-height: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .server-blueprint__image-wrapper {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
+
+  .server-blueprint__diagram-img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+  }
+
+  .server-blueprint__hotspots-card {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 1.1rem;
+    overflow: visible;
+    border-radius: 12px;
+  }
+
+  .server-blueprint__hotspots-title {
+    margin-bottom: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+
+  .server-blueprint__hotspots-list {
+    max-height: none;
+    overflow: visible;
+    gap: 0.15rem;
+  }
+
+  .server-blueprint__hotspot-row {
+    min-height: 42px;
+    padding: 0.55rem 0.65rem;
+    gap: 0.75rem;
+  }
+
+  .server-blueprint__spot-num {
+    width: 22px;
+    height: 22px;
+    font-size: 0.65rem;
+  }
+
+  .server-blueprint__spot-label {
+    font-size: 0.8rem;
+  }
+
+  .server-blueprint__pin {
+    width: 24px;
+    height: 24px;
+    font-size: 0.65rem;
+  }
+
+  .server-configurator__display-card {
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: 14px;
+  }
+
+  .server-configurator__bay-graphic {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    margin-block: 0.25rem;
+    padding: 0.65rem;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .server-configurator__bay-img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center;
+    transform: none;
+  }
+
+  .server-configurator__specs-matrix {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+
+  .server-configurator__spec-pill {
+    min-width: 0;
+    padding: 0.65rem 0.5rem;
+  }
+
+  .server-configurator__spec-value {
+    overflow-wrap: anywhere;
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .server-arch__image-markers {
+    display: block;
+  }
+
+  .server-arch {
+    padding: 3.5rem 0.9rem 4rem;
+    background: linear-gradient(180deg, #fff 0%, #fbfcfe 100%);
+  }
+
+  .server-arch__container {
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .server-arch__header {
+    margin-bottom: 1.65rem;
+    padding-inline: 0.4rem;
+  }
+
+  .server-arch__eyebrow-wrap {
+    margin-bottom: 0.9rem;
+  }
+
+  .server-arch__red-bar {
+    display: none;
+  }
+
+  .server-arch__eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+  }
+
+  .server-arch__title {
+    max-width: 640px;
+    margin: 0 auto 0.9rem;
+    font-size: clamp(1.8rem, 8vw, 2.55rem);
+    line-height: 1.12;
+  }
+
+  .server-arch__subtitle {
+    max-width: 580px;
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
+  .server-arch__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .server-arch__center-graphic {
+    order: 1;
+    margin: 0 auto 1.5rem;
+    padding: 0;
+  }
+
+  .server-arch__chassis-img {
+    width: 100%;
+    max-width: 680px;
+    filter: drop-shadow(0 16px 15px rgba(15, 23, 42, 0.13));
+  }
+
+  .server-arch__col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 0;
+  }
+
+  .server-arch__col--left {
+    order: 2;
+  }
+
+  .server-arch__col--right {
+    order: 3;
+    margin-top: 0.8rem;
+  }
+
+  .server-arch__connectors-svg {
+    display: none;
+  }
+
+  .server-arch__callout-card {
+    position: relative;
+    min-height: 128px;
+    padding: 1rem;
+    border-color: #e2e8f0;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.035);
+  }
+
+  .server-arch__callout-card::before {
+    position: absolute;
+    left: 5.65rem;
+    top: 1rem;
+    z-index: 2;
+    width: 29px;
+    height: 29px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #ef2b2d;
+    color: #fff;
+    font-family: var(--display, 'Space Grotesk', sans-serif);
+    font-size: 0.85rem;
+    font-weight: 800;
+  }
+
+  .server-arch__col--left .server-arch__callout-card:nth-child(1)::before { content: '1'; }
+  .server-arch__col--left .server-arch__callout-card:nth-child(2)::before { content: '2'; }
+  .server-arch__col--right .server-arch__callout-card:nth-child(1)::before { content: '3'; }
+  .server-arch__col--right .server-arch__callout-card:nth-child(2)::before { content: '4'; }
+  .server-arch__col--right .server-arch__callout-card:nth-child(3)::before { content: '5'; }
+  .server-arch__col--right .server-arch__callout-card:nth-child(4)::before { content: '6'; }
+
+  .server-arch__card-top {
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  .server-arch__card-top > div:last-child {
+    min-width: 0;
+    padding-left: 2.15rem;
+  }
+
+  .server-arch__icon-box {
+    width: 72px;
+    height: 72px;
+    border-color: #fecaca;
+    background: #fff7f7;
+  }
+
+  .server-arch__icon-box svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .server-arch__card-h3 {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .server-arch__card-tag {
+    margin-top: 0.25rem;
+    font-size: 0.65rem;
+  }
+
+  .server-arch__card-body {
+    margin: -1.15rem 0 0 7.1rem;
+    max-width: calc(100% - 7.1rem);
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+
+  .server-page-container {
+    overscroll-behavior-x: none;
+  }
+
+  .server-page-container img,
+  .server-page-container svg {
+    max-width: 100%;
+  }
+
+  .server-apps,
+  .server-apps.server-apps--visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .server-apps.is-visible .server-apps__container,
+  .server-apps.server-apps--visible .server-apps__container {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .server-apps__container {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Keep every mobile section crisp by removing completed 3D/reveal layers. */
+  .server-hero,
+  .server-hero__eyebrow,
+  .server-hero__title > span,
+  .server-hero__rule,
+  .server-hero__description,
+  .server-hero__actions,
+  .server-product,
+  .server-product__accent,
+  .server-hero-specs .server-spec,
+  .server-bento.is-visible .spec-tilt-card,
+  .server-bento.server-bento--visible .spec-tilt-card,
+  .server-specs.is-visible .server-specs__header,
+  .server-specs.server-specs--visible .server-specs__header,
+  .server-specs.is-visible .server-specs__container,
+  .server-specs.server-specs--visible .server-specs__container,
+  .server-arch.is-visible .server-arch__col--left,
+  .server-arch.server-arch--visible .server-arch__col--left,
+  .server-arch.is-visible .server-arch__center-graphic,
+  .server-arch.server-arch--visible .server-arch__center-graphic,
+  .server-arch.is-visible .server-arch__col--right,
+  .server-arch.server-arch--visible .server-arch__col--right,
+  .server-blueprint.is-visible .server-blueprint__container,
+  .server-blueprint.server-blueprint--visible .server-blueprint__container,
+  .server-configurator.is-visible .server-configurator__container,
+  .server-configurator.server-configurator--visible .server-configurator__container,
+  .server-resources.is-visible .server-resources__card,
+  .server-resources.server-resources--visible .server-resources__card,
+  .server-why.is-visible .server-why__header,
+  .server-why.server-why--visible .server-why__header,
+  .server-why.is-visible .server-why__item,
+  .server-why.server-why--visible .server-why__item,
+  .server-ordering.is-visible .server-ordering__grid,
+  .server-ordering.server-ordering--visible .server-ordering__grid,
+  .server-models,
+  .server-models.is-visible,
+  .server-models--visible,
+  .server-models.is-visible .server-models__card,
+  .server-models.server-models--visible .server-models__card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .server-blueprint__tabs-pill-group,
+  .server-blueprint__hotspots-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .server-overview.is-visible .server-overview__header,
+  .server-overview.server-overview--visible .server-overview__header,
+  .server-overview.is-visible .server-overview__grid,
+  .server-overview.server-overview--visible .server-overview__grid {
+    animation: none;
+    transform: none;
+    filter: none;
+    opacity: 1;
+  }
+
+  .server-overview__stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: #e2e8f0;
+    border-color: #e2e8f0;
+    border-radius: 12px;
+  }
+
+  .server-overview__stat-card {
+    min-height: 112px;
+    padding: 1.35rem 1.25rem;
+    justify-content: center;
+    transform: none;
+    filter: none;
+    -webkit-font-smoothing: auto;
+    text-rendering: geometricPrecision;
+  }
+
+  .server-overview__stat-val {
+    margin-bottom: 0.75rem;
+    color: #0f172a;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .server-overview__stat-label {
+    color: #475569;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+  }
+}
+
+@media (max-width: 420px) {
+  .server-arch__callout-card {
+    min-height: 118px;
+    padding-inline: 0.8rem;
+  }
+
+  .server-arch__icon-box {
+    width: 62px;
+    height: 62px;
+  }
+
+  .server-arch__callout-card::before {
+    left: 4.55rem;
+    width: 26px;
+    height: 26px;
+  }
+
+  .server-arch__card-top > div:last-child {
+    padding-left: 1.75rem;
+  }
+
+  .server-arch__card-body {
+    margin-left: 5.95rem;
+    max-width: calc(100% - 5.95rem);
   }
 }

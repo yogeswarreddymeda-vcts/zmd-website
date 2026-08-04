@@ -43,7 +43,7 @@ html {
 }
 
 body {
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 .hmpg-zmd-app,
@@ -441,6 +441,7 @@ section.hmpg-is-visible,
     left: 0;
     width: 100%;
     height: 100vh;
+    height: 100svh;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -452,8 +453,8 @@ section.hmpg-is-visible,
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     z-index: 1;
 }
@@ -683,6 +684,8 @@ section.hmpg-is-visible,
         transition: none;
         pointer-events: auto;
         text-align: center;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
     }
 
     .hmpg-hero-text-block > *,
@@ -696,6 +699,7 @@ section.hmpg-is-visible,
     .hmpg-hero-text-block .hmpg-section-tag {
         font-size: 0.72rem;
         letter-spacing: 0.12em;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
     }
 
     .hmpg-hero-text-block .hmpg-hero-title {
@@ -703,6 +707,7 @@ section.hmpg-is-visible,
         font-size: clamp(2.7rem, 12vw, 3.4rem);
         line-height: 0.98;
         letter-spacing: -0.045em;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.72);
     }
 
     .hmpg-hero-text-block .hmpg-hero-description {
@@ -710,6 +715,7 @@ section.hmpg-is-visible,
         margin: 0 0 1.35rem;
         font-size: 1rem;
         line-height: 1.5;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.78);
     }
 
     .hmpg-hero-actions {
@@ -3636,5 +3642,33 @@ section.hmpg-is-visible,
     .hmpg-hero-text-block .hmpg-hero-title {
         font-size: clamp(2.35rem, 11.5vw, 3rem);
         line-height: 0.98;
+    }
+
+    /* Mobile text must not remain inside transformed reveal layers. */
+    section,
+    section.hmpg-is-visible,
+    section.hmpg-is-exiting-up,
+    section.hmpg-is-exiting-down,
+    .hmpg-reveal-on-scroll,
+    .hmpg-fade-up-scroll,
+    .hmpg-fade-left-scroll,
+    .hmpg-fade-right-scroll,
+    .hmpg-scale-on-scroll,
+    .hmpg-zoom-in-scroll,
+    .hmpg-solutions-section .hmpg-reveal-on-scroll,
+    .zmd-ecosystem-unit,
+    .zmd-section-ecosystem.hmpg-is-visible .zmd-ecosystem-unit,
+    .zmd-ecosystem-card,
+    .zmd-section-ecosystem.hmpg-is-visible .zmd-ecosystem-card {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        transition: none !important;
+    }
+
+    .hmpg-ai-node-panel,
+    .hmpg-solution-badge {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
     }
 }

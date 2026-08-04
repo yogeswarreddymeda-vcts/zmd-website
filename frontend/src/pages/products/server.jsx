@@ -968,11 +968,21 @@ export default function ServerPage() {
 
             {/* Center Graphic */}
             <div className="server-arch__center-graphic">
-              <img
-                src={archOverviewImg}
-                alt="ZMD Server PCIe Gen5 Switch Fabric Chassis Architecture"
-                className="server-arch__chassis-img"
-              />
+              <div className="server-arch__image-wrap">
+                <img
+                  src={archOverviewImg}
+                  alt="ZMD Server PCIe Gen5 Switch Fabric Chassis Architecture"
+                  className="server-arch__chassis-img"
+                />
+                <div className="server-arch__image-markers" aria-hidden="true">
+                  <span className="server-arch__image-marker server-arch__image-marker--1">1</span>
+                  <span className="server-arch__image-marker server-arch__image-marker--2">2</span>
+                  <span className="server-arch__image-marker server-arch__image-marker--3">3</span>
+                  <span className="server-arch__image-marker server-arch__image-marker--4">4</span>
+                  <span className="server-arch__image-marker server-arch__image-marker--5">5</span>
+                  <span className="server-arch__image-marker server-arch__image-marker--6">6</span>
+                </div>
+              </div>
             </div>
 
             {/* Right Column Callout Cards */}

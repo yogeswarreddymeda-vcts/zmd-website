@@ -21,6 +21,30 @@ const frameUrls = Object.keys(frameModules)
 
 const TOTAL_FRAMES = frameUrls.length;
 const MOBILE_HERO_FRAME = frameUrls[TOTAL_FRAMES - 1];
+const FRAME_LOAD_CONCURRENCY = 6;
+
+function isDrawableImage(image) {
+  return Boolean(image?.complete && image.naturalWidth > 0);
+}
+
+function findNearestLoadedFrame(frames, targetIndex) {
+  if (isDrawableImage(frames[targetIndex])) return frames[targetIndex];
+
+  for (let offset = 1; offset < frames.length; offset += 1) {
+    const previous = targetIndex - offset;
+    const next = targetIndex + offset;
+
+    if (previous >= 0 && isDrawableImage(frames[previous])) {
+      return frames[previous];
+    }
+
+    if (next < frames.length && isDrawableImage(frames[next])) {
+      return frames[next];
+    }
+  }
+
+  return null;
+}
 
 function CountDownNumber({ from = 100, to = 50, suffix = '+', duration = 1600 }) {
   const [count, setCount] = useState(from);
@@ -207,6 +231,9 @@ export default function HomePage() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Preserve the last valid canvas frame while another frame is loading.
+    if (!isDrawableImage(img)) return;
+
     const width = window.innerWidth;
     const height = window.innerHeight;
 
@@ -217,8 +244,6 @@ export default function HomePage() {
 
     ctx.fillStyle = '#0b0c10';
     ctx.fillRect(0, 0, width, height);
-
-    if (!img || !img.complete || img.naturalWidth === 0) return;
 
     const hRatio = width / img.naturalWidth;
     const vRatio = height / img.naturalHeight;
@@ -240,9 +265,11 @@ export default function HomePage() {
     );
   };
 
-  // Load all desktop animation frames immediately.
+  // Load desktop animation frames through a small worker pool. Loading all
+  // 145 files at once causes network contention and image-decode jank.
   useEffect(() => {
     const imgArray = imagesRef.current;
+    let cancelled = false;
 
     if (TOTAL_FRAMES === 0) return;
 
@@ -251,24 +278,47 @@ export default function HomePage() {
       return;
     }
 
-    // Load Frame 0 first for instant initial display
-    const firstImg = new Image();
-    firstImg.src = frameUrls[0];
-    firstImg.onload = () => {
-      imgArray[0] = firstImg;
-      if (heroCanvasRef.current) {
-        renderCanvasFrame(firstImg, heroCanvasRef.current);
-      }
+    const loadFrame = (index) => new Promise((resolve) => {
+      const img = new Image();
+      img.decoding = 'async';
+
+      img.onload = () => {
+        if (!cancelled) {
+          imgArray[index] = img;
+          if (index === 0 && heroCanvasRef.current) {
+            renderCanvasFrame(img, heroCanvasRef.current);
+          }
+        }
+        resolve();
+      };
+
+      img.onerror = resolve;
+      img.src = frameUrls[index];
+    });
+
+    const loadFrames = async () => {
+      await loadFrame(0);
+      if (cancelled) return;
+
+      let nextIndex = 1;
+      const worker = async () => {
+        while (!cancelled && nextIndex < TOTAL_FRAMES) {
+          const frameIndex = nextIndex;
+          nextIndex += 1;
+          await loadFrame(frameIndex);
+        }
+      };
+
+      await Promise.all(
+        Array.from({ length: FRAME_LOAD_CONCURRENCY }, () => worker())
+      );
     };
 
-    // Load remaining frames
-    for (let i = 1; i < TOTAL_FRAMES; i++) {
-      const img = new Image();
-      img.src = frameUrls[i];
-      img.onload = () => {
-        imgArray[i] = img;
-      };
-    }
+    loadFrames();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   // Scroll trigger animation handler
@@ -294,7 +344,8 @@ export default function HomePage() {
       const currentScroll = -rect.top;
       const rawProgress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
 
-      // Reveal the hero copy when the frame sequence enters its second phase.
+      // Match the intended sequence: begin on the clean processor visual,
+      // then introduce the message once the zoom animation is underway.
       setIsHeroTextVisible(rawProgress >= 0.28);
 
       const targetFrameIndex = Math.min(
@@ -306,10 +357,7 @@ export default function HomePage() {
 
       if (animFrameId) cancelAnimationFrame(animFrameId);
       animFrameId = requestAnimationFrame(() => {
-        let img = imagesRef.current[targetFrameIndex];
-        if (!img || !img.complete) {
-          img = imagesRef.current.find((f) => f && f.complete) || imagesRef.current[0];
-        }
+        const img = findNearestLoadedFrame(imagesRef.current, targetFrameIndex);
         if (img && heroCanvasRef.current) {
           renderCanvasFrame(img, heroCanvasRef.current);
         }
@@ -317,7 +365,10 @@ export default function HomePage() {
     };
 
     const handleResize = () => {
-      const img = imagesRef.current[currentFrameIdxRef.current] || imagesRef.current[0];
+      const img = findNearestLoadedFrame(
+        imagesRef.current,
+        currentFrameIdxRef.current
+      );
       if (img && heroCanvasRef.current) {
         renderCanvasFrame(img, heroCanvasRef.current);
       }
@@ -577,7 +628,7 @@ export default function HomePage() {
   return (
     <div className="hmpg-zmd-app">
       {/* Scroll-Triggered Hero Section */}
-      <section className="hmpg-scroll-hero-wrapper" ref={heroScrollWrapperRef}>
+      <section id="home" className="hmpg-scroll-hero-wrapper" ref={heroScrollWrapperRef}>
         <div className="hmpg-scroll-hero-sticky">
           <img
             src={MOBILE_HERO_FRAME}

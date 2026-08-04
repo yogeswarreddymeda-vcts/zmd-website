@@ -10,9 +10,10 @@
 @media (max-width: 992px) {
   .mobile-header-root {
     display: block;
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
+    right: 0;
     width: 100%;
     background-color: #ffffff;
     border-bottom: 1px solid #e2e8f0;
@@ -21,7 +22,7 @@
   }
 
   .mobile-header-root.scrolled {
-    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.12);
+    box-shadow: 0 5px 22px -4px rgba(15, 23, 42, 0.2);
   }
 
   /* Top Bar Container */
@@ -463,4 +464,3 @@
     gap: 0.85rem;
   }
 }
-
