@@ -58,21 +58,6 @@ export default function Header() {
     navigate(path);
   };
 
-  const handleSolutionClick = (id) => {
-    setProductsOpen(false);
-    setSolutionsOpen(false);
-    if (location.pathname !== '/edge-ai') {
-      navigate(`/edge-ai#usecase-${id}`);
-    } else {
-      const elem = document.getElementById(`usecase-${id}`);
-      if (elem) {
-        elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
-  };
-
   return (
     <>
       {/* Separate Mobile Header for devices under 992px */}

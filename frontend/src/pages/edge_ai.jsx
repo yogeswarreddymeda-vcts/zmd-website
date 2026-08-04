@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import heroSectionGraphic from '../assets/images/edge/herosectionedgeai.webp';
 import imgSmall from '../assets/images/edge/edge_box_small.webp';
 import imgPro from '../assets/images/edge/edge_box_pro.webp';
 import imgFlex from '../assets/images/edge/edge_box_flex.webp';
@@ -8,7 +7,6 @@ import imgUltra from '../assets/images/edge/edge_box_ultra.webp';
 import '../assets/css/edge_ai.css';
 
 export default function EdgeAIPage() {
-  const [activeCategory, setActiveCategory] = useState('all');
   const location = useLocation();
 
   useEffect(() => {
@@ -196,13 +194,6 @@ export default function EdgeAIPage() {
       hardwareModels: [systems.small, systems.medium, systems.large]
     }
   ];
-
-  const scrollToCard = (id) => {
-    const el = document.getElementById(`usecase-${id}`);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
 
   return (
     <div className="edgeai-page">

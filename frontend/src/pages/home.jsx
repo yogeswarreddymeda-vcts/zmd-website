@@ -46,46 +46,6 @@ function findNearestLoadedFrame(frames, targetIndex) {
   return null;
 }
 
-function CountDownNumber({ from = 100, to = 50, suffix = '+', duration = 1600 }) {
-  const [count, setCount] = useState(from);
-  const elementRef = useRef(null);
-  const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          let startTime = null;
-
-          const animateStep = (timestamp) => {
-            if (!startTime) startTime = timestamp;
-            const progress = Math.min((timestamp - startTime) / duration, 1);
-            const easeOut = 1 - Math.pow(1 - progress, 3);
-            const currentVal = Math.round(from - (from - to) * easeOut);
-            setCount(currentVal);
-
-            if (progress < 1) {
-              requestAnimationFrame(animateStep);
-            }
-          };
-
-          requestAnimationFrame(animateStep);
-        }
-      },
-      { threshold: 0.15 }
-    );
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [from, to, duration]);
-
-  return <span ref={elementRef}>{count}{suffix}</span>;
-}
-
 function AboutIndustryIcon({ name }) {
   const iconProps = {
     width: 30,

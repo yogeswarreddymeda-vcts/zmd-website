@@ -75,22 +75,6 @@ export default function MobileHeader() {
     navigate(path);
   };
 
-  const handleSolutionClick = (id) => {
-    setIsOpen(false);
-    setProductsExpanded(false);
-    setSolutionsExpanded(false);
-    if (location.pathname !== '/edge-ai') {
-      navigate(`/edge-ai#usecase-${id}`);
-    } else {
-      const elem = document.getElementById(`usecase-${id}`);
-      if (elem) {
-        elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
-  };
-
   const productCategories = [
     {
       id: 'cam',

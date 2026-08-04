@@ -19,49 +19,6 @@ import deliEnSec4Img from '../../assets/images/delibot/deliensec_4.png';
 import deliFBanImg from '../../assets/images/delibot/delfban.png';
 import '../../assets/css/delibot.css';
 
-/**
- * Reusable Image/Video Placeholder Component
- */
-function ImagePlaceholder({ 
-  label, 
-  tag = "IMAGE PLACEHOLDER", 
-  theme = "dark", 
-  height = "260px",
-  isVideo = false,
-  aspectRatio = "16/9"
-}) {
-  return (
-    <div 
-      className={`delibot-placeholder-card delibot-placeholder-card--${theme}`}
-      style={{ minHeight: height, aspectRatio: aspectRatio }}
-    >
-      {isVideo ? (
-        <>
-          <div className="delibot-placeholder-play-overlay">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </div>
-          <span className="delibot-placeholder-tag">VIDEO PLACEHOLDER</span>
-        </>
-      ) : (
-        <>
-          <svg className="delibot-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-            <circle cx="8.5" cy="8.5" r="1.5" />
-            <polyline points="21 15 16 10 5 21" />
-          </svg>
-          <span className="delibot-placeholder-tag">
-            <span className="delibot-led-dot" style={{ marginRight: '6px' }}></span>
-            {tag}
-          </span>
-        </>
-      )}
-      <p className="delibot-placeholder-label">{label}</p>
-    </div>
-  );
-}
-
 // Per-card target ratios within the robot image (x,y as fraction of image w/h)
 // These define which part of the robot each card highlights
 const CARD_IMG_TARGETS = {
@@ -75,7 +32,7 @@ const CARD_IMG_TARGETS = {
 
 export default function DelibotPage() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeNav, setActiveNav] = useState('overview');
+  const [, setActiveNav] = useState('overview');
   const [activeCard, setActiveCard] = useState(null);
   const [connector, setConnector] = useState(null);
   const [openFaq, setOpenFaq] = useState(-1);

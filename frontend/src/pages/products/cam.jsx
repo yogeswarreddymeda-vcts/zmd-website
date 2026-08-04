@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import '../../assets/css/cam.css';
 import dcamImages from '../../assets/images/cam/dcamImages';
 
@@ -7,8 +7,6 @@ export default function CameraPage() {
   const [previousHero, setPreviousHero] = useState(null);
   const previousVariantRef = useRef('dual-lens');
   const [openFaq, setOpenFaq] = useState(-1);
-  const [activeTechTab, setActiveTechTab] = useState('specs');
-  const [formSubmitted, setFormSubmitted] = useState(false);
   const [activeAiCategory, setActiveAiCategory] = useState('security');
   const [activeAiSubFeature, setActiveAiSubFeature] = useState('intrusion');
   const [openTechCategory, setOpenTechCategory] = useState(-1);
@@ -167,7 +165,7 @@ export default function CameraPage() {
     { id: 'single-lens', title: 'Single Lens', tag: 'BULLET · 110°' },
   ];
 
-  const heroContent = {
+  const heroContent = useMemo(() => ({
     'dual-lens': {
       tagText: 'ZMD EDGE AI CAMERAS',
       titlePrefix: 'Advanced ',
@@ -202,7 +200,7 @@ export default function CameraPage() {
       mobileImage: dcamImages.singleLensMobileHero,
       alt: 'Precision Single Lens IP Camera',
     },
-  };
+  }), []);
 
   const currentHero = heroContent[activeVariant] || heroContent['dual-lens'];
 
@@ -214,7 +212,7 @@ export default function CameraPage() {
     previousVariantRef.current = activeVariant;
     const transitionTimer = setTimeout(() => setPreviousHero(null), 750);
     return () => clearTimeout(transitionTimer);
-  }, [activeVariant]);
+  }, [activeVariant, heroContent]);
 
   const specData = {
     'dual-lens': {
@@ -314,12 +312,6 @@ export default function CameraPage() {
       a: 'Security features include AES-256 video encryption, HTTPS secure communication, signed firmware with trusted boot, and IP/MAC address filtering. The camera is BIS certified, STQC tested, and NDAA compliant.'
     }
   ];
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 5000);
-  };
 
   return (
     <>
