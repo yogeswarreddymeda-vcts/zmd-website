@@ -66,36 +66,22 @@ export default function Footer() {
               <li><Link to="/products/cam">Camera</Link></li>
               <li><Link to="/products/delibot">Delibot</Link></li>
               <li><Link to="/products/drone">Drone</Link></li>
+              <li><Link to="/products/edge-box">Edge Box</Link></li>
               <li><Link to="/products/safety">Safety Band</Link></li>
               <li><Link to="/products/sensors">Sensors</Link></li>
               <li><Link to="/products/server">Server</Link></li>
             </ul>
           </div>
 
-          {/* Column 2: EDGE AI */}
+          {/* Column 2: SOLUTIONS */}
           <div className="footer-col">
-            <h4 className="footer-col-title">EDGE AI</h4>
+            <h4 className="footer-col-title">SOLUTIONS</h4>
             <ul className="footer-links">
-              <li>
-                <a href="#solutions" onClick={(e) => { e.preventDefault(); navigateAndScroll('solutions'); }}>
-                  Smart Retail
-                </a>
-              </li>
-              <li>
-                <a href="#solutions" onClick={(e) => { e.preventDefault(); navigateAndScroll('solutions'); }}>
-                  Surveillance
-                </a>
-              </li>
-              <li>
-                <a href="#solutions" onClick={(e) => { e.preventDefault(); navigateAndScroll('solutions'); }}>
-                  Smart Parking
-                </a>
-              </li>
-              <li>
-                <a href="#solutions" onClick={(e) => { e.preventDefault(); navigateAndScroll('solutions'); }}>
-                  Industrial AI
-                </a>
-              </li>
+              <li><Link to="/edge-ai#usecase-airports">Airports</Link></li>
+              <li><Link to="/edge-ai#usecase-cities">Cities</Link></li>
+              <li><Link to="/edge-ai#usecase-hospitals">Hospitals</Link></li>
+              <li><Link to="/edge-ai#usecase-retail">Retail</Link></li>
+              <li><Link to="/edge-ai#usecase-manufacturing">Manufacturing</Link></li>
             </ul>
           </div>
 

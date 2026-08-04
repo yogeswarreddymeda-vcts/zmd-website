@@ -1513,7 +1513,7 @@
 .edge-usecases__stack {
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
+  gap: 2rem;
   width: 100%;
 }
 
@@ -1521,14 +1521,14 @@
 .sm-usecase-card {
   background: #FFFFFF;
   border: 1.5px solid #E2E8F0;
-  border-radius: 24px;
-  box-shadow: 0 14px 40px -10px rgba(15, 23, 42, 0.06), 0 0 24px rgba(220, 38, 38, 0.025);
-  padding: clamp(2rem, 3vw, 2.75rem) clamp(2.25rem, 4vw, 3.75rem);
-  width: 96%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -8px rgba(15, 23, 42, 0.05), 0 0 18px rgba(220, 38, 38, 0.02);
+  padding: 1.5rem 2rem;
+  width: 95%;
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: 1.25fr 1px 0.85fr;
-  gap: clamp(2rem, 3.5vw, 3.5rem);
+  grid-template-columns: 1.3fr 1px 0.8fr;
+  gap: 2rem;
   align-items: center;
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
 }
@@ -1546,8 +1546,8 @@
 
 .sm-usecase-card:hover {
   border-color: #FCA5A5;
-  transform: translateY(-4px);
-  box-shadow: 0 22px 50px -12px rgba(220, 38, 38, 0.14);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -10px rgba(220, 38, 38, 0.12);
 }
 
 /* Left Column: Context & Capabilities & CTA */
@@ -1558,89 +1558,89 @@
 
 .sm-usecase-card__title {
   font-family: var(--display, 'Space Grotesk', sans-serif);
-  font-size: clamp(2rem, 2.8vw, 2.75rem);
+  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
   font-weight: 800;
   color: #0F172A;
-  margin: 0 0 0.65rem 0;
+  margin: 0 0 0.4rem 0;
   letter-spacing: -0.025em;
   line-height: 1.15;
 }
 
 .sm-usecase-card__hook {
   font-family: var(--body, 'Inter', sans-serif);
-  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  font-size: 0.95rem;
   font-weight: 600;
   color: #DC2626;
-  margin: 0 0 1.5rem 0;
-  line-height: 1.45;
+  margin: 0 0 0.85rem 0;
+  line-height: 1.4;
 }
 
 .sm-usecase-card__capabilities {
   list-style: none;
   padding: 0;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 0.85rem 0;
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.4rem;
 }
 
 .sm-usecase-card__capability-item {
   font-family: var(--body, 'Inter', sans-serif);
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   color: #334155;
-  line-height: 1.5;
+  line-height: 1.45;
   display: flex;
   align-items: flex-start;
-  gap: 0.65rem;
+  gap: 0.5rem;
 }
 
 .sm-usecase-card__bullet {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background-color: #DC2626;
-  margin-top: 8px;
+  margin-top: 7px;
   flex-shrink: 0;
 }
 
 .sm-usecase-card__desc {
   font-family: var(--body, 'Inter', sans-serif);
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   color: #475569;
-  line-height: 1.65;
-  margin: 0 0 2rem 0;
+  line-height: 1.55;
+  margin: 0 0 1.1rem 0;
 }
 
 .sm-usecase-card__btn-main {
   font-family: var(--body, 'Inter', sans-serif);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: #FFFFFF;
   background-color: #991B1B;
   border: none;
-  padding: 0.85rem 1.75rem;
-  border-radius: 8px;
+  padding: 0.6rem 1.35rem;
+  border-radius: 7px;
   cursor: pointer;
   width: fit-content;
   text-decoration: none;
   transition: all 0.22s ease;
-  box-shadow: 0 4px 14px rgba(153, 27, 27, 0.25);
+  box-shadow: 0 3px 10px rgba(153, 27, 27, 0.2);
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .sm-usecase-card__btn-main:hover {
   background-color: #7F1D1D;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(153, 27, 27, 0.35);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(153, 27, 27, 0.3);
 }
 
 /* Middle Divider Line */
 .sm-usecase-card__divider {
   width: 1px;
   height: 100%;
-  min-height: 280px;
+  min-height: 200px;
   background-color: #E2E8F0;
 }
 
@@ -1664,10 +1664,10 @@
 .sm-usecase-card__arrow-btn {
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
   border-radius: 50%;
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   color: #475569;
   cursor: pointer;
   padding: 0;
@@ -1687,23 +1687,23 @@
 
 .sm-usecase-card__hw-img-wrap {
   width: 100%;
-  max-width: 320px;
-  height: 185px;
+  max-width: 270px;
+  height: 145px;
   background-color: #F8FAFC;
   border: 1px solid #E2E8F0;
-  border-radius: 16px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  margin: 0 auto 1.25rem auto;
-  padding: 14px;
+  margin: 0 auto 0.85rem auto;
+  padding: 10px;
   box-sizing: border-box;
 }
 
 .sm-usecase-card__hw-img {
   max-width: 100%;
-  max-height: 145px;
+  max-height: 115px;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -1716,13 +1716,13 @@
 
 .sm-usecase-card__hw-tag {
   position: absolute;
-  top: 10px;
-  right: 12px;
+  top: 8px;
+  right: 10px;
   font-family: var(--mono, 'JetBrains Mono', monospace);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 800;
-  padding: 0.2rem 0.6rem;
-  border-radius: 12px;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
   background-color: #FFF5F5;
   color: #DC2626;
   border: 1px solid #FCA5A5;
@@ -1732,23 +1732,23 @@
 
 .sm-usecase-card__image-placeholder {
   width: 100%;
-  max-width: 320px;
-  height: 180px;
+  max-width: 270px;
+  height: 145px;
   background-color: #F8FAFC;
   border: 1.5px dashed #CBD5E1;
-  border-radius: 14px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  margin: 0 auto 1.25rem auto;
+  gap: 0.4rem;
+  margin: 0 auto 0.85rem auto;
 }
 
 .sm-usecase-card__placeholder-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
   background-color: #FFFFFF;
   border: 1px solid #E2E8F0;
   display: flex;
@@ -1759,37 +1759,37 @@
 
 .sm-usecase-card__placeholder-text {
   font-family: var(--mono, 'JetBrains Mono', monospace);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: #94A3B8;
 }
 
 .sm-usecase-card__model-title {
   font-family: var(--mono, 'JetBrains Mono', monospace);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   font-weight: 700;
   color: #0F172A;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
 }
 
 .sm-usecase-card__model-desc {
   font-family: var(--body, 'Inter', sans-serif);
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   color: #64748B;
-  line-height: 1.5;
-  margin: 0 0 1.25rem 0;
-  max-width: 340px;
+  line-height: 1.45;
+  margin: 0 0 0.85rem 0;
+  max-width: 300px;
 }
 
 .sm-usecase-card__btn-sub {
   font-family: var(--body, 'Inter', sans-serif);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: #FFFFFF;
   background-color: #991B1B;
   border: none;
-  padding: 0.65rem 1.4rem;
+  padding: 0.5rem 1.1rem;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.22s ease;
@@ -1803,21 +1803,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  margin-top: 1.25rem;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
 }
 
 .sm-usecase-card__dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background-color: #CBD5E1;
 }
 
 .sm-usecase-card__dot--active {
   background-color: #005596;
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 /* Responsive Grid Breakpoints */
@@ -1825,6 +1825,7 @@
   .sm-usecase-card {
     grid-template-columns: 1fr;
     gap: 2.5rem;
+    width: 100%;
   }
 
   .sm-usecase-card__divider {

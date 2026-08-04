@@ -8,6 +8,7 @@ import HomePage from './pages/home';
 import CameraPage from './pages/products/cam';
 import DelibotPage from './pages/products/delibot';
 import DronePage from './pages/products/drone';
+import EdgeBoxPage from './pages/products/edge_box';
 import SafetyBandPage from './pages/products/health';
 import SensorsPage from './pages/products/sensors';
 import ServerPage from './pages/products/server';
@@ -28,6 +29,8 @@ export default function App() {
           <Route path="/products/cam" element={<CameraPage />} />
           <Route path="/products/delibot" element={<DelibotPage />} />
           <Route path="/products/drone" element={<DronePage />} />
+          <Route path="/products/edge-box" element={<EdgeBoxPage />} />
+          <Route path="/products/edge_box" element={<EdgeBoxPage />} />
           <Route path="/products/safety" element={<SafetyBandPage />} />
           <Route path="/products/sensors" element={<SensorsPage />} />
           <Route path="/products/server" element={<ServerPage />} />

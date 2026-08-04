@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import heroSectionGraphic from '../assets/images/edge/herosectionedgeai.webp';
 import imgSmall from '../assets/images/edge/edge_box_small.webp';
 import imgPro from '../assets/images/edge/edge_box_pro.webp';
@@ -9,6 +9,19 @@ import '../assets/css/edge_ai.css';
 
 export default function EdgeAIPage() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const targetId = location.hash.replace('#', '');
+      const el = document.getElementById(targetId);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 150);
+      }
+    }
+  }, [location.hash]);
 
   const systems = {
     small: {
@@ -42,15 +55,14 @@ export default function EdgeAIPage() {
       id: 'airports',
       number: '01',
       title: 'Airports',
-      hook: 'An airport is the most instrumented building you own. Most of it is unwatched.',
+      hook: 'Transforming unmonitored airport feeds into real-time operational intelligence.',
       metrics: ['On-Time Performance', 'Queue Wait SLA', 'PAX Throughput', 'Retail Revenue/sq ft', 'Aircraft Turnaround'],
       capabilities: [
-        'Predictive queue management — wait times measured at touchpoints, breaches predicted 15m ahead',
-        'Retail & F&B leakage recovery — camera-verified transactions against POS',
-        'Landside & parking enforcement — automated violation detection and dispatch',
-        'Turnaround & flight operations fusion — stand cameras timing every ground event'
+        'Predictive queue management (15m breach alerts)',
+        'Retail & F&B leakage recovery via POS cross-matching',
+        'Automated landside & parking violation dispatch'
       ],
-      description: "ApexFlo fuses the CCTV an airport already owns with flight, baggage, and passenger systems into one predictive operations centre. Security and check-in queues — the airport's most public failure point — are measured continuously, with breaches predicted before they happen.",
+      description: "ZMD leverages ApexFlo data intelligence on Edge Box to process existing airport CCTV and flight streams locally with zero cloud latency.",
       hardwareTitle: 'Predictive Queue SLA',
       hardwareDesc: 'Reuses existing airport CCTV wherever it meets resolution requirements; edge nodes process 30–40 camera streams per box in the server room. Live in 4 weeks on CCTV + flight schedule alone.',
       hardwareModels: [systems.medium, systems.large, systems.extraLarge]
@@ -59,15 +71,14 @@ export default function EdgeAIPage() {
       id: 'cities',
       number: '02',
       title: 'Cities',
-      hook: 'The city bought ten thousand cameras. It got ten thousand recordings.',
+      hook: 'Converting city-wide video streams into proactive traffic & civic solutions.',
       metrics: ['Junction Delay', 'Challan Sustainment Rate', 'Incident Response Time', 'Grievance Closure Time', 'Monsoon Readiness'],
       capabilities: [
-        'Corridor congestion prediction with signal retiming recommendations',
-        'Court-ready enforcement evidence — ANPR, red-light, and lane-violation packs',
-        'Incident detection & dispatch — accidents and obstructions flagged automatically',
-        'Civic operations — waterlogging alerts, encroachment tracking, contractor SLA scoring'
+        'Junction congestion prediction & signal retiming',
+        'Court-ready enforcement evidence (ANPR, Red-Light)',
+        'Automated incident & waterlogging alerts'
       ],
-      description: "ApexFlo turns the camera estate and traffic systems a city already owns into an intelligence layer that predicts junction breakdowns before they form, assembles evidence packs a magistrate will sustain, and pages the pump crew before an underpass floods.",
+      description: "ZMD utilizes ApexFlo analytics powered by Edge Box to turn city infrastructure data into real-time incident response.",
       hardwareTitle: 'Corridor Congestion + Enforcement',
       hardwareDesc: 'Reuses the VMS wherever it speaks ONVIF/RTSP; junction-cabinet edge nodes are ruggedized for outdoor deployment. Live in 4 weeks on one corridor of existing cameras, read-only.',
       hardwareModels: [systems.large, systems.extraLarge]
@@ -76,15 +87,14 @@ export default function EdgeAIPage() {
       id: 'hospitals',
       number: '03',
       title: 'Hospitals',
-      hook: 'The EMR knows the timestamps. Nobody knows the floor.',
+      hook: 'Closing the gap between digital records and physical hospital floor reality.',
       metrics: ['Bed Turnover Interval', 'ED Wait + LWBS', 'OT Utilization', 'Average Length of Stay', 'Claim Cycle Time'],
       capabilities: [
-        'ED flow prediction — surge forecasting and fast-track recommendations',
-        'Real-time bed management — housekeeping dispatched the instant a bed is vacated',
-        'Patient safety — fall detection, prolonged inactivity alerts, virtual observation',
-        'Equipment tracking — RFID/BLE location for pumps, wheelchairs, monitors'
+        'ED flow prediction & surge forecasting',
+        'Instant bed turnover & housekeeping dispatch',
+        'Patient safety & fall detection alerts'
       ],
-      description: "ApexFlo fuses hospital CCTV, RFID, and patient monitors with the HIS the hospital already runs, turning them into one operations centre that sees the physical truth behind the electronic record. Beds are dispatched for cleaning the moment they're vacated, ED surges predicted 30m ahead.",
+      description: "ZMD deploys ApexFlo floor intelligence on Edge Box, combining HIS data and CCTV feeds for instant bed and patient management.",
       hardwareTitle: 'ED Flow + Bed Turnover',
       hardwareDesc: 'Runs on existing CCTV; staged rollout with cameras only in week one, ADT feed integration by week two. Pilot scoped to one department.',
       hardwareModels: [systems.small, systems.medium, systems.large]
@@ -93,15 +103,14 @@ export default function EdgeAIPage() {
       id: 'retail',
       number: '04',
       title: 'Retail',
-      hook: 'The brand pays for the shelf. Nobody watches the shelf.',
+      hook: 'Turning shelf cameras and store feeds into automated inventory action.',
       metrics: ['On-Shelf Availability %', 'Share of Shelf', 'Audit Cost per Store', 'Billing Leakage', 'Queue Abandonment'],
       capabilities: [
-        'Shelf availability monitoring — stock-outs detected within the hour',
-        'Planogram & share-of-shelf compliance with photo evidence',
-        'Billing leakage detection — POS cross-referenced against camera',
-        'Checkout queue management and footfall conversion analytics'
+        'Hourly stock-out & shelf availability tracking',
+        'Planogram compliance & share-of-shelf scoring',
+        'POS billing leakage recovery'
       ],
-      description: "A single ZMD shelf camera per priority aisle turns the monthly audit van into a live dashboard: stock-outs become distributor orders within the hour, planogram compliance is scored continuously with photo evidence, and billing leakage becomes a recovery case with clip attached.",
+      description: "ZMD combines ApexFlo vision AI with Edge Box hardware to monitor retail shelves and minimize revenue leakage on site.",
       hardwareTitle: 'On-Shelf Availability',
       hardwareDesc: 'Purpose-built shelf camera: wide field of view, on-device inference, 4G connectivity, zero-touch enrollment. Pilot: 50 instrumented stores vs. matched controls.',
       hardwareModels: [systems.small, systems.medium]
@@ -110,15 +119,14 @@ export default function EdgeAIPage() {
       id: 'agritech',
       number: '05',
       title: 'Agritech',
-      hook: 'The farmer walks the field once a day. The disease does not wait.',
+      hook: 'Providing 24/7 crop monitoring and early disease intervention.',
       metrics: ['Yield per Acre', 'Input Cost per Acre', 'Water per Tonne', 'Loss Events Caught Early', 'Advisory Adoption'],
       capabilities: [
-        'Daily vigor mapping via multispectral imagery (NDVI-based)',
-        'Early pest & disease detection with photo-evidenced advisories',
-        'Soil & nutrition monitoring — NPK, pH, moisture from in-field probes',
-        'Irrigation automation — policy-gated valve/pump triggers logged per zone'
+        'Multispectral vigor & crop health mapping',
+        'Early pest & disease photo advisories',
+        'Automated soil & moisture irrigation triggers'
       ],
-      description: "One elevated solar-powered camera and a handful of soil probes give a field eyes and a nervous system: daily vigor maps, first-detection pest and disease alerts, and moisture readings turned into irrigation triggers — every advisory backed by a photo and a reading.",
+      description: "ZMD powers field kits with ApexFlo agricultural intelligence on Edge Box for off-grid crop and soil analytics.",
       hardwareTitle: 'ZMD Field Kit',
       hardwareDesc: 'One elevated multispectral camera per 10-acre plot, 5–10 soil probes, solar gateway with IP67 rugged housing. Runs 24/7 off-grid. Pilot live in 4 weeks, advisory-only.',
       hardwareModels: [systems.small, systems.extraLarge]
@@ -127,15 +135,14 @@ export default function EdgeAIPage() {
       id: 'cinemas',
       number: '06',
       title: 'Cinemas',
-      hook: 'The interval is scheduled demand. The cinema still gets surprised by it.',
+      hook: 'Predicting interval surges and accelerating auditorium turnarounds.',
       metrics: ['Turnaround Minutes', 'F&B Spend per Head', 'Queue Abandonment', 'Shows per Screen per Day', 'Energy per Show'],
       capabilities: [
-        'Interval readiness — concession staffing triggered before doors open',
-        'Auditorium turnaround clock — housekeeping dispatched the moment credits roll',
-        'F&B reconciliation against POS with evidence-backed leakage cases',
-        'Lobby flow, entry, and parking exit-surge management'
+        'Interval concession demand & staffing triggers',
+        'Automated auditorium turnaround clock',
+        'POS reconciliation & F&B leakage prevention'
       ],
-      description: "ApexFlo fuses the cameras a multiplex already has with its ticketing and POS systems, turning scheduled showtimes into scheduled response: concession staffing fires before the popcorn queue breaks, housekeeping is dispatched the instant a hall empties.",
+      description: "ZMD integrates ApexFlo concession analytics into Edge Box to streamline cinema turnarounds and boost F&B revenues.",
       hardwareTitle: 'Interval Readiness + Turnaround Clock',
       hardwareDesc: 'One edge box per property processing 30–40 streams; reuses existing property CCTV. Live in 4 weeks on existing cameras + showtime feed, one property.',
       hardwareModels: [systems.small, systems.medium]
@@ -144,15 +151,14 @@ export default function EdgeAIPage() {
       id: 'venues',
       number: '07',
       title: 'Venues & Campuses',
-      hook: 'On the biggest day, the venue runs on walkie-talkies and luck.',
+      hook: 'Eliminating crowd bottlenecks with continuous estate metering.',
       metrics: ['Density SLA per Zone', 'Attraction Wait Visibility', 'Incident Response Time', 'Shuttle Wait', 'Per-Cap Spend'],
       capabilities: [
-        'Continuous crowd density metering at gates, plazas, and attractions',
-        'Live wait-time boards for every attraction and counter',
-        'Shuttle & parking staging based on real-time demand forecasts',
-        'Incident dispatch with location and clip, response fully timed'
+        'Real-time crowd density & gate metering',
+        'Live attraction wait-time board automation',
+        'Dynamic shuttle & parking demand staging'
       ],
-      description: "ApexFlo turns a venue's existing camera estate into its nervous system: crowd density measured continuously at every gate and attraction, crush risk predicted before it forms, and shuttles staged to where the crowd will be — replacing 40 control room screens with one map.",
+      description: "ZMD applies ApexFlo spatial algorithms via Edge Box to manage crowd flow across large venues and university campuses.",
       hardwareTitle: 'Gate & Attraction Metering',
       hardwareDesc: 'Zone cabinets distributed across the estate, ruggedized for outdoor/monsoon conditions. Pilot on existing cameras at gates + top attractions, live in 4 weeks.',
       hardwareModels: [systems.medium, systems.large, systems.extraLarge]
@@ -161,15 +167,14 @@ export default function EdgeAIPage() {
       id: 'manufacturing',
       number: '08',
       title: 'Manufacturing',
-      hook: 'The MES knows what the machines did. Nobody knows what the plant did.',
+      hook: 'Capturing line micro-stops and floor safety risks automatically.',
       metrics: ['Near-Miss Detection + Closure', 'Micro-Stop Minutes', 'First-Pass Yield', 'Dock Turnaround', 'Near-Miss Closure'],
       capabilities: [
-        'Zone-level PPE & safety discipline scoring, anonymous by shift',
-        'Line stoppage capture — micro-stops the MES never logs, with cause and clip',
-        'Forklift-pedestrian near-miss heat-mapping',
-        'Yard & gate sequencing — dock turnaround and demurrage prevention'
+        'Zone-level PPE & safety discipline scoring',
+        'Micro-stoppage video capture & cause logging',
+        'Forklift & pedestrian hazard detection'
       ],
-      description: "ApexFlo points a plant's existing cameras at the gap its systems can't see: the four-minute micro-stop, the PPE that came off at the hot station, the truck idling at the gate since lunch. Everything is zone-level, never worker-tracking.",
+      description: "ZMD harnesses ApexFlo plant intelligence on Edge Box to give operations teams instant visibility into factory floor disruptions.",
       hardwareTitle: 'Zone Safety + Stoppage Capture',
       hardwareDesc: 'Shop-floor cabinets rated for industrial dust/heat/vibration; camera-only start, no OT integration required for week one. Live in 4 weeks on one line + one gate.',
       hardwareModels: [systems.large, systems.extraLarge]
@@ -178,15 +183,14 @@ export default function EdgeAIPage() {
       id: 'education',
       number: '09',
       title: 'Education',
-      hook: 'The lecture happens once. Then it disappears.',
+      hook: 'Automating classroom capture and intelligent student support.',
       metrics: ['Faculty Prep Hours Saved', 'Doubt-Resolution Latency', 'Space Utilization %', 'Lab Safety Compliance', 'Admissions Cycle Time'],
       capabilities: [
-        'Automated lecture capture, transcription, and regional-language summaries',
-        '24/7 course-grounded TA agent — every answer cited from actual course material',
-        'Campus space utilization — classroom, library, and lab occupancy tracking',
-        'Lab safety & PPE compliance monitoring with formative feedback'
+        'Automated lecture capture & transcription',
+        '24/7 course-grounded AI teaching assistant',
+        'Campus space & lab safety compliance'
       ],
-      description: "ApexFlo captures every lecture, publishes searchable notes within the hour, and backs it with a 24/7 teaching-assistant agent that answers only from the course's own material — every reply cited, never a substitute for the instructor.",
+      description: "ZMD uses ApexFlo academic software running on Edge Box to deliver instant course summaries and round-the-clock student assistance.",
       hardwareTitle: 'Lecture Capture + Course TA',
       hardwareDesc: 'Silent, discreet, tamper-evident classroom capture kits; reuses existing AV where present. Pilot: capture + TA agent in one department\'s classrooms, live in 4 weeks.',
       hardwareModels: [systems.small, systems.medium, systems.large]
@@ -359,111 +363,7 @@ export default function EdgeAIPage() {
         </div>
       </section>
 
-      <section className="ecosystem">
-        <div className="head">
-          <div className="eyebrow">THE EDGE AI STACK</div>
-          <h1>Two halves, one runtime.</h1>
-          <p>
-            Hardware without models is an empty box. Models without hardware are a deck. ApexFlo is designed from the silicon up so every model runs at full throughput on the hardware in front of it.
-          </p>
-        </div>
 
-        <div className="modules">
-          <article className="module module--hw">
-            <div className="module-art">
-              <svg viewBox="0 0 280 154" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="20" y="30" width="240" height="94" rx="8" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5"/>
-                <rect x="36" y="44" width="80" height="66" rx="4" fill="#F1F5F9" stroke="#CBD5E1"/>
-                <rect x="46" y="54" width="60" height="46" rx="3" fill="#DC2626" opacity="0.12"/>
-                <text x="76" y="80" textAnchor="middle" fontFamily="Space Grotesk, sans-serif" fontWeight="700" fontSize="11" fill="#DC2626">ZMD NPU</text>
-                <rect x="130" y="44" width="114" height="12" rx="3" fill="#E2E8F0"/>
-                <rect x="130" y="62" width="114" height="12" rx="3" fill="#E2E8F0"/>
-                <rect x="130" y="80" width="80" height="12" rx="3" fill="#E2E8F0"/>
-                <circle cx="230" cy="86" r="4" fill="#10B981"/>
-                <circle cx="218" cy="86" r="4" fill="#DC2626"/>
-              </svg>
-            </div>
-            <span className="module-tag">HARDWARE</span>
-            <h2>Edge Hardware</h2>
-            <p className="module-sub">A range of on-site compute devices — sized and rated for wherever they're deployed.</p>
-            <p className="module-desc">It sits on-site next to the sensors and cameras, capturing data and running inference locally — so the system keeps working even when the network doesn't.</p>
-          </article>
-
-          <div className="connector">
-            <div className="line"></div>
-            <div className="pulse"></div>
-            <div className="node">+</div>
-          </div>
-
-          <article className="module module--sw">
-            <div className="module-art">
-              <svg viewBox="0 0 280 154" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="20" y="20" width="240" height="114" rx="8" fill="#0F172A"/>
-                <rect x="20" y="20" width="240" height="20" rx="8" fill="#1E293B"/>
-                <circle cx="34" cy="30" r="3" fill="#EF4444" opacity="0.8"/>
-                <circle cx="48" cy="30" r="3" fill="#F59E0B" opacity="0.8"/>
-                <circle cx="62" cy="30" r="3" fill="#10B981" opacity="0.8"/>
-                <text x="140" y="33.5" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="9" fill="#94A3B8">inference.log</text>
-                <rect x="40" y="50" width="70" height="4" rx="2" fill="#DC2626" opacity="0.9"/>
-                <rect x="114" y="50" width="40" height="4" rx="2" fill="#334155"/>
-                <rect x="40" y="60" width="46" height="4" rx="2" fill="#334155"/>
-                <rect x="90" y="60" width="60" height="4" rx="2" fill="#F59E0B" opacity="0.85"/>
-                <rect x="40" y="70" width="90" height="4" rx="2" fill="#334155"/>
-                <polyline points="40,112 60,100 80,105 100,90 120,96 140,80 160,86 180,72 200,78 220,64 236,68"
-                           fill="none" stroke="#DC2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <g fill="#DC2626">
-                  <circle cx="140" cy="80" r="2.6"/>
-                  <circle cx="220" cy="64" r="2.6"/>
-                </g>
-                <line x1="40" y1="118" x2="236" y2="118" stroke="#334155" strokeWidth="1"/>
-                <text x="236" y="76" textAnchor="end" fontFamily="IBM Plex Mono, monospace" fontSize="8" fill="#DC2626" opacity="0.9">42ms</text>
-              </svg>
-            </div>
-            <span className="module-tag">INTELLIGENCE</span>
-            <h2>Intelligence Stack</h2>
-            <p className="module-sub">A range of models — trained and compressed to run on that hardware.</p>
-            <p className="module-desc">It takes what the hardware sees and turns it into a decision — a flaw flagged, a person detected, a fault predicted — computed on the device itself.</p>
-          </article>
-        </div>
-
-        {/* BUS EQUALS CONNECTOR */}
-        <div className="bus">
-          <div className="bus-stem">
-            <div className="pulse-v"></div>
-          </div>
-          <div className="bus-node">=</div>
-          <div className="bus-stem-bottom"></div>
-        </div>
-
-        {/* SOLUTIONS RIBBON */}
-        <div className="solutions-ribbon">
-          <div className="solutions-ribbon__header">
-            <span className="solutions-ribbon__tag">SOLUTIONS</span>
-            <h3 className="solutions-ribbon__title">What they build together (9 Industry Use Cases)</h3>
-          </div>
-
-          <div className="solutions-ribbon__grid">
-            {useCasesData.map((item) => (
-              <div
-                key={item.id}
-                className="solutions-ribbon__item"
-                onClick={() => scrollToCard(item.id)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') scrollToCard(item.id);
-                }}
-              >
-                <div className="solutions-ribbon__num">{item.number}</div>
-                <div className="solutions-ribbon__text">
-                  <span className="solutions-ribbon__name">{item.title}</span>
-                  <span className="solutions-ribbon__desc">{item.hardwareTitle}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* EDGE AI USE CASES SHOWCASE (Supermicro Exact Reference Design) */}
       <section className="edge-usecases" id="use-cases">
@@ -489,101 +389,7 @@ export default function EdgeAIPage() {
         </div>
       </section>
 
-      {/* KEY FEATURES SECTION */}
-      <section className="edge-features">
-        <div className="edge-features__container">
-          <span className="edge-features__eyebrow">KEY FEATURES</span>
-          <h2 className="edge-features__title">What makes Edge Box run</h2>
 
-          <div className="edge-features__grid">
-            {/* Card 01 */}
-            <div className="edge-features__card">
-              <span className="edge-features__card-num">01</span>
-              <h3 className="edge-features__card-title">Next-Gen Processing</h3>
-              <p className="edge-features__card-desc">
-                Core Ultra Series 2 285H SoC for heavy multi-tasking at the edge.
-              </p>
-            </div>
-
-            {/* Card 02 */}
-            <div className="edge-features__card">
-              <span className="edge-features__card-num">02</span>
-              <h3 className="edge-features__card-title">AI-Native Software</h3>
-              <p className="edge-features__card-desc">
-                Built-in NPU tuned for efficient, low-power AI inference.
-              </p>
-            </div>
-
-            {/* Card 03 */}
-            <div className="edge-features__card">
-              <span className="edge-features__card-num">03</span>
-              <h3 className="edge-features__card-title">Hyper Connectivity</h3>
-              <p className="edge-features__card-desc">
-                Dual LAN for redundant or separated internal/external networks.
-              </p>
-            </div>
-
-            {/* Card 04 */}
-            <div className="edge-features__card">
-              <span className="edge-features__card-num">04</span>
-              <h3 className="edge-features__card-title">Advanced Wireless</h3>
-              <p className="edge-features__card-desc">
-                Wi-Fi 7 and Bluetooth 5.4 built in for high-speed data transfer.
-              </p>
-            </div>
-
-            {/* Card 05 */}
-            <div className="edge-features__card">
-              <span className="edge-features__card-num">05</span>
-              <h3 className="edge-features__card-title">Visual Powerhouse</h3>
-              <p className="edge-features__card-desc">
-                Intel® Arc™ graphics drive displays up to 8K resolution.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SOFTWARE / READY TO RUN SECTION */}
-      <section className="edge-software">
-        <div className="edge-software__container">
-          {/* LEFT COLUMN */}
-          <div className="edge-software__left">
-            <span className="edge-software__eyebrow">Software</span>
-            <h2 className="edge-software__title">Ready to run, out of the box</h2>
-            <p className="edge-software__desc">
-              Edge Box ships with the OS support and on-device intelligence needed to deploy models without extra middleware — and keeps working through outages, not just around them.
-            </p>
-          </div>
-
-          {/* RIGHT COLUMN STACKED CARDS */}
-          <div className="edge-software__right">
-            {/* Card 1 */}
-            <div className="edge-software__card">
-              <h3 className="edge-software__card-title">AI-Native Inference (NPU)</h3>
-              <p className="edge-software__card-desc">
-                Built-in Intel® AI Boost NPU handles low-power, on-device inference for predictive and generative models alike.
-              </p>
-            </div>
-
-            {/* Card 2 */}
-            <div className="edge-software__card">
-              <h3 className="edge-software__card-title">Multi-OS Support</h3>
-              <p className="edge-software__card-desc">
-                Runs Windows 11 or Linux distributions, so it slots into whatever stack your team already standardizes on.
-              </p>
-            </div>
-
-            {/* Card 3 */}
-            <div className="edge-software__card">
-              <h3 className="edge-software__card-title">Reliable Offline Operation</h3>
-              <p className="edge-software__card-desc">
-                Operations don't stop when the internet does — Edge Box keeps running through network outages, syncing once connectivity returns.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* HARDWARE LINEUP SECTION */}
       <section className="edge-lineup">

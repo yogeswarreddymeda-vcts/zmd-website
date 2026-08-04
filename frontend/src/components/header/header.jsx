@@ -7,9 +7,22 @@ import './header.css';
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('camera');
   const location = useLocation();
   const navigate = useNavigate();
+
+  const solutionsList = [
+    { id: 'airports', num: '01', title: 'Airports', tag: 'Aviation', desc: 'Predictive Queue SLA & Flight Operations' },
+    { id: 'cities', num: '02', title: 'Cities', tag: 'Smart Cities', desc: 'Corridor Congestion & Enforcement' },
+    { id: 'hospitals', num: '03', title: 'Hospitals', tag: 'Healthcare', desc: 'ED Flow & Bed Turnover' },
+    { id: 'retail', num: '04', title: 'Retail', tag: 'Commerce', desc: 'On-Shelf Availability & Billing Leakage' },
+    { id: 'agritech', num: '05', title: 'Agritech', tag: 'Agriculture', desc: 'ZMD Field Kit & Soil Analytics' },
+    { id: 'cinemas', num: '06', title: 'Cinemas', tag: 'Entertainment', desc: 'Interval Readiness & Turnaround Clock' },
+    { id: 'venues', num: '07', title: 'Venues & Campuses', tag: 'Venues', desc: 'Gate & Attraction Metering' },
+    { id: 'manufacturing', num: '08', title: 'Manufacturing', tag: 'Industrial', desc: 'Zone Safety & Stoppage Capture' },
+    { id: 'education', num: '09', title: 'Education', tag: 'Academic', desc: 'Lecture Capture & Course TA' }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,10 +34,12 @@ export default function Header() {
 
   useEffect(() => {
     setProductsOpen(false);
+    setSolutionsOpen(false);
   }, [location]);
 
   const navigateAndScroll = (sectionId) => {
     setProductsOpen(false);
+    setSolutionsOpen(false);
     if (location.pathname !== '/') {
       navigate(`/#${sectionId}`);
     } else {
@@ -39,7 +54,23 @@ export default function Header() {
 
   const handleCardClick = (path) => {
     setProductsOpen(false);
+    setSolutionsOpen(false);
     navigate(path);
+  };
+
+  const handleSolutionClick = (id) => {
+    setProductsOpen(false);
+    setSolutionsOpen(false);
+    if (location.pathname !== '/edge-ai') {
+      navigate(`/edge-ai#usecase-${id}`);
+    } else {
+      const elem = document.getElementById(`usecase-${id}`);
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
   };
 
   return (
@@ -50,7 +81,10 @@ export default function Header() {
       {/* Desktop Header for screens 992px and wider */}
       <header 
         className={`zmd-header desktop-header ${isScrolled ? 'scrolled' : ''}`}
-        onMouseLeave={() => setProductsOpen(false)}
+        onMouseLeave={() => {
+          setProductsOpen(false);
+          setSolutionsOpen(false);
+        }}
       >
         <div className="header-top-bar">
           {/* Brand Logo - Redirects to Home Page */}
@@ -85,11 +119,17 @@ export default function Header() {
               {/* Products Dropdown Trigger */}
               <li 
                 className={`nav-item ${productsOpen ? 'active' : ''}`}
-                onMouseEnter={() => setProductsOpen(true)}
+                onMouseEnter={() => {
+                  setSolutionsOpen(false);
+                  setProductsOpen(true);
+                }}
               >
                 <button 
                   className={`nav-link dropdown-toggle ${productsOpen ? 'active' : ''}`}
-                  onClick={() => setProductsOpen(!productsOpen)}
+                  onClick={() => {
+                    setSolutionsOpen(false);
+                    setProductsOpen(!productsOpen);
+                  }}
                   aria-expanded={productsOpen}
                 >
                   Products
@@ -104,10 +144,36 @@ export default function Header() {
                 <Link 
                   to="/edge-ai" 
                   className={`nav-link ${location.pathname === '/edge-ai' ? 'active' : ''}`}
-                  onClick={() => setProductsOpen(false)}
+                  onClick={() => {
+                    setProductsOpen(false);
+                    setSolutionsOpen(false);
+                  }}
                 >
                   Edge AI
                 </Link>
+              </li>
+
+              {/* Solutions Dropdown Trigger */}
+              <li 
+                className={`nav-item ${solutionsOpen ? 'active' : ''}`}
+                onMouseEnter={() => {
+                  setProductsOpen(false);
+                  setSolutionsOpen(true);
+                }}
+              >
+                <button 
+                  className={`nav-link dropdown-toggle ${solutionsOpen ? 'active' : ''}`}
+                  onClick={() => {
+                    setProductsOpen(false);
+                    setSolutionsOpen(!solutionsOpen);
+                  }}
+                  aria-expanded={solutionsOpen}
+                >
+                  Solutions
+                  <svg className="dropdown-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
               </li>
             </ul>
           </nav>
@@ -213,7 +279,7 @@ export default function Header() {
                         <span className="card-name">Delibot X1 Autonomous</span>
                         <span className="badge-red-outline">FEATURED</span>
                       </div>
-                      <p className="card-desc">Indoor/outdoor last-mile delivery robot</p>
+                      <p className="card-desc">Indoor autonomous delivery robot</p>
                     </div>
                     <div className="product-card">
                       <div className="card-head">
@@ -256,7 +322,48 @@ export default function Header() {
                   </div>
                 </div>
 
-                {/* 4. Safety Band Column Card - Clickable */}
+                {/* 4. Edge Box Column Card - Clickable */}
+                <div 
+                  className={`mega-col ${activeCategory === 'edgebox' ? 'col-highlight' : ''}`}
+                  onMouseEnter={() => setActiveCategory('edgebox')}
+                  onClick={() => handleCardClick('/products/edge-box')}
+                >
+                  <div className="col-header">
+                    <svg className="col-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                      <rect x="4" y="4" width="16" height="16" rx="2"/>
+                      <rect x="9" y="9" width="6" height="6"/>
+                      <line x1="9" y1="1" x2="9" y2="4"/>
+                      <line x1="15" y1="1" x2="15" y2="4"/>
+                      <line x1="9" y1="20" x2="9" y2="23"/>
+                      <line x1="15" y1="20" x2="15" y2="23"/>
+                      <line x1="20" y1="9" x2="23" y2="9"/>
+                      <line x1="20" y1="15" x2="23" y2="15"/>
+                      <line x1="1" y1="9" x2="4" y2="9"/>
+                      <line x1="1" y1="15" x2="4" y2="15"/>
+                    </svg>
+                    <div className="col-title-group">
+                      <h4 className="col-title">Edge Box</h4>
+                      <span className="col-tag">COMPUTE BOX</span>
+                    </div>
+                  </div>
+                  <div className="col-items">
+                    <div className="product-card">
+                      <div className="card-head">
+                        <span className="card-name">ZMD Edge Box</span>
+                        <span className="badge-red-outline">FEATURED</span>
+                      </div>
+                      <p className="card-desc">Compact neural model inferencing hardware</p>
+                    </div>
+                    <div className="product-card">
+                      <div className="card-head">
+                        <span className="card-name">Edge Box Pro</span>
+                      </div>
+                      <p className="card-desc">High-capacity edge compute module</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 5. Safety Band Column Card - Clickable */}
                 <div 
                   className={`mega-col ${activeCategory === 'safety' ? 'col-highlight' : ''}`}
                   onMouseEnter={() => setActiveCategory('safety')}
@@ -360,6 +467,58 @@ export default function Header() {
                 <Link to="/products/server" className="view-all-link" onClick={() => setProductsOpen(false)}>
                   VIEW ALL ZMD PRODUCTS & HARDWARE →
                 </Link>
+              </div>
+
+            </div>
+          </div>
+        )}
+
+        {/* FULLSCREEN MEGA MENU OVERLAY FOR SOLUTIONS */}
+        {solutionsOpen && (
+          <div 
+            className="solutions-mega-menu-overlay"
+            onMouseEnter={() => { setProductsOpen(false); setSolutionsOpen(true); }}
+            onMouseLeave={() => setSolutionsOpen(false)}
+          >
+            <div className="solutions-mega-menu-container">
+              
+              <div className="solutions-mega-menu-top">
+                <div className="solutions-header-left">
+                  <span className="solutions-categories-label">
+                    <span className="solutions-red-dot"></span> 9 INDUSTRY USE CASES & SOLUTIONS
+                  </span>
+                  <span className="solutions-categories-subtext">
+                    ZMD Edge Box deployments powered by ApexFlo real-time analytics
+                  </span>
+                </div>
+              </div>
+
+              <div className="solutions-mega-menu-grid">
+                {solutionsList.map((sol) => (
+                  <div 
+                    key={sol.id}
+                    className="sol-col-item"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <div className="sol-col-body">
+                      <div className="sol-col-header">
+                        <h4 className="sol-col-title">{sol.title}</h4>
+                        <span className="sol-col-tag">{sol.tag}</span>
+                      </div>
+                      <p className="sol-col-desc">{sol.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="solutions-mega-menu-bottom">
+                <span 
+                  className="solutions-view-all-link" 
+                  style={{ cursor: 'default' }}
+                  onClick={(e) => e.preventDefault()}
+                >
+                  9 INDUSTRY SOLUTIONS AVAILABLE
+                </span>
               </div>
 
             </div>

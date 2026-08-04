@@ -6,9 +6,22 @@ import './mobile_header.css';
 export default function MobileHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [productsExpanded, setProductsExpanded] = useState(false);
+  const [solutionsExpanded, setSolutionsExpanded] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const solutionsList = [
+    { id: 'airports', num: '01', title: 'Airports', tag: 'Aviation', desc: 'Predictive Queue SLA & Flight Operations' },
+    { id: 'cities', num: '02', title: 'Cities', tag: 'Smart Cities', desc: 'Corridor Congestion & Enforcement' },
+    { id: 'hospitals', num: '03', title: 'Hospitals', tag: 'Healthcare', desc: 'ED Flow & Bed Turnover' },
+    { id: 'retail', num: '04', title: 'Retail', tag: 'Commerce', desc: 'On-Shelf Availability & Billing Leakage' },
+    { id: 'agritech', num: '05', title: 'Agritech', tag: 'Agriculture', desc: 'ZMD Field Kit & Soil Analytics' },
+    { id: 'cinemas', num: '06', title: 'Cinemas', tag: 'Entertainment', desc: 'Interval Readiness & Turnaround Clock' },
+    { id: 'venues', num: '07', title: 'Venues & Campuses', tag: 'Venues', desc: 'Gate & Attraction Metering' },
+    { id: 'manufacturing', num: '08', title: 'Manufacturing', tag: 'Industrial', desc: 'Zone Safety & Stoppage Capture' },
+    { id: 'education', num: '09', title: 'Education', tag: 'Academic', desc: 'Lecture Capture & Course TA' }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +35,7 @@ export default function MobileHeader() {
   useEffect(() => {
     setIsOpen(false);
     setProductsExpanded(false);
+    setSolutionsExpanded(false);
   }, [location]);
 
   // Lock body scroll when mobile menu is open
@@ -39,6 +53,7 @@ export default function MobileHeader() {
   const handleNavigateAndScroll = (sectionId) => {
     setIsOpen(false);
     setProductsExpanded(false);
+    setSolutionsExpanded(false);
     if (location.pathname !== '/') {
       navigate(`/#${sectionId}`);
     } else {
@@ -54,7 +69,24 @@ export default function MobileHeader() {
   const handleProductClick = (path) => {
     setIsOpen(false);
     setProductsExpanded(false);
+    setSolutionsExpanded(false);
     navigate(path);
+  };
+
+  const handleSolutionClick = (id) => {
+    setIsOpen(false);
+    setProductsExpanded(false);
+    setSolutionsExpanded(false);
+    if (location.pathname !== '/edge-ai') {
+      navigate(`/edge-ai#usecase-${id}`);
+    } else {
+      const elem = document.getElementById(`usecase-${id}`);
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
   };
 
   const productCategories = [
@@ -75,7 +107,7 @@ export default function MobileHeader() {
       id: 'delibot',
       name: 'Delibot',
       tag: 'AUTONOMOUS',
-      desc: 'Indoor/Outdoor Last-Mile Delivery',
+      desc: 'Indoor Autonomous Delivery',
       path: '/products/delibot',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -94,6 +126,27 @@ export default function MobileHeader() {
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      )
+    },
+    {
+      id: 'edgebox',
+      name: 'Edge Box',
+      tag: 'COMPUTE BOX',
+      desc: 'Compact AI Hardware & Inferencing System',
+      path: '/products/edge-box',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <rect x="4" y="4" width="16" height="16" rx="2"/>
+          <rect x="9" y="9" width="6" height="6"/>
+          <line x1="9" y1="1" x2="9" y2="4"/>
+          <line x1="15" y1="1" x2="15" y2="4"/>
+          <line x1="9" y1="20" x2="9" y2="23"/>
+          <line x1="15" y1="20" x2="15" y2="23"/>
+          <line x1="20" y1="9" x2="23" y2="9"/>
+          <line x1="20" y1="15" x2="23" y2="15"/>
+          <line x1="1" y1="9" x2="4" y2="9"/>
+          <line x1="1" y1="15" x2="4" y2="15"/>
         </svg>
       )
     },
@@ -259,6 +312,43 @@ export default function MobileHeader() {
                   <path d="M9 18l6-6-6-6"/>
                 </svg>
               </Link>
+            </li>
+
+            {/* 5. Solutions Accordion */}
+            <li className="mobile-nav-item mobile-products-accordion">
+              <button 
+                className={`mobile-nav-link accordion-btn ${solutionsExpanded ? 'expanded' : ''}`}
+                onClick={() => setSolutionsExpanded(!solutionsExpanded)}
+              >
+                <div className="accordion-label">
+                  <span>Solutions</span>
+                  <span className="badge-mobile-pill">9 Use Cases</span>
+                </div>
+                <svg className={`accordion-chevron ${solutionsExpanded ? 'rotate' : ''}`} viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </button>
+
+              {/* Accordion Content */}
+              {solutionsExpanded && (
+                <div className="mobile-products-grid">
+                  {solutionsList.map((sol) => (
+                    <div 
+                      key={sol.id}
+                      className="mobile-product-card"
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      <div className="mobile-card-info">
+                        <div className="mobile-card-header">
+                          <span className="mobile-card-title">{sol.title}</span>
+                          <span className="mobile-card-tag">{sol.tag}</span>
+                        </div>
+                        <p className="mobile-card-desc">{sol.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </li>
 
           </ul>
