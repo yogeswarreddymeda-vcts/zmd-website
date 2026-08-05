@@ -1,5 +1,11 @@
+:root {
+  --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --display: 'Space Grotesk', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+
 /* ==========================================================================
-   ZMD EDGE AI PAGE STYLESHEET
+   ZMD EDGE AI PAGE STYLESHEET - ULTRA SMOOTH & FLUID ANIMATED PAGE
    ========================================================================== */
 
 .edgeai-page {
@@ -8,7 +14,85 @@
   background-color: #FFFFFF;
   padding: 0;
   font-family: var(--body, 'Inter', sans-serif);
+  overflow-x: hidden;
+  will-change: transform, opacity, filter;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* PAGE ENTRY & EXIT ANIMATIONS */
+.edgeai-page--entering {
+  animation: ultraPageEnter 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.edgeai-page--exiting {
+  animation: ultraPageExit 0.38s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes ultraPageEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.985) translateY(18px);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes ultraPageExit {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.98) translateY(-14px);
+    filter: blur(5px);
+  }
+}
+
+/* SCROLL REVEAL UTILITIES FOR ALL SECTIONS & CARDS */
+.edge-hero,
+.edge-flow,
+.edge-layers,
+.edge-solutions,
+.edge-cta,
+.edge-flow__group,
+.edge-layer-card,
+.edge-sol-card {
+  opacity: 0;
+  transform: translateY(22px);
+  filter: blur(2px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.edge-hero.is-visible,
+.edge-flow.is-visible,
+.edge-layers.is-visible,
+.edge-solutions.is-visible,
+.edge-cta.is-visible,
+.edge-flow__group.is-visible,
+.edge-layer-card.is-visible,
+.edge-sol-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* STAGGERED REVEAL DELAYS FOR NINE SOLUTIONS CARDS */
+.edge-sol-card:nth-child(1).is-visible { transition-delay: 0.05s; }
+.edge-sol-card:nth-child(2).is-visible { transition-delay: 0.1s; }
+.edge-sol-card:nth-child(3).is-visible { transition-delay: 0.15s; }
+.edge-sol-card:nth-child(4).is-visible { transition-delay: 0.2s; }
+.edge-sol-card:nth-child(5).is-visible { transition-delay: 0.25s; }
+.edge-sol-card:nth-child(6).is-visible { transition-delay: 0.3s; }
+.edge-sol-card:nth-child(7).is-visible { transition-delay: 0.35s; }
+.edge-sol-card:nth-child(8).is-visible { transition-delay: 0.4s; }
+.edge-sol-card:nth-child(9).is-visible { transition-delay: 0.45s; }
+
 
 /* HERO SECTION */
 .edge-hero {
@@ -79,7 +163,7 @@
   border: 1.5px solid #FCA5A5;
   background-color: #FFF5F5;
   border-radius: 20px;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 0.82rem;
   font-weight: 700;
   color: #DC2626;
@@ -315,7 +399,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -425,7 +509,7 @@
 }
 
 .ecosystem .module-tag {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -637,7 +721,7 @@
 }
 
 .ecosystem .solutions-ribbon__tag {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -682,7 +766,7 @@
 }
 
 .ecosystem .solutions-ribbon__num {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 11px;
   font-weight: 700;
   color: #DC2626;
@@ -864,7 +948,7 @@
   background-color: #FFF5F5;
   border: 1.5px solid #FCA5A5;
   color: #DC2626;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 0.72rem;
   font-weight: 800;
   display: flex;
@@ -894,7 +978,7 @@
   border: 1.5px solid #FCA5A5;
   background-color: #FFF5F5;
   border-radius: 20px;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 0.82rem;
   font-weight: 700;
   color: #DC2626;
@@ -978,7 +1062,7 @@
 }
 
 .edge-system__spec-val {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 0.84rem;
   color: #475569;
   line-height: 1.5;
@@ -1026,7 +1110,7 @@
   border-radius: 20px;
   background: rgba(220, 38, 38, 0.15);
   border: 1px solid rgba(220, 38, 38, 0.3);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 0.82rem;
   font-weight: 700;
   color: #F87171;
@@ -1073,7 +1157,7 @@
 }
 
 .edge-features__card-num {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 1.25rem;
   font-weight: 800;
   color: #F87171;
@@ -1146,7 +1230,7 @@
 }
 
 .edge-software__eyebrow {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 0.88rem;
   font-weight: 700;
   color: #64748B;
@@ -1240,7 +1324,7 @@
 
 .edge-lineup__eyebrow {
   display: block;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 0.82rem;
   font-weight: 700;
   color: #DC2626;
@@ -1303,7 +1387,7 @@
 }
 
 .edge-lineup__badge {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 0.7rem;
   font-weight: 800;
   padding: 0.35rem 0.85rem;
@@ -1323,7 +1407,7 @@
 }
 
 .edge-lineup__category {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 0.72rem;
   font-weight: 800;
   color: #DC2626;
@@ -1400,7 +1484,7 @@
 }
 
 .edge-lineup__spec-value {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   color: #0F172A;
   font-weight: 700;
   font-size: 0.82rem;
@@ -1502,7 +1586,7 @@
   border: 1.5px solid #FCA5A5;
   background-color: #FFF5F5;
   border-radius: 20px;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 0.82rem;
   font-weight: 700;
   color: #DC2626;
@@ -1738,7 +1822,7 @@
   position: absolute;
   top: 8px;
   right: 10px;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 0.65rem;
   font-weight: 800;
   padding: 0.15rem 0.5rem;
@@ -1778,14 +1862,14 @@
 }
 
 .sm-usecase-card__placeholder-text {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 0.72rem;
   font-weight: 600;
   color: #94A3B8;
 }
 
 .sm-usecase-card__model-title {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 0.84rem;
   font-weight: 700;
   color: #0F172A;
@@ -2387,3 +2471,1365 @@
     padding-inline: 0.2rem;
   }
 }
+
+/* ==========================================================================
+   HOW IT FLOWS SECTION (White & Red Palette with Animations)
+   ========================================================================== */
+
+.edge-flow {
+  width: 100%;
+  padding: clamp(4rem, 6vw, 6rem) clamp(1.5rem, 4vw, 4rem);
+  box-sizing: border-box;
+  background-color: #FAFBFD;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(220, 38, 38, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 10% 80%, rgba(220, 38, 38, 0.03) 0%, transparent 50%);
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.edge-flow__container {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+.edge-flow__header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.edge-flow__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.25rem;
+  border: 1.5px solid #FCA5A5;
+  background-color: #FFF5F5;
+  border-radius: 20px;
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #DC2626;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.edge-flow__title {
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 1rem 0;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.edge-flow__subtitle {
+  font-family: var(--body, 'Inter', sans-serif);
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ==========================================================================
+   HOW IT FLOWS - 3-GROUP ENTERPRISE ARCHITECTURE FLOW
+   ========================================================================== */
+
+.edge-flow__groups-wrapper {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 3.5rem;
+  width: 100%;
+  max-width: 1380px;
+  margin-inline: auto;
+}
+
+/* INDIVIDUAL GROUPS */
+.edge-flow__group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 20px;
+  padding: 1.5rem 1.25rem 1.25rem 1.25rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+  position: relative;
+}
+
+.edge-flow__group--sources {
+  background-color: #F0F9FF;
+  border: 1.5px solid #BAE6FD;
+  flex: 1;
+}
+
+.edge-flow__group--hardware {
+  background-color: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  flex: 1;
+}
+
+.edge-flow__group--platform {
+  background-color: #FFF8F8;
+  border: 1.5px solid #FCA5A5;
+  box-shadow: 0 10px 35px rgba(220, 38, 38, 0.09), 0 0 0 1px rgba(220, 38, 38, 0.1);
+  flex: 3;
+}
+
+.edge-flow__group--business {
+  background-color: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  flex: 1;
+}
+
+/* GROUP BADGES */
+.edge-flow__group-badge {
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  align-self: center;
+  background-color: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  color: #475569;
+}
+
+.edge-flow__group-badge--red {
+  background-color: #FFF5F5;
+  border: 1.5px solid #FCA5A5;
+  color: #DC2626;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.12);
+}
+
+.edge-flow__badge-pulse {
+  width: 7px;
+  height: 7px;
+  background-color: #DC2626;
+  border-radius: 50%;
+  animation: badgePulse 2s infinite ease-in-out;
+}
+
+/* GROUP CARDS ROW */
+.edge-flow__group-cards {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* STEP CARDS inside groups */
+.edge-flow__step-card {
+  background-color: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 1.25rem 0.85rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: all 0.28s ease;
+  flex: 1;
+  min-width: 0;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+  position: relative;
+}
+
+.edge-flow__step-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(220, 38, 38, 0.12);
+  border-color: #DC2626;
+}
+
+.edge-flow__step-card--hw {
+  border-top: 3px solid #0F172A;
+}
+
+.edge-flow__step-card--platform {
+  border-top: 3px solid #DC2626;
+  background-color: #FFFDFD;
+}
+
+.edge-flow__step-card--outcomes {
+  border-top: 3px solid #16A34A;
+}
+
+/* ICON BOXES */
+.edge-flow__icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.edge-flow__step-card:hover .edge-flow__icon-box {
+  transform: scale(1.15);
+  border-color: #FCA5A5;
+  color: #DC2626;
+  background-color: #FFF5F5;
+}
+
+.edge-flow__icon-box--hw {
+  background: linear-gradient(135deg, #DC2626, #991B1B) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
+}
+
+.edge-flow__icon-box--platform {
+  background: #FFF5F5 !important;
+  border: 1.5px solid #DC2626 !important;
+  color: #DC2626 !important;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.15);
+}
+
+.edge-flow__icon-box--green {
+  background: #F0FDF4 !important;
+  border: 1.5px solid #86EFAC !important;
+  color: #16A34A !important;
+}
+
+/* STEP CARD TEXT */
+.edge-flow__step-name {
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.edge-flow__step-desc {
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #64748B;
+  margin: 0;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+/* GROUP FOOTERS */
+.edge-flow__group-footer {
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #64748B;
+  text-align: center;
+  margin-top: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+.edge-flow__group-footer--red {
+  color: #DC2626;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   ENTRY ANIMATIONS FOR HOW IT FLOWS SECTION
+   ========================================================================== */
+
+.edge-flow__entry--header {
+  animation: edgeFlowFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.edge-flow__entry--g1 {
+  animation: edgeFlowGroupSlide 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.edge-flow__entry--g2 {
+  animation: edgeFlowGroupSlide 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.edge-flow__entry--g3 {
+  animation: edgeFlowGroupSlide 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+
+.edge-flow__entry--callout {
+  animation: edgeFlowFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+}
+
+@keyframes edgeFlowFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes edgeFlowGroupSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(25px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* STREAM CONNECTORS & PRECISION SVG BEAM ANIMATIONS */
+.edge-flow__stream-connector {
+  width: 40px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.edge-flow__inter-connector {
+  width: 54px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.edge-flow__connector-svg,
+.edge-flow__bridge-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.edge-flow__particle-dot {
+  animation: dotTravel 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.edge-flow__bridge-particle {
+  animation: bridgeTravel 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes dotTravel {
+  0% {
+    cx: 0;
+    opacity: 0.2;
+    r: 2.5;
+  }
+  50% {
+    opacity: 1;
+    r: 4;
+  }
+  100% {
+    cx: 40;
+    opacity: 0.2;
+    r: 2.5;
+  }
+}
+
+@keyframes bridgeTravel {
+  0% {
+    cx: 0;
+    opacity: 0.2;
+    r: 3;
+  }
+  60% {
+    opacity: 1;
+    r: 4.5;
+  }
+  100% {
+    cx: 44;
+    opacity: 0.2;
+    r: 3;
+  }
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+
+/* SEQUENTIAL CARD ACTIVATION ANIMATIONS */
+.edge-flow__step-card--stg1 {
+  animation: smoothStageCycle 7.5s cubic-bezier(0.4, 0, 0.2, 1) infinite 0s;
+}
+
+.edge-flow__step-card--stg2 {
+  animation: smoothStageCycle 7.5s cubic-bezier(0.4, 0, 0.2, 1) infinite 2.5s;
+}
+
+.edge-flow__step-card--stg3 {
+  animation: smoothStageCycle 7.5s cubic-bezier(0.4, 0, 0.2, 1) infinite 5s;
+}
+
+@keyframes smoothStageCycle {
+  0%, 100% {
+    border-color: #E2E8F0;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+    transform: translateY(0);
+  }
+  20%, 35% {
+    border-color: #FCA5A5;
+    box-shadow: 0 10px 25px rgba(220, 38, 38, 0.15);
+    transform: translateY(-4px);
+  }
+}
+
+
+/* ==========================================================================
+   BOTTOM SUMMARY ENTERPRISE CALLOUT DIAGRAM
+   ========================================================================== */
+
+.edge-flow__summary-callout {
+  background-color: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  box-sizing: border-box;
+}
+
+.edge-flow__callout-node {
+  text-align: center;
+  flex: 1;
+}
+
+.edge-flow__callout-badge {
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 0.35rem;
+}
+
+.edge-flow__callout-badge--red {
+  color: #DC2626;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.edge-flow__callout-desc {
+  font-family: var(--body, 'Inter', sans-serif);
+  font-size: 0.82rem;
+  color: #64748B;
+  line-height: 1.4;
+}
+
+.edge-flow__callout-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #DC2626;
+  flex-shrink: 0;
+  animation: arrowGlow 1.8s infinite ease-in-out;
+}
+
+/* RESPONSIVE LAYOUT FOR FLOW SECTION */
+@media (max-width: 1024px) {
+  .edge-flow__groups-wrapper {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .edge-flow__inter-connector {
+    transform: rotate(90deg);
+    align-self: center;
+    margin: -0.5rem 0;
+  }
+
+  .edge-flow__summary-callout {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .edge-flow__callout-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .edge-flow__group-cards {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .edge-flow__stream-connector {
+    transform: rotate(90deg);
+    margin: -0.25rem 0;
+  }
+}
+
+
+/* RESPONSIVE LAYOUT */
+@media (max-width: 1024px) {
+  .edge-flow__steps {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .edge-flow__arrow {
+    margin-top: 0;
+    transform: rotate(90deg);
+  }
+
+  @keyframes arrowTravel {
+    0% {
+      transform: rotate(90deg) translateX(0);
+      opacity: 0.4;
+    }
+    50% {
+      transform: rotate(90deg) translateX(4px);
+      opacity: 1;
+      color: #DC2626;
+    }
+    100% {
+      transform: rotate(90deg) translateX(0);
+      opacity: 0.4;
+    }
+  }
+
+  .edge-flow__badge {
+    top: -12px;
+    left: 50%;
+  }
+
+  .edge-flow__step-title {
+    white-space: normal;
+  }
+}
+
+/* ==========================================================================
+   POSITION STATEMENT / THESIS BOX IN HERO
+   ========================================================================== */
+
+.edge-thesis {
+  margin: 1.75rem 0 2rem 0;
+  padding: 1.25rem 1.5rem;
+  background-color: #FFF5F5;
+  border: 1px solid #FCA5A5;
+  border-left: 4px solid #DC2626;
+  border-radius: 0 12px 12px 0;
+  font-family: var(--body, 'Inter', sans-serif);
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.6;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.05);
+}
+
+.edge-thesis strong {
+  color: #0F172A;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   TWO LAYERS, ONE SYSTEM SECTION
+   ========================================================================== */
+
+.edge-layers {
+  width: 100%;
+  padding: clamp(4.5rem, 6vw, 6.5rem) clamp(1.5rem, 4vw, 4rem);
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.edge-layers__container {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+.edge-layers__header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.edge-layers__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 1.25rem;
+  border: 1.5px solid #FCA5A5;
+  background-color: #FFF5F5;
+  border-radius: 20px;
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #DC2626;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.edge-layers__title {
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 1rem 0;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.edge-layers__subtitle {
+  font-family: var(--body, 'Inter', sans-serif);
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.edge-layers__grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  align-items: center;
+}
+
+.edge-layer-card {
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 2.5rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.edge-layer-card--hw {
+  border-top: 4px solid #0F172A;
+}
+
+.edge-layer-card--sw {
+  border-top: 4px solid #DC2626;
+  background: #FFFDFD;
+}
+
+.edge-layer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+}
+
+.edge-layer-card__kicker {
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #DC2626;
+  letter-spacing: 0.06em;
+}
+
+.edge-layer-card__title {
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+}
+
+.edge-layer-card__desc {
+  font-family: var(--body, 'Inter', sans-serif);
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.edge-layer-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.edge-layer-card__list li {
+  font-family: var(--body, 'Inter', sans-serif);
+  font-size: 0.88rem;
+  color: #334155;
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.45;
+}
+
+.edge-layer-card__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  background-color: #DC2626;
+  border-radius: 1px;
+}
+
+.edge-layers__connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+}
+
+.edge-layers__connector-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #FFF5F5;
+  border: 1.5px solid #FCA5A5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
+}
+
+@media (max-width: 900px) {
+  .edge-layers__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .edge-layers__connector-circle {
+    transform: rotate(90deg);
+  }
+}
+
+/* ==========================================================================
+   SOLUTIONS OVERVIEW SECTION
+   ========================================================================== */
+
+.edge-solutions {
+  width: 100%;
+  padding: clamp(4.5rem, 6vw, 6.5rem) clamp(1.5rem, 4vw, 4rem);
+  box-sizing: border-box;
+  background-color: #FAFBFD;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.edge-solutions__container {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+.edge-solutions__header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.edge-solutions__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 1.25rem;
+  border: 1.5px solid #FCA5A5;
+  background-color: #FFF5F5;
+  border-radius: 20px;
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #DC2626;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.edge-solutions__title {
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 1rem 0;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.edge-solutions__subtitle {
+  font-family: var(--body, 'Inter', sans-serif);
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.edge-solutions__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.edge-sol-card {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: all 0.28s ease;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+}
+
+.edge-sol-card:hover {
+  border-color: #FCA5A5;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(220, 38, 38, 0.1);
+}
+
+.edge-sol-card__num {
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #DC2626;
+  background-color: #FFF5F5;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #FCA5A5;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.edge-sol-card__title {
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 0.5rem 0;
+}
+
+.edge-sol-card__desc {
+  font-family: var(--body, 'Inter', sans-serif);
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.edge-solutions__footnote {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  font-family: var(--body, 'Inter', sans-serif);
+  font-size: 0.92rem;
+  color: #475569;
+  text-align: center;
+  line-height: 1.55;
+}
+
+.edge-solutions__footnote strong {
+  color: #0F172A;
+}
+
+.edge-solutions__action {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 992px) {
+  .edge-solutions__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .edge-solutions__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   CTA BANNER SECTION
+   ========================================================================== */
+
+.edge-cta {
+  width: 100%;
+  padding: clamp(5rem, 7vw, 7.5rem) clamp(1.5rem, 4vw, 4rem);
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  background-image: radial-gradient(ellipse 900px 450px at 50% 50%, rgba(220, 38, 38, 0.08), transparent 70%);
+  text-align: center;
+}
+
+.edge-cta__container {
+  width: 100%;
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.edge-cta__title {
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 1.25rem 0;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.edge-cta__desc {
+  font-family: var(--body, 'Inter', sans-serif);
+  font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+  color: #475569;
+  margin: 0 0 2.5rem 0;
+  line-height: 1.6;
+}
+
+.edge-cta__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   BLACK THEME OVERRIDES FOR ALTERNATING SECTIONS (Starting at Two Layers)
+   ========================================================================== */
+
+/* 1. BLACK LAYERS SECTION (.edge-layers--dark) - ENTERPRISE TECHNOLOGY ARCHITECTURE DIAGRAM */
+.edge-layers--dark {
+  background-color: #0B0C0E;
+  background-image:
+    radial-gradient(ellipse 900px 500px at 50% 0%, rgba(228, 30, 38, 0.14) 0%, transparent 65%),
+    radial-gradient(ellipse 700px 400px at 80% 80%, rgba(228, 30, 38, 0.08) 0%, transparent 60%);
+  border-bottom: 1px solid #1F2329;
+}
+
+.edge-layers--dark .edge-layers__tag {
+  border-color: #E41E26;
+  background-color: rgba(228, 30, 38, 0.15);
+  color: #EF4444;
+}
+
+.edge-layers--dark .edge-layers__title {
+  color: #FFFFFF;
+}
+
+.edge-layers--dark .edge-layers__subtitle {
+  color: #A1A1AA;
+}
+
+.edge-layers__arch-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  position: relative;
+}
+
+/* CARD COMMON STYLING */
+.edge-layer-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 2.5rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* BACKGROUND TEXTURES OVERLAY */
+.edge-layer-card__bg-texture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.edge-layer-card__bg-texture--pcb {
+  background-image: radial-gradient(#3B4252 1px, transparent 1px), radial-gradient(#3B4252 1px, #101216 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+.edge-layer-card__bg-texture--circuit {
+  background-image: radial-gradient(rgba(228, 30, 38, 0.4) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.edge-layer-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* LEFT CARD: HARDWARE LAYER */
+.edge-layers--dark .edge-layer-card--hw {
+  background: linear-gradient(145deg, #15181E, #0C0E11);
+  border: 1.5px solid #2B303C;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  animation: hwSlideInLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.edge-layers--dark .edge-layer-card--hw:hover {
+  transform: translateY(-4px);
+  border-color: #4B5563;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65);
+}
+
+/* RIGHT CARD: PLATFORM LAYER (ELEVATED + RED GLOW) */
+.edge-layers--dark .edge-layer-card--sw {
+  background: linear-gradient(145deg, #1C1315, #0F0B0C);
+  border: 1.5px solid #E41E26;
+  box-shadow: 0 14px 40px rgba(228, 30, 38, 0.24), 0 0 0 1px rgba(228, 30, 38, 0.1);
+  transform: translateY(-4px);
+  animation: swSlideInRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.edge-layers--dark .edge-layer-card--sw:hover {
+  transform: translateY(-8px);
+  border-color: #FF2E36;
+  box-shadow: 0 22px 55px rgba(228, 30, 38, 0.38);
+}
+
+.edge-layers--dark .edge-layer-card--sw:hover .edge-layer-card__icon-wrap--sw {
+  transform: rotate(12deg) scale(1.1);
+}
+
+/* CARD HEADER ROW */
+.edge-layer-card__header-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.edge-layer-card__icon-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.edge-layer-card__icon-wrap--hw {
+  background-color: #242933;
+  border: 1px solid #3B4252;
+  color: #A1A1AA;
+}
+
+.edge-layer-card__icon-wrap--sw {
+  background: rgba(228, 30, 38, 0.16);
+  border: 1.5px solid #E41E26;
+  color: #EF4444;
+  box-shadow: 0 4px 14px rgba(228, 30, 38, 0.25);
+}
+
+.edge-layer-card__subtitle-tag {
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #A1A1AA;
+  display: inline-block;
+  margin-top: 0.25rem;
+}
+
+.edge-layer-card__subtitle-tag--red {
+  background: rgba(228, 30, 38, 0.15);
+  border: 1px solid #E41E26;
+  color: #EF4444;
+}
+
+.edge-layer-card__kicker--red {
+  color: #E41E26 !important;
+}
+
+.edge-layer-card__title {
+  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.edge-layer-card__desc {
+  font-family: var(--body, 'Inter', sans-serif);
+  font-size: 0.95rem;
+  color: #A1A1AA;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.edge-layer-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.edge-layer-card__list li {
+  font-family: var(--body, 'Inter', sans-serif);
+  font-size: 0.88rem;
+  color: #D4D4D8;
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.45;
+}
+
+.edge-layer-card__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  background-color: #E41E26;
+  border-radius: 1px;
+}
+
+/* CENTER ARCHITECTURE PIPELINE CONNECTOR */
+.edge-layers__pipeline-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  flex-shrink: 0;
+  min-width: 280px;
+  animation: connectorFade 0.8s ease 0.1s both;
+}
+
+.edge-layers__caption {
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.edge-layers__caption--top {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: #E41E26;
+  margin-bottom: 0.85rem;
+}
+
+.edge-layers__caption--bottom {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: #A1A1AA;
+  margin-top: 0.85rem;
+}
+
+/* 5-NODE FLOW TRACK */
+.edge-layers__flow-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  padding: 0.75rem 0.5rem;
+}
+
+.edge-layers__track-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 14px;
+  height: 2px;
+  background: linear-gradient(90deg, #3B4252 0%, #E41E26 50%, #E41E26 100%);
+  z-index: 0;
+}
+
+.edge-layers__track-particle {
+  position: absolute;
+  top: 11px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #EF4444;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #EF4444, 0 0 20px #E41E26;
+  z-index: 1;
+  animation: particleTrack 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.edge-layers__node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.edge-layers__node-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #1A1D22;
+  border: 2px solid #E41E26;
+  box-shadow: 0 0 6px rgba(228, 30, 38, 0.4);
+  transition: all 0.3s ease;
+}
+
+.edge-layers__node:hover .edge-layers__node-dot {
+  transform: scale(1.3);
+  background-color: #E41E26;
+  box-shadow: 0 0 12px #EF4444;
+}
+
+.edge-layers__node-label {
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: #D4D4D8;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* SEQUENTIAL REVEAL FOR PLATFORM BULLETS */
+.edge-layer-card__list--seq li {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: seqReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.edge-layer-card__bullet--seq1 { animation-delay: 0.3s; }
+.edge-layer-card__bullet--seq2 { animation-delay: 0.45s; }
+.edge-layer-card__bullet--seq3 { animation-delay: 0.6s; }
+.edge-layer-card__bullet--seq4 { animation-delay: 0.75s; }
+
+/* ANIMATION KEYFRAMES FOR ARCHITECTURE DIAGRAM */
+@keyframes hwSlideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes swSlideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(40px) translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(-4px);
+  }
+}
+
+@keyframes connectorFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes particleTrack {
+  0% {
+    left: 0%;
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    left: 95%;
+    opacity: 0.2;
+  }
+}
+
+@keyframes seqReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE LAYOUT */
+@media (max-width: 1100px) {
+  .edge-layers__arch-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .edge-layers__pipeline-connector {
+    transform: rotate(90deg);
+    margin: 1rem 0;
+  }
+
+  .edge-layers__caption--top,
+  .edge-layers__caption--bottom {
+    transform: rotate(-90deg);
+  }
+}
+
+
+/* 2. BLACK CTA SECTION (.edge-cta--dark) */
+.edge-cta--dark {
+  background-color: #0B0C0E;
+  background-image: radial-gradient(ellipse 900px 450px at 50% 50%, rgba(228, 30, 38, 0.15), transparent 70%);
+  border-top: 1px solid #1F2329;
+}
+
+.edge-cta--dark .edge-cta__title {
+  color: #FFFFFF;
+}
+
+.edge-cta--dark .edge-cta__desc {
+  color: #A1A1AA;
+}
+
+.edge-hero__btn-secondary--dark {
+  border-color: #3F3F46 !important;
+  color: #FFFFFF !important;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.edge-hero__btn-secondary--dark:hover {
+  border-color: #A1A1AA !important;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+

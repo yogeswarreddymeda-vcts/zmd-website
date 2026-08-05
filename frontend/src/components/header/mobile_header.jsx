@@ -75,12 +75,28 @@ export default function MobileHeader() {
     navigate(path);
   };
 
+  const handleSolutionClick = (id) => {
+    setIsOpen(false);
+    setProductsExpanded(false);
+    setSolutionsExpanded(false);
+    if (location.pathname !== '/solutions') {
+      navigate(`/solutions#${id}`);
+    } else {
+      const elem = document.getElementById(id);
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.history.pushState(null, '', `#${id}`);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
   const productCategories = [
     {
       id: 'cam',
       name: 'Camera',
       tag: 'VISION AI',
-      desc: 'Dual-Lens AI & Thermal Cameras',
+      desc: 'AI Cameras (Dual-Lens & Thermal)',
       path: '/products/cam',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -90,28 +106,29 @@ export default function MobileHeader() {
       )
     },
     {
-      id: 'delibot',
-      name: 'Delibot',
-      tag: 'AUTONOMOUS',
-      desc: 'Indoor Autonomous Delivery',
-      path: '/products/delibot',
+      id: 'sensors',
+      name: 'Sensors',
+      tag: 'IOT SENSORS',
+      desc: 'Safety Band & Parking Sensor',
+      path: '/products/sensors',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <rect x="3" y="11" width="18" height="10" rx="2"/>
-          <circle cx="12" cy="5" r="2"/>
-          <path d="M12 7v4M8 16h.01M16 16h.01"/>
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
         </svg>
       )
     },
     {
-      id: 'drone',
-      name: 'Drone',
-      tag: 'AERIAL AI',
-      desc: 'Perimeter Surveillance & Payload AI',
-      path: '/products/drone',
+      id: 'server',
+      name: 'Server',
+      tag: 'EDGE COMPUTE',
+      desc: '2U/2S Xeon Server',
+      path: '/products/server',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          <rect x="2" y="2" width="20" height="8" rx="2"/>
+          <rect x="2" y="14" width="20" height="8" rx="2"/>
+          <line x1="6" y1="6" x2="6.01" y2="6"/>
+          <line x1="6" y1="18" x2="6.01" y2="18"/>
         </svg>
       )
     },
@@ -119,7 +136,7 @@ export default function MobileHeader() {
       id: 'edgebox',
       name: 'Edge Box',
       tag: 'COMPUTE BOX',
-      desc: 'Compact AI Hardware & Inferencing System',
+      desc: 'Zevric Edge Box',
       path: '/products/edge-box',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -137,41 +154,28 @@ export default function MobileHeader() {
       )
     },
     {
-      id: 'safety',
-      name: 'Safety Band',
-      tag: 'WEARABLES',
-      desc: 'Worker Health & Collision Avoidance',
-      path: '/products/safety',
+      id: 'drone',
+      name: 'Drone',
+      tag: 'AERIAL AI',
+      desc: 'AI Surveillance Drone',
+      path: '/products/drone',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
         </svg>
       )
     },
     {
-      id: 'sensors',
-      name: 'Sensors',
-      tag: 'IOT SENSORS',
-      desc: 'Environmental, Gas & Vibration Transducers',
-      path: '/products/sensors',
+      id: 'delibot',
+      name: 'Delibot',
+      tag: 'AUTONOMOUS',
+      desc: 'Delibot X1 Autonomous',
+      path: '/products/delibot',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-        </svg>
-      )
-    },
-    {
-      id: 'server',
-      name: 'Server',
-      tag: 'EDGE COMPUTE',
-      desc: 'GPU Edge Inferencing & Micro-Clusters',
-      path: '/products/server',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <rect x="2" y="2" width="20" height="8" rx="2"/>
-          <rect x="2" y="14" width="20" height="8" rx="2"/>
-          <line x1="6" y1="6" x2="6.01" y2="6"/>
-          <line x1="6" y1="18" x2="6.01" y2="18"/>
+          <rect x="3" y="11" width="18" height="10" rx="2"/>
+          <circle cx="12" cy="5" r="2"/>
+          <path d="M12 7v4M8 16h.01M16 16h.01"/>
         </svg>
       )
     }
@@ -322,7 +326,7 @@ export default function MobileHeader() {
                     <div 
                       key={sol.id}
                       className="mobile-product-card"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={() => handleSolutionClick(sol.id)}
                     >
                       <div className="mobile-card-info">
                         <div className="mobile-card-header">
@@ -333,6 +337,15 @@ export default function MobileHeader() {
                       </div>
                     </div>
                   ))}
+
+                  <div className="mobile-view-all-box">
+                    <button 
+                      className="mobile-view-all-btn"
+                      onClick={() => handleProductClick('/solutions')}
+                    >
+                      VIEW ALL SOLUTIONS →
+                    </button>
+                  </div>
                 </div>
               )}
             </li>

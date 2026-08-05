@@ -102,11 +102,11 @@ export default function Footer() {
           <div className="footer-col">
             <h4 className="footer-col-title">SOLUTIONS</h4>
             <ul className="footer-links">
-              <li><Link to="/edge-ai#usecase-airports">Airports</Link></li>
-              <li><Link to="/edge-ai#usecase-cities">Cities</Link></li>
-              <li><Link to="/edge-ai#usecase-hospitals">Hospitals</Link></li>
-              <li><Link to="/edge-ai#usecase-retail">Retail</Link></li>
-              <li><Link to="/edge-ai#usecase-manufacturing">Manufacturing</Link></li>
+              <li><Link to="/solutions#usecase-airports">Airports</Link></li>
+              <li><Link to="/solutions#usecase-cities">Cities</Link></li>
+              <li><Link to="/solutions#usecase-hospitals">Hospitals</Link></li>
+              <li><Link to="/solutions#usecase-retail">Retail</Link></li>
+              <li><Link to="/solutions#usecase-manufacturing">Manufacturing</Link></li>
             </ul>
           </div>
 
@@ -128,6 +128,11 @@ export default function Footer() {
               <li>
                 <Link to="/edge-ai" onClick={resetPageScroll}>
                   Edge AI
+                </Link>
+              </li>
+              <li>
+                <Link to="/solutions">
+                  Solutions
                 </Link>
               </li>
             </ul>

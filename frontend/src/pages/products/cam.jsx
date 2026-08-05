@@ -168,8 +168,8 @@ export default function CameraPage() {
   const heroContent = useMemo(() => ({
     'dual-lens': {
       tagText: 'ZMD EDGE AI CAMERAS',
-      titlePrefix: 'Advanced ',
-      highlight1: 'IP',
+      titlePrefix: 'Dual Lens ',
+      highlight1: 'AI',
       highlight2: 'Camera',
       subtitle: 'Intelligent vision for modern safety.',
       description: 'A dual-sensor dome camera with on-board Edge AI, 180° panoramic coverage, and IP67/IK10-rated durability — built to see everything, process it on-site, and act on it instantly.',
@@ -177,7 +177,7 @@ export default function CameraPage() {
         { value: '180°', label: 'FIELD OF VIEW' },
         { value: '14', label: 'AI MODELS ON-BOARD' },
         { value: '8', label: 'CONCURRENT USERS' },
-        { value: '30fps', label: 'MAX RESOLUTION' },
+        { value: '1920×1080 / 2MP', label: 'MAX RESOLUTION' },
       ],
       image: dcamImages.dualLens,
       mobileImage: dcamImages.dualLensMobileHero,
@@ -185,16 +185,16 @@ export default function CameraPage() {
     },
     'single-lens': {
       tagText: 'ZMD EDGE AI CAMERAS',
-      titlePrefix: 'Precision ',
-      highlight1: 'Single',
-      highlight2: 'Lens AI Cam',
+      titlePrefix: 'Advanced ',
+      highlight1: 'AI',
+      highlight2: 'Camera',
       subtitle: 'Focused intelligence for targeted security.',
-      description: 'A high-precision 2 MP single-sensor bullet IP camera featuring on-board Edge AI, 110° field of view, low-light night vision, and IP67 waterproof protection.',
+      description: 'A high-precision 2 MP bullet IP camera featuring on-board Edge AI, 110° field of view, low-light night vision, and IP67 waterproof protection.',
       stats: [
         { value: '110°', label: 'FIELD OF VIEW' },
         { value: '14', label: 'AI MODELS ON-BOARD' },
         { value: '8', label: 'CONCURRENT USERS' },
-        { value: '30fps', label: 'MAX RESOLUTION' },
+        { value: '1920×1080 / 2MP', label: 'MAX RESOLUTION' },
       ],
       image: dcamImages.singleLens,
       mobileImage: dcamImages.singleLensMobileHero,
@@ -255,7 +255,7 @@ export default function CameraPage() {
         { label: 'Resolution', val: '2 MP Single Sensor (1920 × 1080 Full HD)' },
         { label: 'Image Sensor', val: '1/2.8" Progressive Scan CMOS Sensor' },
         { label: 'Lens Type', val: 'Fixed Focus 3.6mm High-Precision Lens' },
-        { label: 'Field of View', val: 'Horizontal 110°, Vertical 60° Wide Coverage' },
+        { label: 'Field of View', val: 'Horizontal 110°, Vertical 50° Wide Coverage' },
         { label: 'Night Vision', val: 'Smart IR LED (Up to 30 Meters, 0 Lux)' },
         { label: 'Dynamic Range', val: 'WDR (Wide Dynamic Range) for Backlight' },
       ],
@@ -620,7 +620,7 @@ export default function CameraPage() {
                   </div>
                   <div className="dcam-arch-stat-item">
                     <span className="dcam-arch-stat-val">
-                      {fovAngle === 180 ? '50°' : fovAngle === 110 ? '60°' : '45°'}
+                      {fovAngle === 180 ? '50°' : fovAngle === 110 ? '50°' : '45°'}
                     </span>
                     <span className="dcam-arch-stat-lbl">VERTICAL FOV</span>
                   </div>

@@ -58,6 +58,22 @@ export default function Header() {
     navigate(path);
   };
 
+  const handleSolutionClick = (id) => {
+    setProductsOpen(false);
+    setSolutionsOpen(false);
+    if (location.pathname !== '/solutions') {
+      navigate(`/solutions#${id}`);
+    } else {
+      const elem = document.getElementById(id);
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.history.pushState(null, '', `#${id}`);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <>
       {/* Separate Mobile Header for devices under 992px */}
@@ -140,25 +156,25 @@ export default function Header() {
 
               {/* Solutions Dropdown Trigger */}
               <li 
-                className={`nav-item ${solutionsOpen ? 'active' : ''}`}
+                className={`nav-item ${solutionsOpen || location.pathname === '/solutions' ? 'active' : ''}`}
                 onMouseEnter={() => {
                   setProductsOpen(false);
                   setSolutionsOpen(true);
                 }}
               >
-                <button 
-                  className={`nav-link dropdown-toggle ${solutionsOpen ? 'active' : ''}`}
+                <Link 
+                  to="/solutions"
+                  className={`nav-link dropdown-toggle ${solutionsOpen || location.pathname === '/solutions' ? 'active' : ''}`}
                   onClick={() => {
                     setProductsOpen(false);
-                    setSolutionsOpen(!solutionsOpen);
+                    setSolutionsOpen(false);
                   }}
-                  aria-expanded={solutionsOpen}
                 >
                   Solutions
                   <svg className="dropdown-chevron" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M6 9l6 6 6-6" />
                   </svg>
-                </button>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -220,89 +236,72 @@ export default function Header() {
                   <div className="col-items">
                     <div className="product-card">
                       <div className="card-head">
-                        <span className="card-name">Dual-Lens AI Camera</span>
+                        <span className="card-name">AI Cameras</span>
                         <span className="badge-red">POPULAR</span>
                       </div>
-                      <p className="card-desc">Stereoscopic real-time spatial sensing</p>
-                    </div>
-                    <div className="product-card">
-                      <div className="card-head">
-                        <span className="card-name">Smart Vision Module</span>
-                        <span className="badge-red-outline">AI</span>
-                      </div>
-                      <p className="card-desc">Low-latency edge camera for industrial monitoring</p>
-                    </div>
-                    <div className="product-card">
-                      <div className="card-head">
-                        <span className="card-name">ThermoInspection Cam</span>
-                      </div>
-                      <p className="card-desc">High-resolution thermal anomaly detection</p>
+                      <p className="card-desc">Dual-Lens &amp; thermal spatial sensing cameras</p>
                     </div>
                   </div>
                 </div>
 
-                {/* 2. Delibot Column Card - Clickable */}
+                {/* 2. Sensors Column Card - Clickable */}
                 <div 
-                  className={`mega-col ${activeCategory === 'delibot' ? 'col-highlight' : ''}`}
-                  onMouseEnter={() => setActiveCategory('delibot')}
-                  onClick={() => handleCardClick('/products/delibot')}
+                  className={`mega-col ${activeCategory === 'sensors' ? 'col-highlight' : ''}`}
+                  onMouseEnter={() => setActiveCategory('sensors')}
+                  onClick={() => handleCardClick('/products/sensors')}
                 >
                   <div className="col-header">
                     <svg className="col-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                      <rect x="3" y="11" width="18" height="10" rx="2"/>
-                      <circle cx="12" cy="5" r="2"/>
-                      <path d="M12 7v4M8 16h.01M16 16h.01"/>
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
                     </svg>
                     <div className="col-title-group">
-                      <h4 className="col-title">Delibot</h4>
-                      <span className="col-tag">AUTONOMOUS</span>
+                      <h4 className="col-title">Sensors</h4>
+                      <span className="col-tag">IOT SENSORS</span>
                     </div>
                   </div>
                   <div className="col-items">
                     <div className="product-card">
                       <div className="card-head">
-                        <span className="card-name">Delibot X1 Autonomous</span>
-                        <span className="badge-red-outline">FEATURED</span>
+                        <span className="card-name">Safety Band</span>
+                        <span className="badge-red-outline">WEARABLE</span>
                       </div>
-                      <p className="card-desc">Indoor autonomous delivery robot</p>
+                      <p className="card-desc">Worker health &amp; safety telemetry</p>
                     </div>
                     <div className="product-card">
                       <div className="card-head">
-                        <span className="card-name">Fleet Navigator Pod</span>
+                        <span className="card-name">Parking Sensor</span>
+                        <span className="badge-red-outline">IOT</span>
                       </div>
-                      <p className="card-desc">Multi-robot coordination system</p>
+                      <p className="card-desc">Real-time occupancy &amp; space management</p>
                     </div>
                   </div>
                 </div>
 
-                {/* 3. Drone Column Card - Clickable */}
+                {/* 3. Server Column Card - Clickable */}
                 <div 
-                  className={`mega-col ${activeCategory === 'drone' ? 'col-highlight' : ''}`}
-                  onMouseEnter={() => setActiveCategory('drone')}
-                  onClick={() => handleCardClick('/products/drone')}
+                  className={`mega-col ${activeCategory === 'server' ? 'col-highlight' : ''}`}
+                  onMouseEnter={() => setActiveCategory('server')}
+                  onClick={() => handleCardClick('/products/server')}
                 >
                   <div className="col-header">
                     <svg className="col-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                      <rect x="2" y="2" width="20" height="8" rx="2"/>
+                      <rect x="2" y="14" width="20" height="8" rx="2"/>
+                      <line x1="6" y1="6" x2="6.01" y2="6"/>
+                      <line x1="6" y1="18" x2="6.01" y2="18"/>
                     </svg>
                     <div className="col-title-group">
-                      <h4 className="col-title">Drone</h4>
-                      <span className="col-tag">AERIAL AI</span>
+                      <h4 className="col-title">Server</h4>
+                      <span className="col-tag">EDGE COMPUTE</span>
                     </div>
                   </div>
                   <div className="col-items">
                     <div className="product-card">
                       <div className="card-head">
-                        <span className="card-name">Surveillance Drone Pro</span>
-                        <span className="badge-red">HOT</span>
+                        <span className="card-name">2U/2S Xeon Server</span>
+                        <span className="badge-red-outline">ENTERPRISE</span>
                       </div>
-                      <p className="card-desc">Autonomous aerial perimeter tracking</p>
-                    </div>
-                    <div className="product-card">
-                      <div className="card-head">
-                        <span className="card-name">Payload Sensor Controller</span>
-                      </div>
-                      <p className="card-desc">Real-time airborne AI processing unit</p>
+                      <p className="card-desc">High-density dual-socket neural inferencing</p>
                     </div>
                   </div>
                 </div>
@@ -334,114 +333,64 @@ export default function Header() {
                   <div className="col-items">
                     <div className="product-card">
                       <div className="card-head">
-                        <span className="card-name">ZMD Edge Box</span>
+                        <span className="card-name">Zevric Edge Box</span>
                         <span className="badge-red-outline">FEATURED</span>
                       </div>
                       <p className="card-desc">Compact neural model inferencing hardware</p>
                     </div>
-                    <div className="product-card">
-                      <div className="card-head">
-                        <span className="card-name">Edge Box Pro</span>
-                      </div>
-                      <p className="card-desc">High-capacity edge compute module</p>
-                    </div>
                   </div>
                 </div>
 
-                {/* 5. Safety Band Column Card - Clickable */}
+                {/* 5. Drone Column Card - Clickable */}
                 <div 
-                  className={`mega-col ${activeCategory === 'safety' ? 'col-highlight' : ''}`}
-                  onMouseEnter={() => setActiveCategory('safety')}
-                  onClick={() => handleCardClick('/products/safety')}
+                  className={`mega-col ${activeCategory === 'drone' ? 'col-highlight' : ''}`}
+                  onMouseEnter={() => setActiveCategory('drone')}
+                  onClick={() => handleCardClick('/products/drone')}
                 >
                   <div className="col-header">
                     <svg className="col-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                     </svg>
                     <div className="col-title-group">
-                      <h4 className="col-title">Safety Band</h4>
-                      <span className="col-tag">WEARABLES</span>
+                      <h4 className="col-title">Drone</h4>
+                      <span className="col-tag">AERIAL AI</span>
                     </div>
                   </div>
                   <div className="col-items">
                     <div className="product-card">
                       <div className="card-head">
-                        <span className="card-name">Safety Band Pro</span>
-                        <span className="badge-red-outline">CRITICAL</span>
+                        <span className="card-name">AI Surveillance Drone</span>
+                        <span className="badge-red">HOT</span>
                       </div>
-                      <p className="card-desc">Hazardous zone worker health & telemetry</p>
-                    </div>
-                    <div className="product-card">
-                      <div className="card-head">
-                        <span className="card-name">Proximity Warning Tag</span>
-                      </div>
-                      <p className="card-desc">Industrial machinery collision avoidance</p>
+                      <p className="card-desc">Autonomous aerial perimeter tracking</p>
                     </div>
                   </div>
                 </div>
 
-                {/* 5. Sensors Column Card - Clickable */}
+                {/* 6. Delibot Column Card - Clickable */}
                 <div 
-                  className={`mega-col ${activeCategory === 'sensors' ? 'col-highlight' : ''}`}
-                  onMouseEnter={() => setActiveCategory('sensors')}
-                  onClick={() => handleCardClick('/products/sensors')}
+                  className={`mega-col ${activeCategory === 'delibot' ? 'col-highlight' : ''}`}
+                  onMouseEnter={() => setActiveCategory('delibot')}
+                  onClick={() => handleCardClick('/products/delibot')}
                 >
                   <div className="col-header">
                     <svg className="col-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                      <rect x="3" y="11" width="18" height="10" rx="2"/>
+                      <circle cx="12" cy="5" r="2"/>
+                      <path d="M12 7v4M8 16h.01M16 16h.01"/>
                     </svg>
                     <div className="col-title-group">
-                      <h4 className="col-title">Sensors</h4>
-                      <span className="col-tag">IOT SENSORS</span>
+                      <h4 className="col-title">Delibot</h4>
+                      <span className="col-tag">AUTONOMOUS</span>
                     </div>
                   </div>
                   <div className="col-items">
                     <div className="product-card">
                       <div className="card-head">
-                        <span className="card-name">Multi-Spectral Array</span>
+                        <span className="card-name">Delibot X1 Autonomous</span>
+                        <span className="badge-red-outline">FEATURED</span>
                       </div>
-                      <p className="card-desc">Environmental & gas sensing module</p>
-                    </div>
-                    <div className="product-card">
-                      <div className="card-head">
-                        <span className="card-name">Edge Vibration Sensor</span>
-                      </div>
-                      <p className="card-desc">Predictive maintenance acoustic transducer</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 6. Server Column Card - Clickable */}
-                <div 
-                  className={`mega-col ${activeCategory === 'server' ? 'col-highlight' : ''}`}
-                  onMouseEnter={() => setActiveCategory('server')}
-                  onClick={() => handleCardClick('/products/server')}
-                >
-                  <div className="col-header">
-                    <svg className="col-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                      <rect x="2" y="2" width="20" height="8" rx="2"/>
-                      <rect x="2" y="14" width="20" height="8" rx="2"/>
-                      <line x1="6" y1="6" x2="6.01" y2="6"/>
-                      <line x1="6" y1="18" x2="6.01" y2="18"/>
-                    </svg>
-                    <div className="col-title-group">
-                      <h4 className="col-title">Server</h4>
-                      <span className="col-tag">EDGE COMPUTE</span>
-                    </div>
-                  </div>
-                  <div className="col-items">
-                    <div className="product-card">
-                      <div className="card-head">
-                        <span className="card-name">GPU Edge Server 4000</span>
-                        <span className="badge-red-outline">ENTERPRISE</span>
-                      </div>
-                      <p className="card-desc">High-density neural model inferencing</p>
-                    </div>
-                    <div className="product-card">
-                      <div className="card-head">
-                        <span className="card-name">Micro-Server Array</span>
-                      </div>
-                      <p className="card-desc">Compact low-power cluster module</p>
+                      <p className="card-desc">Indoor autonomous delivery robot</p>
                     </div>
                   </div>
                 </div>
@@ -483,7 +432,7 @@ export default function Header() {
                   <div 
                     key={sol.id}
                     className="sol-col-item"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={() => handleSolutionClick(sol.id)}
                   >
                     <div className="sol-col-body">
                       <div className="sol-col-header">
@@ -497,13 +446,13 @@ export default function Header() {
               </div>
 
               <div className="solutions-mega-menu-bottom">
-                <span 
-                  className="solutions-view-all-link" 
-                  style={{ cursor: 'default' }}
-                  onClick={(e) => e.preventDefault()}
+                <Link 
+                  to="/solutions" 
+                  className="solutions-view-all-link"
+                  onClick={() => { setProductsOpen(false); setSolutionsOpen(false); }}
                 >
-                  9 INDUSTRY SOLUTIONS AVAILABLE
-                </span>
+                  VIEW ALL ZMD SOLUTIONS →
+                </Link>
               </div>
 
             </div>

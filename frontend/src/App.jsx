@@ -9,9 +9,9 @@ import CameraPage from './pages/products/cam';
 import DelibotPage from './pages/products/delibot';
 import DronePage from './pages/products/drone';
 import EdgeBoxPage from './pages/products/edge_box';
-import SafetyBandPage from './pages/products/health';
 import SensorsPage from './pages/products/sensors';
 import ServerPage from './pages/products/server';
+import SolutionsPage from './pages/products/solutions';
 import EdgeAIPage from './pages/edge_ai';
 
 export default function App() {
@@ -25,13 +25,13 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/edge-ai" element={<EdgeAIPage />} />
-          <Route path="/solutions" element={<EdgeAIPage />} />
+          <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/products/cam" element={<CameraPage />} />
           <Route path="/products/delibot" element={<DelibotPage />} />
           <Route path="/products/drone" element={<DronePage />} />
           <Route path="/products/edge-box" element={<EdgeBoxPage />} />
           <Route path="/products/edge_box" element={<EdgeBoxPage />} />
-          <Route path="/products/safety" element={<SafetyBandPage />} />
+          <Route path="/products/safety" element={<SensorsPage />} />
           <Route path="/products/sensors" element={<SensorsPage />} />
           <Route path="/products/server" element={<ServerPage />} />
           <Route path="*" element={<HomePage />} />

@@ -16,7 +16,8 @@
   --delibot-white: #FFFFFF;
   
   --delibot-font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --delibot-font-mono: 'Space Mono', 'Consolas', 'Courier New', monospace;
+  --delibot-font-heading: 'Space Grotesk', sans-serif;
+  --delibot-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
 .delibot-page-wrapper {
@@ -27,6 +28,29 @@
   position: relative;
   width: 100%;
   animation: delibotPageEnter 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delibot-page-wrapper h1,
+.delibot-page-wrapper h2,
+.delibot-page-wrapper h3,
+.delibot-page-wrapper h4,
+.delibot-page-wrapper h5,
+.delibot-page-wrapper h6,
+.delibot-section-title-dark,
+.delibot-section-title-light,
+.delibot-col-title,
+.delibot-card-title,
+.delibot-process-strip__title,
+.delibot-highlight-title,
+.delibot-table-title,
+.delibot-dashboard-title,
+.delibot-usecase-overlay-title,
+.delibot-prop-title,
+.delibot-contact-title,
+.delibot-contact-v2-title,
+.delibot-mini-title,
+.delibot-mini-overlay-title {
+  font-family: var(--delibot-font-heading);
 }
 
 @keyframes delibotPageEnter {

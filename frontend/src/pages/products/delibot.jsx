@@ -219,7 +219,7 @@ export default function DelibotPage() {
               <span className="dcam-tag-text">AUTONOMOUS MULTI-FLOOR LOGISTICS</span>
             </div>
 
-            <h1 className="delibot-hero__headline">V-<span className="delibot-title-red">DeliBot</span><span className="delibot-title-dot">.</span></h1>
+            <h1 className="delibot-hero__headline">Autonomious <span className="delibot-title-red">DeliBot</span></h1>
             <h2 className="delibot-hero__subheadline">Intelligence at the <span className="delibot-title-red">Source</span><span className="delibot-title-dot">.</span></h2>
 
             <p className="delibot-hero__supporting">
@@ -988,9 +988,9 @@ export default function DelibotPage() {
             },
             { 
               img: deliEnSec3Img, 
-              title: 'Campuses',        
-              alt: 'V-DeliBot autonomous campus logistics',
-              desc: 'Advanced sensor and perception system combination to navigate unpredictably moving, dense crowds safely.'
+              title: 'Airports',        
+              alt: 'V-DeliBot autonomous airport terminal logistics',
+              desc: 'Advanced sensor and perception system combination to navigate unpredictably moving, dense passenger crowds safely.'
             },
             { 
               img: deliEnSec4Img, 
