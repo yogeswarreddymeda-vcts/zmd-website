@@ -354,19 +354,20 @@ export default function MobileHeader() {
 
           {/* Mobile Footer Action / Contact CTA */}
           <div className="mobile-nav-footer">
-            <a 
-              href="#home" 
+            <Link
+              to="/contact"
               className="mobile-contact-btn"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavigateAndScroll('home');
+              onClick={() => {
+                setIsOpen(false);
+                setProductsExpanded(false);
+                setSolutionsExpanded(false);
               }}
             >
-              <span>CONTACT US</span>
+              <span>LET’S CONNECT</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </nav>

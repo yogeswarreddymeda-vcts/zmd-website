@@ -13,6 +13,7 @@ import SensorsPage from './pages/products/sensors';
 import ServerPage from './pages/products/server';
 import SolutionsPage from './pages/products/solutions';
 import EdgeAIPage from './pages/edge_ai';
+import ContactPage from './pages/contact';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/edge-ai" element={<EdgeAIPage />} />
           <Route path="/solutions" element={<SolutionsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/products/cam" element={<CameraPage />} />
           <Route path="/products/delibot" element={<DelibotPage />} />
           <Route path="/products/drone" element={<DronePage />} />

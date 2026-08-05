@@ -76,16 +76,16 @@ import imgFire from '../../assets/images/cam/firede.webp';
 import imgPerim from '../../assets/images/cam/peridde.webp';
 
 // Solution Section Images (solim_1 through solim_9)
-import solImg1 from '../../assets/images/solutions/solim_1.png';
-import solImg2 from '../../assets/images/solutions/solim_2.png';
-import solImg3 from '../../assets/images/solutions/solim_3.png';
-import solImg4 from '../../assets/images/solutions/solim_4.png';
-import solImg5 from '../../assets/images/solutions/solim_5.png';
-import solImg6 from '../../assets/images/solutions/solim_6.png';
-import solImg7 from '../../assets/images/solutions/solim_7.png';
-import solImg8 from '../../assets/images/solutions/solim_8.png';
-import solImg9 from '../../assets/images/solutions/solim_9.png';
-import solHero from '../../assets/images/solutions/solhero.png';
+import solImg1 from '../../assets/images/solutions/solim_1.webp';
+import solImg2 from '../../assets/images/solutions/solim_2.webp';
+import solImg3 from '../../assets/images/solutions/solim_3.webp';
+import solImg4 from '../../assets/images/solutions/solim_4.webp';
+import solImg5 from '../../assets/images/solutions/solim_5.webp';
+import solImg6 from '../../assets/images/solutions/solim_6.webp';
+import solImg7 from '../../assets/images/solutions/solim_7.webp';
+import solImg8 from '../../assets/images/solutions/solim_8.webp';
+import solImg9 from '../../assets/images/solutions/solim_9.webp';
+import solHero from '../../assets/images/solutions/solhero.webp';
 
 import '../../assets/css/solutions.css';
 
@@ -566,6 +566,15 @@ export default function SolutionsPage() {
               <h1 className="zmd-sol-display zmd-stagger-2">
                 Physical AI for <em>Enterprise Operations.</em>
               </h1>
+
+              <div className="zmd-sol-hero-visual zmd-stagger-3" aria-hidden="true">
+                <img
+                  src={solHero}
+                  alt=""
+                  decoding="async"
+                  fetchPriority="high"
+                />
+              </div>
 
               <p className="zmd-sol-hero-sub zmd-stagger-3">
                 ZMD turns existing cameras and on-site sensors into real-time perception — automating operations, safety, and workflow decisions across nine industries.

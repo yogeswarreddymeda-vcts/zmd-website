@@ -12,39 +12,7 @@ import ecosystemEdgeDeviceImg from '../assets-1/ecosystem-edge-device-transparen
 import ecosystemInfrastructureImg from '../assets-1/ecosystem-infrastructure-transparent-v2.webp';
 import ecosystemModelsImg from '../assets-1/ecosystem-models-transparent-v2.webp';
 import ecosystemApplicationsImg from '../assets-1/ecosystem-applications-transparent-v2.webp';
-
-// Eagerly import all 145 frame sequence webp images
-const frameModules = import.meta.glob('../assets/frame_sequence/frame_*.webp', { eager: true, import: 'default' });
-const frameUrls = Object.keys(frameModules)
-  .sort()
-  .map((key) => frameModules[key]);
-
-const TOTAL_FRAMES = frameUrls.length;
-const MOBILE_HERO_FRAME = frameUrls[TOTAL_FRAMES - 1];
-const FRAME_LOAD_CONCURRENCY = 6;
-
-function isDrawableImage(image) {
-  return Boolean(image?.complete && image.naturalWidth > 0);
-}
-
-function findNearestLoadedFrame(frames, targetIndex) {
-  if (isDrawableImage(frames[targetIndex])) return frames[targetIndex];
-
-  for (let offset = 1; offset < frames.length; offset += 1) {
-    const previous = targetIndex - offset;
-    const next = targetIndex + offset;
-
-    if (previous >= 0 && isDrawableImage(frames[previous])) {
-      return frames[previous];
-    }
-
-    if (next < frames.length && isDrawableImage(frames[next])) {
-      return frames[next];
-    }
-  }
-
-  return null;
-}
+import heroFrame from '../assets/frame_sequence/frame_0145.webp';
 
 function AboutIndustryIcon({ name }) {
   const iconProps = {
@@ -179,171 +147,20 @@ function EcosystemStepIcon({ index }) {
 }
 
 export default function HomePage() {
-  const heroScrollWrapperRef = useRef(null);
-  const heroCanvasRef = useRef(null);
-  const imagesRef = useRef(new Array(TOTAL_FRAMES));
+  const heroRef = useRef(null);
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
 
-  const [isHeroTextVisible, setIsHeroTextVisible] = useState(false);
-  const currentFrameIdxRef = useRef(0);
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return undefined;
 
-  const renderCanvasFrame = (img, canvas) => {
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // Preserve the last valid canvas frame while another frame is loading.
-    if (!isDrawableImage(img)) return;
-
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    if (canvas.width !== width || canvas.height !== height) {
-      canvas.width = width;
-      canvas.height = height;
-    }
-
-    ctx.fillStyle = '#0b0c10';
-    ctx.fillRect(0, 0, width, height);
-
-    const hRatio = width / img.naturalWidth;
-    const vRatio = height / img.naturalHeight;
-    const ratio = Math.max(hRatio, vRatio);
-
-    const centerShift_x = (width - img.naturalWidth * ratio) / 2;
-    const centerShift_y = (height - img.naturalHeight * ratio) / 2;
-
-    ctx.drawImage(
-      img,
-      0,
-      0,
-      img.naturalWidth,
-      img.naturalHeight,
-      centerShift_x,
-      centerShift_y,
-      img.naturalWidth * ratio,
-      img.naturalHeight * ratio
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsHeroVisible(entry.isIntersecting && entry.intersectionRatio > 0.12),
+      { threshold: [0, 0.12, 0.3] },
     );
-  };
 
-  // Load desktop animation frames through a small worker pool. Loading all
-  // 145 files at once causes network contention and image-decode jank.
-  useEffect(() => {
-    const imgArray = imagesRef.current;
-    let cancelled = false;
-
-    if (TOTAL_FRAMES === 0) return;
-
-    // Mobile uses one static hero image and should not download the frame sequence.
-    if (window.matchMedia('(max-width: 767px)').matches) {
-      return;
-    }
-
-    const loadFrame = (index) => new Promise((resolve) => {
-      const img = new Image();
-      img.decoding = 'async';
-
-      img.onload = () => {
-        if (!cancelled) {
-          imgArray[index] = img;
-          if (index === 0 && heroCanvasRef.current) {
-            renderCanvasFrame(img, heroCanvasRef.current);
-          }
-        }
-        resolve();
-      };
-
-      img.onerror = resolve;
-      img.src = frameUrls[index];
-    });
-
-    const loadFrames = async () => {
-      await loadFrame(0);
-      if (cancelled) return;
-
-      let nextIndex = 1;
-      const worker = async () => {
-        while (!cancelled && nextIndex < TOTAL_FRAMES) {
-          const frameIndex = nextIndex;
-          nextIndex += 1;
-          await loadFrame(frameIndex);
-        }
-      };
-
-      await Promise.all(
-        Array.from({ length: FRAME_LOAD_CONCURRENCY }, () => worker())
-      );
-    };
-
-    loadFrames();
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  // Scroll trigger animation handler
-  useEffect(() => {
-    let animFrameId = null;
-
-    // The mobile hero is intentionally static.
-    if (window.matchMedia('(max-width: 767px)').matches) {
-      setIsHeroTextVisible(true);
-      return undefined;
-    }
-
-    const updateFrameOnScroll = () => {
-      if (!heroScrollWrapperRef.current || !heroCanvasRef.current) return;
-
-      const wrapper = heroScrollWrapperRef.current;
-      const rect = wrapper.getBoundingClientRect();
-      const windowH = window.innerHeight;
-      const totalScrollable = rect.height - windowH;
-
-      if (totalScrollable <= 0) return;
-
-      const currentScroll = -rect.top;
-      const rawProgress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
-
-      // Match the intended sequence: begin on the clean processor visual,
-      // then introduce the message once the zoom animation is underway.
-      setIsHeroTextVisible(rawProgress >= 0.28);
-
-      const targetFrameIndex = Math.min(
-        TOTAL_FRAMES - 1,
-        Math.floor(rawProgress * TOTAL_FRAMES)
-      );
-
-      currentFrameIdxRef.current = targetFrameIndex;
-
-      if (animFrameId) cancelAnimationFrame(animFrameId);
-      animFrameId = requestAnimationFrame(() => {
-        const img = findNearestLoadedFrame(imagesRef.current, targetFrameIndex);
-        if (img && heroCanvasRef.current) {
-          renderCanvasFrame(img, heroCanvasRef.current);
-        }
-      });
-    };
-
-    const handleResize = () => {
-      const img = findNearestLoadedFrame(
-        imagesRef.current,
-        currentFrameIdxRef.current
-      );
-      if (img && heroCanvasRef.current) {
-        renderCanvasFrame(img, heroCanvasRef.current);
-      }
-    };
-
-    window.addEventListener('scroll', updateFrameOnScroll, { passive: true });
-    window.addEventListener('resize', handleResize);
-
-    updateFrameOnScroll();
-
-    return () => {
-      window.removeEventListener('scroll', updateFrameOnScroll);
-      window.removeEventListener('resize', handleResize);
-      if (animFrameId) cancelAnimationFrame(animFrameId);
-    };
+    observer.observe(hero);
+    return () => observer.disconnect();
   }, []);
 
   // IntersectionObserver for scroll entrance animations across sections
@@ -587,23 +404,24 @@ export default function HomePage() {
 
   return (
     <div className="hmpg-zmd-app">
-      {/* Scroll-Triggered Hero Section */}
-      <section id="home" className="hmpg-scroll-hero-wrapper" ref={heroScrollWrapperRef}>
+      {/* Static Homepage Hero */}
+      <section
+        id="home"
+        ref={heroRef}
+        className={`hmpg-scroll-hero-wrapper${isHeroVisible ? ' hmpg-hero-active' : ''}`}
+      >
         <div className="hmpg-scroll-hero-sticky">
           <img
-            src={MOBILE_HERO_FRAME}
+            src={heroFrame}
             alt="ZMD Neural Engine X1 edge AI processor"
-            className="hmpg-mobile-hero-image"
+            className="hmpg-hero-image"
             fetchPriority="high"
           />
-
-          {/* HTML5 Canvas Frame Renderer */}
-          <canvas ref={heroCanvasRef} className="hmpg-hero-canvas" />
 
           {/* Hero Branding Overlay Content */}
           <div className="hmpg-hero-overlay-content">
             <div className="hmpg-zmd-container">
-              <div className={`hmpg-hero-text-block ${isHeroTextVisible ? 'hmpg-is-visible' : ''}`}>
+              <div className={`hmpg-hero-text-block${isHeroVisible ? ' hmpg-is-visible' : ''}`}>
                 <div className="hmpg-section-tag">END-TO-END EDGE AI ECOSYSTEM</div>
                 <h1 className="hmpg-hero-title hmpg-font-heading">
                   Building the<br />
@@ -1100,9 +918,9 @@ export default function HomePage() {
           </p>
 
           <div className="zmd-cta-btns">
-            <a href="mailto:contact@zmd.com" className="zmd-btn-brand">
+            <Link to="/contact" className="zmd-btn-brand">
               CONTACT US <span>→</span>
-            </a>
+            </Link>
             <a href="mailto:demo@zmd.com" className="zmd-btn-outline-white">
               REQUEST DEMO
             </a>

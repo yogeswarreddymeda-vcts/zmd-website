@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../../assets/css/drone.css';
 import infrastructureCorridor from '../../assets/images/drone/critical-infrastructure-corridor.webp';
-import mobileInfrastructureCorridor from '../../assets/images/drone/ChatGPT Image Aug 3, 2026, 06_55_54 PM.webp';
+import mobileInfrastructureCorridor from '../../assets/images/drone/mobile-infrastructure-corridor.webp';
 import inspectionDrone from '../../assets/images/drone/inspection-drone-front-view.webp';
 import hotspotDetection from '../../assets/images/drone/power-line-hotspot-detection.webp';
 import towerCorrosion from '../../assets/images/drone/tower-corrosion-detection.webp';
 import structuralWear from '../../assets/images/drone/structural-wear-detection.webp';
 import pipelineCorrosion from '../../assets/images/drone/pipeline-corrosion-detection.webp';
 import platformSensorDrone from '../../assets/images/drone/platform-sensor-drone.webp';
-import mobileDrone from '../../assets/images/drone/mobile-drone.png';
+import mobileDrone from '../../assets/images/drone/mobile-drone.webp';
 import rgbStructuralImaging from '../../assets/images/drone/rgb-structural-imaging.webp';
 import thermalHotspotImaging from '../../assets/images/drone/thermal-hotspot-imaging.webp';
 import lidarPowerlineScan from '../../assets/images/drone/lidar-powerline-scan.webp';
@@ -350,6 +350,7 @@ function SectionHeading({ eyebrow, title, text, light = false }) {
 }
 
 export default function DronePage() {
+  const pageRef = useRef(null);
 
   useEffect(() => {
     const sections = document.querySelectorAll('.drone-page .drone-reveal');
@@ -363,7 +364,8 @@ export default function DronePage() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('drone-is-visible');
-            observer.unobserve(entry.target);
+          } else {
+            entry.target.classList.remove('drone-is-visible');
           }
         });
       },
@@ -374,8 +376,50 @@ export default function DronePage() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const page = pageRef.current;
+    if (!page) return undefined;
+
+    const motionSections = page.querySelectorAll('.drone-section, .drone-cta');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let animationFrame = null;
+
+    const updateScrollMotion = () => {
+      animationFrame = null;
+
+      if (!reduceMotion && window.innerWidth > 1050) {
+        motionSections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          const sectionCenter = rect.top + rect.height / 2;
+          const viewportCenter = window.innerHeight / 2;
+          const normalizedDistance = Math.min(
+            1,
+            Math.max(-1, (sectionCenter - viewportCenter) / window.innerHeight),
+          );
+          section.style.setProperty('--drone-scroll-shift', `${(-normalizedDistance * 12).toFixed(2)}px`);
+        });
+      }
+    };
+
+    const requestScrollUpdate = () => {
+      if (animationFrame === null) {
+        animationFrame = window.requestAnimationFrame(updateScrollMotion);
+      }
+    };
+
+    updateScrollMotion();
+    window.addEventListener('scroll', requestScrollUpdate, { passive: true });
+    window.addEventListener('resize', requestScrollUpdate);
+
+    return () => {
+      window.removeEventListener('scroll', requestScrollUpdate);
+      window.removeEventListener('resize', requestScrollUpdate);
+      if (animationFrame !== null) window.cancelAnimationFrame(animationFrame);
+    };
+  }, []);
+
   return (
-    <div className="drone-page">
+    <div className="drone-page" ref={pageRef}>
       <section
         className="drone-hero drone-reveal"
         id="drone-hero"

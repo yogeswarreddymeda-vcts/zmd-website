@@ -410,6 +410,10 @@ html.zmd-sol-hide-scrollbar::-webkit-scrollbar {
   flex-wrap: wrap;
 }
 
+.zmd-sol-hero-visual {
+  display: none;
+}
+
 .zmd-sol-btn {
   display: inline-flex;
   align-items: center;
@@ -1455,7 +1459,84 @@ html.zmd-sol-hide-scrollbar::-webkit-scrollbar {
 
 }
 
+@media (max-width: 992px) {
+  .sol-hero-section {
+    min-height: calc(100vh - 68px);
+    min-height: calc(100svh - 68px);
+    background-image: none;
+  }
+
+  .sol-hero-section .zmd-sol-shell {
+    min-height: calc(100vh - 68px);
+    min-height: calc(100svh - 68px);
+    padding: 48px 24px 40px;
+  }
+
+  .zmd-sol-hero-grid {
+    display: block;
+  }
+
+  .zmd-sol-hero-left {
+    width: 100%;
+  }
+
+  .zmd-sol-display {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    max-width: 760px;
+    margin-bottom: 24px;
+  }
+
+  .zmd-sol-hero-visual {
+    display: block;
+    width: min(100%, 760px);
+    margin: -8px auto 24px;
+    isolation: isolate;
+  }
+
+  .zmd-sol-hero-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+    mix-blend-mode: multiply;
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 9%, #000 91%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 9%, #000 91%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  .zmd-sol-hero-sub {
+    max-width: 760px;
+  }
+}
+
 @media (max-width: 680px) {
+  .sol-hero-section {
+    min-height: calc(100vh - 62px);
+    min-height: calc(100svh - 62px);
+  }
+
+  .sol-hero-section .zmd-sol-shell {
+    min-height: calc(100vh - 62px);
+    min-height: calc(100svh - 62px);
+    padding: 28px 18px 30px;
+    justify-content: flex-start;
+  }
+
+  .sol-hero-section .zmd-sol-eyebrow {
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .sol-hero-section .zmd-sol-rule {
+    max-width: 32px;
+  }
+
   .zmd-sol-caps {
     grid-template-columns: 1fr;
   }
@@ -1478,7 +1559,43 @@ html.zmd-sol-hide-scrollbar::-webkit-scrollbar {
   }
 
   .zmd-sol-display {
-    font-size: clamp(38px, 9vw, 48px);
+    font-size: 2.15rem;
+    line-height: 1.02;
+    margin-bottom: 16px;
+  }
+
+  .zmd-sol-hero-visual {
+    width: 100%;
+    margin: -4px auto 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .zmd-sol-hero-visual img {
+    margin-inline: auto;
+    object-position: center;
+  }
+
+  .zmd-sol-hero-sub {
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 22px;
+  }
+
+  .zmd-sol-hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .zmd-sol-btn {
+    width: 100%;
+    min-height: 48px;
+    box-sizing: border-box;
+    justify-content: center;
+    padding: 12px 16px;
+    text-align: center;
   }
 
   .zmd-sol-h-title {
@@ -1487,5 +1604,11 @@ html.zmd-sol-hide-scrollbar::-webkit-scrollbar {
 
   .zmd-sol-h-body {
     font-size: 17px;
+  }
+}
+
+@media (max-width: 479px) {
+  .zmd-sol-display {
+    font-size: 1.95rem;
   }
 }

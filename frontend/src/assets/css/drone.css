@@ -15,6 +15,15 @@
   font-family: var(--body, 'Inter', sans-serif);
 }
 
+@media (min-width: 1051px) and (prefers-reduced-motion: no-preference) {
+  .drone-section > .drone-wrap,
+  .drone-cta > .drone-cta__inner {
+    translate: 0 var(--drone-scroll-shift, 0);
+    transition: translate 90ms linear;
+    will-change: translate;
+  }
+}
+
 .drone-page *,
 .drone-page *::before,
 .drone-page *::after {

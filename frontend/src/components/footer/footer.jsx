@@ -131,8 +131,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/solutions">
+                <Link to="/solutions" onClick={resetPageScroll}>
                   Solutions
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" onClick={resetPageScroll}>
+                  Contact Us
                 </Link>
               </li>
             </ul>

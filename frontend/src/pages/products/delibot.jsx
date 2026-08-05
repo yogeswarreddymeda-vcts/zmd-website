@@ -1,22 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
-import deliheroImg from '../../assets/images/delibot/deliheo.png';
+import deliheroImg from '../../assets/images/delibot/deliheo.webp';
 import traditionalBotImg from '../../assets/images/delibot/traditonalbot.jpeg';
-import delibotSec2Img from '../../assets/images/delibot/delibotsec2.png';
-import delibotSec3Img from '../../assets/images/delibot/delibotsec3.png';
-import delStep1Img from '../../assets/images/delibot/delsec3_1.png';
-import delStep2Img from '../../assets/images/delibot/delsec3_2.png';
-import delStep3Img from '../../assets/images/delibot/delsec3_3.png';
-import delStep4Img from '../../assets/images/delibot/delsec3_4.png';
-import delStep5Img from '../../assets/images/delibot/delsec3_5.png';
-import deliSec4HeroImg from '../../assets/images/delibot/delisec4hero.png';
-import deliSec4Step1Img from '../../assets/images/delibot/delisec4_1.png';
-import deliSec4Step2Img from '../../assets/images/delibot/delisec4_2.png';
-import deliSec4Step3Img from '../../assets/images/delibot/delisec4_3.png';
-import deliEnSec1Img from '../../assets/images/delibot/deliensec_1.png';
-import deliEnSec2Img from '../../assets/images/delibot/deliensec_2.png';
-import deliEnSec3Img from '../../assets/images/delibot/deliensec_3.png';
-import deliEnSec4Img from '../../assets/images/delibot/deliensec_4.png';
-import deliFBanImg from '../../assets/images/delibot/delfban.png';
+import delibotSec2Img from '../../assets/images/delibot/delibotsec2.webp';
+import delibotSec3Img from '../../assets/images/delibot/delibotsec3.webp';
+import delStep1Img from '../../assets/images/delibot/delsec3_1.webp';
+import delStep2Img from '../../assets/images/delibot/delsec3_2.webp';
+import delStep3Img from '../../assets/images/delibot/delsec3_3.webp';
+import delStep4Img from '../../assets/images/delibot/delsec3_4.webp';
+import delStep5Img from '../../assets/images/delibot/delsec3_5.webp';
+import deliSec4HeroImg from '../../assets/images/delibot/delisec4hero.webp';
+import deliSec4Step1Img from '../../assets/images/delibot/delisec4_1.webp';
+import deliSec4Step2Img from '../../assets/images/delibot/delisec4_2.webp';
+import deliSec4Step3Img from '../../assets/images/delibot/delisec4_3.webp';
+import deliEnSec1Img from '../../assets/images/delibot/deliensec_1.webp';
+import deliEnSec2Img from '../../assets/images/delibot/deliensec_2.webp';
+import deliEnSec3Img from '../../assets/images/delibot/deliensec_3.webp';
+import deliEnSec4Img from '../../assets/images/delibot/deliensec_4.webp';
+import deliFBanImg from '../../assets/images/delibot/delfban.webp';
 import '../../assets/css/delibot.css';
 
 // Per-card target ratios within the robot image (x,y as fraction of image w/h)
@@ -219,7 +219,7 @@ export default function DelibotPage() {
               <span className="dcam-tag-text">AUTONOMOUS MULTI-FLOOR LOGISTICS</span>
             </div>
 
-            <h1 className="delibot-hero__headline">Autonomious <span className="delibot-title-red">DeliBot</span></h1>
+            <h1 className="delibot-hero__headline">Autonomous <span className="delibot-title-red">DeliBot</span></h1>
             <h2 className="delibot-hero__subheadline">Intelligence at the <span className="delibot-title-red">Source</span><span className="delibot-title-dot">.</span></h2>
 
             <p className="delibot-hero__supporting">

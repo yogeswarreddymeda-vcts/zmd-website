@@ -572,19 +572,19 @@ const serverModelsData = [
     title: '1U/1S Xeon Series',
     desc: 'Compact and efficient for web, edge, and light enterprise workloads.',
     image: exploreModel1Img,
-    link: '/#contact',
+    link: '/contact',
   },
   {
     title: '2U/1S Xeon Series',
     desc: 'Balanced performance and expandability for growing business needs.',
     image: exploreModel2Img,
-    link: '/#contact',
+    link: '/contact',
   },
   {
     title: '4U/2S Xeon Series',
     desc: 'High-performance and scalable for compute-intensive and mission-critical work.',
     image: exploreModel3Img,
-    link: '/#contact',
+    link: '/contact',
   },
 ];
 
@@ -693,7 +693,7 @@ export default function ServerPage() {
             </p>
 
             <div className="server-hero__actions">
-              <Link className="server-button server-button--primary" to="/#contact">
+              <Link className="server-button server-button--primary" to="/contact">
                 <ContactIcon />
                 <span>Contact Us</span>
               </Link>
@@ -1530,7 +1530,7 @@ export default function ServerPage() {
               </p>
 
               <div className="server-ordering__actions">
-                <Link to="/#contact" className="server-ordering__btn-primary">
+                <Link to="/contact" className="server-ordering__btn-primary">
                   Contact Us
                 </Link>
                 <Link
