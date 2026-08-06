@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../assets/css/edge_ai.css';
 
 export default function EdgeAIPage() {
@@ -36,6 +36,7 @@ export default function EdgeAIPage() {
     return () => {
       clearTimeout(timer);
       animElements.forEach((el) => observer.unobserve(el));
+      observer.disconnect();
     };
   }, []);
 

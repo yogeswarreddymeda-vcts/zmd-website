@@ -32,17 +32,6 @@
   overflow-x: clip;
 }
 
-/* The page remains scrollable by wheel, keyboard and touch, without a second
-   visible scroll rail competing with the hero artwork. */
-html.zmd-sol-hide-scrollbar {
-  scrollbar-width: none;
-}
-
-html.zmd-sol-hide-scrollbar::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-
 /* KEY TEXT HIGHLIGHTING */
 .zmd-sol-hl {
   color: var(--accent-ink);

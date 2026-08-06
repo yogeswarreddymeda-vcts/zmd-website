@@ -478,10 +478,6 @@ export default function SolutionsPage() {
   const location = useLocation();
 
   useEffect(() => {
-    // Keep scrolling available while removing the browser's redundant visual
-    // scrollbar from this immersive long-form page.
-    document.documentElement.classList.add('zmd-sol-hide-scrollbar');
-
     // 1. Handle initial hash routing
     if (location.hash) {
       const targetId = location.hash.replace('#', '').replace('usecase-', '');
@@ -531,7 +527,6 @@ export default function SolutionsPage() {
 
     return () => {
       observer.disconnect();
-      document.documentElement.classList.remove('zmd-sol-hide-scrollbar');
     };
   }, [location.hash]);
 
