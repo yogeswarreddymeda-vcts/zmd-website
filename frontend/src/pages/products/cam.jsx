@@ -74,37 +74,59 @@ export default function CameraPage() {
     return () => clearInterval(timer);
   }, []);
 
-  // Viewport IntersectionObserver for smooth section entry and exit animations
+  // Reusable viewport reveals with a unique motion style per CAM section, while preserving section design.
   useEffect(() => {
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('dcam-section-visible');
-          entry.target.classList.remove('dcam-section-hidden');
-        } else {
-          entry.target.classList.remove('dcam-section-visible');
-          entry.target.classList.add('dcam-section-hidden');
-        }
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion || !('IntersectionObserver' in window)) return undefined;
+
+    const revealGroups = [
+      { selector: '.dcam-hero-section', motion: 'dcam-scroll-reveal--hero', delayStep: 35 },
+      { selector: '.dcam-variants-container', motion: 'dcam-scroll-reveal--variants', delayStep: 30 },
+      { selector: '.dcam-section.dcam-arch-section', motion: 'dcam-scroll-reveal--arch', delayStep: 22 },
+      { selector: '.dcam-tech-profile-section', motion: 'dcam-scroll-reveal--tech', delayStep: 22 },
+      { selector: '.dcam-ai-sim-section', motion: 'dcam-scroll-reveal--sim', delayStep: 22 },
+      { selector: '.dcam-models-section', motion: 'dcam-scroll-reveal--models', delayStep: 22 },
+      { selector: '.dcam-why-dark-section', motion: 'dcam-scroll-reveal--why', delayStep: 22 },
+      { selector: '.dcam-faq-section', motion: 'dcam-scroll-reveal--faq', delayStep: 22 },
+      { selector: '.dcam-contact-v2-section', motion: 'dcam-scroll-reveal--contact', delayStep: 22 },
+    ];
+
+    const revealElements = [];
+    const revealMotions = new Map();
+
+    revealGroups.forEach((group) => {
+      const elements = Array.from(document.querySelectorAll(group.selector));
+      elements.forEach((element, index) => {
+        element.classList.add('dcam-scroll-reveal', group.motion);
+        element.style.setProperty('--dcam-reveal-delay', `${index * group.delayStep}ms`);
+        revealElements.push(element);
+        revealMotions.set(element, group.motion);
       });
-    };
-
-    const observerOptions = {
-      threshold: 0.06,
-      rootMargin: '0px 0px -50px 0px',
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    const sections = document.querySelectorAll(
-      'section:not(.dcam-hero-section), .dcam-why-dark-section, .dcam-contact-v2-section, .dcam-models-section, .dcam-variants-bar'
-    );
-
-    sections.forEach((sec) => {
-      sec.classList.add('dcam-animated-section');
-      observer.observe(sec);
     });
 
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const element = entry.target;
+        if (entry.isIntersecting) {
+          element.classList.add('dcam-scroll-reveal-visible');
+          return;
+        }
+        element.classList.remove('dcam-scroll-reveal-visible');
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -8% 0px',
+    });
+
+    revealElements.forEach((element) => observer.observe(element));
+
     return () => {
-      sections.forEach((sec) => observer.unobserve(sec));
+      observer.disconnect();
+      revealElements.forEach((element) => {
+        element.classList.remove('dcam-scroll-reveal', revealMotions.get(element), 'dcam-scroll-reveal-visible');
+        element.style.removeProperty('--dcam-reveal-delay');
+        revealMotions.delete(element);
+      });
     };
   }, []);
 

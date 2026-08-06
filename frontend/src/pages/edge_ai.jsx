@@ -8,12 +8,18 @@ export default function EdgeAIPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 1. Trigger smooth entrance animation state
+    // 1. Trigger smooth page entrance animation state
     const timer = setTimeout(() => {
       setIsEntering(false);
     }, 850);
 
     // 2. IntersectionObserver for ultra-smooth scroll reveals across all sections & cards
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      clearTimeout(timer);
+      return undefined;
+    }
+
     const observerOptions = {
       root: null,
       threshold: 0.1,

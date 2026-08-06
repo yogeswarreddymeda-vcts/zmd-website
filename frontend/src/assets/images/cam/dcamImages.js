@@ -14,9 +14,9 @@ import genclaImg from './gencla.webp';
 import perfaImg from './perfa.webp';
 import ppeverImg from './ppever.webp';
 import firedeImg from './firede.webp';
-import singleLensModelImg from './singlelens_ourmodel.webp';
+import singleLensModelImg from './singlelens_ourmodel_smooth.webp';
 import dualLensModelImg from './duallens_ourmodel.webp';
-import bulletModelImg from './bulletcam.webp';
+import bulletModelImg from './bulletcam_white.webp';
 import headMountModelImg from './headmountcam.webp';
 import finalBannerImg from './final_banner.webp';
 

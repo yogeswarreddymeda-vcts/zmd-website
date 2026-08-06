@@ -36,56 +36,84 @@ html {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Smooth Section Scroll Entry & Exit Viewport Animations */
-.dcam-animated-section {
+/* Section-by-section reveals with re-triggers on enter/leave viewport.
+   Each section keeps its original design; only its entrance motion differs. */
+.dcam-scroll-reveal {
   opacity: 0;
-  transform: translateY(36px) scale(0.98);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform, filter;
-  filter: blur(6px);
+  transition: opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--dcam-reveal-delay, 0ms);
+  will-change: opacity, transform;
 }
 
-.dcam-animated-section.dcam-section-visible {
+.dcam-scroll-reveal--up,
+.dcam-scroll-reveal--down,
+.dcam-scroll-reveal--left,
+.dcam-scroll-reveal--right,
+.dcam-scroll-reveal--scale,
+.dcam-scroll-reveal--hero {
+  transform: translate3d(0, 22px, 0);
+}
+
+.dcam-scroll-reveal--down {
+  transform: translate3d(0, -20px, 0);
+}
+
+.dcam-scroll-reveal--left {
+  transform: translate3d(-20px, 0, 0);
+}
+
+.dcam-scroll-reveal--right {
+  transform: translate3d(20px, 0, 0);
+}
+
+.dcam-scroll-reveal--scale {
+  transform: scale(0.985);
+}
+
+.dcam-scroll-reveal--variants {
+  transform: translate3d(24px, 0, 0);
+}
+
+.dcam-scroll-reveal--arch {
+  transform: translate3d(-22px, 10px, 0);
+}
+
+.dcam-scroll-reveal--tech {
+  transform: translate3d(12px, -18px, 0) scale(0.988);
+}
+
+.dcam-scroll-reveal--sim {
+  transform: scale(0.985);
+}
+
+.dcam-scroll-reveal--models {
+  transform: translate3d(18px, -18px, 0);
+}
+
+.dcam-scroll-reveal--why {
+  transform: translate3d(-16px, 16px, 0) rotate(-0.6deg);
+}
+
+.dcam-scroll-reveal--faq {
+  transform: translate3d(18px, 12px, 0) scale(0.992);
+}
+
+.dcam-scroll-reveal--contact {
+  transform: translate3d(-10px, 20px, 0) scale(0.99);
+}
+
+.dcam-scroll-reveal.dcam-scroll-reveal-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0px);
+  transform: translate3d(0, 0, 0);
 }
 
-.dcam-animated-section.dcam-section-hidden {
-  opacity: 0;
-  transform: translateY(36px) scale(0.98);
-  filter: blur(6px);
-}
-
-/* Staggered entry for section children when section becomes visible */
-.dcam-animated-section.dcam-section-visible .dcam-section-header,
-.dcam-animated-section.dcam-section-visible .dcam-sim-header {
-  animation: dcamSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
-}
-
-.dcam-animated-section.dcam-section-visible .dcam-arch-row:nth-child(1) {
-  animation: dcamSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
-}
-.dcam-animated-section.dcam-section-visible .dcam-arch-row:nth-child(2) {
-  animation: dcamSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
-}
-.dcam-animated-section.dcam-section-visible .dcam-arch-row:nth-child(3) {
-  animation: dcamSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
-}
-.dcam-animated-section.dcam-section-visible .dcam-arch-row:nth-child(4) {
-  animation: dcamSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
-}
-
-@keyframes dcamSectionChildFade {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
+@media (prefers-reduced-motion: reduce) {
+  .dcam-scroll-reveal,
+  .dcam-scroll-reveal.dcam-scroll-reveal-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+    transition: none;
   }
 }
 
@@ -3146,10 +3174,10 @@ html {
    ==================================================================== */
 .dcam-models-section { background: #f6f7f9; padding: 110px 40px; }
 .dcam-models-container { max-width: 1280px; margin: 0 auto; }
-.dcam-models-heading { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(440px, 1.4fr); align-items: end; gap: 48px; margin-bottom: 48px; }
-.dcam-models-heading .dcam-tag-container { margin-bottom: 8px; }
+.dcam-models-heading { display: flex; flex-direction: column; align-items: center; gap: 18px; margin-bottom: 48px; text-align: center; }
+.dcam-models-heading .dcam-tag-container { justify-content: center; margin-bottom: 0; }
 .dcam-models-title { margin: 0; color: #0f172a; font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 800; line-height: 1.03; letter-spacing: -2px; }
-.dcam-models-subtitle { max-width: 610px; margin: 20px 0 0; color: #64748b; font-size: 1rem; line-height: 1.65; }
+.dcam-models-subtitle { max-width: 610px; margin: 20px auto 0; color: #64748b; font-size: 1rem; line-height: 1.65; }
 .dcam-models-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 .dcam-model-card { min-width: 0; background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 16px 30px rgba(15, 23, 42, .04); transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
 .dcam-model-card:hover { transform: translateY(-8px); border-color: #ef4444; box-shadow: 0 22px 38px rgba(15, 23, 42, .12); }
@@ -3157,7 +3185,7 @@ html {
 .dcam-model-image-slot::before, .dcam-model-image-slot::after { position: absolute; content: ''; background: #e60000; }
 .dcam-model-image-slot::before { top: 22px; left: 22px; width: 20px; height: 2px; }
 .dcam-model-image-slot::after { right: 22px; bottom: 22px; width: 2px; height: 20px; }
-.dcam-model-image-slot-filled { background: #d1d5db; }
+.dcam-model-image-slot-filled { background: #fff; }
 .dcam-model-product-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .dcam-model-product-image-head-mount { object-position: center 52%; }
 .dcam-model-image-grid { position: absolute; inset: 0; opacity: .45; background-image: linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px); background-size: 22px 22px; mask-image: radial-gradient(ellipse at center, #000 15%, transparent 74%); }
@@ -3174,7 +3202,7 @@ html {
 .dcam-model-status i { display: block; width: 6px; height: 6px; border-radius: 50%; background: #e60000; box-shadow: 0 0 0 4px rgba(230, 0, 0, .1); }
 
 @media (max-width: 1024px) { .dcam-models-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 640px) { .dcam-models-section { padding: 70px 20px; } .dcam-models-heading { grid-template-columns: 1fr; gap: 14px; margin-bottom: 34px; } .dcam-models-title { letter-spacing: -1.2px; } .dcam-models-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .dcam-models-section { padding: 70px 20px; } .dcam-models-heading { gap: 14px; margin-bottom: 34px; } .dcam-models-title { letter-spacing: -1.2px; } .dcam-models-grid { grid-template-columns: 1fr; } }
 
 /* ====================================================================
    SECTION: WHY TEAMS PICK IT (DARK RED & BLACK THEME)
@@ -4368,27 +4396,10 @@ html {
     transform: none;
   }
 
-  /* Disable blur/transform reveal layers on every camera-page section. */
+  /* Keep the page-level entrance static on smaller screens; individual
+     scroll reveals remain lightweight and hardware accelerated. */
   .dcam-page-container {
     animation: none;
-    transform: none;
-    filter: none;
-  }
-
-  .dcam-animated-section,
-  .dcam-animated-section.dcam-section-visible,
-  .dcam-animated-section.dcam-section-hidden {
-    opacity: 1;
-    transform: none;
-    filter: none;
-    transition: none;
-  }
-
-  .dcam-animated-section.dcam-section-visible .dcam-section-header,
-  .dcam-animated-section.dcam-section-visible .dcam-sim-header,
-  .dcam-animated-section.dcam-section-visible .dcam-arch-row {
-    animation: none;
-    opacity: 1;
     transform: none;
     filter: none;
   }
@@ -4432,4 +4443,196 @@ html {
     min-height: 78px;
     padding: 0.7rem 0.75rem;
   }
+}
+
+/* CAM scroll text reveals
+   Text animates independently from its section and follows the same
+   visibility class, so every reveal replays in both scroll directions. */
+.dcam-scroll-reveal--hero.dcam-scroll-reveal-visible .dcam-tag-container,
+.dcam-scroll-reveal--hero.dcam-scroll-reveal-visible .dcam-hero-title,
+.dcam-scroll-reveal--hero.dcam-scroll-reveal-visible .dcam-hero-subtitle,
+.dcam-scroll-reveal--hero.dcam-scroll-reveal-visible .dcam-hero-description,
+.dcam-scroll-reveal--hero.dcam-scroll-reveal-visible .dcam-hero-actions,
+.dcam-scroll-reveal--hero.dcam-scroll-reveal-visible .dcam-hero-stats-grid,
+.dcam-scroll-reveal--variants.dcam-scroll-reveal-visible .dcam-variant-info,
+.dcam-scroll-reveal--arch.dcam-scroll-reveal-visible .dcam-section-header,
+.dcam-scroll-reveal--arch.dcam-scroll-reveal-visible .dcam-arch-text-col,
+.dcam-scroll-reveal--tech.dcam-scroll-reveal-visible .dcam-tech-header-left,
+.dcam-scroll-reveal--tech.dcam-scroll-reveal-visible .dcam-tech-header-toggle,
+.dcam-scroll-reveal--tech.dcam-scroll-reveal-visible .dcam-tech-profile-meta,
+.dcam-scroll-reveal--sim.dcam-scroll-reveal-visible .dcam-sim-header,
+.dcam-scroll-reveal--sim.dcam-scroll-reveal-visible .dcam-sim-cat-text,
+.dcam-scroll-reveal--models.dcam-scroll-reveal-visible .dcam-models-heading,
+.dcam-scroll-reveal--models.dcam-scroll-reveal-visible .dcam-model-card-content,
+.dcam-scroll-reveal--why.dcam-scroll-reveal-visible .dcam-tag-container,
+.dcam-scroll-reveal--why.dcam-scroll-reveal-visible .dcam-why-dark-title,
+.dcam-scroll-reveal--why.dcam-scroll-reveal-visible .dcam-why-dark-subtitle,
+.dcam-scroll-reveal--why.dcam-scroll-reveal-visible .dcam-why-card-text,
+.dcam-scroll-reveal--why.dcam-scroll-reveal-visible .dcam-why-pill-label,
+.dcam-scroll-reveal--faq.dcam-scroll-reveal-visible .dcam-section-header,
+.dcam-scroll-reveal--faq.dcam-scroll-reveal-visible .dcam-faq-question > span:first-child,
+.dcam-scroll-reveal--contact.dcam-scroll-reveal-visible .dcam-tag-container,
+.dcam-scroll-reveal--contact.dcam-scroll-reveal-visible .dcam-contact-v2-title,
+.dcam-scroll-reveal--contact.dcam-scroll-reveal-visible .dcam-contact-v2-details,
+.dcam-scroll-reveal--contact.dcam-scroll-reveal-visible .dcam-contact-v2-actions {
+  animation-duration: 0.7s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-delay: var(--dcam-text-delay, 90ms);
+  animation-fill-mode: both;
+}
+
+/* Hero text sweeps in from the camera-facing side. */
+.dcam-scroll-reveal--hero.dcam-scroll-reveal-visible .dcam-tag-container,
+.dcam-scroll-reveal--hero.dcam-scroll-reveal-visible .dcam-hero-title,
+.dcam-scroll-reveal--hero.dcam-scroll-reveal-visible .dcam-hero-subtitle,
+.dcam-scroll-reveal--hero.dcam-scroll-reveal-visible .dcam-hero-description,
+.dcam-scroll-reveal--hero.dcam-scroll-reveal-visible .dcam-hero-actions,
+.dcam-scroll-reveal--hero.dcam-scroll-reveal-visible .dcam-hero-stats-grid {
+  animation-name: dcamTextHeroSweep;
+}
+.dcam-scroll-reveal--hero .dcam-tag-container { --dcam-text-delay: 70ms; }
+.dcam-scroll-reveal--hero .dcam-hero-title { --dcam-text-delay: 120ms; }
+.dcam-scroll-reveal--hero .dcam-hero-subtitle { --dcam-text-delay: 170ms; }
+.dcam-scroll-reveal--hero .dcam-hero-description { --dcam-text-delay: 220ms; }
+.dcam-scroll-reveal--hero .dcam-hero-actions { --dcam-text-delay: 270ms; }
+.dcam-scroll-reveal--hero .dcam-hero-stats-grid { --dcam-text-delay: 320ms; }
+
+/* Variant labels drop gently into place. */
+.dcam-scroll-reveal--variants.dcam-scroll-reveal-visible .dcam-variant-info {
+  animation-name: dcamTextVariantsDrop;
+}
+.dcam-scroll-reveal--variants .dcam-variant-card:nth-child(1) .dcam-variant-info { --dcam-text-delay: 80ms; }
+.dcam-scroll-reveal--variants .dcam-variant-card:nth-child(2) .dcam-variant-info { --dcam-text-delay: 150ms; }
+
+/* Architecture copy arrives from the left, row by row. */
+.dcam-scroll-reveal--arch.dcam-scroll-reveal-visible .dcam-section-header,
+.dcam-scroll-reveal--arch.dcam-scroll-reveal-visible .dcam-arch-text-col {
+  animation-name: dcamTextArchSlide;
+}
+.dcam-scroll-reveal--arch .dcam-section-header { --dcam-text-delay: 80ms; }
+.dcam-scroll-reveal--arch .dcam-arch-row:nth-child(1) .dcam-arch-text-col { --dcam-text-delay: 140ms; }
+.dcam-scroll-reveal--arch .dcam-arch-row:nth-child(2) .dcam-arch-text-col { --dcam-text-delay: 200ms; }
+.dcam-scroll-reveal--arch .dcam-arch-row:nth-child(3) .dcam-arch-text-col { --dcam-text-delay: 260ms; }
+.dcam-scroll-reveal--arch .dcam-arch-row:nth-child(4) .dcam-arch-text-col { --dcam-text-delay: 320ms; }
+
+/* Technical profile copy enters from the right. */
+.dcam-scroll-reveal--tech.dcam-scroll-reveal-visible .dcam-tech-header-left,
+.dcam-scroll-reveal--tech.dcam-scroll-reveal-visible .dcam-tech-header-toggle,
+.dcam-scroll-reveal--tech.dcam-scroll-reveal-visible .dcam-tech-profile-meta {
+  animation-name: dcamTextTechSlide;
+}
+.dcam-scroll-reveal--tech .dcam-tech-header-left { --dcam-text-delay: 80ms; }
+.dcam-scroll-reveal--tech .dcam-tech-header-toggle { --dcam-text-delay: 140ms; }
+.dcam-scroll-reveal--tech .dcam-tech-profile-row:nth-child(1) .dcam-tech-profile-meta { --dcam-text-delay: 180ms; }
+.dcam-scroll-reveal--tech .dcam-tech-profile-row:nth-child(2) .dcam-tech-profile-meta { --dcam-text-delay: 230ms; }
+.dcam-scroll-reveal--tech .dcam-tech-profile-row:nth-child(3) .dcam-tech-profile-meta { --dcam-text-delay: 280ms; }
+.dcam-scroll-reveal--tech .dcam-tech-profile-row:nth-child(4) .dcam-tech-profile-meta { --dcam-text-delay: 330ms; }
+
+/* AI simulator text focuses into view. */
+.dcam-scroll-reveal--sim.dcam-scroll-reveal-visible .dcam-sim-header,
+.dcam-scroll-reveal--sim.dcam-scroll-reveal-visible .dcam-sim-cat-text {
+  animation-name: dcamTextSimFocus;
+}
+.dcam-scroll-reveal--sim .dcam-sim-header { --dcam-text-delay: 80ms; }
+.dcam-scroll-reveal--sim .dcam-sim-cat-card:nth-child(1) .dcam-sim-cat-text { --dcam-text-delay: 150ms; }
+.dcam-scroll-reveal--sim .dcam-sim-cat-card:nth-child(2) .dcam-sim-cat-text { --dcam-text-delay: 205ms; }
+.dcam-scroll-reveal--sim .dcam-sim-cat-card:nth-child(3) .dcam-sim-cat-text { --dcam-text-delay: 260ms; }
+
+/* Model copy rises with a subtle angular motion. */
+.dcam-scroll-reveal--models.dcam-scroll-reveal-visible .dcam-models-heading,
+.dcam-scroll-reveal--models.dcam-scroll-reveal-visible .dcam-model-card-content {
+  animation-name: dcamTextModelsRise;
+}
+.dcam-scroll-reveal--models .dcam-models-heading { --dcam-text-delay: 80ms; }
+.dcam-scroll-reveal--models .dcam-model-card:nth-child(1) .dcam-model-card-content { --dcam-text-delay: 150ms; }
+.dcam-scroll-reveal--models .dcam-model-card:nth-child(2) .dcam-model-card-content { --dcam-text-delay: 205ms; }
+.dcam-scroll-reveal--models .dcam-model-card:nth-child(3) .dcam-model-card-content { --dcam-text-delay: 260ms; }
+.dcam-scroll-reveal--models .dcam-model-card:nth-child(4) .dcam-model-card-content { --dcam-text-delay: 315ms; }
+
+/* Benefits text lifts upward in sequence. */
+.dcam-scroll-reveal--why.dcam-scroll-reveal-visible .dcam-tag-container,
+.dcam-scroll-reveal--why.dcam-scroll-reveal-visible .dcam-why-dark-title,
+.dcam-scroll-reveal--why.dcam-scroll-reveal-visible .dcam-why-dark-subtitle,
+.dcam-scroll-reveal--why.dcam-scroll-reveal-visible .dcam-why-card-text,
+.dcam-scroll-reveal--why.dcam-scroll-reveal-visible .dcam-why-pill-label {
+  animation-name: dcamTextWhyLift;
+}
+.dcam-scroll-reveal--why .dcam-tag-container { --dcam-text-delay: 70ms; }
+.dcam-scroll-reveal--why .dcam-why-dark-title { --dcam-text-delay: 120ms; }
+.dcam-scroll-reveal--why .dcam-why-dark-subtitle { --dcam-text-delay: 170ms; }
+.dcam-scroll-reveal--why .dcam-why-dark-card:nth-child(1) .dcam-why-card-text { --dcam-text-delay: 210ms; }
+.dcam-scroll-reveal--why .dcam-why-dark-card:nth-child(2) .dcam-why-card-text { --dcam-text-delay: 245ms; }
+.dcam-scroll-reveal--why .dcam-why-dark-card:nth-child(3) .dcam-why-card-text { --dcam-text-delay: 280ms; }
+.dcam-scroll-reveal--why .dcam-why-dark-card:nth-child(4) .dcam-why-card-text { --dcam-text-delay: 315ms; }
+.dcam-scroll-reveal--why .dcam-why-dark-card:nth-child(5) .dcam-why-card-text { --dcam-text-delay: 350ms; }
+.dcam-scroll-reveal--why .dcam-why-dark-card:nth-child(6) .dcam-why-card-text { --dcam-text-delay: 385ms; }
+.dcam-scroll-reveal--why .dcam-why-pill-label { --dcam-text-delay: 420ms; }
+
+/* FAQ questions sweep inward one after another. */
+.dcam-scroll-reveal--faq.dcam-scroll-reveal-visible .dcam-section-header,
+.dcam-scroll-reveal--faq.dcam-scroll-reveal-visible .dcam-faq-question > span:first-child {
+  animation-name: dcamTextFaqSweep;
+}
+.dcam-scroll-reveal--faq .dcam-section-header { --dcam-text-delay: 80ms; }
+.dcam-scroll-reveal--faq .dcam-faq-item:nth-child(1) .dcam-faq-question > span:first-child { --dcam-text-delay: 150ms; }
+.dcam-scroll-reveal--faq .dcam-faq-item:nth-child(2) .dcam-faq-question > span:first-child { --dcam-text-delay: 200ms; }
+.dcam-scroll-reveal--faq .dcam-faq-item:nth-child(3) .dcam-faq-question > span:first-child { --dcam-text-delay: 250ms; }
+.dcam-scroll-reveal--faq .dcam-faq-item:nth-child(4) .dcam-faq-question > span:first-child { --dcam-text-delay: 300ms; }
+.dcam-scroll-reveal--faq .dcam-faq-item:nth-child(5) .dcam-faq-question > span:first-child { --dcam-text-delay: 350ms; }
+
+/* Contact copy closes with a diagonal reveal. */
+.dcam-scroll-reveal--contact.dcam-scroll-reveal-visible .dcam-tag-container,
+.dcam-scroll-reveal--contact.dcam-scroll-reveal-visible .dcam-contact-v2-title,
+.dcam-scroll-reveal--contact.dcam-scroll-reveal-visible .dcam-contact-v2-details,
+.dcam-scroll-reveal--contact.dcam-scroll-reveal-visible .dcam-contact-v2-actions {
+  animation-name: dcamTextContactDiagonal;
+}
+.dcam-scroll-reveal--contact .dcam-tag-container { --dcam-text-delay: 70ms; }
+.dcam-scroll-reveal--contact .dcam-contact-v2-title { --dcam-text-delay: 130ms; }
+.dcam-scroll-reveal--contact .dcam-contact-v2-details { --dcam-text-delay: 200ms; }
+.dcam-scroll-reveal--contact .dcam-contact-v2-actions { --dcam-text-delay: 270ms; }
+
+@keyframes dcamTextHeroSweep {
+  from { opacity: 0; transform: translate3d(-24px, 4px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes dcamTextVariantsDrop {
+  from { opacity: 0; transform: translate3d(0, -14px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes dcamTextArchSlide {
+  from { opacity: 0; transform: translate3d(-24px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes dcamTextTechSlide {
+  from { opacity: 0; transform: translate3d(24px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes dcamTextSimFocus {
+  from { opacity: 0; transform: translate3d(0, 12px, 0) scale(0.96); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes dcamTextModelsRise {
+  from { opacity: 0; transform: translate3d(0, 20px, 0) skewX(-2deg); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) skewX(0); }
+}
+
+@keyframes dcamTextWhyLift {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes dcamTextFaqSweep {
+  from { opacity: 0; transform: translate3d(20px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes dcamTextContactDiagonal {
+  from { opacity: 0; transform: translate3d(-18px, 16px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
