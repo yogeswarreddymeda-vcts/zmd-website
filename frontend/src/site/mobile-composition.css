@@ -1,0 +1,536 @@
+/* Mobile image-and-copy composition ---------------------------------------
+   Image-led stories should feel like one authored frame on mobile. Dense
+   evidence, specifications and comparison modules deliberately keep their
+   stacked layouts. This file is imported last so the contract is consistent
+   across page-family styles without changing desktop geometry. */
+
+@media (max-width: 680px) {
+  /* Home keeps the company proposition and the product catalogue distinct.
+     Zevric remains the lead product tile; it is not consumed as a background
+     behind the main headline and CTAs. */
+  .home-page .home-hero__inner {
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0;
+  }
+
+  .home-page .home-hero__copy {
+    position: relative;
+    z-index: 2;
+    min-height: 520px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 210px 20px 30px;
+    background:
+      linear-gradient(0deg, rgba(14, 17, 20, 0.98) 0%, rgba(14, 17, 20, 0.9) 48%, rgba(14, 17, 20, 0.42) 76%, rgba(14, 17, 20, 0.1) 100%),
+      linear-gradient(90deg, rgba(14, 17, 20, 0.3), transparent 78%),
+      url('../assets/images/home/homepage-product-stage-v1.jpg') center / cover no-repeat;
+    color: #fff;
+    pointer-events: auto;
+  }
+
+  .home-page .home-hero__copy::before,
+  .home-page .home-hero__copy::after {
+    content: none;
+  }
+
+  .home-page .home-hero h1 {
+    max-width: 560px;
+    color: #fff;
+    text-shadow: 0 2px 22px rgba(0, 0, 0, 0.3);
+  }
+
+  .home-page .home-hero__copy > p {
+    max-width: 520px;
+    color: #d9dcdf;
+  }
+
+  .home-page .home-hero__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .home-page .home-hero__actions .button,
+  .home-page .home-hero__actions .button--secondary {
+    width: 100%;
+    min-height: 50px;
+    justify-content: space-between;
+    padding-inline: 18px;
+  }
+
+  .home-page .home-hero__actions .button--secondary {
+    border-color: rgba(255, 255, 255, 0.52);
+    color: #fff;
+  }
+
+  .home-page .hero-catalog {
+    min-height: 0;
+    border-right: 0;
+    border-left: 0;
+    box-shadow: none;
+  }
+
+  .home-page .hero-catalog__panel--edge {
+    min-height: 310px;
+    height: 310px;
+  }
+
+  .home-page .hero-catalog__panel--edge > strong {
+    display: flex;
+  }
+
+  .home-page .hero-catalog__panel--edge img {
+    inset: 64px 0 0;
+    width: 100%;
+    height: calc(100% - 64px);
+    object-position: 50% 58%;
+    transform: none;
+  }
+
+  .home-page .home-hero {
+    border-bottom: 0;
+  }
+
+  .home-page .physical-ai-section {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  /* Shared photographic PageHero: Products and Solutions use the same
+     mobile composition rather than a copy card followed by a photograph. */
+  .page-hero.page-hero--dark:not(.page-hero--no-image) .page-hero__inner {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    min-height: 660px;
+    display: grid;
+    grid-template: 1fr / 1fr;
+    gap: 0;
+    padding: 0;
+  }
+
+  .page-hero.page-hero--dark:not(.page-hero--no-image) .page-hero__copy,
+  .page-hero.page-hero--dark:not(.page-hero--no-image) .page-hero__visual {
+    grid-area: 1 / 1;
+  }
+
+  .page-hero.page-hero--dark:not(.page-hero--no-image) .page-hero__visual {
+    min-height: 660px;
+    padding: 0;
+    border: 0;
+  }
+
+  .page-hero.page-hero--dark:not(.page-hero--no-image) .page-hero__visual img {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+    mix-blend-mode: normal;
+    filter: none;
+  }
+
+  .page-hero.page-hero--dark:not(.page-hero--no-image) .page-hero__copy {
+    z-index: 3;
+    max-width: none;
+    min-height: 660px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 230px 20px 30px;
+    background:
+      linear-gradient(0deg, rgba(14, 17, 20, 0.98) 0%, rgba(14, 17, 20, 0.9) 42%, rgba(14, 17, 20, 0.42) 70%, transparent 92%),
+      linear-gradient(90deg, rgba(14, 17, 20, 0.28), transparent 76%);
+  }
+
+  .page-hero.page-hero--dark:not(.page-hero--no-image) .page-hero__copy::before {
+    opacity: 0.38;
+  }
+
+  .page-hero.page-hero--dark:not(.page-hero--no-image) h1,
+  .page-hero.page-hero--dark:not(.page-hero--no-image) .page-hero__copy > p {
+    color: #fff;
+    text-shadow: 0 2px 22px rgba(0, 0, 0, 0.32);
+  }
+
+  .page-hero.page-hero--dark:not(.page-hero--no-image) .page-hero__copy > p {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .page-hero.page-hero--dark:not(.page-hero--no-image) .page-hero__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .page-hero.page-hero--dark:not(.page-hero--no-image) .page-hero__actions .button {
+    width: 100%;
+    min-height: 50px;
+    justify-content: space-between;
+  }
+
+  /* The Solutions ecosystem artwork has a wide editorial canvas with its
+     subject weighted to the right. Crop tightly into that subject and retain
+     the shared full-bleed mobile hero rather than detaching image and copy. */
+  .solutions-page .page-hero.page-hero--dark .page-hero__inner {
+    min-height: 620px;
+    grid-template: 1fr / 1fr;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__visual {
+    grid-area: 1 / 1;
+    min-height: 620px;
+    overflow: hidden;
+    background: #e8e8e9;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__visual img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-position: 64% 54%;
+    transform: scale(1.18);
+    transform-origin: 64% 54%;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__copy {
+    grid-area: 1 / 1;
+    min-height: 620px;
+    padding: 250px 20px 26px;
+    background:
+      linear-gradient(0deg, rgba(14, 17, 20, 0.99) 0%, rgba(14, 17, 20, 0.94) 46%, rgba(14, 17, 20, 0.58) 70%, rgba(14, 17, 20, 0.12) 100%),
+      linear-gradient(90deg, rgba(14, 17, 20, 0.26), transparent 78%);
+  }
+
+  .product-hub.page-hero,
+  .product-hub .page-hero__inner,
+  .product-hub .page-hero__visual {
+    min-height: 660px;
+  }
+
+  /* The Products overview artwork is landscape. Pin it to the full mobile
+     hero field instead of allowing its intrinsic aspect ratio to leave a
+     dark empty band above and below the photograph. */
+  .product-hub .page-hero__visual {
+    position: relative;
+    height: 660px;
+    overflow: hidden;
+  }
+
+  .product-hub .page-hero__visual img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.18) translateY(-10%);
+    transform-origin: center;
+  }
+
+  .product-hub .page-hero__copy {
+    background:
+      linear-gradient(0deg, rgba(14, 17, 20, 0.99) 0%, rgba(14, 17, 20, 0.94) 44%, rgba(14, 17, 20, 0.54) 69%, rgba(14, 17, 20, 0.08) 100%),
+      linear-gradient(90deg, rgba(14, 17, 20, 0.28), transparent 78%);
+  }
+
+  /* Server and IoT product storytelling follows the integrated camera hero
+     on mobile. The Edge/Zevric hero is intentionally family-owned. */
+  .zevric-product-hero .product-story-hero__inner,
+  .server-product-hero .product-story-hero__inner,
+  .iot-product-hero .product-story-hero__inner {
+    position: relative;
+    width: 100%;
+    min-height: 660px;
+    display: grid;
+    grid-template: 1fr / 1fr;
+  }
+
+  .zevric-product-hero .product-story-hero__copy,
+  .zevric-product-hero .product-story-hero__visual,
+  .server-product-hero .product-story-hero__copy,
+  .server-product-hero .product-story-hero__visual,
+  .iot-product-hero .product-story-hero__copy,
+  .iot-product-hero .product-story-hero__visual {
+    grid-area: 1 / 1;
+  }
+
+  .zevric-product-hero .product-story-hero__visual,
+  .server-product-hero .product-story-hero__visual,
+  .iot-product-hero .product-story-hero__visual {
+    min-height: 660px;
+    height: 100%;
+  }
+
+  .zevric-product-hero .product-story-hero__copy,
+  .server-product-hero .product-story-hero__copy,
+  .iot-product-hero .product-story-hero__copy {
+    z-index: 3;
+    min-height: 660px;
+    justify-content: flex-end;
+    padding: 260px 20px 96px;
+    background: linear-gradient(0deg, rgba(13, 19, 25, 0.98) 0%, rgba(13, 19, 25, 0.9) 43%, rgba(13, 19, 25, 0.34) 72%, transparent 93%);
+  }
+
+  .server-product-hero .product-story-hero__visual > img {
+    filter: brightness(1.13) contrast(1.02);
+  }
+
+  .zevric-product-hero .product-story-hero__actions,
+  .server-product-hero .product-story-hero__actions,
+  .iot-product-hero .product-story-hero__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .zevric-product-hero .product-story-hero__actions .button,
+  .server-product-hero .product-story-hero__actions .button,
+  .iot-product-hero .product-story-hero__actions .button {
+    width: 100%;
+    min-height: 50px;
+    justify-content: space-between;
+  }
+
+  .zevric-product-hero .product-story-hero__visual--contain img,
+  .server-product-hero .product-story-hero__visual--contain img {
+    object-position: center 18%;
+    transform: scale(0.94);
+    transform-origin: center top;
+  }
+
+  .iot-product-hero .product-story-hero__visual > img {
+    object-position: center 22%;
+  }
+
+  .zevric-product-hero .product-story-hero__caption,
+  .zevric-product-hero .product-story-hero__index,
+  .server-product-hero .product-story-hero__caption,
+  .server-product-hero .product-story-hero__index,
+  .iot-product-hero .product-story-hero__caption,
+  .iot-product-hero .product-story-hero__index {
+    top: 18px;
+    bottom: auto;
+  }
+
+  .zevric-product-hero .product-story-hero__media-badge {
+    top: 18px;
+    right: 18px;
+    bottom: auto;
+    width: min(38vw, 148px);
+  }
+
+  /* Edge AI uses a compact image-first composition on mobile. Keeping the
+     image and copy in separate rows prevents the 4:3 lab photograph from
+     producing a detached empty band above the hardware. */
+  .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__inner {
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 0;
+    padding: 0;
+  }
+
+  .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual {
+    order: 1;
+    min-height: 0;
+    height: clamp(280px, 82vw, 330px);
+    aspect-ratio: auto;
+    border: 0;
+  }
+
+  .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 68%;
+  }
+
+  .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual::after {
+    content: none;
+  }
+
+  .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__copy {
+    order: 2;
+    z-index: 3;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 28px 20px 32px;
+    background: #7b1b20;
+  }
+
+  .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__actions .button {
+    width: 100%;
+    min-height: 50px;
+    justify-content: space-between;
+  }
+
+  .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__processor {
+    z-index: 4;
+    top: 14px;
+    right: 14px;
+    bottom: auto;
+    width: min(34vw, 132px);
+  }
+
+  /* About: retain the editorial product lineup, but integrate it with the
+     company statement rather than rendering a second 16:9 block. */
+  .about-page .about-hero__inner {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    min-height: 660px;
+    display: grid;
+    grid-template: 1fr / 1fr;
+    gap: 0;
+    padding: 0;
+  }
+
+  .about-page .about-hero__copy,
+  .about-page .about-hero__product-lineup {
+    grid-area: 1 / 1;
+  }
+
+  .about-page .about-hero__product-lineup {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100%;
+    min-height: 660px;
+    aspect-ratio: auto;
+  }
+
+  .about-page .about-hero__product-lineup::before {
+    display: block;
+    z-index: 2;
+    background: linear-gradient(0deg, #15171a 0%, rgba(21, 23, 26, 0.96) 40%, rgba(21, 23, 26, 0.44) 70%, transparent 92%);
+  }
+
+  .about-page .about-hero__product-lineup::after {
+    right: 0;
+    bottom: 0;
+  }
+
+  .about-page .about-hero__product-lineup img {
+    object-position: 60% center;
+  }
+
+  .about-page .about-hero__copy {
+    z-index: 3;
+    width: 100%;
+    max-width: none;
+    min-height: 660px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 250px 20px 34px;
+  }
+
+  .about-page .about-hero__copy > p {
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .about-page .about-hero__actions .button {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Editorial image-and-copy sections retain a light reading surface, but
+     the surface overlaps the image so the two read as one module. */
+  .product-hub-family__visual,
+  .product-hub-family--reverse .product-hub-family__visual {
+    min-height: 320px;
+    border-bottom: 0;
+  }
+
+  .product-hub-family__visual > img,
+  .product-hub-family--compact .product-hub-family__visual > img {
+    min-height: 320px;
+  }
+
+  .product-hub-iot-visual {
+    height: 420px;
+    min-height: 420px;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-hub-iot-visual__band {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .product-hub-iot-visual__band img,
+  .product-hub-iot-visual__sensor img {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .product-hub-iot-visual__band img {
+    object-position: 56% 52%;
+  }
+
+  .product-hub-iot-visual__sensor img {
+    object-position: 50% 64%;
+  }
+
+  .product-hub-family__content,
+  .product-hub-family--reverse .product-hub-family__content {
+    position: relative;
+    z-index: 2;
+    margin: -42px 14px 20px;
+    padding: 26px 20px 30px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 18px 38px rgba(18, 22, 25, 0.08);
+  }
+
+  .product-hub-family--neutral .product-hub-family__content {
+    background: rgba(242, 243, 243, 0.97);
+  }
+
+  .product-application-panel__visual {
+    min-height: 300px;
+    border-bottom: 0;
+  }
+
+  .product-application-panel__content {
+    position: relative;
+    z-index: 2;
+    margin: -42px 14px 0;
+    padding: 26px 20px 30px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 18px 38px rgba(18, 22, 25, 0.08);
+  }
+}
+
+@media (max-width: 380px) {
+  .home-page .home-hero__copy,
+  .page-hero.page-hero--dark:not(.page-hero--no-image) .page-hero__copy,
+  .zevric-product-hero .product-story-hero__copy,
+  .server-product-hero .product-story-hero__copy,
+  .iot-product-hero .product-story-hero__copy,
+  .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__copy,
+  .about-page .about-hero__copy {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}

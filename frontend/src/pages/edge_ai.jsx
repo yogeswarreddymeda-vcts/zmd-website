@@ -50,7 +50,7 @@ export default function EdgeAIPage() {
         'Landside & parking enforcement — automated violation detection and dispatch',
         'Turnaround & flight operations fusion — stand cameras timing every ground event'
       ],
-      description: "ApexFlo fuses the CCTV an airport already owns with flight, baggage, and passenger systems into one predictive operations centre. Security and check-in queues — the airport's most public failure point — are measured continuously, with breaches predicted before they happen.",
+      description: "The solution layer connects an airport's CCTV with flight, baggage and passenger systems to support coordinated operations across security, queues and passenger flow.",
       hardwareTitle: 'Predictive Queue SLA',
       hardwareDesc: 'Reuses existing airport CCTV wherever it meets resolution requirements; edge nodes process 30–40 camera streams per box in the server room. Live in 4 weeks on CCTV + flight schedule alone.',
       hardwareModels: [systems.medium, systems.large, systems.extraLarge]
@@ -67,7 +67,7 @@ export default function EdgeAIPage() {
         'Incident detection & dispatch — accidents and obstructions flagged automatically',
         'Civic operations — waterlogging alerts, encroachment tracking, contractor SLA scoring'
       ],
-      description: "ApexFlo turns the camera estate and traffic systems a city already owns into an intelligence layer that predicts junction breakdowns before they form, assembles evidence packs a magistrate will sustain, and pages the pump crew before an underpass floods.",
+      description: "The solution layer connects existing cameras and traffic systems to help city teams monitor junctions, assemble evidence and coordinate infrastructure response.",
       hardwareTitle: 'Corridor Congestion + Enforcement',
       hardwareDesc: 'Reuses the VMS wherever it speaks ONVIF/RTSP; junction-cabinet edge nodes are ruggedized for outdoor deployment. Live in 4 weeks on one corridor of existing cameras, read-only.',
       hardwareModels: [systems.large, systems.extraLarge]
@@ -84,7 +84,7 @@ export default function EdgeAIPage() {
         'Patient safety — fall detection, prolonged inactivity alerts, virtual observation',
         'Equipment tracking — RFID/BLE location for pumps, wheelchairs, monitors'
       ],
-      description: "ApexFlo fuses hospital CCTV, RFID, and patient monitors with the HIS the hospital already runs, turning them into one operations centre that sees the physical truth behind the electronic record. Beds are dispatched for cleaning the moment they're vacated, ED surges predicted 30m ahead.",
+      description: "The solution layer connects hospital CCTV, RFID and permitted operational systems to support facility flow, asset visibility and non-clinical workflows.",
       hardwareTitle: 'ED Flow + Bed Turnover',
       hardwareDesc: 'Runs on existing CCTV; staged rollout with cameras only in week one, ADT feed integration by week two. Pilot scoped to one department.',
       hardwareModels: [systems.small, systems.medium, systems.large]
@@ -135,7 +135,7 @@ export default function EdgeAIPage() {
         'F&B reconciliation against POS with evidence-backed leakage cases',
         'Lobby flow, entry, and parking exit-surge management'
       ],
-      description: "ApexFlo fuses the cameras a multiplex already has with its ticketing and POS systems, turning scheduled showtimes into scheduled response: concession staffing fires before the popcorn queue breaks, housekeeping is dispatched the instant a hall empties.",
+      description: "The solution layer connects existing cameras with ticketing and point-of-sale systems to support staffing, queue management and facility workflows.",
       hardwareTitle: 'Interval Readiness + Turnaround Clock',
       hardwareDesc: 'One edge box per property processing 30–40 streams; reuses existing property CCTV. Live in 4 weeks on existing cameras + showtime feed, one property.',
       hardwareModels: [systems.small, systems.medium]
@@ -152,7 +152,7 @@ export default function EdgeAIPage() {
         'Shuttle & parking staging based on real-time demand forecasts',
         'Incident dispatch with location and clip, response fully timed'
       ],
-      description: "ApexFlo turns a venue's existing camera estate into its nervous system: crowd density measured continuously at every gate and attraction, crush risk predicted before it forms, and shuttles staged to where the crowd will be — replacing 40 control room screens with one map.",
+      description: "The solution layer uses a venue's existing camera estate to support crowd visibility, gate operations and coordinated transport workflows.",
       hardwareTitle: 'Gate & Attraction Metering',
       hardwareDesc: 'Zone cabinets distributed across the estate, ruggedized for outdoor/monsoon conditions. Pilot on existing cameras at gates + top attractions, live in 4 weeks.',
       hardwareModels: [systems.medium, systems.large, systems.extraLarge]
@@ -169,7 +169,7 @@ export default function EdgeAIPage() {
         'Forklift-pedestrian near-miss heat-mapping',
         'Yard & gate sequencing — dock turnaround and demurrage prevention'
       ],
-      description: "ApexFlo points a plant's existing cameras at the gap its systems can't see: the four-minute micro-stop, the PPE that came off at the hot station, the truck idling at the gate since lunch. Everything is zone-level, never worker-tracking.",
+      description: "The solution layer connects plant cameras and operational systems to support safety, production visibility and site-level workflows.",
       hardwareTitle: 'Zone Safety + Stoppage Capture',
       hardwareDesc: 'Shop-floor cabinets rated for industrial dust/heat/vibration; camera-only start, no OT integration required for week one. Live in 4 weeks on one line + one gate.',
       hardwareModels: [systems.large, systems.extraLarge]
@@ -186,7 +186,7 @@ export default function EdgeAIPage() {
         'Campus space utilization — classroom, library, and lab occupancy tracking',
         'Lab safety & PPE compliance monitoring with formative feedback'
       ],
-      description: "ApexFlo captures every lecture, publishes searchable notes within the hour, and backs it with a 24/7 teaching-assistant agent that answers only from the course's own material — every reply cited, never a substitute for the instructor.",
+      description: "The solution layer can connect lecture capture with approved course systems to support searchable material and assisted learning workflows.",
       hardwareTitle: 'Lecture Capture + Course TA',
       hardwareDesc: 'Silent, discreet, tamper-evident classroom capture kits; reuses existing AV where present. Pilot: capture + TA agent in one department\'s classrooms, live in 4 weeks.',
       hardwareModels: [systems.small, systems.medium, systems.large]
@@ -366,7 +366,7 @@ export default function EdgeAIPage() {
           <div className="eyebrow">THE EDGE AI STACK</div>
           <h1>Two halves, one runtime.</h1>
           <p>
-            Hardware without models is an empty box. Models without hardware are a deck. ApexFlo is designed from the silicon up so every model runs at full throughput on the hardware in front of it.
+            Hardware and software work best when they are selected for the same deployment. The platform can be configured for the compute available at each site.
           </p>
         </div>
 
