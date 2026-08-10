@@ -87,7 +87,7 @@ export default function ProductsPage() {
       slug: 'zevric',
       name: 'Zevric Compact Edge Systems',
       role: 'Local AI compute',
-      description: 'Four configurations for local AI inference, video processing and industrial edge deployments.',
+      description: 'Three configurations for local AI inference, video processing and industrial edge deployments.',
       action: 'Compare Zevric models',
       to: '/products/edge-devices',
       image: assets.homeEdgeIndustrial,

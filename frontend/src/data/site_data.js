@@ -23,7 +23,6 @@ import edgeSharedPlatform from '../assets/images/edge-devices/zevric-shared-plat
 import edgeHeroFrontStudio from '../assets/images/edge-devices/zevric-hero-front-studio.png';
 import edgeHeroRearStudio from '../assets/images/edge-devices/zevric-hero-rear-studio.png';
 import edgeXeCardFront from '../assets/images/edge-devices/zevric-xe-card-front.png';
-import edgeXeMaxCardAngle from '../assets/images/edge-devices/zevric-xe-max-card-angle.png';
 import edgeIndustrialAngle from '../assets/images/edge-devices/zevric-industrial-angle.webp';
 import intelCoreUltraBadges from '../assets/images/edge-devices/intel-core-ultra-series-2-badges.webp';
 import serverHero from '../assets/images/servers/server_chassis.png';
@@ -59,6 +58,7 @@ import cameraStudio from '../assets/images/shared/product-family/camera-studio-v
 import serverStudio from '../assets/images/shared/product-family/server-studio-v1.jpg';
 import parkingSensorStudio from '../assets/images/shared/product-family/parking-sensor-studio-v1.jpg';
 import homeEdgeIndustrial from '../assets/images/home/home-edge-industrial-v1.jpg';
+import homeZevricIndustrialEdge from '../assets/images/home/home-zevric-industrial-edge.png';
 import homeCameraIndustrial from '../assets/images/home/home-camera-mounted-v1.jpg';
 import homeServerIndustrial from '../assets/images/home/home-server-context-v2.jpg';
 import homeIotIndustrial from '../assets/images/home/home-iot-context-v2.jpg';
@@ -232,23 +232,23 @@ export const edgeProducts = [
   {
     slug: 'zevric-xe-pro',
     number: '02',
-    profile: 'Volume configuration',
+    profile: 'Maximum integrated AI',
     name: 'XE-Pro',
     sku: 'ZVX-255',
     processor: 'Intel® Core™ Ultra 7 255H',
-    summary: 'Core Ultra 7 configuration with additional CPU cores and integrated graphics capacity.',
+    summary: 'Core Ultra 7 configuration with a 99 TOPS peak SoC specification and no discrete GPU.',
     image: edgeSharedPlatform,
     imageAlt: 'Representative Zevric XE-Pro shared-platform configuration',
     metrics: [
       ['NPU peak', '13 TOPS'],
-      ['CPU cores', '16'],
+      ['SoC peak', '99 TOPS'],
       ['Cooling', 'Fanless or active'],
     ],
     comparison: {
       cores: '16C: 6P + 8E + 2LPE, up to 5.1 GHz',
       graphics: 'Intel® Arc™ 140T, 8 Xe cores',
       npu: '13 TOPS',
-      soc: 'Not stated',
+      soc: '99 TOPS',
       gpu: 'None',
       gpuPeak: 'Not applicable',
       cooling: 'Fanless or active',
@@ -260,42 +260,14 @@ export const edgeProducts = [
   {
     slug: 'zevric-xe-ultra',
     number: '03',
-    profile: 'Maximum integrated AI',
+    profile: 'XE-Ultra platform with discrete GPU',
     name: 'XE-Ultra',
     sku: 'ZVX-285',
     processor: 'Intel® Core™ Ultra 9 285H',
-    summary: 'Core Ultra 9 configuration with a 99 TOPS peak SoC specification and no discrete GPU.',
-    image: edgeSharedPlatform,
-    imageAlt: 'Representative Zevric XE-Ultra shared-platform configuration',
-    metrics: [
-      ['NPU peak', '13 TOPS'],
-      ['SoC peak', '99 TOPS'],
-      ['Cooling', 'Fanless or active'],
-    ],
-    comparison: {
-      cores: '16C: 6P + 8E + 2LPE, up to 5.4 GHz',
-      graphics: 'Intel® Arc™ 140T, 8 Xe cores',
-      npu: '13 TOPS',
-      soc: '99 TOPS',
-      gpu: 'None',
-      gpuPeak: 'Not applicable',
-      cooling: 'Fanless or active',
-      temperature: '−20 to +70 °C',
-      power: '12–28 V DC',
-      availability: 'Available',
-    },
-  },
-  {
-    slug: 'zevric-xe-max',
-    number: '04',
-    profile: 'XE-Ultra platform with discrete GPU',
-    name: 'XE-Max',
-    sku: 'ZVX-285B60',
-    processor: 'Intel® Core™ Ultra 9 285H',
     summary: 'Core Ultra 9 configuration with an Intel® Arc™ Pro B60 24 GB discrete GPU.',
     discreteGpu: true,
-    image: edgeXeMaxCardAngle,
-    imageAlt: 'Angled view of the representative Zevric XE-Max configuration',
+    image: edgeSharedPlatform,
+    imageAlt: 'Representative Zevric XE-Ultra shared-platform configuration',
     metrics: [
       ['NPU peak', '13 TOPS'],
       ['GPU peak', '197 TOPS INT8'],
@@ -305,7 +277,7 @@ export const edgeProducts = [
       cores: '16C: 6P + 8E + 2LPE, up to 5.4 GHz',
       graphics: 'Intel® Arc™ 140T, 8 Xe cores',
       npu: '13 TOPS',
-      soc: '99 TOPS',
+      soc: 'Not stated',
       gpu: 'Intel® Arc™ Pro B60, 24 GB',
       gpuPeak: '197 TOPS INT8',
       cooling: 'Active only',
@@ -632,7 +604,7 @@ export const metadata = {
   },
   '/products/edge-devices': {
     title: 'Zevric Compact Edge Systems | ZMD',
-    description: 'Explore four Zevric Compact Edge System configurations for local AI inference and video processing.',
+    description: 'Explore three Zevric Compact Edge System configurations for local AI inference and video processing.',
   },
   '/products/servers': {
     title: 'AI Datacenter Servers | ZMD',
@@ -726,6 +698,7 @@ export const assets = {
   serverStudio,
   parkingSensorStudio,
   homeEdgeIndustrial,
+  homeZevricIndustrialEdge,
   homeCameraIndustrial,
   homeServerIndustrial,
   homeIotIndustrial,

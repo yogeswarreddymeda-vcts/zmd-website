@@ -103,7 +103,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: right center;
+  transform-origin: right center;
   filter: saturate(1.02) contrast(1.03);
 }
 
@@ -130,7 +131,7 @@
   background: #eef0f1;
 }
 
-.zevric-product-page .zevric-card:is(:first-child, :last-child) .zevric-card__visual img {
+.zevric-product-page .zevric-card:first-child .zevric-card__visual img {
   position: relative;
   top: -18px;
   width: 145%;
@@ -278,8 +279,8 @@
   background: #f7f2f1;
 }
 
-.zevric-card:nth-child(3) .zevric-card__metrics > div:nth-child(2),
-.zevric-card:nth-child(4) .zevric-card__metrics > div:nth-child(3) {
+.zevric-card:nth-child(2) .zevric-card__metrics > div:nth-child(2),
+.zevric-card:nth-child(3) .zevric-card__metrics > div:nth-child(2) {
   padding-left: 10px;
   background: #fff6f6;
   box-shadow: inset 3px 0 0 var(--brand-red);

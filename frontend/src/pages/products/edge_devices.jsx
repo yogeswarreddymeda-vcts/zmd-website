@@ -96,9 +96,9 @@ export default function EdgeDevicesPage() {
       </section>
       <section className="section section--paper surface-transition surface-transition--light zevric-lineup edge-surface-motif edge-surface-motif--technical" id="configurations">
         <div className="site-container">
-          <SectionIntro title="Four Zevric configurations" />
+          <SectionIntro title="Three Zevric configurations" />
           <div className="zevric-lineup__guide">
-            <p>Three processor levels and one discrete-GPU configuration on a shared board and I/O platform.</p>
+            <p>Three processor levels, including one discrete-GPU configuration, on a shared board and I/O platform.</p>
           </div>
           <ZevricProductGrid />
           <p className="content-qualifier zevric-lineup__disclaimer">

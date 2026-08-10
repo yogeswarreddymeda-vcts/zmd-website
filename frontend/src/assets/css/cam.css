@@ -25,6 +25,7 @@
     width: 100%;
     border: 0;
     background: #111c27;
+    animation: none;
   }
 
   .camera-story-hero .product-story-hero__visual img {
@@ -112,7 +113,7 @@
 }
 
 .camera-motion-ready .camera-story-hero .product-story-hero__visual.camera-motion-item {
-  opacity: 0;
+  opacity: 1;
   clip-path: circle(9% at 67% 42%);
   filter: blur(8px) brightness(0.7) saturate(0.58);
   transform: scale(1.035);
@@ -123,18 +124,11 @@
   clip-path: circle(82% at 67% 42%);
   filter: blur(0) brightness(1) saturate(1);
   transform: scale(1);
-  transition: opacity 600ms ease 160ms, clip-path 1350ms var(--camera-motion-ease) 160ms, filter 1200ms ease 160ms, transform 1200ms var(--camera-motion-ease) 160ms;
+  transition: clip-path 1350ms var(--camera-motion-ease) 160ms, filter 1200ms ease 160ms, transform 1200ms var(--camera-motion-ease) 160ms;
 }
 
 .camera-motion-ready .camera-story-hero .product-story-hero__visual::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  pointer-events: none;
-  background: radial-gradient(circle at 67% 42%, transparent 0 12%, rgba(255,255,255,0.13) 12.3%, transparent 13.1% 100%);
-  opacity: 0;
-  animation: cameraFocusRing 6.8s ease-in-out 1.5s infinite;
+  content: none;
 }
 
 .camera-motion-ready .camera-story-hero .product-story-hero__visual img {
@@ -227,8 +221,34 @@
 }
 
 .camera-motion-ready .camera-model-card:hover .camera-model-card__visual img {
-  transform: scale(1.055) translate3d(0, -2%, 0);
+  transform: scale(1.018);
   filter: contrast(1.04);
+}
+
+/* The three supplied product renders share a 4:3 canvas. Matching the card
+   media frame to that ratio keeps every product fully visible and removes the
+   white inset that appeared when the images were constrained to 88%. */
+.camera-page .camera-model-card {
+  grid-template-rows: auto 1fr;
+}
+
+.camera-page .camera-model-card__visual {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border-bottom: 0;
+  background: #111315;
+}
+
+.camera-page .camera-model-card__visual img,
+.camera-page .camera-model-card:nth-child(3) .camera-model-card__visual img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  mix-blend-mode: normal;
+  filter: none;
 }
 
 @media (min-width: 681px) {
@@ -354,12 +374,6 @@
   transition: opacity 620ms ease calc(var(--camera-motion-order) * 80ms), filter 760ms ease calc(var(--camera-motion-order) * 80ms), transform 920ms var(--camera-motion-spring) calc(var(--camera-motion-order) * 80ms), background-color 160ms ease;
 }
 
-@keyframes cameraFocusRing {
-  0%, 100% { opacity: 0; transform: scale(0.72); }
-  38% { opacity: 0.46; }
-  62% { opacity: 0; transform: scale(1.18); }
-}
-
 @keyframes cameraHeroDrift {
   from { transform: scale(1.001) translate3d(0, 0, 0); }
   to { transform: scale(1.024) translate3d(-0.6%, -0.5%, 0); }
@@ -379,6 +393,269 @@
   .camera-motion-ready .camera-story-hero .product-story-hero__visual img,
   .camera-motion-ready .camera-application-grid article img {
     animation-duration: 15s;
+  }
+}
+
+/* Camera-only responsive contract ---------------------------------------
+   Keeps the authored wide hero on larger screens and progressively reduces
+   density without changing page content or the established visual language. */
+@media (min-width: 981px) and (max-width: 1280px) {
+  .camera-story-hero .product-story-hero__copy {
+    padding-right: 36px;
+    padding-left: max(36px, calc((100vw - var(--container)) / 2));
+  }
+
+  .camera-story-hero .product-story-hero__copy h1 {
+    width: min(44vw, 560px);
+    font-size: clamp(3.15rem, 5vw, 4.35rem);
+  }
+
+  .camera-story-hero .product-story-hero__copy > p,
+  .camera-story-hero .product-story-hero__actions {
+    width: min(43vw, 560px);
+  }
+
+  .camera-story-hero .product-story-hero__visual img {
+    object-position: 58% center;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 980px) {
+  .camera-story-hero .product-story-hero__inner {
+    height: 520px;
+    min-height: 520px;
+  }
+
+  .camera-story-hero .product-story-hero__copy {
+    padding: 44px 28px 78px;
+  }
+
+  .camera-story-hero .product-story-hero__copy h1 {
+    width: min(48vw, 440px);
+    margin-bottom: 16px;
+    font-size: clamp(2.9rem, 6vw, 3.65rem);
+  }
+
+  .camera-story-hero .product-story-hero__copy > p,
+  .camera-story-hero .product-story-hero__actions {
+    width: min(46vw, 420px);
+  }
+
+  .camera-story-hero .product-story-hero__copy > p {
+    font-size: 0.96rem;
+  }
+
+  .camera-story-hero .product-story-hero__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+    max-width: 310px;
+    margin-top: 22px;
+  }
+
+  .camera-story-hero .product-story-hero__actions .button {
+    width: 100%;
+    min-height: 48px;
+    justify-content: space-between;
+  }
+
+  .camera-story-hero .product-story-hero__visual img {
+    object-position: 64% center;
+  }
+
+  .camera-page .camera-model-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .camera-page .camera-model-card {
+    grid-template-rows: auto 1fr;
+  }
+
+  .camera-page .camera-model-card__body {
+    min-height: 190px;
+  }
+
+  .camera-page .camera-application-grid article {
+    min-height: 280px;
+  }
+
+  .camera-motion-ready .camera-model-card.camera-motion-item:not(.is-camera-motion-visible) {
+    transform: translate3d(0, 30px, 0) scale(0.975);
+  }
+}
+
+@media (max-width: 760px) {
+  .camera-story-hero.product-story-hero--autoplay .product-story-hero__inner {
+    height: min(720px, calc(100svh - 84px));
+    min-height: 640px;
+  }
+
+  .camera-story-hero .product-story-hero__copy,
+  .camera-story-hero .product-story-hero__visual {
+    grid-area: 1 / 1;
+  }
+
+  .camera-story-hero .product-story-hero__visual {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .camera-story-hero .product-story-hero__visual img {
+    object-position: 72% center;
+  }
+
+  .camera-story-hero .product-story-hero__visual::after {
+    background:
+      linear-gradient(0deg, #111c27 0%, rgba(17, 28, 39, 0.97) 35%, rgba(17, 28, 39, 0.66) 60%, rgba(17, 28, 39, 0.08) 88%),
+      linear-gradient(90deg, rgba(17, 28, 39, 0.3), transparent 76%);
+  }
+
+  .camera-story-hero .product-story-hero__copy {
+    z-index: 3;
+    min-height: 0;
+    justify-content: flex-end;
+    padding: 270px 20px 82px;
+    background: linear-gradient(0deg, rgba(17, 28, 39, 0.72), transparent 74%);
+  }
+
+  .camera-story-hero .product-story-hero__copy h1,
+  .camera-story-hero .product-story-hero__copy > p,
+  .camera-story-hero .product-story-hero__actions {
+    width: 100%;
+    max-width: 540px;
+  }
+
+  .camera-story-hero .product-story-hero__copy h1 {
+    margin-bottom: 14px;
+    font-size: clamp(2.45rem, 11vw, 3.35rem);
+    line-height: 0.98;
+  }
+
+  .camera-story-hero .product-story-hero__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+    margin-top: 20px;
+  }
+
+  .camera-story-hero .product-story-hero__actions .button {
+    width: 100%;
+    min-height: 50px;
+    justify-content: space-between;
+  }
+
+  .camera-story-hero .product-story-hero__controls {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .camera-motion-ready .camera-story-hero .product-story-hero__visual.camera-motion-item,
+  .camera-motion-ready .camera-story-hero .product-story-hero__visual.is-camera-motion-visible {
+    opacity: 1;
+    clip-path: none;
+    filter: none;
+    transform: none;
+  }
+
+  .camera-page .product-highlight-band__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .camera-page .product-highlight-band__grid > div {
+    min-height: 82px;
+    display: grid;
+    align-content: center;
+    padding: 13px 14px;
+  }
+
+  .camera-page .product-highlight-band__grid > div:nth-child(2) {
+    border-top: 0;
+  }
+
+  .camera-page .camera-model-grid,
+  .camera-page .camera-application-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .camera-page .camera-model-card {
+    grid-template-rows: auto 1fr;
+  }
+
+  .camera-page .camera-model-card__visual {
+    height: auto;
+  }
+
+  .camera-page .camera-model-card__body {
+    min-height: 0;
+    padding: 18px 18px 24px;
+  }
+
+  .camera-page .camera-model-card__meta {
+    margin-bottom: 11px;
+  }
+
+  .camera-page .camera-model-card h3 {
+    font-size: clamp(1.55rem, 7vw, 1.9rem);
+  }
+
+  .camera-page .camera-specification-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .camera-page .camera-specification-table table {
+    min-width: 620px;
+  }
+
+  .camera-page .camera-application-grid article {
+    min-height: clamp(250px, 72vw, 330px);
+  }
+
+  .camera-page .camera-application-grid article > div {
+    padding: 56px 18px 18px;
+  }
+
+  .camera-page .camera-application-grid h3 {
+    font-size: clamp(1.45rem, 7vw, 1.8rem);
+  }
+
+  .camera-motion-ready .camera-model-card.camera-motion-item:not(.is-camera-motion-visible) {
+    transform: translate3d(0, 24px, 0) scale(0.98);
+  }
+}
+
+@media (max-width: 420px) {
+  .camera-story-hero.product-story-hero--autoplay .product-story-hero__inner {
+    min-height: 660px;
+  }
+
+  .camera-story-hero .product-story-hero__copy {
+    padding: 248px 16px 78px;
+  }
+
+  .camera-story-hero .product-story-hero__copy h1 {
+    font-size: clamp(2.3rem, 12vw, 2.75rem);
+  }
+
+  .camera-page .product-highlight-band__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .camera-page .product-highlight-band__grid > div:nth-child(2) {
+    border-top: 1px solid #d7dbde;
+  }
+
+  .camera-page .camera-specification-tabs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .camera-page .camera-specification-tabs button {
+    border-right: 0;
+    border-top: 1px solid #3b444d;
+  }
+
+  .camera-page .camera-specification-tabs button:first-child {
+    border-top: 0;
   }
 }
 
