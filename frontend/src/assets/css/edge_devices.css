@@ -1,0 +1,253 @@
+/* Zevric motion: precision-machined, directional and presentation-only. */
+.zevric-product-page {
+  --zevric-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --zevric-motion-reveal: 1250ms;
+  --zevric-motion-step: 145ms;
+}
+
+.zevric-motion-ready .zevric-motion-item {
+  will-change: opacity, transform, clip-path;
+  transition-duration: var(--zevric-motion-reveal);
+  transition-timing-function: var(--zevric-motion-ease);
+}
+
+/* Hero copy locks into place while the hardware resolves from a technical crop. */
+.zevric-motion-ready .zevric-product-hero .product-story-hero__copy h1.zevric-motion-item,
+.zevric-motion-ready .zevric-product-hero .product-story-hero__copy > p.zevric-motion-item {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translate3d(-42px, 0, 0);
+}
+
+.zevric-motion-ready .zevric-product-hero .product-story-hero__copy h1.is-zevric-motion-visible,
+.zevric-motion-ready .zevric-product-hero .product-story-hero__copy > p.is-zevric-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 900ms ease 160ms, clip-path 1450ms var(--zevric-motion-ease) 160ms, transform 1450ms var(--zevric-motion-ease) 160ms;
+}
+
+.zevric-motion-ready .zevric-product-hero .product-story-hero__actions .button.zevric-motion-item {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0) scaleX(0.92);
+}
+
+.zevric-motion-ready .zevric-product-hero .product-story-hero__actions .button.is-zevric-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scaleX(1);
+  transition: opacity 760ms ease calc(480ms + var(--zevric-motion-order) * 110ms), transform 1200ms var(--zevric-motion-ease) calc(480ms + var(--zevric-motion-order) * 110ms), background-color 220ms ease, border-color 220ms ease;
+}
+
+.zevric-motion-ready .zevric-product-hero .product-story-hero__visual.zevric-motion-item {
+  opacity: 0;
+  clip-path: inset(0 0 0 34%);
+  transform: translate3d(54px, 0, 0) scale(1.025);
+}
+
+.zevric-motion-ready .zevric-product-hero .product-story-hero__visual.is-zevric-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0) scale(1);
+  transition: opacity 1000ms ease 140ms, clip-path 1750ms var(--zevric-motion-ease) 140ms, transform 1650ms var(--zevric-motion-ease) 140ms;
+}
+
+.zevric-motion-ready .zevric-product-hero .product-story-hero__visual.is-zevric-motion-visible:not(.product-story-hero__visual--studio-dark) img {
+  animation: zevricHardwareFloat 13s ease-in-out 1850ms infinite alternate both;
+}
+
+.zevric-motion-ready .zevric-product-hero .product-story-hero__visual--studio-dark.is-zevric-motion-visible img {
+  animation: zevricStudioMediaIn 1250ms var(--zevric-motion-ease) both;
+}
+
+.zevric-motion-ready .zevric-product-hero .product-story-hero__controls.zevric-motion-item {
+  opacity: 0;
+  transform: translate3d(20px, 0, 0);
+}
+
+.zevric-motion-ready .zevric-product-hero .product-story-hero__controls.is-zevric-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 760ms ease 1050ms, transform 1150ms var(--zevric-motion-ease) 1050ms;
+}
+
+/* Platform overview reads across like a diagnostic bus. */
+.zevric-motion-ready .zevric-overview__grid > div.zevric-motion-item {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translate3d(-18px, 0, 0);
+}
+
+.zevric-motion-ready .zevric-overview__grid > div.is-zevric-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 720ms ease calc(var(--zevric-motion-order) * var(--zevric-motion-step)), clip-path 1200ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * var(--zevric-motion-step)), transform 1200ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * var(--zevric-motion-step));
+}
+
+/* Configuration content assembles in measured, non-overshooting stages. */
+.zevric-motion-ready .zevric-lineup .section-intro h2.zevric-motion-item,
+.zevric-motion-ready .zevric-lineup__guide.zevric-motion-item,
+.zevric-motion-ready .zevric-comparison h2.zevric-motion-item,
+.zevric-motion-ready .zevric-platform .section-intro h2.zevric-motion-item {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translate3d(-28px, 0, 0);
+}
+
+.zevric-motion-ready .zevric-lineup .section-intro h2.is-zevric-motion-visible,
+.zevric-motion-ready .zevric-lineup__guide.is-zevric-motion-visible,
+.zevric-motion-ready .zevric-comparison h2.is-zevric-motion-visible,
+.zevric-motion-ready .zevric-platform .section-intro h2.is-zevric-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 820ms ease, clip-path 1350ms var(--zevric-motion-ease), transform 1350ms var(--zevric-motion-ease);
+}
+
+.zevric-motion-ready .zevric-card.zevric-motion-item {
+  opacity: 0;
+  clip-path: inset(18% 0 0 0);
+  transform: translate3d(0, 52px, 0);
+}
+
+.zevric-motion-ready .zevric-card.is-zevric-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 800ms ease calc(var(--zevric-motion-order) * var(--zevric-motion-step)), clip-path 1350ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * var(--zevric-motion-step)), transform 1350ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * var(--zevric-motion-step)), border-color 220ms ease;
+}
+
+.zevric-motion-ready .zevric-card.is-zevric-motion-visible .zevric-card__visual img {
+  animation: zevricProductBreath 14s ease-in-out calc(1600ms + var(--zevric-motion-order) * var(--zevric-motion-step)) infinite alternate both;
+}
+
+.zevric-motion-ready .zevric-lineup > .site-container > .content-qualifier.zevric-motion-item {
+  opacity: 0;
+  transform: translate3d(22px, 0, 0);
+}
+
+.zevric-motion-ready .zevric-lineup > .site-container > .content-qualifier.is-zevric-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.zevric-motion-ready .zevric-comparison__table-scroll.zevric-motion-item {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transform: translate3d(0, 24px, 0);
+}
+
+.zevric-motion-ready .zevric-comparison__table-scroll.is-zevric-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 850ms ease 180ms, clip-path 1550ms var(--zevric-motion-ease) 180ms, transform 1450ms var(--zevric-motion-ease) 180ms;
+}
+
+/* Shared platform image and specifications converge from opposite sides. */
+.zevric-motion-ready .zevric-platform__visual.zevric-motion-item {
+  opacity: 0;
+  clip-path: inset(0 28% 0 0);
+  transform: translate3d(-34px, 0, 0);
+}
+
+.zevric-motion-ready .zevric-platform__visual.is-zevric-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 850ms ease, clip-path 1450ms var(--zevric-motion-ease), transform 1450ms var(--zevric-motion-ease);
+}
+
+.zevric-motion-ready .zevric-platform__specs > div.zevric-motion-item {
+  opacity: 0;
+  transform: translate3d(30px, 0, 0);
+}
+
+.zevric-motion-ready .zevric-platform__specs > div.is-zevric-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 720ms ease calc(var(--zevric-motion-order) * 120ms), transform 1150ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * 120ms);
+}
+
+.zevric-motion-ready .zevric-feature-grid article.zevric-motion-item {
+  opacity: 0;
+  clip-path: inset(0 0 35% 0);
+  transform: translate3d(0, 26px, 0);
+}
+
+.zevric-motion-ready .zevric-feature-grid article.is-zevric-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 740ms ease calc(var(--zevric-motion-order) * 130ms), clip-path 1200ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * 130ms), transform 1200ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * 130ms);
+}
+
+/* Edge AI bridge uses a clean cross-directional handoff. */
+.zevric-motion-ready .zevric-product-bridge__copy > *.zevric-motion-item {
+  opacity: 0;
+  transform: translate3d(-28px, 0, 0);
+}
+
+.zevric-motion-ready .zevric-product-bridge__copy > *.is-zevric-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 760ms ease calc(var(--zevric-motion-order) * 120ms), transform 1250ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * 120ms);
+}
+
+.zevric-motion-ready .zevric-product-bridge__visual.zevric-motion-item {
+  opacity: 0;
+  clip-path: inset(0 0 0 45%);
+  transform: translate3d(52px, 0, 0);
+}
+
+.zevric-motion-ready .zevric-product-bridge__visual.is-zevric-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 900ms ease, clip-path 1600ms var(--zevric-motion-ease), transform 1500ms var(--zevric-motion-ease);
+}
+
+.zevric-motion-ready .zevric-oem-cta h2.zevric-motion-item,
+.zevric-motion-ready .zevric-oem-cta p.zevric-motion-item,
+.zevric-motion-ready .zevric-oem-cta .button.zevric-motion-item {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+}
+
+.zevric-motion-ready .zevric-oem-cta .is-zevric-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 820ms ease calc(var(--zevric-motion-order) * 120ms), transform 1300ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * 120ms), background-color 220ms ease;
+}
+
+@keyframes zevricHardwareFloat {
+  from { transform: scale(1.002) translate3d(0, 0, 0); }
+  to { transform: scale(1.018) translate3d(0, -0.6%, 0); }
+}
+
+@keyframes zevricStudioMediaIn {
+  from { opacity: 0.35; transform: scale(1.035); filter: saturate(0.86) contrast(1.08); }
+  to { opacity: 1; transform: scale(1); filter: saturate(1.02) contrast(1.03); }
+}
+
+@keyframes zevricProductBreath {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to { transform: scale(1.025) translate3d(0, -0.5%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zevric-product-page,
+  .zevric-product-page *,
+  .zevric-product-page *::before,
+  .zevric-product-page *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .zevric-motion-ready .zevric-motion-item {
+    opacity: 1 !important;
+    clip-path: none !important;
+    transform: none !important;
+  }
+}

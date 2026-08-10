@@ -27,7 +27,7 @@ php artisan serve
 ### 2. Run React + Vite Frontend
 
 ```bash
-cd frontend
-npm run dev
+npm --prefix frontend install
+npm run dev -- --host
 ```
-* The React dev server will start on **`http://localhost:5173`**
+* The React dev server will start on **`http://localhost:5173`** and will also be available on the local network.

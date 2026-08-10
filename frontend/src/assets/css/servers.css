@@ -1,0 +1,406 @@
+/* Server motion: rack rails, bay sequencing and controlled airflow; presentation only. */
+.server-page {
+  --server-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --server-motion-step: 145ms;
+}
+
+/* The server photography is supplied on a white studio canvas. Keep the
+   entire hero on the same surface so every view reads as one composition. */
+.server-product-hero,
+.server-product-hero .product-story-hero__copy,
+.server-product-hero .product-story-hero__visual--contain {
+  background: var(--product-story-surface, #f6f6f5);
+  transition: background-color 900ms var(--server-motion-ease);
+}
+
+.server-product-hero {
+  border-bottom-color: #d2d7da;
+  color: var(--ink);
+}
+
+.server-product-hero .product-story-hero__copy > p {
+  color: #555e66;
+}
+
+.server-product-hero .product-story-hero__visual--contain {
+  padding: 0;
+}
+
+.server-product-hero .product-story-hero__visual::after {
+  background: none;
+}
+
+.server-product-hero .product-story-hero__visual--contain > img {
+  object-fit: contain;
+  object-position: center;
+  filter: none;
+  -webkit-mask-image: radial-gradient(ellipse 98% 96% at center, #000 82%, transparent 100%);
+  mask-image: radial-gradient(ellipse 98% 96% at center, #000 82%, transparent 100%);
+}
+
+.server-product-hero .carousel-controls {
+  border-color: #c8cdd1;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--ink);
+  box-shadow: 0 12px 30px rgba(18, 25, 31, 0.1);
+}
+
+.server-product-hero .carousel-controls__button {
+  border-color: #aeb5ba;
+  background: rgba(17, 24, 31, 0.03);
+  color: var(--ink);
+}
+
+.server-product-hero .carousel-controls__button:hover,
+.server-product-hero .carousel-controls__button:focus-visible {
+  border-color: var(--brand-red);
+  background: rgba(237, 28, 36, 0.06);
+  color: var(--ink);
+}
+
+.server-product-hero .carousel-controls__mark {
+  background: #aeb5ba;
+}
+
+.server-motion-ready .server-motion-item {
+  will-change: opacity, transform, clip-path;
+}
+
+/* Hero: copy slides along a rack rail while the chassis is uncovered bay-by-bay. */
+.server-motion-ready .server-product-hero .product-story-hero__copy h1.server-motion-item {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translate3d(-48px, 0, 0);
+}
+
+.server-motion-ready .server-product-hero .product-story-hero__copy h1.is-server-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 900ms ease 140ms, clip-path 1500ms var(--server-motion-ease) 140ms, transform 1500ms var(--server-motion-ease) 140ms;
+}
+
+.server-motion-ready .server-product-hero .product-story-hero__copy > p.server-motion-item {
+  opacity: 0;
+  transform: translate3d(-34px, 18px, 0);
+}
+
+.server-motion-ready .server-product-hero .product-story-hero__copy > p.is-server-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 850ms ease 360ms, transform 1350ms var(--server-motion-ease) 360ms;
+}
+
+.server-motion-ready .server-product-hero .product-story-hero__actions .button.server-motion-item {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translate3d(-20px, 0, 0);
+}
+
+.server-motion-ready .server-product-hero .product-story-hero__actions .button.is-server-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 700ms ease calc(560ms + var(--server-motion-order) * 110ms), clip-path 1150ms var(--server-motion-ease) calc(560ms + var(--server-motion-order) * 110ms), transform 1150ms var(--server-motion-ease) calc(560ms + var(--server-motion-order) * 110ms), background-color 220ms ease, border-color 220ms ease;
+}
+
+.server-motion-ready .server-product-hero .product-story-hero__visual.server-motion-item {
+  opacity: 0;
+  clip-path: inset(0 16% 0 16%);
+  transform: translate3d(30px, 0, 0);
+}
+
+.server-motion-ready .server-product-hero .product-story-hero__visual.is-server-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 1100ms ease 120ms, clip-path 1900ms var(--server-motion-ease) 120ms, transform 1750ms var(--server-motion-ease) 120ms;
+}
+
+.server-motion-ready .server-product-hero .product-story-hero__visual.is-server-motion-visible img {
+  animation: serverProductViewReveal 1200ms var(--server-motion-ease) both;
+}
+
+.server-motion-ready .server-product-hero .product-story-hero__controls.server-motion-item {
+  opacity: 0;
+  transform: translate3d(26px, 0, 0);
+}
+
+.server-motion-ready .server-product-hero .product-story-hero__controls.is-server-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 720ms ease 1100ms, transform 1200ms var(--server-motion-ease) 1100ms;
+}
+
+/* Highlights activate sequentially like status modules. */
+.server-motion-ready .product-highlight-band__grid > div.server-motion-item {
+  opacity: 0;
+  clip-path: inset(100% 0 0 0);
+  transform: translate3d(0, 22px, 0);
+}
+
+.server-motion-ready .product-highlight-band__grid > div.is-server-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 700ms ease calc(var(--server-motion-order) * var(--server-motion-step)), clip-path 1200ms var(--server-motion-ease) calc(var(--server-motion-order) * var(--server-motion-step)), transform 1200ms var(--server-motion-ease) calc(var(--server-motion-order) * var(--server-motion-step));
+}
+
+/* Section headings travel on a single horizontal rack line. */
+.server-motion-ready :is(#server-models, .server-specifications, #server-applications) .section-intro h2.server-motion-item {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translate3d(-42px, 0, 0);
+}
+
+.server-motion-ready :is(#server-models, .server-specifications, #server-applications) .section-intro h2.is-server-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 820ms ease, clip-path 1400ms var(--server-motion-ease), transform 1400ms var(--server-motion-ease);
+}
+
+/* Server format cards seat into the rack one after another. */
+.server-motion-ready #server-models .camera-model-card.server-motion-item {
+  opacity: 0;
+  clip-path: inset(0 0 18% 0);
+  transform: translate3d(0, 54px, 0) scale(0.985);
+}
+
+.server-motion-ready #server-models .camera-model-card.is-server-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0) scale(1);
+  transition: opacity 780ms ease calc(var(--server-motion-order) * var(--server-motion-step)), clip-path 1350ms var(--server-motion-ease) calc(var(--server-motion-order) * var(--server-motion-step)), transform 1350ms var(--server-motion-ease) calc(var(--server-motion-order) * var(--server-motion-step)), border-color 220ms ease;
+}
+
+.server-motion-ready #server-models .camera-model-card.is-server-motion-visible .camera-model-card__visual img {
+  animation: serverFormatIdle 15s ease-in-out calc(1600ms + var(--server-motion-order) * var(--server-motion-step)) infinite alternate both;
+}
+
+#server-models .camera-model-card--availability:focus-visible {
+  z-index: 1;
+  outline: 3px solid #ff8b90;
+  outline-offset: -3px;
+}
+
+#server-models .camera-model-card__visual {
+  background: #f7f7f6;
+}
+
+#server-models .camera-model-card__visual > img,
+#server-models .camera-model-card:nth-child(3) .camera-model-card__visual > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 52%;
+  filter: none;
+  mix-blend-mode: normal;
+}
+
+#server-models .camera-model-card:nth-child(2) .camera-model-card__visual > img {
+  position: relative;
+  top: -76px;
+  object-position: center 100%;
+}
+
+#server-models .camera-model-card__availability {
+  position: absolute;
+  z-index: 3;
+  inset: 50% auto auto 50%;
+  min-width: 132px;
+  padding: 11px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background: rgba(15, 21, 27, 0.92);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(-50%, calc(-50% + 14px), 0);
+  transition: opacity 420ms ease, transform 650ms var(--server-motion-ease);
+}
+
+#server-models .camera-model-card--availability:hover .camera-model-card__availability,
+#server-models .camera-model-card--availability:focus-visible .camera-model-card__availability {
+  opacity: 1;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.server-motion-ready .server-storage-profiles h3.server-motion-item,
+.server-motion-ready .server-storage-profiles span.server-motion-item {
+  opacity: 0;
+  transform: translate3d(-30px, 0, 0);
+}
+
+.server-motion-ready .server-storage-profiles h3.is-server-motion-visible,
+.server-motion-ready .server-storage-profiles span.is-server-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 720ms ease calc(var(--server-motion-order) * 110ms), transform 1200ms var(--server-motion-ease) calc(var(--server-motion-order) * 110ms);
+}
+
+/* Specifications expose vertically, then each row performs a restrained scan. */
+.server-motion-ready .server-specifications .section-intro p.server-motion-item,
+.server-motion-ready .server-specifications .content-qualifier.server-motion-item {
+  opacity: 0;
+  transform: translate3d(26px, 0, 0);
+}
+
+.server-motion-ready .server-specifications .section-intro p.is-server-motion-visible,
+.server-motion-ready .server-specifications .content-qualifier.is-server-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 800ms ease 180ms, transform 1250ms var(--server-motion-ease) 180ms;
+}
+
+.server-motion-ready .server-specifications table.server-motion-item {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transform: translate3d(0, 34px, 0);
+}
+
+.server-motion-ready .server-specifications table.is-server-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 850ms ease 180ms, clip-path 1650ms var(--server-motion-ease) 180ms, transform 1450ms var(--server-motion-ease) 180ms;
+}
+
+.server-motion-ready .server-specifications tbody tr.server-motion-item {
+  opacity: 0;
+  transform: translate3d(-24px, 0, 0);
+}
+
+.server-motion-ready .server-specifications tbody tr.is-server-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 650ms ease calc(260ms + var(--server-motion-order) * 90ms), transform 1050ms var(--server-motion-ease) calc(260ms + var(--server-motion-order) * 90ms), background-color 180ms ease;
+}
+
+/* Workloads enter as wide data tiles, without overscale or filter artifacts. */
+.server-motion-ready #server-applications .camera-application-grid article.server-motion-item {
+  contain: paint;
+  opacity: 0;
+  clip-path: inset(0 24% 0 0);
+  transform: translate3d(-40px, 0, 0);
+}
+
+.server-motion-ready #server-applications .camera-application-grid article.is-server-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 800ms ease calc(var(--server-motion-order) * var(--server-motion-step)), clip-path 1400ms var(--server-motion-ease) calc(var(--server-motion-order) * var(--server-motion-step)), transform 1350ms var(--server-motion-ease) calc(var(--server-motion-order) * var(--server-motion-step));
+}
+
+.server-motion-ready #server-applications .camera-application-grid article.is-server-motion-visible img {
+  animation: serverWorkloadDrift 16s ease-in-out calc(1600ms + var(--server-motion-order) * var(--server-motion-step)) infinite alternate both;
+}
+
+.server-motion-ready #server-applications .section-action.server-motion-item {
+  opacity: 0;
+  transform: translate3d(-28px, 0, 0);
+}
+
+.server-motion-ready #server-applications .section-action.is-server-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 780ms ease 420ms, transform 1250ms var(--server-motion-ease) 420ms;
+}
+
+/* Closing enquiry converges from the two ends of the rack. */
+.server-motion-ready .product-oem-engagement h2.server-motion-item,
+.server-motion-ready .product-oem-engagement p.server-motion-item {
+  opacity: 0;
+  transform: translate3d(-42px, 0, 0);
+}
+
+.server-motion-ready .product-oem-engagement .button.server-motion-item {
+  opacity: 0;
+  transform: translate3d(42px, 0, 0);
+}
+
+.server-motion-ready .product-oem-engagement .is-server-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 820ms ease calc(var(--server-motion-order) * 110ms), transform 1350ms var(--server-motion-ease) calc(var(--server-motion-order) * 110ms), background-color 220ms ease;
+}
+
+@keyframes serverProductViewReveal {
+  from {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0) scale(0.992);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes serverFormatIdle {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to { transform: scale(1.018) translate3d(0, -0.35%, 0); }
+}
+
+@keyframes serverWorkloadDrift {
+  from { transform: scale(1.002) translate3d(0, 0, 0); }
+  to { transform: scale(1.035) translate3d(0, -0.7%, 0); }
+}
+
+@media (max-width: 760px) {
+  .server-product-hero.product-story-hero--autoplay .product-story-hero__inner {
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .server-product-hero.product-story-hero--autoplay .product-story-hero__copy,
+  .server-product-hero.product-story-hero--autoplay .product-story-hero__visual {
+    grid-area: auto;
+    min-height: 0;
+  }
+
+  .server-product-hero.product-story-hero--autoplay .product-story-hero__copy {
+    order: 1;
+    justify-content: center;
+    padding: 40px 20px 34px;
+    background: var(--product-story-surface, #f6f6f5);
+  }
+
+  .server-product-hero.product-story-hero--autoplay .product-story-hero__visual {
+    order: 2;
+    height: clamp(280px, 66vw, 400px);
+    background: var(--product-story-surface, #f6f6f5);
+  }
+
+  .server-product-hero.product-story-hero--autoplay .product-story-hero__visual::after {
+    background: none;
+  }
+
+  .server-product-hero .product-story-hero__visual--contain > img {
+    object-position: center;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .server-page,
+  .server-page *,
+  .server-page *::before,
+  .server-page *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .server-motion-ready .server-motion-item {
+    opacity: 1 !important;
+    clip-path: none !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,1224 @@
+/* Zevric product and Edge AI page roles ---------------------------------- */
+.edge-surface-motif {
+  position: relative;
+  isolation: isolate;
+}
+
+.edge-surface-motif::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+}
+
+.edge-surface-motif > * {
+  position: relative;
+  z-index: 1;
+}
+
+.edge-surface-motif--technical::before {
+  background:
+    radial-gradient(circle at 90% 18%, transparent 0 88px, rgba(30, 42, 51, 0.034) 89px 90px, transparent 91px 128px, rgba(30, 42, 51, 0.024) 129px 130px, transparent 131px),
+    linear-gradient(rgba(16, 17, 20, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 17, 20, 0.018) 1px, transparent 1px);
+  background-size: auto, 72px 72px, 72px 72px;
+}
+
+.edge-surface-motif--blueprint::before,
+.zevric-product-hero--blueprint .product-story-hero__copy::before {
+  background:
+    radial-gradient(circle at 82% 23%, transparent 0 70px, rgba(198, 218, 232, 0.04) 71px 72px, transparent 73px 108px, rgba(198, 218, 232, 0.026) 109px 110px, transparent 111px),
+    linear-gradient(90deg, transparent 0 68%, rgba(198, 218, 232, 0.032) 68% calc(68% + 1px), transparent calc(68% + 1px)),
+    linear-gradient(0deg, transparent 0 72%, rgba(198, 218, 232, 0.026) 72% calc(72% + 1px), transparent calc(72% + 1px)),
+    linear-gradient(135deg, transparent 0 49.8%, rgba(198, 218, 232, 0.022) 50%, transparent 50.2%);
+}
+
+.edge-surface-motif--contour::before {
+  background:
+    linear-gradient(110deg, rgba(8, 10, 12, 0.26) 0%, rgba(8, 10, 12, 0.08) 58%, transparent 100%),
+    radial-gradient(ellipse at 88% 24%, transparent 0 72px, rgba(255, 255, 255, 0.05) 73px 74px, transparent 75px 112px, rgba(255, 255, 255, 0.03) 113px 114px, transparent 115px),
+    radial-gradient(ellipse at 72% 76%, transparent 0 108px, rgba(255, 255, 255, 0.026) 109px 110px, transparent 111px);
+}
+
+.zevric-shared-hero__copy.edge-surface-motif::before {
+  inset: -140px 0 -140px -50vw;
+}
+
+.zevric-product-hero--blueprint .product-story-hero__copy {
+  isolation: isolate;
+}
+
+.zevric-product-hero--blueprint .product-story-hero__copy::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -110px 0 -42px -50vw;
+  pointer-events: none;
+}
+
+.zevric-product-page .zevric-product-hero .product-story-hero__visual--contain {
+  padding: 140px 58px 86px;
+  background: #e5e7e8;
+}
+
+.zevric-product-page .zevric-product-hero .product-story-hero__visual::after {
+  z-index: 2;
+  background:
+    linear-gradient(270deg, #e5e7e8 0%, rgba(229, 231, 232, 0.7) 3%, rgba(229, 231, 232, 0.08) 9%, transparent 14%),
+    linear-gradient(90deg, #111317 0%, rgba(17, 19, 23, 0.58) 8%, rgba(17, 19, 23, 0.06) 26%, transparent 40%),
+    linear-gradient(0deg, rgba(16, 17, 20, 0.12), transparent 30%);
+}
+
+.zevric-product-page .zevric-product-hero .product-story-hero__visual--studio-dark {
+  padding: 0;
+  background: #111317;
+}
+
+.zevric-product-page .zevric-product-hero .product-story-hero__visual--studio-dark::after {
+  background:
+    linear-gradient(
+      90deg,
+      #111317 0%,
+      rgba(17, 19, 23, 0.9) 3%,
+      rgba(17, 19, 23, 0.42) 9%,
+      transparent 20%,
+      transparent 84%,
+      rgba(17, 19, 23, 0.32) 95%,
+      #111317 100%
+    ),
+    linear-gradient(
+      180deg,
+      #111317 0%,
+      rgba(17, 19, 23, 0.48) 5%,
+      transparent 17%,
+      transparent 78%,
+      rgba(17, 19, 23, 0.38) 94%,
+      #111317 100%
+    ),
+    radial-gradient(ellipse at center, transparent 52%, rgba(17, 19, 23, 0.2) 78%, rgba(17, 19, 23, 0.5) 100%);
+}
+
+.zevric-product-page .zevric-product-hero .product-story-hero__visual--studio-dark > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(1.02) contrast(1.03);
+}
+
+.zevric-product-page .zevric-product-hero .product-story-hero__media-badge {
+  position: absolute;
+  z-index: 4;
+  top: 10px;
+  right: 18px;
+  width: clamp(170px, 15vw, 220px);
+  max-width: 34%;
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  filter: none;
+}
+
+.zevric-product-page .zevric-product-hero .product-story-hero__caption,
+.zevric-product-page .zevric-product-hero .product-story-hero__index {
+  z-index: 4;
+  bottom: 84px;
+}
+
+.zevric-product-page .zevric-card__visual {
+  background: #eef0f1;
+}
+
+.zevric-product-page .zevric-card:is(:first-child, :last-child) .zevric-card__visual img {
+  position: relative;
+  top: -18px;
+  width: 145%;
+  height: 145%;
+  max-width: none;
+  mix-blend-mode: multiply;
+  filter: contrast(1.025) drop-shadow(0 14px 12px rgba(16, 17, 20, 0.15));
+}
+
+.zevric-product-page .zevric-card:is(:nth-child(2), :nth-child(3)) .zevric-card__visual img {
+  position: relative;
+  top: -16px;
+}
+
+.edge-launch-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.edge-launch-band__actions .button {
+  margin-top: 0;
+}
+
+.edge-launch-band__actions .button--secondary {
+  border-color: #aeb3b6;
+  color: var(--ink);
+}
+
+.zevric-shared-hero--edge-ai .zevric-shared-hero__visual {
+  overflow: hidden;
+  background: #eef0f1;
+}
+
+.zevric-shared-hero--edge-ai .zevric-shared-hero__visual > img {
+  width: 100%;
+  height: 100%;
+  max-height: 430px;
+  object-fit: cover;
+  object-position: center 58%;
+  transform: none;
+  filter: none;
+}
+
+/* Page-specific color rhythm ------------------------------------------- */
+.zevric-product-page .zevric-shared-hero--product {
+  border-bottom-color: #383c41;
+  background: #15171a;
+  color: #fff;
+}
+
+.zevric-product-page .zevric-shared-hero--product h1,
+.edge-ai-page-new .zevric-shared-hero--edge-ai h1 {
+  color: #fff;
+}
+
+.zevric-product-page .zevric-shared-hero--product .zevric-shared-hero__label {
+  color: #ff646b;
+}
+
+.zevric-product-page .zevric-shared-hero--product .zevric-shared-hero__copy > p {
+  color: #c4c9ce;
+}
+
+.zevric-product-page .zevric-shared-hero--product .zevric-shared-hero__visual {
+  min-height: 520px;
+  overflow: hidden;
+  border-left-color: rgba(255, 255, 255, 0.18);
+  background: #e5e7e8;
+  box-shadow: 50vw 0 0 #e5e7e8;
+}
+
+.zevric-product-page .zevric-shared-hero--product .zevric-shared-hero__visual > img {
+  position: relative;
+  z-index: 1;
+  transform: translateY(56px);
+}
+
+.zevric-product-page .zevric-shared-hero--product .button--secondary,
+.edge-ai-page-new .zevric-shared-hero--edge-ai .button--secondary {
+  border-color: rgba(255, 255, 255, 0.42);
+  color: #fff;
+}
+
+.edge-ai-page-new .zevric-shared-hero--edge-ai {
+  border-bottom-color: #641217;
+  background: #7b1b20;
+  color: #fff;
+}
+
+.edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__label {
+  color: #ffd0d3;
+}
+
+.edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__copy > p {
+  color: #efd5d7;
+}
+
+.edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual {
+  overflow: hidden;
+  border-left: 0;
+  background: #7b1b20;
+  box-shadow: none;
+}
+
+.edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #7b1b20 0%,
+    rgba(123, 27, 32, 0.84) 3%,
+    rgba(123, 27, 32, 0.18) 10%,
+    transparent 17%,
+    transparent 83%,
+    rgba(123, 27, 32, 0.18) 90%,
+    rgba(123, 27, 32, 0.84) 97%,
+    #7b1b20 100%
+  );
+  pointer-events: none;
+}
+
+.edge-ai-page-new .zevric-shared-hero--edge-ai .button--primary {
+  background: #fff;
+  color: #17191c;
+}
+
+.edge-ai-page-new .zevric-shared-hero--edge-ai .button--primary:hover {
+  background: #f1eeee;
+}
+
+.zevric-product-page .zevric-lineup,
+.edge-ai-page-new .edge-ai-applications {
+  background: #fff;
+}
+
+.zevric-product-page .zevric-platform {
+  background: #f5f5f3;
+}
+
+.edge-ai-page-new .edge-ai-platform-choice {
+  background: #f7f2f1;
+}
+
+.zevric-card:nth-child(3) .zevric-card__metrics > div:nth-child(2),
+.zevric-card:nth-child(4) .zevric-card__metrics > div:nth-child(3) {
+  padding-left: 10px;
+  background: #fff6f6;
+  box-shadow: inset 3px 0 0 var(--brand-red);
+}
+
+.zevric-product-page .zevric-product-bridge__inner {
+  border-color: #6f161b;
+  background: #771b20;
+  color: #fff;
+}
+
+.zevric-product-page .zevric-product-bridge__copy .micro-label,
+.zevric-product-page .zevric-product-bridge__copy h2,
+.zevric-product-page .zevric-product-bridge__copy .text-link {
+  color: #fff;
+}
+
+.zevric-product-page .zevric-product-bridge__copy p {
+  color: #ebcfd1;
+}
+
+.zevric-product-page .zevric-product-bridge__visual {
+  border-left-color: rgba(255, 255, 255, 0.2);
+}
+
+.zevric-product-page .zevric-product-bridge__visual::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(119, 27, 32, 0.34), transparent 58%);
+  pointer-events: none;
+}
+
+/* Canonical Zevric product page ----------------------------------------- */
+.pending-mark {
+  margin-left: 2px;
+  color: var(--brand-red);
+  font-size: 0.78em;
+  font-weight: 800;
+  line-height: 0;
+}
+
+.zevric-comparison {
+  margin-top: 46px;
+  outline: none;
+}
+
+.zevric-comparison__table-scroll {
+  outline: none;
+}
+
+.zevric-comparison__table-scroll:focus-visible {
+  box-shadow: 0 0 0 3px rgba(224, 30, 38, 0.24);
+}
+
+.zevric-comparison h2 {
+  margin: 0 0 20px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  line-height: 1;
+}
+
+.zevric-comparison table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #cbd0d3;
+  background: #fff;
+  font-size: 0.78rem;
+}
+
+.zevric-comparison caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.zevric-comparison th,
+.zevric-comparison td {
+  padding: 13px 14px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.45;
+}
+
+.zevric-comparison thead th {
+  background: #15171a;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.94rem;
+}
+
+.zevric-comparison thead th:not(:first-child) {
+  border-top: 3px solid var(--brand-red);
+}
+
+.zevric-comparison thead small {
+  display: block;
+  margin-top: 4px;
+  color: #aeb4ba;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.zevric-comparison tbody th {
+  width: 172px;
+  background: #eef0f1;
+  color: #555d64;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+}
+
+.zevric-comparison tbody tr:nth-child(even) td {
+  background: #f8f9f9;
+}
+
+.zevric-platform {
+  padding-block: 60px;
+  background: #eef0f1;
+}
+
+.zevric-platform__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  border: 1px solid #cbd0d3;
+  background: #fff;
+}
+
+.zevric-platform__visual {
+  position: relative;
+  min-height: 430px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 46px;
+  border-right: 1px solid #cbd0d3;
+  background: #e2e5e6;
+}
+
+.zevric-platform__visual img {
+  width: min(114%, 660px);
+  max-width: none;
+  max-height: none;
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: normal;
+  filter: drop-shadow(0 22px 16px rgba(16, 17, 20, 0.22));
+}
+
+.zevric-platform__visual span {
+  position: absolute;
+  left: 22px;
+  bottom: 20px;
+  color: #697077;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.zevric-platform__specs {
+  margin: 0;
+}
+
+.zevric-platform__specs > div {
+  min-height: 72px;
+  display: grid;
+  grid-template-columns: 155px minmax(0, 1fr);
+  align-items: center;
+  gap: 26px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.zevric-platform__specs > div:last-child {
+  border-bottom: 0;
+}
+
+.zevric-platform__specs dt,
+.zevric-platform__specs dd {
+  margin: 0;
+}
+
+.zevric-platform__specs dt {
+  color: #747b81;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+}
+
+.zevric-platform__specs dd {
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.zevric-platform .content-qualifier {
+  margin-top: 12px;
+}
+
+.zevric-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 20px;
+  border-top: 1px solid #cbd0d3;
+  border-left: 1px solid #cbd0d3;
+}
+
+.zevric-feature-grid article {
+  min-height: 170px;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-content: start;
+  gap: 10px;
+  padding: 24px;
+  border-right: 1px solid #cbd0d3;
+  border-bottom: 1px solid #cbd0d3;
+  background: #fff;
+}
+
+.zevric-feature-grid article > span {
+  color: var(--brand-red);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.zevric-feature-grid h3 {
+  margin: 0 0 9px;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.zevric-feature-grid p {
+  margin: 0;
+  color: #687078;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.zevric-product-bridge {
+  padding-block: 58px;
+  background: #fff;
+}
+
+.zevric-product-bridge__inner {
+  min-height: 390px;
+  display: grid;
+  grid-template-columns: minmax(310px, 0.66fr) minmax(0, 1.34fr);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #f2f4f4;
+}
+
+.zevric-product-bridge__copy {
+  align-self: center;
+  padding: 44px;
+}
+
+.zevric-product-bridge__copy h2 {
+  max-width: 440px;
+  margin: 16px 0 14px;
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 3.8vw, 3.65rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+
+.zevric-product-bridge__copy p {
+  max-width: 470px;
+  margin: 0 0 24px;
+  color: var(--ink-2);
+}
+
+.zevric-product-bridge__visual {
+  position: relative;
+  min-width: 0;
+  min-height: 390px;
+  overflow: hidden;
+  border-left: 1px solid var(--line);
+}
+
+.zevric-product-bridge__visual img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 62% center;
+}
+
+.zevric-oem-cta {
+  padding-block: 46px;
+  background: #15171a;
+  color: #fff;
+}
+
+.zevric-oem-cta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.zevric-oem-cta h2 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 3.2vw, 3.1rem);
+  line-height: 1;
+}
+
+.zevric-oem-cta p {
+  margin: 0;
+  color: #adb2b8;
+}
+
+/* Edge AI page ----------------------------------------------------------- */
+.edge-ai-principles {
+  padding-block: 46px;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+
+.edge-ai-principles h2 {
+  margin: 0 0 22px;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 3.5vw, 3.3rem);
+  line-height: 1;
+}
+
+.edge-ai-principles__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.edge-ai-principles__grid > div {
+  min-height: 156px;
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-content: center;
+  gap: 5px 12px;
+  padding: 24px;
+  border-right: 1px solid var(--line);
+  background: #fff;
+}
+
+.edge-ai-principles__grid span {
+  grid-row: 1 / 3;
+  color: var(--brand-red);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.edge-ai-principles__grid strong {
+  font-size: 1.02rem;
+}
+
+.edge-ai-principles__grid small {
+  color: #687078;
+  font-size: 0.82rem;
+  line-height: 1.42;
+}
+
+.edge-ai-architecture {
+  padding-block: 64px;
+  background: #15171a;
+  color: #fff;
+}
+
+.edge-ai-architecture .section-intro h2 {
+  color: #fff;
+}
+
+.edge-ai-architecture__flow {
+  display: grid;
+  grid-template-columns: 0.9fr 1.14fr 1.12fr 0.9fr 0.9fr;
+  border-top: 1px solid #464a50;
+  border-left: 1px solid #464a50;
+}
+
+.edge-ai-architecture__flow article {
+  position: relative;
+  min-height: 236px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 22px;
+  border-right: 1px solid #464a50;
+  border-bottom: 1px solid #464a50;
+  background: #1b1e22;
+}
+
+.edge-ai-architecture__flow article::after {
+  content: '→';
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: -15px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 1px solid #5b6067;
+  border-radius: 50%;
+  background: #15171a;
+  color: #ff6870;
+  font-size: 0.75rem;
+}
+
+.edge-ai-architecture__flow article:last-child::after {
+  display: none;
+}
+
+.edge-ai-architecture__flow article > span {
+  color: #8d949b;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+}
+
+.edge-ai-architecture__flow article > strong {
+  max-width: 250px;
+  color: #fff;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.edge-ai-architecture__flow .edge-ai-architecture__zevric {
+  background:
+    radial-gradient(ellipse at 50% 48%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.04) 38%, transparent 64%),
+    #22262b;
+  box-shadow: inset 0 4px 0 var(--brand-red);
+}
+
+.edge-ai-architecture__zevric img {
+  width: 100%;
+  max-height: 128px;
+  object-fit: contain;
+  filter: contrast(1.08) drop-shadow(0 16px 12px rgba(0, 0, 0, 0.38));
+}
+
+.edge-ai-architecture__footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  align-items: center;
+  gap: 36px;
+  padding-top: 16px;
+}
+
+.edge-ai-architecture__optional {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #c7cbd0;
+}
+
+.edge-ai-architecture__optional span {
+  flex: 0 0 auto;
+  padding: 6px 8px;
+  border: 1px solid #5a6067;
+  color: #ff777e;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+}
+
+.edge-ai-architecture__optional strong {
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.edge-ai-architecture__footer > p {
+  margin: 0;
+  color: #8e949a;
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+.edge-ai-applications {
+  padding-block: 64px;
+  background: #eef0f1;
+}
+
+.edge-ai-application-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.edge-ai-application-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #cbd0d3;
+  background: #fff;
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.edge-ai-application-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--brand-red);
+}
+
+.edge-ai-application-card:focus-visible {
+  outline: 3px solid rgba(224, 30, 38, 0.34);
+  outline-offset: 3px;
+}
+
+.edge-ai-application-card > img {
+  width: 100%;
+  height: 210px;
+  display: block;
+  object-fit: cover;
+}
+
+.edge-ai-application-card > div {
+  min-height: 170px;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-content: start;
+  gap: 7px 10px;
+  padding: 22px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 255, 255, 0.88) 76%, rgba(255, 255, 255, 0.66) 100%);
+}
+
+.edge-ai-page-new .edge-ai-application-card > div {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 255, 255, 0.88) 76%, rgba(255, 255, 255, 0.66) 100%);
+}
+
+.edge-ai-application-card div > span {
+  grid-row: 1 / 4;
+  color: var(--brand-red);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+
+.edge-ai-application-card h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  line-height: 1.05;
+}
+
+.edge-ai-application-card p {
+  margin: 0;
+  color: #646b72;
+  font-size: 0.86rem;
+  line-height: 1.48;
+}
+
+.edge-ai-application-card div > strong {
+  align-self: end;
+  margin-top: 12px;
+  color: var(--ink);
+  font-size: 0.76rem;
+}
+
+.edge-ai-application-card div > strong i {
+  margin-left: 7px;
+  color: var(--brand-red);
+  font-style: normal;
+}
+
+.edge-ai-platform-choice {
+  padding-block: 54px;
+  background: #fff;
+}
+
+.edge-ai-platform-choice__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  align-items: start;
+  gap: 76px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.edge-ai-platform-choice h2 {
+  max-width: 560px;
+  margin: 16px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 3.5vw, 3.4rem);
+  line-height: 1;
+}
+
+.edge-ai-platform-choice__inner > div:last-child {
+  max-width: 680px;
+}
+
+.edge-ai-platform-choice p {
+  margin: 0 0 24px;
+  color: var(--ink-2);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 980px) {
+  .zevric-shared-hero__copy.edge-surface-motif::before {
+    inset: -72px -24px 0;
+  }
+
+  .zevric-product-page .zevric-product-hero .product-story-hero__visual--contain {
+    padding: 112px 42px 86px;
+  }
+
+  .zevric-product-page .zevric-product-hero .product-story-hero__media-badge {
+    top: 8px;
+    right: 14px;
+    width: 170px;
+    max-width: 34%;
+  }
+
+  .zevric-product-page .zevric-shared-hero--product .zevric-shared-hero__visual {
+    min-height: 0;
+    aspect-ratio: 16 / 9.4;
+  }
+
+  .zevric-product-page .zevric-shared-hero--product .zevric-shared-hero__visual > img {
+    max-height: 390px;
+    transform: translateY(46px);
+  }
+
+  .zevric-product-page .zevric-shared-hero--product .zevric-shared-hero__visual,
+  .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    box-shadow: none;
+  }
+
+  .zevric-platform__layout,
+  .zevric-product-bridge__inner,
+  .edge-ai-platform-choice__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .zevric-platform__visual,
+  .zevric-product-bridge__visual {
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .zevric-product-bridge__visual {
+    grid-row: 1;
+  }
+
+  .zevric-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .edge-ai-principles__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .edge-ai-architecture__flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .edge-ai-architecture__flow article:nth-child(2)::after,
+  .edge-ai-architecture__flow article:nth-child(4)::after {
+    top: auto;
+    right: auto;
+    bottom: -15px;
+    left: 50%;
+    display: grid;
+    transform: translateX(-50%) rotate(90deg);
+  }
+
+  .edge-ai-architecture__flow article:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .edge-ai-application-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .edge-ai-platform-choice__inner {
+    gap: 24px;
+  }
+
+  .edge-ai-architecture__footer {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 760px) {
+  .zevric-product-hero--blueprint .product-story-hero__copy::before {
+    inset: -60px -18px 0;
+    opacity: 0.76;
+  }
+
+  .zevric-product-page .zevric-product-hero .product-story-hero__visual--contain {
+    min-height: 350px;
+    padding: 96px 18px 46px;
+  }
+
+  .zevric-product-page .zevric-product-hero .product-story-hero__media-badge {
+    top: 5px;
+    right: 10px;
+    width: 142px;
+    max-width: 42%;
+  }
+
+  .zevric-product-page .zevric-product-hero .product-story-hero__caption,
+  .zevric-product-page .zevric-product-hero .product-story-hero__index {
+    bottom: 14px;
+  }
+}
+
+@media (max-width: 680px) {
+  .edge-surface-motif::before {
+    opacity: 0.76;
+  }
+
+  .zevric-product-page .zevric-shared-hero--product .zevric-shared-hero__visual {
+    aspect-ratio: 4 / 3.1;
+  }
+
+  .zevric-product-page .zevric-shared-hero--product .zevric-shared-hero__visual > img {
+    transform: translateY(38px);
+  }
+
+  .edge-ai-architecture__flow article:last-child {
+    grid-column: auto;
+  }
+
+  .edge-ai-page-new .edge-ai-application-card > div {
+    width: 72%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.93) 74%, rgba(255, 255, 255, 0.78) 100%);
+  }
+
+  .launch-strip strong {
+    display: inline-flex;
+    margin-left: auto;
+    font-size: 0;
+  }
+
+  .launch-strip strong i {
+    font-size: 0.88rem;
+  }
+
+  .zevric-shared-hero__actions .button {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .edge-launch-band__actions {
+    margin-top: 20px;
+  }
+
+  .zevric-platform,
+  .zevric-product-bridge,
+  .edge-ai-architecture,
+  .edge-ai-applications,
+  .edge-ai-platform-choice {
+    padding-block: 38px;
+  }
+
+  .zevric-comparison {
+    margin-top: 34px;
+  }
+
+  .zevric-comparison__table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-color: var(--brand-red) #d9dddf;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .zevric-comparison__table-scroll::-webkit-scrollbar {
+    height: 7px;
+  }
+
+  .zevric-comparison__table-scroll::-webkit-scrollbar-track {
+    background: #d9dddf;
+  }
+
+  .zevric-comparison__table-scroll::-webkit-scrollbar-thumb {
+    background: var(--brand-red);
+  }
+
+  .zevric-comparison table {
+    min-width: 880px;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .zevric-comparison thead th:first-child,
+  .zevric-comparison tbody th {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    width: 136px;
+    min-width: 136px;
+    box-shadow: 5px 0 10px rgba(21, 23, 26, 0.12);
+  }
+
+  .zevric-comparison thead th:first-child {
+    z-index: 3;
+  }
+
+  .zevric-comparison tbody th {
+    background: #eef0f1;
+    color: #555d64;
+  }
+
+  .zevric-comparison th,
+  .zevric-comparison td {
+    padding: 12px 13px;
+  }
+
+  .zevric-platform__visual {
+    min-height: 270px;
+    padding: 34px 20px 46px;
+  }
+
+  .zevric-platform__specs > div {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 5px;
+    padding: 14px 16px;
+  }
+
+  .zevric-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .zevric-feature-grid article {
+    min-height: 0;
+    padding: 19px 16px;
+  }
+
+  .zevric-product-bridge__copy {
+    padding: 28px 22px;
+  }
+
+  .zevric-product-bridge__visual {
+    min-height: 250px;
+  }
+
+  .zevric-product-page .zevric-product-bridge__visual::after {
+    background: linear-gradient(180deg, transparent 48%, rgba(119, 27, 32, 0.28));
+  }
+
+  .zevric-oem-cta {
+    padding-block: 36px;
+  }
+
+  .zevric-oem-cta__inner {
+    display: grid;
+    gap: 22px;
+  }
+
+  .edge-ai-principles {
+    padding-block: 34px;
+  }
+
+  .edge-ai-principles__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edge-ai-principles__grid > div {
+    min-height: 100px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .edge-ai-principles__grid > div:last-child {
+    border-bottom: 0;
+  }
+
+  .edge-ai-architecture__flow,
+  .edge-ai-application-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edge-ai-architecture__flow article {
+    min-height: 154px;
+  }
+
+  .edge-ai-architecture__flow article::after,
+  .edge-ai-architecture__flow article:nth-child(2)::after,
+  .edge-ai-architecture__flow article:nth-child(4)::after {
+    top: auto;
+    right: 18px;
+    bottom: -15px;
+    left: auto;
+    display: grid;
+    transform: rotate(90deg);
+  }
+
+  .edge-ai-architecture__flow article:last-child::after {
+    display: none;
+  }
+
+  .edge-ai-architecture__zevric img {
+    max-height: 112px;
+  }
+
+  .edge-ai-architecture__optional {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .edge-ai-application-card > img {
+    height: 190px;
+  }
+
+  .edge-ai-application-card > div {
+    min-height: 174px;
+    padding: 18px;
+  }
+}

@@ -1,0 +1,24 @@
+/* Final sections must never remain trapped in a motion-hidden state. The
+   page footer limits their available intersection range at maximum scroll. */
+.site-page > section:last-of-type :is(
+  .home-motion-item,
+  .products-motion-item,
+  .camera-motion-item,
+  .zevric-motion-item,
+  .server-motion-item,
+  .iot-motion-item,
+  .edge-motion-item,
+  .solutions-motion-item,
+  .about-motion-item,
+  .contact-motion-item
+) {
+  opacity: 1 !important;
+  visibility: visible !important;
+  clip-path: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+.site-page > section:last-of-type .button:hover {
+  transform: translateY(-2px) !important;
+}
