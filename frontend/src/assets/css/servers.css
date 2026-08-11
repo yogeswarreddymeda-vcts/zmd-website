@@ -207,9 +207,9 @@
 #server-models .camera-model-card__availability {
   position: absolute;
   z-index: 3;
-  inset: 50% auto auto 50%;
-  min-width: 132px;
-  padding: 11px 18px;
+  inset: 14px 14px auto auto;
+  min-width: 0;
+  padding: 8px 12px;
   border: 1px solid rgba(255, 255, 255, 0.42);
   background: rgba(15, 21, 27, 0.92);
   color: #fff;
@@ -219,16 +219,17 @@
   letter-spacing: 0.1em;
   text-align: center;
   text-transform: uppercase;
-  opacity: 0;
+  white-space: nowrap;
+  opacity: 1;
   pointer-events: none;
-  transform: translate3d(-50%, calc(-50% + 14px), 0);
-  transition: opacity 420ms ease, transform 650ms var(--server-motion-ease);
+  transform: none;
+  transition: none;
 }
 
 #server-models .camera-model-card--availability:hover .camera-model-card__availability,
 #server-models .camera-model-card--availability:focus-visible .camera-model-card__availability {
   opacity: 1;
-  transform: translate3d(-50%, -50%, 0);
+  transform: none;
 }
 
 .server-motion-ready .server-storage-profiles h3.server-motion-item,

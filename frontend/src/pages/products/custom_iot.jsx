@@ -75,15 +75,16 @@ export default function CustomIoTPage() {
     <div className="site-page custom-iot-page" ref={motionRoot}>
       <ProductStoryHero
         slides={[
-          { navigationLabel: 'Safety Band', image: assets.safetyBandContext, imageAlt: 'Industrial worker wearing an illustrative ZMD Safety Band', caption: 'Safety Band configuration' },
-          { navigationLabel: 'Parking Sensor', image: assets.parkingSensorContextV2, imageAlt: 'ZMD Parking Sensor installed near a parked vehicle', caption: 'Parking Sensor configuration' },
+          { navigationLabel: 'Safety Band', image: assets.safetyBandContext, imageAlt: 'Industrial worker wearing an illustrative ZMD Safety Band', caption: 'Safety Band configuration', visualTone: 'iot-safety' },
+          { navigationLabel: 'Parking Sensor', image: assets.parkingSensorContextV2, imageAlt: 'ZMD Parking Sensor installed near a parked vehicle', caption: 'Parking Sensor configuration', visualTone: 'iot-parking' },
         ]}
         title="Custom IoT Products"
         body="Available Safety Band and Parking Sensor products, plus custom sensing-hardware programs for OEM portfolios."
-        className="iot-product-hero"
+        className="iot-product-hero camera-story-hero"
         autoAdvanceMs={AUTO_CAROUSEL_INTERVAL}
         primaryAction={{ label: 'View products', to: '/products/custom-iot#available-products' }}
         secondaryAction={{ label: 'Discuss an IoT product', to: '/contact' }}
+        tone="navy"
       />
       <ProductHighlights items={[
         ['Safety Band', 'Environmental and wearable sensing'],

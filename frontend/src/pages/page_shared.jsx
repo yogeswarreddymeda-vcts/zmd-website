@@ -127,6 +127,7 @@ export function ZevricProductGrid() {
                   {product.discreteGpu && <small>Peak: <SpecValue value={product.comparison.gpuPeak} /></small>}
                 </dd>
               </div>
+              <div><dt>Accelerator</dt><dd><SpecValue value={product.comparison.accelerator} /></dd></div>
               <div><dt>Cooling</dt><dd><SpecValue value={product.comparison.cooling} /></dd></div>
             </dl>
           </div>
@@ -154,6 +155,7 @@ export const zevricComparisonRows = [
   ['SoC peak', 'soc'],
   ['Discrete GPU', 'gpu'],
   ['Discrete GPU peak', 'gpuPeak'],
+  ['Accelerator', 'accelerator'],
   ['Cooling', 'cooling'],
   ['Operating temperature', 'temperature'],
   ['Power input', 'power'],

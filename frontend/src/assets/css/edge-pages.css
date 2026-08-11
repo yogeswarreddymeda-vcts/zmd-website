@@ -462,6 +462,43 @@
   letter-spacing: 0.05em;
 }
 
+.zevric-comparison__blurred-content {
+  display: inline-block;
+  max-width: 100%;
+  filter: blur(3px);
+  opacity: 0.72;
+  user-select: none;
+  pointer-events: none;
+}
+
+.zevric-comparison__unavailable-cell {
+  position: relative;
+  overflow: hidden;
+}
+
+.zevric-comparison__unavailable-cell::after {
+  content: 'Coming soon';
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(11, 11, 12, 0.72);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  opacity: 0;
+  transition: opacity 240ms ease;
+  pointer-events: none;
+}
+
+.zevric-comparison__unavailable-cell:hover::after {
+  opacity: 1;
+}
+
 .zevric-comparison tbody th {
   width: 172px;
   background: #eef0f1;

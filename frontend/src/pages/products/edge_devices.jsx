@@ -111,15 +111,28 @@ export default function EdgeDevicesPage() {
               <table>
                 <caption>Comparison of Zevric Compact Edge System configurations</caption>
                 <thead>
-                  <tr><th scope="col">Specification</th>{edgeProducts.map((product) => <th scope="col" key={product.slug}>{product.name}<small>{product.sku}</small></th>)}</tr>
+                  <tr>
+                    <th scope="col">Specification</th>
+                    {edgeProducts.map((product) => (
+                      <th scope="col" key={product.slug}>
+                        {product.name}<small>{product.sku}</small>
+                      </th>
+                    ))}
+                  </tr>
                 </thead>
                 <tbody>
                   {zevricComparisonRows.map(([label, key]) => (
                     <tr key={key}>
                       <th scope="row">{label}</th>
-                      {edgeProducts.map((product) => (
-                        <td data-label={product.name} key={product.slug}>
-                          <SpecValue value={key === 'processor' ? product.processor : product.comparison[key]} />
+                      {edgeProducts.map((product, productIndex) => (
+                        <td
+                          className={productIndex === 0 || productIndex === 2 ? 'zevric-comparison__unavailable-cell' : undefined}
+                          data-label={product.name}
+                          key={product.slug}
+                        >
+                          <span className={productIndex === 0 || productIndex === 2 ? 'zevric-comparison__blurred-content' : undefined}>
+                            <SpecValue value={key === 'processor' ? product.processor : product.comparison[key]} />
+                          </span>
                         </td>
                       ))}
                     </tr>

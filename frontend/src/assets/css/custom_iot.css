@@ -256,6 +256,74 @@
   82%, 100% { opacity: 0; transform: translate3d(100%, 0, 0); }
 }
 
+/* Keep the supplied wide product scenes legible inside narrow mobile frames. */
+@media (max-width: 760px) {
+  .custom-iot-page {
+    overflow-x: clip;
+  }
+
+  .custom-iot-page .iot-product-hero .product-story-hero__visual--iot-safety img {
+    object-position: 75% center;
+  }
+
+  .custom-iot-page .iot-product-hero .product-story-hero__visual--iot-parking img {
+    object-position: 70% center;
+  }
+
+  .custom-iot-page .custom-iot-model-card {
+    width: 100%;
+    min-width: 0;
+    grid-template-rows: clamp(240px, 64vw, 278px) auto;
+  }
+
+  .custom-iot-page.iot-motion-ready .custom-iot-model-card.iot-motion-item:not(.is-iot-motion-visible) {
+    clip-path: inset(8% 0 0 0);
+    transform: translate3d(0, 28px, 0);
+  }
+
+  .custom-iot-page.iot-motion-ready .custom-iot-model-card.iot-motion-item.is-iot-motion-visible {
+    clip-path: inset(0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  .custom-iot-page .custom-iot-model-card .camera-model-card__visual {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    padding: 0;
+    background: #111317;
+  }
+
+  .custom-iot-page .custom-iot-model-card .camera-model-card__visual > img {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    filter: none;
+  }
+
+  .custom-iot-page #safety-band .camera-model-card__visual > img {
+    object-position: 75% center;
+  }
+
+  .custom-iot-page #parking-sensor .camera-model-card__visual > img {
+    object-position: 70% center;
+  }
+}
+
+@media (max-width: 430px) {
+  .custom-iot-page .iot-product-hero .product-story-hero__visual--iot-safety img,
+  .custom-iot-page #safety-band .camera-model-card__visual > img {
+    object-position: 78% center;
+  }
+
+  .custom-iot-page .iot-product-hero .product-story-hero__visual--iot-parking img,
+  .custom-iot-page #parking-sensor .camera-model-card__visual > img {
+    object-position: 72% center;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .custom-iot-page,
   .custom-iot-page *,
@@ -271,5 +339,68 @@
     opacity: 1 !important;
     clip-path: none !important;
     transform: none !important;
+  }
+}
+
+/* Mobile product cards must stay in the document flow. Their desktop reveal
+   travels horizontally, which can leave a narrow viewport clipped while the
+   intersection state changes. Motion is intentionally disabled for only these
+   two cards on phones. */
+@media (max-width: 760px) {
+  .custom-iot-page #available-products .site-container,
+  .custom-iot-page #available-products .custom-iot-model-grid {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .custom-iot-page #available-products .custom-iot-model-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .custom-iot-page.iot-motion-ready #available-products .custom-iot-model-card,
+  .custom-iot-page.iot-motion-ready #available-products .custom-iot-model-card.iot-motion-item,
+  .custom-iot-page.iot-motion-ready #available-products .custom-iot-model-card.iot-motion-item:not(.is-iot-motion-visible),
+  .custom-iot-page.iot-motion-ready #available-products .custom-iot-model-card.is-iot-motion-visible {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    opacity: 1 !important;
+    visibility: visible !important;
+    clip-path: none !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+    will-change: auto;
+  }
+
+  .custom-iot-page.iot-motion-ready #available-products .custom-iot-model-card .camera-model-card__visual,
+  .custom-iot-page.iot-motion-ready #available-products .custom-iot-model-card .camera-model-card__visual > img,
+  .custom-iot-page.iot-motion-ready #available-products .custom-iot-model-card .camera-model-card__body,
+  .custom-iot-page.iot-motion-ready #available-products .custom-iot-model-card .camera-model-card__body > *,
+  .custom-iot-page.iot-motion-ready #available-products .custom-iot-model-card.is-iot-motion-visible .camera-model-card__body > *,
+  .custom-iot-page.iot-motion-ready #available-products .custom-iot-model-card.is-iot-motion-visible .camera-model-card__visual > img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    clip-path: none !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .custom-iot-page #available-products .custom-iot-model-card .camera-model-card__body {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: 18px 20px 22px;
+    overflow: visible;
+  }
+
+  .custom-iot-page #available-products .custom-iot-model-card :is(h3, p, .camera-model-card__meta) {
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 }

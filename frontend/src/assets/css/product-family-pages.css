@@ -8,6 +8,21 @@
   overflow: hidden;
 }
 
+/* Specification rows briefly extend past their wrapper during page-entry
+   motion. Keep responsive horizontal scrolling available without flashing an
+   extra scrollbar during initial render or refresh. */
+.camera-specification-table {
+  scrollbar-gutter: auto !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none;
+}
+
+.camera-specification-table::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
 .home-page .home-hero__copy {
   position: relative;
   isolation: isolate;

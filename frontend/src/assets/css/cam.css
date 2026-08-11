@@ -501,8 +501,8 @@
     min-height: 0;
   }
 
-  .camera-story-hero .product-story-hero__visual img {
-    object-position: 72% center;
+  .camera-story-hero.product-story-hero--autoplay .product-story-hero__visual img {
+    object-position: 84% center;
   }
 
   .camera-story-hero .product-story-hero__visual::after {
