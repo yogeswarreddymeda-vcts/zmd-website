@@ -1,79 +1,60 @@
 import cameraDual from '../assets/images/cam/duallens_ourmodel.webp';
-import cameraSingle from '../assets/images/cam/singlelens_ourmodel.webp';
 import cameraHeadMount from '../assets/images/cam/headmountcam.webp';
-import cameraBullet from '../assets/images/cam/bulletcam-clean-v3.jpg';
-import cameraBulletContext from '../assets/images/cam/bullet-context-v2.jpg';
-import cameraHeadMountContext from '../assets/images/cam/headmount-context-v2.jpg';
-import cameraContext from '../assets/images/cam/duallens.webp';
-import cameraSingleContext from '../assets/images/cam/singlelens.webp';
+import cameraBullet from '../assets/images/cam/bulletcam-clean-v3.webp';
 import cameraFamilyContext from '../assets/images/cam/final_banner.webp';
 import cameraApplicationAccess from '../assets/images/cam/facrecog.webp';
 import cameraApplicationTraffic from '../assets/images/cam/licp.webp';
 import cameraApplicationFire from '../assets/images/cam/firede.webp';
 import cameraApplicationIndustrial from '../assets/images/cam/ppever.webp';
-import cameraHeroDualLens from '../assets/images/cam/camera-hero-dual-lens-panorama.png';
-import cameraHeroBullet from '../assets/images/cam/camera-hero-bullet-perimeter.png';
-import cameraHeroHeadMount from '../assets/images/cam/camera-hero-head-mount-factory.png';
-import edgeHero from '../assets/images/edge-devices/edge_hardware_hero.png';
+import cameraHeroDualLens from '../assets/images/cam/camera-hero-dual-lens-panorama.webp';
+import cameraHeroBullet from '../assets/images/cam/camera-hero-bullet-perimeter.webp';
+import cameraHeroHeadMount from '../assets/images/cam/camera-hero-head-mount-factory.webp';
+import edgeHero from '../assets/images/edge-devices/edge_hardware_hero.webp';
 import edgeSmall from '../assets/images/edge-devices/edge_box_small.webp';
-import edgePro from '../assets/images/edge-devices/edge_box_pro.webp';
-import edgeUltra from '../assets/images/edge-devices/edge_box_ultra.webp';
-import edgeFlex from '../assets/images/edge-devices/edge_box_flex.webp';
-import edgeSharedPlatform from '../assets/images/edge-devices/zevric-shared-platform-transparent.png';
-import edgeHeroFrontStudio from '../assets/images/edge-devices/zevric-hero-front-studio.png';
-import edgeHeroRearStudio from '../assets/images/edge-devices/zevric-hero-rear-studio.png';
-import edgeIndustrialAngle from '../assets/images/edge-devices/zevric-industrial-angle.webp';
+import edgeSharedPlatform from '../assets/images/edge-devices/zevric-shared-platform-transparent.webp';
+import edgeHeroFrontStudio from '../assets/images/edge-devices/zevric-hero-front-studio.webp';
+import edgeHeroRearStudio from '../assets/images/edge-devices/zevric-hero-rear-studio.webp';
 import intelCoreUltraBadges from '../assets/images/edge-devices/intel-core-ultra-series-2-badges.webp';
-import serverHero from '../assets/images/servers/server_chassis.png';
-import serverHeroFront from '../assets/images/servers/server-hero-front.png';
-import serverHeroInternal from '../assets/images/servers/server-hero-internal.png';
-import serverHeroRear from '../assets/images/servers/server-hero-rear.png';
+import serverHero from '../assets/images/servers/server_chassis.webp';
+import serverHeroFront from '../assets/images/servers/server-hero-front.webp';
+import serverHeroInternal from '../assets/images/servers/server-hero-internal.webp';
+import serverHeroRear from '../assets/images/servers/server-hero-rear.webp';
 import serverBlueprintFront from '../assets/images/servers/blueprint_front.webp';
 import serverBlueprintInternal from '../assets/images/servers/blueprint_internal.webp';
 import serverBlueprintRear from '../assets/images/servers/blueprint_rear.webp';
-import serverModelRS240 from '../assets/images/servers/server-format-rs240.png';
-import serverModel1U from '../assets/images/servers/server-format-1u.png';
-import serverModel2U from '../assets/images/servers/server-format-2u.png';
-import serverModel4U from '../assets/images/servers/server-format-4u.png';
-import parkingSensor from '../assets/images/custom-iot/parking-sensor.jpeg';
-import parkingSensorContext from '../assets/images/custom-iot/parking-sensor-context.jpg';
-import safetyBandContext from '../assets/images/custom-iot/safety-band-context-v1.jpg';
-import parkingSensorContextV2 from '../assets/images/custom-iot/parking-sensor-context-v2.jpg';
-import productLineup from '../assets/images/about/about-hero-portfolio-dark.png';
-import physicalAIConnectedStory from '../assets/images/about/about-connected-hardware-foundation.png';
-import physicalAIHardwareScene from '../assets/images/shared/physical-ai/physical-ai-hardware-scene-v2.jpg';
-import ecosystemSensors from '../assets/images/shared/physical-ai/stages/sensors.png';
-import ecosystemEdge from '../assets/images/shared/physical-ai/stages/edge.png';
-import ecosystemInfrastructure from '../assets/images/shared/physical-ai/stages/infrastructure.png';
-import ecosystemSoftwareIntegration from '../assets/images/shared/physical-ai/stages/software-integration.png';
-import ecosystemOperationsAction from '../assets/images/shared/physical-ai/stages/operations-workflows-v1.png';
-import ecosystemActuation from '../assets/images/shared/physical-ai/stages/operations-action.png';
-import homePhysicalAISense from '../assets/images/shared/physical-ai/stages/home-sense.png';
-import homePhysicalAILocalCompute from '../assets/images/shared/physical-ai/stages/home-local-compute.png';
-import homePhysicalAIDatacenterCompute from '../assets/images/shared/physical-ai/stages/home-datacenter-compute.png';
-import homePhysicalAIApplications from '../assets/images/shared/physical-ai/stages/home-intelligent-applications.png';
-import homePhysicalAIOperations from '../assets/images/shared/physical-ai/stages/home-connected-operations.png';
-import cameraStudio from '../assets/images/shared/product-family/camera-studio-v2.jpg';
-import serverStudio from '../assets/images/shared/product-family/server-studio-v1.jpg';
-import parkingSensorStudio from '../assets/images/shared/product-family/parking-sensor-studio-v1.jpg';
-import homeEdgeIndustrial from '../assets/images/home/home-edge-industrial-v1.jpg';
-import homeZevricIndustrialEdge from '../assets/images/home/home-zevric-industrial-edge.png';
-import homeCameraIndustrial from '../assets/images/home/home-camera-mounted-v1.jpg';
-import homeServerIndustrial from '../assets/images/home/home-server-context-v2.jpg';
-import homeIotIndustrial from '../assets/images/home/home-iot-context-v2.jpg';
-import surveillanceSolution from '../assets/images/solutions/cards/surveillance-solution.jpeg';
-import industrialAISolution from '../assets/images/solutions/cards/industrial-ai-solution.jpeg';
-import retailSolution from '../assets/images/solutions/cards/retail-solution.jpeg';
+import serverModelRS240 from '../assets/images/servers/server-format-rs240.webp';
+import serverModel1U from '../assets/images/servers/server-format-1u.webp';
+import serverModel2U from '../assets/images/servers/server-format-2u.webp';
+import serverModel4U from '../assets/images/servers/server-format-4u.webp';
+import parkingSensorContext from '../assets/images/custom-iot/parking-sensor-context.webp';
+import safetyBandContext from '../assets/images/custom-iot/safety-band-context-v1.webp';
+import parkingSensorContextV2 from '../assets/images/custom-iot/parking-sensor-context-v2.webp';
+import productLineup from '../assets/images/about/about-hero-portfolio-dark.webp';
+import physicalAIConnectedStory from '../assets/images/about/about-connected-hardware-foundation.webp';
+import physicalAIHardwareScene from '../assets/images/shared/physical-ai/physical-ai-hardware-scene-v2.webp';
+import homePhysicalAISense from '../assets/images/shared/physical-ai/stages/home-sense.webp';
+import homePhysicalAILocalCompute from '../assets/images/shared/physical-ai/stages/home-local-compute.webp';
+import homePhysicalAIDatacenterCompute from '../assets/images/shared/physical-ai/stages/home-datacenter-compute.webp';
+import homePhysicalAIApplications from '../assets/images/shared/physical-ai/stages/home-intelligent-applications.webp';
+import homePhysicalAIOperations from '../assets/images/shared/physical-ai/stages/home-connected-operations.webp';
+import cameraStudio from '../assets/images/shared/product-family/camera-studio-v2.webp';
+import parkingSensorStudio from '../assets/images/shared/product-family/parking-sensor-studio-v1.webp';
+import homeEdgeIndustrial from '../assets/images/home/home-edge-industrial-v1.webp';
+import homeZevricIndustrialEdge from '../assets/images/home/home-zevric-industrial-edge.webp';
+import homeCameraIndustrial from '../assets/images/home/home-camera-mounted-v1.webp';
+import homeServerIndustrial from '../assets/images/home/home-server-context-v2.webp';
+import homeIotIndustrial from '../assets/images/home/home-iot-context-v2.webp';
+import industrialAISolution from '../assets/images/solutions/cards/industrial-ai-solution.webp';
 import edgeAIApplicationVideo from '../assets/images/edge-ai/applications/video-intelligence.webp';
 import edgeAIApplicationIndustrial from '../assets/images/edge-ai/applications/industrial-vision.webp';
 import edgeAIApplicationHealthcare from '../assets/images/edge-ai/applications/healthcare-operations.webp';
 import edgeAIApplicationSite from '../assets/images/edge-ai/applications/site-intelligence.webp';
 import solutionsHero from '../assets/images/solutions/solhero.webp';
-import securitySolution from '../assets/images/solutions/security-perimeter-v1.jpg';
-import citiesSolution from '../assets/images/solutions/smart-cities-mobility-v1.jpg';
-import airportSolution from '../assets/images/solutions/airport-operations-v1.jpg';
+import securitySolution from '../assets/images/solutions/security-perimeter-v1.webp';
+import citiesSolution from '../assets/images/solutions/smart-cities-mobility-v1.webp';
+import airportSolution from '../assets/images/solutions/airport-operations-v1.webp';
 import industrialDetail from '../assets/images/solutions/detail/industrial-operations.webp';
-import healthcareDetail from '../assets/images/solutions/detail/healthcare-operations-v2.jpg';
+import healthcareDetail from '../assets/images/solutions/detail/healthcare-operations-v2.webp';
 import retailDetail from '../assets/images/solutions/detail/retail-operations.webp';
 import roadmapDrone from '../assets/images/roadmap/drone.webp';
 import roadmapDeliveryRobot from '../assets/images/roadmap/delivery-robot.webp';
@@ -639,13 +620,8 @@ export const metadata = {
 
 export const assets = {
   cameraDual,
-  cameraSingle,
   cameraHeadMount,
   cameraBullet,
-  cameraBulletContext,
-  cameraHeadMountContext,
-  cameraContext,
-  cameraSingleContext,
   cameraFamilyContext,
   cameraApplicationAccess,
   cameraApplicationTraffic,
@@ -656,13 +632,9 @@ export const assets = {
   cameraHeroHeadMount,
   edgeHero,
   edgeSmall,
-  edgePro,
-  edgeUltra,
-  edgeFlex,
   edgeSharedPlatform,
   edgeHeroFrontStudio,
   edgeHeroRearStudio,
-  edgeIndustrialAngle,
   intelCoreUltraBadges,
   serverHero,
   serverHeroFront,
@@ -675,35 +647,25 @@ export const assets = {
   serverModel1U,
   serverModel2U,
   serverModel4U,
-  parkingSensor,
   parkingSensorContext,
   safetyBandContext,
   parkingSensorContextV2,
   productLineup,
   physicalAIConnectedStory,
   physicalAIHardwareScene,
-  ecosystemSensors,
-  ecosystemEdge,
-  ecosystemInfrastructure,
-  ecosystemSoftwareIntegration,
-  ecosystemOperationsAction,
-  ecosystemActuation,
   homePhysicalAISense,
   homePhysicalAILocalCompute,
   homePhysicalAIDatacenterCompute,
   homePhysicalAIApplications,
   homePhysicalAIOperations,
   cameraStudio,
-  serverStudio,
   parkingSensorStudio,
   homeEdgeIndustrial,
   homeZevricIndustrialEdge,
   homeCameraIndustrial,
   homeServerIndustrial,
   homeIotIndustrial,
-  surveillanceSolution,
   industrialAISolution,
-  retailSolution,
   edgeAIApplicationVideo,
   edgeAIApplicationIndustrial,
   edgeAIApplicationHealthcare,

@@ -10,7 +10,7 @@
   background-color: #080b0e !important;
   background-image:
     linear-gradient(90deg, rgba(5, 8, 11, 0.76) 0%, rgba(5, 8, 11, 0.48) 42%, rgba(5, 8, 11, 0.24) 72%, rgba(5, 8, 11, 0.32) 100%),
-    url('../images/contact/partner-with-zmd-banner.png') !important;
+    url('../images/contact/partner-with-zmd-banner.webp') !important;
   background-repeat: no-repeat !important;
   background-position: center center !important;
   background-size: cover !important;
@@ -32,7 +32,7 @@
   .contact-page .contact-hero.surface-band--ink {
     background-image:
       linear-gradient(180deg, rgba(5, 8, 11, 0.5) 0%, rgba(5, 8, 11, 0.88) 62%, rgba(5, 8, 11, 0.97) 100%),
-      url('../images/contact/partner-with-zmd-banner.png') !important;
+      url('../images/contact/partner-with-zmd-banner.webp') !important;
     background-position: 58% center !important;
   }
 }

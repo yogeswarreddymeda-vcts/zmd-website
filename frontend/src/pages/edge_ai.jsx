@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowButton, SectionIntro, ZevricHero, edgeAIApplications, keepFinalSectionVisibleAtPageEnd } from './page_shared';
-import senseImage from '../assets/images/edge-ai/applications/unnamed.png';
-import localComputeImage from '../assets/images/edge-ai/applications/Branded black ZEVRIC compute box.png';
-import applicationsImage from '../assets/images/edge-ai/applications/White enterprise AI analytics display.png';
-import operationalIntelligenceImage from '../assets/images/edge-ai/applications/Modern operational intelligence workstation.png';
-import connectedOperationsImage from '../assets/images/edge-ai/applications/Autonomous mobile robot with collaborative arm.png';
-import datacenterImage from '../assets/images/edge-ai/applications/Four black enterprise server racks.png';
+import senseImage from '../assets/images/edge-ai/applications/unnamed.webp';
+import localComputeImage from '../assets/images/edge-ai/applications/Branded black ZEVRIC compute box.webp';
+import applicationsImage from '../assets/images/edge-ai/applications/White enterprise AI analytics display.webp';
+import operationalIntelligenceImage from '../assets/images/edge-ai/applications/Modern operational intelligence workstation.webp';
+import connectedOperationsImage from '../assets/images/edge-ai/applications/Autonomous mobile robot with collaborative arm.webp';
+import datacenterImage from '../assets/images/edge-ai/applications/Four black enterprise server racks.webp';
 
 const hardwareStages = [
   {

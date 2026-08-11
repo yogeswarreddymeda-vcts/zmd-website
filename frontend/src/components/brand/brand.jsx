@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/shared/zmd-logo-light.webp';
-import logoDark from '../../assets/images/shared/zmd-logo-dark.png';
+import logoDark from '../../assets/images/shared/zmd-logo-dark.webp';
 
 export default function Brand({ footer = false }) {
   return (

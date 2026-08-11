@@ -1,7 +1,7 @@
 /* eslint-disable react/only-export-components -- shared page data, helpers, and reusable JSX intentionally live together */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import edgeAIHeroImage from '../assets/images/edge-ai/heroimage_ai.png';
+import edgeAIHeroImage from '../assets/images/edge-ai/heroimage_ai.webp';
 import {
   assets,
   cameraProducts,

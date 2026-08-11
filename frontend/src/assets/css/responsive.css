@@ -30,7 +30,7 @@
     background:
       linear-gradient(0deg, rgba(14, 17, 20, 0.98) 0%, rgba(14, 17, 20, 0.9) 48%, rgba(14, 17, 20, 0.42) 76%, rgba(14, 17, 20, 0.1) 100%),
       linear-gradient(90deg, rgba(14, 17, 20, 0.3), transparent 78%),
-      url('../../assets/images/home/homepage-product-stage-v1.jpg') center / cover no-repeat;
+      url('../../assets/images/home/homepage-product-stage-v1.webp') center / cover no-repeat;
     color: #fff;
     pointer-events: auto;
   }
