@@ -134,8 +134,8 @@ export const productFamilies = [
     to: '/products/edge-devices',
     image: edgeSmall,
     imageAlt: 'Representative Zevric Compact Edge System configuration',
-    menuImage: edgeSmall,
-    menuImageAlt: 'Zevric Compact Edge System',
+    menuImage: edgeSharedPlatform,
+    menuImageAlt: 'Zevric shared compact edge platform',
   },
   {
     slug: 'servers',
@@ -146,8 +146,8 @@ export const productFamilies = [
     to: '/products/servers',
     image: serverBlueprintFront,
     imageAlt: 'Front platform view of a ZMD AI Datacenter Server',
-    menuImage: serverStudio,
-    menuImageAlt: 'ZMD AI Datacenter Server',
+    menuImage: homeServerIndustrial,
+    menuImageAlt: 'ZMD AI Datacenter Server in a datacenter environment',
   },
   {
     slug: 'custom-iot',
