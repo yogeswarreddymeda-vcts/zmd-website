@@ -22,7 +22,6 @@ import edgeFlex from '../assets/images/edge-devices/edge_box_flex.webp';
 import edgeSharedPlatform from '../assets/images/edge-devices/zevric-shared-platform-transparent.png';
 import edgeHeroFrontStudio from '../assets/images/edge-devices/zevric-hero-front-studio.png';
 import edgeHeroRearStudio from '../assets/images/edge-devices/zevric-hero-rear-studio.png';
-import edgeXeCardFront from '../assets/images/edge-devices/zevric-xe-card-front.png';
 import edgeIndustrialAngle from '../assets/images/edge-devices/zevric-industrial-angle.webp';
 import intelCoreUltraBadges from '../assets/images/edge-devices/intel-core-ultra-series-2-badges.webp';
 import serverHero from '../assets/images/servers/server_chassis.png';
@@ -205,12 +204,12 @@ export const edgeProducts = [
     slug: 'zevric-xe',
     number: '01',
     profile: 'Entry configuration',
-    name: 'XE',
+    name: 'Zevric',
     sku: 'ZVX-225',
     processor: 'Intel® Core™ Ultra 5 225H',
     summary: 'Core Ultra 5 configuration on the shared Zevric board and I/O platform.',
-    image: edgeXeCardFront,
-    imageAlt: 'Front view of the representative Zevric XE configuration',
+    image: edgeSharedPlatform,
+    imageAlt: 'Representative Zevric shared-platform configuration',
     metrics: [
       ['NPU peak', '13 TOPS'],
       ['CPU cores', '14'],
@@ -233,7 +232,7 @@ export const edgeProducts = [
     slug: 'zevric-xe-pro',
     number: '02',
     profile: 'Maximum integrated AI',
-    name: 'XE-Pro',
+    name: 'Zevric-Pro',
     sku: 'ZVX-255',
     processor: 'Intel® Core™ Ultra 7 255H',
     summary: 'Core Ultra 7 configuration with a 99 TOPS peak SoC specification and no discrete GPU.',
@@ -261,7 +260,7 @@ export const edgeProducts = [
     slug: 'zevric-xe-ultra',
     number: '03',
     profile: 'XE-Ultra platform with discrete GPU',
-    name: 'XE-Ultra',
+    name: 'Zevric-Ultra',
     sku: 'ZVX-285',
     processor: 'Intel® Core™ Ultra 9 285H',
     summary: 'Core Ultra 9 configuration with an Intel® Arc™ Pro B60 24 GB discrete GPU.',

@@ -1,6 +1,7 @@
 /* eslint-disable react/only-export-components -- shared page data, helpers, and reusable JSX intentionally live together */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import edgeAIHeroImage from '../assets/images/edge-ai/heroimage_ai.png';
 import {
   assets,
   cameraProducts,
@@ -47,10 +48,10 @@ export function ZevricHero({ page }) {
   const body = isProductPage
     ? 'Select processor, cooling and accelerator options on a shared Mini-ITX hardware platform.'
     : 'Zevric processes video and sensor data on site while customers and integrators choose the runtime, models, applications and workflows.';
-  const heroImage = isProductPage ? assets.edgeHero : assets.homeEdgeIndustrial;
+  const heroImage = isProductPage ? assets.edgeHero : edgeAIHeroImage;
   const heroAlt = isProductPage
     ? 'Zevric Compact Edge System'
-    : 'Zevric Compact Edge System in a precision electronics lab';
+    : 'ZMD Zevric Compact Edge System in a precision electronics facility';
 
   return (
     <section className={`zevric-shared-hero zevric-shared-hero--${page}`}>
@@ -74,9 +75,11 @@ export function ZevricHero({ page }) {
         </div>
 
         <div className="zevric-shared-hero__visual">
-          <div className="zevric-shared-hero__processor">
-            <img src={assets.intelCoreUltraBadges} alt="Intel Core Ultra 5, 7 and 9 processor badges" />
-          </div>
+          {isProductPage && (
+            <div className="zevric-shared-hero__processor">
+              <img src={assets.intelCoreUltraBadges} alt="Intel Core Ultra 5, 7 and 9 processor badges" />
+            </div>
+          )}
           <img src={heroImage} alt={heroAlt} fetchPriority="high" />
         </div>
       </div>
@@ -104,15 +107,15 @@ export function OfficeGrid({ contactPage = false }) {
 export function ZevricProductGrid() {
   return (
     <div className="zevric-grid">
-      {edgeProducts.map((product) => (
+      {edgeProducts.map((product, index) => (
         <article className="zevric-card" key={product.slug}>
           <div className="zevric-card__visual">
             <img src={product.image} alt={product.imageAlt} loading="lazy" decoding="async" />
+            {(index === 0 || index === 2) && <span className="zevric-card__coming-soon">Coming soon</span>}
           </div>
           <div className="zevric-card__body">
             <header>
               <h3>{product.name}</h3>
-              <span className="zevric-card__sku">{product.sku}</span>
             </header>
             <strong className="zevric-card__processor">{product.processor}</strong>
             <p>{product.summary}</p>

@@ -9,7 +9,10 @@
   backdrop-filter: blur(16px);
 }
 
-.site-header--edge-ai { box-shadow: none; }
+.site-header--edge-ai {
+  border-bottom: 0;
+  box-shadow: none;
+}
 
 .site-header__inner {
   height: 100%;

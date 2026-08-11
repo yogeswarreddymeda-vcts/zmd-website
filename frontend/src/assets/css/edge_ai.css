@@ -1,7 +1,456 @@
 /* Edge AI motion: data flow, layer assembly and node activation. */
 .edge-ai-page-new {
   --edge-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --edge-motion-step: 155ms;
+  --edge-motion-step: 60ms;
+}
+
+.edge-ai-principles {
+  padding-block: 46px;
+  border-bottom: 1px solid #e4e4e1;
+  background: #fff;
+}
+
+.edge-ai-principles h2 {
+  margin: 0;
+  color: #0b0b0c;
+  font-family: var(--font-display);
+  font-size: clamp(2.125rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.edge-ai-principles h2::after {
+  width: 48px;
+  height: 3px;
+  display: block;
+  margin-top: 16px;
+  background: #e01e2b;
+  content: '';
+}
+
+.edge-ai-principles__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 28px;
+  overflow: hidden;
+  border: 1px solid #e4e4e1;
+  border-radius: 2px;
+  background: #e4e4e1;
+}
+
+.edge-ai-principles__item {
+  min-width: 0;
+  min-height: 156px;
+  padding: 28px 24px;
+  border: 0;
+  background: #fff;
+}
+
+.edge-ai-principles__item > span {
+  display: block;
+  margin-bottom: 14px;
+  color: #e01e2b;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.edge-ai-principles__item h3 {
+  margin: 0;
+  color: #0b0b0c;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.edge-ai-principles__item p {
+  margin: 6px 0 0;
+  color: #5b5d63;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .edge-ai-principles__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+@media (max-width: 600px) {
+  .edge-ai-principles {
+    padding-block: 34px;
+  }
+
+  .edge-ai-principles__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edge-ai-principles__item {
+    min-height: 0;
+  }
+}
+
+/* Compact Edge AI architecture map ------------------------------------- */
+.edge-ai-architecture {
+  overflow: hidden;
+  padding-block: clamp(46px, 5vw, 72px);
+  background: #08090a;
+}
+
+.edge-ai-architecture.edge-surface-motif::before {
+  display: none;
+  background: none;
+}
+
+.edge-ai-page-new :is(.edge-ai-applications, .edge-ai-platform-choice).edge-surface-motif::before {
+  display: none;
+  background: none;
+}
+
+.edge-ai-page-new .edge-ai-platform-choice__inner {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.edge-ai-architecture .site-container {
+  position: relative;
+  z-index: 1;
+}
+
+.edge-ai-architecture .section-intro {
+  max-width: 1040px;
+  margin-bottom: 28px;
+}
+
+.edge-ai-architecture .section-intro h2 {
+  font-size: clamp(2rem, 3vw, 2.75rem);
+}
+
+.edge-ai-architecture .section-intro p {
+  max-width: 820px;
+  margin-top: 12px;
+  color: #aeb4ba;
+  font-size: 0.94rem;
+}
+
+.edge-architecture-map {
+  width: 100%;
+  max-width: 1180px;
+}
+
+.edge-architecture-map__row {
+  min-width: 0;
+}
+
+.edge-architecture-map__label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 28px;
+  margin-bottom: 8px;
+  color: #ff4d57;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.edge-architecture-map__label i {
+  width: min(420px, 52%);
+  height: 1px;
+  background: linear-gradient(90deg, var(--brand-red), rgba(255, 50, 61, 0.12));
+}
+
+.edge-architecture-map__hardware,
+.edge-architecture-map__solutions {
+  display: grid;
+  gap: 14px;
+}
+
+.edge-architecture-map__hardware {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.edge-architecture-map__solutions {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.edge-architecture-stage {
+  position: relative;
+  min-width: 0;
+  min-height: 172px;
+  overflow: hidden;
+  border: 1px solid #292d30;
+  border-radius: 3px;
+  background: #08090a;
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.72),
+    0 0 22px rgba(255, 255, 255, 0.035);
+  isolation: isolate;
+  transition: border-color 220ms ease, box-shadow 260ms ease, transform 260ms ease;
+}
+
+.edge-architecture-stage::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(90deg, #08090a 0%, rgba(8, 9, 10, 0.97) 34%, rgba(8, 9, 10, 0.34) 62%, transparent 100%);
+  pointer-events: none;
+  content: '';
+}
+
+.edge-architecture-stage__copy {
+  position: relative;
+  z-index: 2;
+  width: 51%;
+  min-height: 172px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 17px 10px 16px 18px;
+}
+
+.edge-architecture-stage__copy > span {
+  color: #ff4e58;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.edge-architecture-stage__copy h3 {
+  max-width: 180px;
+  margin: 7px 0 0;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.35vw, 1.15rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.edge-architecture-stage__copy p {
+  max-width: 145px;
+  margin: auto 0 0;
+  color: #b3b8bd;
+  font-size: 0.72rem;
+  line-height: 1.42;
+}
+
+.edge-architecture-stage > img {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  width: 68%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.94) contrast(1.04);
+  transition: filter 260ms ease, transform 520ms var(--edge-motion-ease);
+}
+
+.edge-architecture-stage:hover > img {
+  filter: saturate(1.04) contrast(1.08) brightness(1.05);
+  transform: scale(1.025);
+}
+
+.edge-architecture-stage:hover {
+  border-color: #3b4044;
+  box-shadow:
+    0 18px 38px rgba(0, 0, 0, 0.82),
+    0 0 28px rgba(255, 255, 255, 0.055);
+  transform: translateY(-2px);
+}
+
+.edge-architecture-map__handoff {
+  position: relative;
+  height: 58px;
+  color: #ff4d57;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.edge-architecture-map__handoff > span {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+}
+
+.edge-architecture-map__trunk {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  height: 21px;
+  border-left: 1px solid var(--brand-red);
+}
+
+.edge-architecture-map__branches {
+  position: absolute;
+  top: 20px;
+  right: 16.666%;
+  left: 16.666%;
+  height: 18px;
+  border-top: 1px solid var(--brand-red);
+}
+
+.edge-architecture-map__branches b {
+  position: absolute;
+  top: -1px;
+  width: 1px;
+  height: 18px;
+  background: var(--brand-red);
+}
+
+.edge-architecture-map__branches b:first-child { left: 0; }
+.edge-architecture-map__branches b:nth-child(2) { left: 50%; }
+.edge-architecture-map__branches b:last-child { right: 0; }
+
+.edge-architecture-map__optional {
+  min-height: 72px;
+  display: grid;
+  grid-template-columns: 162px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  margin-top: 16px;
+  padding: 5px 20px 5px 8px;
+  overflow: hidden;
+  border: 1px solid #292d30;
+  border-radius: 3px;
+  background: #08090a;
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.68),
+    0 0 18px rgba(255, 255, 255, 0.025);
+}
+
+.edge-architecture-map__optional img {
+  width: 100%;
+  height: 60px;
+  object-fit: contain;
+  object-position: center;
+  filter: saturate(0.84) contrast(1.08);
+}
+
+.edge-architecture-map__optional div {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.edge-architecture-map__optional span {
+  flex: 0 0 auto;
+  color: #ff4e58;
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.edge-architecture-map__optional p {
+  margin: 0;
+  color: #d1d4d7;
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .edge-architecture-map__solutions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .edge-architecture-map__solutions .edge-architecture-stage:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .edge-architecture-map__handoff {
+    height: 42px;
+  }
+
+  .edge-architecture-map__handoff > span {
+    bottom: 4px;
+  }
+
+  .edge-architecture-map__trunk,
+  .edge-architecture-map__branches {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .edge-ai-architecture .section-intro {
+    margin-bottom: 22px;
+  }
+
+  .edge-architecture-map__hardware,
+  .edge-architecture-map__solutions {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .edge-architecture-map__solutions .edge-architecture-stage:last-child {
+    grid-column: auto;
+  }
+
+  .edge-architecture-map__label,
+  .edge-architecture-map__handoff {
+    min-height: 30px;
+    height: 30px;
+    margin: 0;
+  }
+
+  .edge-architecture-map__handoff > span {
+    top: 10px;
+    bottom: auto;
+  }
+
+  .edge-architecture-stage,
+  .edge-architecture-stage__copy {
+    min-height: 150px;
+  }
+
+  .edge-architecture-stage__copy {
+    width: 56%;
+    padding: 15px 8px 14px 15px;
+  }
+
+  .edge-architecture-stage__copy h3 {
+    font-size: 1rem;
+  }
+
+  .edge-architecture-stage > img {
+    width: 70%;
+  }
+
+  .edge-architecture-map__optional {
+    grid-template-columns: 105px minmax(0, 1fr);
+    gap: 12px;
+    min-height: 82px;
+    padding: 7px 12px 7px 7px;
+  }
+
+  .edge-architecture-map__optional img {
+    height: 68px;
+  }
+
+  .edge-architecture-map__optional div {
+    display: grid;
+    gap: 5px;
+  }
+
+  .edge-architecture-map__optional p {
+    font-size: 0.68rem;
+  }
 }
 
 .edge-motion-ready .edge-motion-item {
@@ -46,15 +495,15 @@
 
 .edge-motion-ready .zevric-shared-hero__visual.edge-motion-item {
   opacity: 0;
-  clip-path: polygon(32% 0, 100% 0, 100% 74%, 72% 100%, 0 100%, 0 38%);
-  transform: translate3d(44px, -18px, 0) scale(1.025);
+  clip-path: none;
+  transform: none;
 }
 
 .edge-motion-ready .zevric-shared-hero__visual.is-edge-motion-visible {
   opacity: 1;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  transform: translate3d(0, 0, 0) scale(1);
-  transition: opacity 950ms ease 100ms, clip-path 1850ms var(--edge-motion-ease) 100ms, transform 1700ms var(--edge-motion-ease) 100ms;
+  clip-path: none;
+  transform: none;
+  transition: opacity 360ms ease 60ms;
 }
 
 .edge-motion-ready .zevric-shared-hero__visual.is-edge-motion-visible > img {
@@ -63,37 +512,6 @@
 
 .edge-motion-ready .zevric-shared-hero__processor {
   animation: edgeProcessorSignal 4.8s ease-in-out 2s infinite;
-}
-
-/* Principles are connected nodes, not lifting cards. */
-.edge-motion-ready .edge-ai-principles h2.edge-motion-item {
-  opacity: 0;
-  letter-spacing: 0.045em;
-  transform: translate3d(-30px, 0, 0);
-}
-
-.edge-motion-ready .edge-ai-principles h2.is-edge-motion-visible {
-  opacity: 1;
-  letter-spacing: -0.035em;
-  transform: translate3d(0, 0, 0);
-  transition: opacity 850ms ease, letter-spacing 1400ms var(--edge-motion-ease), transform 1400ms var(--edge-motion-ease);
-}
-
-.edge-motion-ready .edge-ai-principles__grid > div.edge-motion-item {
-  position: relative;
-  opacity: 0;
-  clip-path: inset(0 100% 0 0);
-  transform: none;
-}
-
-.edge-motion-ready .edge-ai-principles__grid > div.is-edge-motion-visible {
-  opacity: 1;
-  clip-path: inset(0);
-  transition: opacity 720ms ease calc(var(--edge-motion-order) * var(--edge-motion-step)), clip-path 1300ms var(--edge-motion-ease) calc(var(--edge-motion-order) * var(--edge-motion-step));
-}
-
-.edge-motion-ready .edge-ai-principles__grid > div.is-edge-motion-visible > span {
-  animation: edgeNodePulse 4.6s ease-in-out calc(1400ms + var(--edge-motion-order) * 420ms) infinite;
 }
 
 /* Architecture is assembled by layers, followed by independent processing nodes. */
@@ -110,25 +528,29 @@
   transition: opacity 820ms ease calc(var(--edge-motion-order) * 110ms), transform 1350ms var(--edge-motion-ease) calc(var(--edge-motion-order) * 110ms);
 }
 
-.edge-motion-ready .edge-ai-architecture .physical-ai-story__group.edge-motion-item {
+.edge-motion-ready .edge-ai-architecture .edge-architecture-map__row.edge-motion-item,
+.edge-motion-ready .edge-ai-architecture .edge-architecture-map__handoff.edge-motion-item {
   opacity: 0;
   clip-path: inset(0 50% 0 50%);
   transform: scaleX(0.985);
 }
 
-.edge-motion-ready .edge-ai-architecture .physical-ai-story__group.is-edge-motion-visible {
+.edge-motion-ready .edge-ai-architecture .edge-architecture-map__row.is-edge-motion-visible,
+.edge-motion-ready .edge-ai-architecture .edge-architecture-map__handoff.is-edge-motion-visible {
   opacity: 1;
   clip-path: inset(0);
   transform: scaleX(1);
   transition: opacity 800ms ease calc(var(--edge-motion-order) * 180ms), clip-path 1550ms var(--edge-motion-ease) calc(var(--edge-motion-order) * 180ms), transform 1450ms var(--edge-motion-ease) calc(var(--edge-motion-order) * 180ms), background-color 220ms ease;
 }
 
-.edge-motion-ready .edge-ai-architecture .physical-ai-story__stage.edge-motion-item {
+.edge-motion-ready .edge-ai-architecture .edge-architecture-stage.edge-motion-item,
+.edge-motion-ready .edge-ai-architecture .edge-architecture-map__optional.edge-motion-item {
   opacity: 0;
   transform: translate3d(0, 28px, 0) scale(0.97);
 }
 
-.edge-motion-ready .edge-ai-architecture .physical-ai-story__stage.is-edge-motion-visible {
+.edge-motion-ready .edge-ai-architecture .edge-architecture-stage.is-edge-motion-visible,
+.edge-motion-ready .edge-ai-architecture .edge-architecture-map__optional.is-edge-motion-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
   transition: opacity 720ms ease calc(360ms + var(--edge-motion-order) * 120ms), transform 1250ms var(--edge-motion-ease) calc(360ms + var(--edge-motion-order) * 120ms), background-color 220ms ease;
@@ -194,6 +616,17 @@
   transition: opacity 850ms ease calc(var(--edge-motion-order) * 100ms), transform 1450ms var(--edge-motion-ease) calc(var(--edge-motion-order) * 100ms);
 }
 
+/* Keep entrance motion crisp: all visible elements settle immediately. */
+.edge-ai-page-new.edge-motion-ready .edge-motion-item.is-edge-motion-visible {
+  transition-duration: 380ms !important;
+  transition-delay: 0ms !important;
+}
+
+.edge-ai-page-new.edge-motion-ready .edge-ai-application-card.is-edge-motion-visible > div > * {
+  transition-duration: 280ms !important;
+  transition-delay: 60ms !important;
+}
+
 @keyframes edgeComputeDrift {
   from { transform: scale(1.002) translate3d(0, 0, 0); }
   to { transform: scale(1.016) translate3d(-0.35%, -0.4%, 0); }
@@ -202,11 +635,6 @@
 @keyframes edgeProcessorSignal {
   0%, 100% { filter: brightness(1); transform: translate3d(0, 0, 0); }
   50% { filter: brightness(1.08); transform: translate3d(0, -2px, 0); }
-}
-
-@keyframes edgeNodePulse {
-  0%, 100% { opacity: 0.72; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.08); }
 }
 
 @keyframes edgeNodeIdle {

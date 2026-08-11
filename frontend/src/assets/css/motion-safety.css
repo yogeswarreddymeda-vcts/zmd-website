@@ -22,3 +22,81 @@
 .site-page > section:last-of-type .button:hover {
   transform: translateY(-2px) !important;
 }
+
+/* Keep page-entry motion consistent and responsive across every section.
+   Ambient infinite loops retain their individual pacing; this policy only
+   normalizes reveal transitions and their stagger. */
+.home-motion-ready .home-motion-item { --site-motion-order: var(--home-motion-order, 0); }
+.products-motion-ready .products-motion-item { --site-motion-order: var(--products-motion-order, 0); }
+.camera-motion-ready .camera-motion-item { --site-motion-order: var(--camera-motion-order, 0); }
+.zevric-motion-ready .zevric-motion-item { --site-motion-order: var(--zevric-motion-order, 0); }
+.server-motion-ready .server-motion-item { --site-motion-order: var(--server-motion-order, 0); }
+.iot-motion-ready .iot-motion-item { --site-motion-order: var(--iot-motion-order, 0); }
+.edge-motion-ready .edge-motion-item { --site-motion-order: var(--edge-motion-order, 0); }
+.solutions-motion-ready .solutions-motion-item { --site-motion-order: var(--solutions-motion-order, 0); }
+.about-motion-ready .about-motion-item { --site-motion-order: var(--about-motion-order, 0); }
+.contact-motion-ready .contact-motion-item { --site-motion-order: var(--contact-motion-order, 0); }
+
+:is(
+  .home-motion-ready,
+  .products-motion-ready,
+  .camera-motion-ready,
+  .zevric-motion-ready,
+  .server-motion-ready,
+  .iot-motion-ready,
+  .edge-motion-ready,
+  .solutions-motion-ready,
+  .about-motion-ready,
+  .contact-motion-ready
+) :is(
+  .home-motion-item,
+  .products-motion-item,
+  .camera-motion-item,
+  .zevric-motion-item,
+  .server-motion-item,
+  .iot-motion-item,
+  .edge-motion-item,
+  .solutions-motion-item,
+  .about-motion-item,
+  .contact-motion-item
+) {
+  transition:
+    opacity 480ms ease calc(var(--site-motion-order, 0) * 70ms),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--site-motion-order, 0) * 70ms),
+    clip-path 700ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--site-motion-order, 0) * 70ms),
+    filter 600ms ease calc(var(--site-motion-order, 0) * 70ms),
+    letter-spacing 700ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--site-motion-order, 0) * 70ms),
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    color 180ms ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(
+    .home-motion-ready,
+    .products-motion-ready,
+    .camera-motion-ready,
+    .zevric-motion-ready,
+    .server-motion-ready,
+    .iot-motion-ready,
+    .edge-motion-ready,
+    .solutions-motion-ready,
+    .about-motion-ready,
+    .contact-motion-ready
+  ) :is(
+    .home-motion-item,
+    .products-motion-item,
+    .camera-motion-item,
+    .zevric-motion-item,
+    .server-motion-item,
+    .iot-motion-item,
+    .edge-motion-item,
+    .solutions-motion-item,
+    .about-motion-item,
+    .contact-motion-item
+  ) {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}

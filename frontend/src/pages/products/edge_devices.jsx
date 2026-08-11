@@ -156,7 +156,7 @@ export default function EdgeDevicesPage() {
 
       <section className="section zevric-product-bridge">
         <div className="site-container zevric-product-bridge__inner">
-          <div className="zevric-product-bridge__copy edge-surface-motif edge-surface-motif--contour">
+          <div className="zevric-product-bridge__copy">
             <span className="micro-label">Edge AI</span>
             <h2>Zevric in Edge AI deployments</h2>
             <p>Possible applications include local video processing, industrial inspection, site intelligence and distributed operations. Customers and integrators choose the runtime, models, applications and integrations.</p>

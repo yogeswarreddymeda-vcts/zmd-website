@@ -328,8 +328,12 @@
   }
 
   /* Edge AI uses a compact image-first composition on mobile. Keeping the
-     image and copy in separate rows prevents the 4:3 lab photograph from
-     producing a detached empty band above the hardware. */
+     image and copy in separate rows preserves the full-bleed desktop hero
+     without placing long copy over the hardware on narrow screens. */
+  .edge-ai-page-new .zevric-shared-hero--edge-ai {
+    min-height: 0;
+  }
+
   .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__inner {
     width: 100%;
     max-width: none;
@@ -342,9 +346,13 @@
   }
 
   .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual {
+    position: relative;
+    inset: auto;
     order: 1;
+    width: 100%;
     min-height: 0;
     height: clamp(280px, 82vw, 330px);
+    margin-left: 0;
     aspect-ratio: auto;
     border: 0;
   }
@@ -352,8 +360,8 @@
   .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual > img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center 68%;
+    object-fit: contain;
+    object-position: center;
   }
 
   .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual::after {
@@ -368,7 +376,7 @@
     flex-direction: column;
     justify-content: flex-start;
     padding: 28px 20px 32px;
-    background: #7b1b20;
+    background: #08090a;
   }
 
   .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__actions {

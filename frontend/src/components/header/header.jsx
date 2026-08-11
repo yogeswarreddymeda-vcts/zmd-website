@@ -162,11 +162,12 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const menuButtonRef = useRef(null);
   const location = useLocation();
+  const normalizedPathname = location.pathname.replace(/\/+$/, '') || '/';
 
   useEffect(() => setProductsOpen(false), [location.pathname]);
 
   return (
-    <header className={`site-header${location.pathname === '/edge-ai' ? ' site-header--edge-ai' : ''}`}>
+    <header className={`site-header${normalizedPathname === '/edge-ai' ? ' site-header--edge-ai' : ''}`}>
       <div className="launch-strip">
         <Link to="/products/edge-devices">
           <span>Zevric</span>

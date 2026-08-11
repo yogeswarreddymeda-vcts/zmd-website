@@ -34,6 +34,7 @@ import './assets/css/solutions.css';
 import './assets/css/about.css';
 import './assets/css/contact.css';
 import './assets/css/motion-safety.css';
+import './assets/css/plain-surfaces.css';
 
 export default function App() {
   return (

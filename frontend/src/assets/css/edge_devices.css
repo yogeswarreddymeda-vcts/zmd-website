@@ -117,10 +117,6 @@
   transition: opacity 800ms ease calc(var(--zevric-motion-order) * var(--zevric-motion-step)), clip-path 1350ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * var(--zevric-motion-step)), transform 1350ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * var(--zevric-motion-step)), border-color 220ms ease;
 }
 
-.zevric-motion-ready .zevric-card.is-zevric-motion-visible .zevric-card__visual img {
-  animation: zevricProductBreath 14s ease-in-out calc(1600ms + var(--zevric-motion-order) * var(--zevric-motion-step)) infinite alternate both;
-}
-
 .zevric-motion-ready .zevric-lineup > .site-container > .content-qualifier.zevric-motion-item {
   opacity: 0;
   transform: translate3d(22px, 0, 0);
@@ -179,7 +175,7 @@
   opacity: 1;
   clip-path: inset(0);
   transform: translate3d(0, 0, 0);
-  transition: opacity 740ms ease calc(var(--zevric-motion-order) * 130ms), clip-path 1200ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * 130ms), transform 1200ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * 130ms);
+  transition: opacity 420ms ease calc(var(--zevric-motion-order) * 70ms), clip-path 650ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * 70ms), transform 650ms var(--zevric-motion-ease) calc(var(--zevric-motion-order) * 70ms);
 }
 
 /* Edge AI bridge uses a clean cross-directional handoff. */

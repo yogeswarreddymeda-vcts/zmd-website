@@ -128,22 +128,50 @@
 }
 
 .zevric-product-page .zevric-card__visual {
-  background: #eef0f1;
+  background: #fff;
 }
 
-.zevric-product-page .zevric-card:first-child .zevric-card__visual img {
-  position: relative;
-  top: -18px;
-  width: 145%;
-  height: 145%;
-  max-width: none;
-  mix-blend-mode: multiply;
-  filter: contrast(1.025) drop-shadow(0 14px 12px rgba(16, 17, 20, 0.15));
+.zevric-product-page .zevric-card__visual img {
+  position: static;
+  transform: scale(1.04);
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), filter 320ms ease;
 }
 
-.zevric-product-page .zevric-card:is(:nth-child(2), :nth-child(3)) .zevric-card__visual img {
-  position: relative;
-  top: -16px;
+.zevric-product-page .zevric-card:nth-child(1) .zevric-card__visual img,
+.zevric-product-page .zevric-card:nth-child(3) .zevric-card__visual img {
+  filter: blur(3px);
+}
+
+.zevric-product-page .zevric-card:hover .zevric-card__visual img {
+  transform: scale(1.09);
+}
+
+.zevric-card__coming-soon {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(11, 11, 12, 0.18);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  opacity: 0;
+  transition: opacity 240ms ease;
+  pointer-events: none;
+}
+
+.zevric-card:hover .zevric-card__coming-soon {
+  opacity: 1;
+}
+
+@media (max-width: 680px), (pointer: coarse) {
+  .zevric-card__coming-soon {
+    opacity: 1;
+  }
 }
 
 .edge-launch-band__actions {
@@ -172,7 +200,7 @@
   height: 100%;
   max-height: 430px;
   object-fit: cover;
-  object-position: center 58%;
+  object-position: 65% center;
   transform: none;
   filter: none;
 }
@@ -218,9 +246,31 @@
 }
 
 .edge-ai-page-new .zevric-shared-hero--edge-ai {
-  border-bottom-color: #641217;
-  background: #7b1b20;
+  position: relative;
+  isolation: isolate;
+  border-bottom-color: #202326;
+  background: #08090a;
   color: #fff;
+}
+
+.edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__inner {
+  position: relative;
+  min-height: 610px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding-block: 52px;
+}
+
+.edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__copy {
+  z-index: 4;
+  width: 54%;
+  max-width: 700px;
+}
+
+.edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__copy::before {
+  display: none;
+  content: none;
 }
 
 .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__label {
@@ -228,14 +278,36 @@
 }
 
 .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__copy > p {
-  color: #efd5d7;
+  color: #c7c9cc;
 }
 
 .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: calc(50% - 50vw);
+  bottom: 0;
+  width: min(72vw, 1300px);
+  min-height: 0;
+  height: auto;
+  margin-left: 0;
   overflow: hidden;
+  aspect-ratio: auto;
   border-left: 0;
-  background: #7b1b20;
+  background: #08090a;
   box-shadow: none;
+}
+
+.edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual::before {
+  content: none;
+}
+
+.edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual > img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: right center;
 }
 
 .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual::after {
@@ -245,14 +317,12 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    #7b1b20 0%,
-    rgba(123, 27, 32, 0.84) 3%,
-    rgba(123, 27, 32, 0.18) 10%,
-    transparent 17%,
-    transparent 83%,
-    rgba(123, 27, 32, 0.18) 90%,
-    rgba(123, 27, 32, 0.84) 97%,
-    #7b1b20 100%
+    #08090a 0%,
+    rgba(8, 9, 10, 0.94) 10%,
+    rgba(8, 9, 10, 0.72) 22%,
+    rgba(8, 9, 10, 0.38) 33%,
+    rgba(8, 9, 10, 0.12) 42%,
+    transparent 50%
   );
   pointer-events: none;
 }
@@ -430,11 +500,14 @@
 }
 
 .zevric-platform__visual img {
-  width: min(114%, 660px);
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   max-width: none;
   max-height: none;
-  height: auto;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
   mix-blend-mode: normal;
   filter: drop-shadow(0 22px 16px rgba(16, 17, 20, 0.22));
 }
@@ -935,6 +1008,11 @@
     box-shadow: none;
   }
 
+  .edge-ai-page-new .zevric-shared-hero--edge-ai .zevric-shared-hero__visual {
+    width: 72vw;
+    margin-left: 0;
+  }
+
   .zevric-platform__layout,
   .zevric-product-bridge__inner,
   .edge-ai-platform-choice__inner {
@@ -1001,6 +1079,23 @@
   .zevric-product-page .zevric-product-hero .product-story-hero__visual--contain {
     min-height: 350px;
     padding: 96px 18px 46px;
+  }
+
+  .zevric-product-page .zevric-product-hero .product-story-hero__visual--studio-dark > img {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    width: 190%;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+    transform: translateX(-70%);
+    transform-origin: center;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.82) 9%, #000 18%, #000 78%, rgba(0, 0, 0, 0.82) 86%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.82) 9%, #000 18%, #000 78%, rgba(0, 0, 0, 0.82) 86%, transparent 100%);
+    animation: none !important;
   }
 
   .zevric-product-page .zevric-product-hero .product-story-hero__media-badge {

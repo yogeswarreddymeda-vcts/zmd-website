@@ -1,6 +1,141 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArchitectureStory, ArrowButton, SectionIntro, ZevricHero, edgeAIApplications, edgeAIArchitecture, keepFinalSectionVisibleAtPageEnd } from './page_shared';
+import { ArrowButton, SectionIntro, ZevricHero, edgeAIApplications, keepFinalSectionVisibleAtPageEnd } from './page_shared';
+import senseImage from '../assets/images/edge-ai/applications/unnamed.png';
+import localComputeImage from '../assets/images/edge-ai/applications/Branded black ZEVRIC compute box.png';
+import applicationsImage from '../assets/images/edge-ai/applications/White enterprise AI analytics display.png';
+import operationalIntelligenceImage from '../assets/images/edge-ai/applications/Modern operational intelligence workstation.png';
+import connectedOperationsImage from '../assets/images/edge-ai/applications/Autonomous mobile robot with collaborative arm.png';
+import datacenterImage from '../assets/images/edge-ai/applications/Four black enterprise server racks.png';
+
+const hardwareStages = [
+  {
+    number: '01',
+    title: 'Sense',
+    description: 'Cameras, sensors and operational systems',
+    image: senseImage,
+    imageAlt: 'ZMD camera representing the sensing layer',
+  },
+  {
+    number: '02',
+    title: 'Local compute',
+    description: 'Zevric Compact Edge Systems',
+    image: localComputeImage,
+    imageAlt: 'ZMD Zevric Compact Edge System',
+  },
+];
+
+const solutionStages = [
+  {
+    number: '03',
+    title: 'Intelligent applications',
+    description: 'Runtime, models and workflows',
+    image: applicationsImage,
+    imageAlt: 'Enterprise AI application displayed on a tablet',
+  },
+  {
+    number: '04',
+    title: 'Operational intelligence',
+    description: 'Events, alerts and context',
+    image: operationalIntelligenceImage,
+    imageAlt: 'Operational intelligence workstation with monitoring displays',
+  },
+  {
+    number: '05',
+    title: 'Connected operations',
+    description: 'Decisions, workflows and actuation',
+    image: connectedOperationsImage,
+    imageAlt: 'Autonomous mobile robot with a collaborative arm',
+  },
+];
+
+const reasons = [
+  {
+    num: '01',
+    title: 'Local response',
+    desc: 'Configured inference can run on site without sending every input to a remote service.',
+  },
+  {
+    num: '02',
+    title: 'Selective data transfer',
+    desc: 'Process video and sensor data on site, then send selected results upstream.',
+  },
+  {
+    num: '03',
+    title: 'Data control',
+    desc: 'Keep sensitive data on site when policy requires it.',
+  },
+  {
+    num: '04',
+    title: 'Operational continuity',
+    desc: 'Configured workloads can continue locally when upstream connectivity is unavailable.',
+  },
+];
+
+function ArchitectureStage({ stage }) {
+  return (
+    <article className="edge-architecture-stage">
+      <div className="edge-architecture-stage__copy">
+        <span>{stage.number}</span>
+        <h3>{stage.title}</h3>
+        <p>{stage.description}</p>
+      </div>
+      <img src={stage.image} alt={stage.imageAlt} loading="lazy" decoding="async" />
+    </article>
+  );
+}
+
+function EdgeArchitectureMap() {
+  return (
+    <div className="edge-architecture-map">
+      <div className="edge-architecture-map__row">
+        <div className="edge-architecture-map__label"><span>ZMD hardware</span><i aria-hidden="true" /></div>
+        <div className="edge-architecture-map__hardware">
+          {hardwareStages.map((stage) => <ArchitectureStage stage={stage} key={stage.number} />)}
+        </div>
+      </div>
+
+      <div className="edge-architecture-map__handoff">
+        <span>Your solution stack</span>
+        <i className="edge-architecture-map__trunk" aria-hidden="true" />
+        <i className="edge-architecture-map__branches" aria-hidden="true"><b /><b /><b /></i>
+      </div>
+
+      <div className="edge-architecture-map__row">
+        <div className="edge-architecture-map__solutions">
+          {solutionStages.map((stage) => <ArchitectureStage stage={stage} key={stage.number} />)}
+        </div>
+      </div>
+
+      <aside className="edge-architecture-map__optional">
+        <img src={datacenterImage} alt="Four ZMD enterprise server racks" loading="lazy" decoding="async" />
+        <div>
+          <span>Optional datacenter compute</span>
+          <p>AI Datacenter Servers for storage, multi-site or centralized processing.</p>
+        </div>
+      </aside>
+    </div>
+  );
+}
+
+function WhyGrid() {
+  return (
+    <section className="edge-ai-principles" aria-labelledby="why-edge-title">
+      <div className="site-container">
+        <h2 id="why-edge-title">Why process locally</h2>
+        <div className="edge-ai-principles__grid">
+          {reasons.map((reason) => (
+            <article className="edge-ai-principles__item" key={reason.num}>
+              <span>{reason.num}</span>
+              <h3>{reason.title}</h3>
+              <p>{reason.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function EdgeAIPage() {
   const motionRoot = React.useRef(null);
@@ -15,12 +150,12 @@ export default function EdgeAIPage() {
       '.zevric-shared-hero__copy > p',
       '.zevric-shared-hero__actions .button',
       '.zevric-shared-hero__visual',
-      '.edge-ai-principles h2',
-      '.edge-ai-principles__grid > div',
       '.edge-ai-architecture .section-intro h2',
       '.edge-ai-architecture .section-intro p',
-      '.edge-ai-architecture .physical-ai-story__group',
-      '.edge-ai-architecture .physical-ai-story__stage',
+      '.edge-ai-architecture .edge-architecture-map__row',
+      '.edge-ai-architecture .edge-architecture-map__handoff',
+      '.edge-ai-architecture .edge-architecture-stage',
+      '.edge-ai-architecture .edge-architecture-map__optional',
       '.edge-ai-applications .section-intro h2',
       '.edge-ai-application-card',
       '.edge-ai-platform-choice__inner > div:first-child',
@@ -72,17 +207,7 @@ export default function EdgeAIPage() {
     <div className="site-page edge-ai-page-new" ref={motionRoot}>
       <ZevricHero page="edge-ai" />
 
-      <section className="edge-ai-principles edge-surface-motif edge-surface-motif--technical" aria-labelledby="why-edge-title">
-        <div className="site-container">
-          <h2 id="why-edge-title">Why process locally</h2>
-          <div className="edge-ai-principles__grid">
-            <div><span>01</span><strong>Local response</strong><small>Configured inference can run on site without sending every input to a remote service.</small></div>
-            <div><span>02</span><strong>Selective data transfer</strong><small>Process video and sensor data on site, then send selected results upstream.</small></div>
-            <div><span>03</span><strong>Data control</strong><small>Keep sensitive data on site when policy requires it.</small></div>
-            <div><span>04</span><strong>Operational continuity</strong><small>Configured workloads can continue locally when upstream connectivity is unavailable.</small></div>
-          </div>
-        </div>
-      </section>
+      <WhyGrid />
 
       <section className="section edge-ai-architecture edge-surface-motif edge-surface-motif--blueprint" id="architecture">
         <div className="site-container">
@@ -91,10 +216,7 @@ export default function EdgeAIPage() {
             body="Zevric provides local compute while customers and integrators select the models, applications and workflows."
             light
           />
-          <ArchitectureStory
-            groups={edgeAIArchitecture}
-            variant="solutions"
-          />
+          <EdgeArchitectureMap />
         </div>
       </section>
 
