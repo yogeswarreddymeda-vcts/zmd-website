@@ -126,7 +126,6 @@ export default function EdgeDevicesPage() {
                       <th scope="row">{label}</th>
                       {edgeProducts.map((product, productIndex) => (
                         <td
-                          className={productIndex === 0 || productIndex === 2 ? 'zevric-comparison__unavailable-cell' : undefined}
                           data-label={product.name}
                           key={product.slug}
                         >
@@ -139,6 +138,12 @@ export default function EdgeDevicesPage() {
                   ))}
                 </tbody>
               </table>
+              <div className="zevric-comparison__column-status zevric-comparison__column-status--nano">
+                <span>Coming soon</span>
+              </div>
+              <div className="zevric-comparison__column-status zevric-comparison__column-status--ultra">
+                <span>Coming soon</span>
+              </div>
             </div>
           </div>
           <p className="content-qualifier"><sup className="pending-mark" aria-hidden="true">†</sup> Proposed value pending engineering validation.</p>

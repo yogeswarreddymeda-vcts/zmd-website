@@ -400,6 +400,7 @@
 }
 
 .zevric-comparison__table-scroll {
+  position: relative;
   outline: none;
 }
 
@@ -471,19 +472,30 @@
   pointer-events: none;
 }
 
-.zevric-comparison__unavailable-cell {
-  position: relative;
-  overflow: hidden;
-}
-
-.zevric-comparison__unavailable-cell::after {
-  content: 'Coming soon';
+.zevric-comparison__column-status {
   position: absolute;
-  z-index: 2;
-  inset: 0;
+  z-index: 4;
+  top: 0;
+  bottom: 0;
+  width: calc((100% - 172px) / 3);
   display: grid;
   place-items: center;
-  background: rgba(11, 11, 12, 0.72);
+  background: transparent;
+  transition: background-color 240ms ease;
+}
+
+.zevric-comparison__column-status--nano {
+  left: 172px;
+}
+
+.zevric-comparison__column-status--ultra {
+  right: 0;
+}
+
+.zevric-comparison__column-status span {
+  padding: 9px 13px;
+  border: 1px solid rgba(224, 30, 38, 0.72);
+  background: rgba(11, 11, 12, 0.88);
   color: #fff;
   font-family: var(--font-mono);
   font-size: 0.68rem;
@@ -495,8 +507,18 @@
   pointer-events: none;
 }
 
-.zevric-comparison__unavailable-cell:hover::after {
+.zevric-comparison__column-status:hover {
+  background: rgba(11, 11, 12, 0.08);
+}
+
+.zevric-comparison__column-status:hover span {
   opacity: 1;
+}
+
+@media (max-width: 680px), (pointer: coarse) {
+  .zevric-comparison__column-status {
+    display: none;
+  }
 }
 
 .zevric-comparison tbody th {
