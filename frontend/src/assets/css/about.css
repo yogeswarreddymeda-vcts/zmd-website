@@ -80,6 +80,73 @@
   filter: none;
 }
 
+/* About hero: image-first, overlap-free phone composition. */
+@media (max-width: 680px) {
+  .about-page .about-hero__inner {
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 280px auto;
+    gap: 0;
+    padding: 0;
+  }
+
+  .about-page .about-hero__product-lineup {
+    position: relative;
+    inset: auto;
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 280px;
+    min-height: 280px;
+    overflow: hidden;
+    aspect-ratio: auto;
+  }
+
+  .about-page .about-hero__product-lineup::before {
+    display: block;
+    z-index: 2;
+    background: linear-gradient(180deg, transparent 58%, rgba(3, 5, 6, 0.58) 82%, #030506 100%);
+  }
+
+  .about-page .about-hero__product-lineup::after {
+    right: 0;
+    bottom: 0;
+    width: 116px;
+    height: 3px;
+  }
+
+  .about-page .about-hero__product-lineup img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 92% center;
+  }
+
+  .about-page .about-hero__copy {
+    grid-area: 2 / 1;
+    z-index: 3;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 30px 20px 38px;
+    background: #030506;
+  }
+
+  .about-page .about-hero__copy > p {
+    max-width: none;
+  }
+
+  .about-page .about-hero__actions .button {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
 /* The story reads as an editorial sequence: rule, headline, copy, panorama, conclusion. */
 .about-motion-ready .about-story > .site-container > .section-heading.about-motion-item {
   opacity: 0;
@@ -204,6 +271,10 @@
 }
 
 /* Locations establish as plotted coordinates with independently resolving labels. */
+#locations .office-grid {
+  box-shadow: 0 24px 52px -28px rgba(12, 18, 24, 0.32);
+}
+
 .about-motion-ready #locations > .site-container > .section-heading.about-motion-item {
   opacity: 0;
   transform: translate3d(-38px, 0, 0);
