@@ -193,6 +193,7 @@ export default function Header() {
         >
           <span />
           <span />
+          <span />
         </button>
       </div>
       <MobileNavigation open={mobileOpen} setOpen={setMobileOpen} buttonRef={menuButtonRef} />
