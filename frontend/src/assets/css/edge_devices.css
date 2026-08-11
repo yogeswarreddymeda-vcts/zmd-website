@@ -55,8 +55,23 @@
   animation: zevricHardwareFloat 13s ease-in-out 1850ms infinite alternate both;
 }
 
-.zevric-motion-ready .zevric-product-hero .product-story-hero__visual--studio-dark.is-zevric-motion-visible img {
+.zevric-motion-ready .zevric-product-hero .product-story-hero__visual--studio-dark.is-zevric-motion-visible img:not(.product-story-hero__media-badge) {
   animation: zevricStudioMediaIn 1250ms var(--zevric-motion-ease) both;
+}
+
+.zevric-product-page .zevric-product-hero .product-story-hero__visual > .product-story-hero__media-badge {
+  position: absolute;
+  z-index: 5;
+  inset: 14px 14px auto auto;
+  width: clamp(120px, 18vw, 180px);
+  max-width: 32%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  mix-blend-mode: normal;
+  filter: none !important;
+  transform: none !important;
+  animation: none !important;
 }
 
 .zevric-motion-ready .zevric-product-hero .product-story-hero__controls.zevric-motion-item {

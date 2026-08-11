@@ -75,11 +75,9 @@ export function ZevricHero({ page }) {
         </div>
 
         <div className="zevric-shared-hero__visual">
-          {isProductPage && (
-            <div className="zevric-shared-hero__processor">
-              <img src={assets.intelCoreUltraBadges} alt="Intel Core Ultra 5, 7 and 9 processor badges" />
-            </div>
-          )}
+          <div className="zevric-shared-hero__processor">
+            <img src={assets.intelCoreUltraBadges} alt="Intel Core Ultra 5, 7 and 9 processor badges" />
+          </div>
           <img src={heroImage} alt={heroAlt} fetchPriority="high" />
         </div>
       </div>
@@ -314,6 +312,10 @@ export const zevricHeroSlides = [
     imageAlt: 'Front view of a Zevric Compact Edge System in a dark studio environment',
     caption: 'Zevric Compact Edge System / front view',
     visualTone: 'studio-dark',
+    mediaBadge: {
+      image: assets.intelCoreUltraBadges,
+      imageAlt: 'Intel Core Ultra 5, 7 and 9 processor badges',
+    },
   },
   {
     navigationLabel: 'Rear connectivity',
@@ -321,6 +323,10 @@ export const zevricHeroSlides = [
     imageAlt: 'Rear connectivity view of a Zevric Compact Edge System in a dark studio environment',
     caption: 'Zevric Compact Edge System / rear connectivity',
     visualTone: 'studio-dark',
+    mediaBadge: {
+      image: assets.intelCoreUltraBadges,
+      imageAlt: 'Intel Core Ultra 5, 7 and 9 processor badges',
+    },
   },
 ];
 

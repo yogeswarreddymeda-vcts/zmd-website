@@ -25,6 +25,7 @@ import './assets/css/typography.css';
 import './assets/css/responsive.css';
 import './assets/css/home.css';
 import './assets/css/products.css';
+import './assets/css/products-ipad-pro.css';
 import './assets/css/cam.css';
 import './assets/css/edge_devices.css';
 import './assets/css/servers.css';

@@ -98,7 +98,7 @@
     display: none;
   }
 
-  .product-hub .page-hero__inner {
+  .product-hub .page-hero.page-hero--dark .page-hero__inner {
     width: 100%;
     max-width: none;
     min-height: 510px;
@@ -400,6 +400,208 @@
     opacity: 1 !important;
     filter: none !important;
     clip-path: none !important;
+    transform: none !important;
+  }
+}
+
+/* Products hub: compact, unclipped phone composition. */
+@media (max-width: 680px) {
+  .product-hub {
+    overflow-x: clip;
+  }
+
+  .product-hub .page-hero__inner {
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 240px auto;
+    gap: 0;
+    padding: 0;
+  }
+
+  .product-hub .page-hero.page-hero--dark .page-hero__visual {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 240px;
+    min-height: 240px;
+    padding: 0;
+    border: 0;
+    background: #e9ebec;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .product-hub .page-hero.page-hero--dark .page-hero__visual::before,
+  .product-hub .page-hero.page-hero--dark .page-hero__visual::after {
+    display: none;
+    content: none;
+  }
+
+  .product-hub .page-hero.page-hero--dark .page-hero__visual img,
+  .products-motion-ready.product-hub .page-hero.page-hero--dark .page-hero__visual img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+    object-position: center top;
+    transform: none;
+    animation: none;
+  }
+
+  .product-hub .page-hero.page-hero--dark .page-hero__copy {
+    grid-area: 2 / 1;
+    z-index: 3;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 30px 20px 34px;
+    background: #0e1114;
+  }
+
+  .product-hub .page-hero.page-hero--dark .page-hero__copy::before {
+    content: '';
+    position: absolute;
+    inset: -64px 0 auto;
+    height: 64px;
+    display: block;
+    background: linear-gradient(180deg, transparent, #0e1114);
+    pointer-events: none;
+  }
+
+  .product-hub .page-hero h1 {
+    margin-bottom: 14px;
+    font-size: clamp(2.25rem, 10vw, 2.7rem);
+    line-height: 1;
+  }
+
+  .product-hub .page-hero__copy > p {
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+
+  .product-hub .page-hero__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+    margin-top: 22px;
+  }
+
+  .product-hub .page-hero__actions .button {
+    width: 100%;
+    min-height: 50px;
+    justify-content: space-between;
+  }
+
+  .product-hub-index__track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-left: 0;
+  }
+
+  .product-hub-index__item,
+  .product-hub-index__item:nth-child(-n + 2) {
+    min-height: 80px;
+    padding: 14px 16px;
+  }
+
+  .product-hub-family__inner {
+    width: 100%;
+    max-width: none;
+    border-inline: 0;
+  }
+
+  .product-hub-family__visual,
+  .product-hub-family--reverse .product-hub-family__visual {
+    min-height: 240px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .product-hub-family__visual > img,
+  .product-hub-family--compact .product-hub-family__visual > img {
+    height: 240px;
+    min-height: 240px;
+  }
+
+  .product-hub-family#zevric .product-hub-family__visual > img,
+  .product-hub-family#servers .product-hub-family__visual > img {
+    padding: 12px;
+    background: #eef0f1;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .product-hub-family__content,
+  .product-hub-family--reverse .product-hub-family__content {
+    margin: 0;
+    padding: 30px 20px 36px;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .product-hub-family__content h2 {
+    margin-bottom: 13px;
+    font-size: clamp(2rem, 9vw, 2.35rem);
+    overflow-wrap: anywhere;
+  }
+
+  .product-hub-family__content p {
+    margin-bottom: 24px;
+    font-size: 0.98rem;
+  }
+
+  .product-hub-family__content .button {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .product-hub-iot-visual {
+    height: 240px;
+    min-height: 240px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 1fr;
+  }
+
+  .product-hub-iot-visual__band {
+    border-right: 1px solid var(--line);
+    border-bottom: 0;
+  }
+
+  .product-hub-iot-visual__band img,
+  .product-hub-iot-visual__sensor img {
+    height: 240px;
+    min-height: 240px;
+  }
+
+  .product-hub-engagement__inner {
+    width: 100%;
+    max-width: none;
+    gap: 24px;
+    padding: 38px 20px;
+  }
+
+  .product-hub-engagement h2 {
+    font-size: clamp(2.15rem, 9vw, 2.5rem);
+    line-height: 1;
+  }
+
+  .product-hub-engagement .button {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .product-hub.products-motion-ready .product-hub-family__content .products-motion-item,
+  .product-hub.products-motion-ready .product-hub-family__visual.products-motion-item,
+  .product-hub.products-motion-ready .product-hub-iot-visual > .products-motion-item {
+    opacity: 1 !important;
+    clip-path: none !important;
+    filter: none !important;
     transform: none !important;
   }
 }
