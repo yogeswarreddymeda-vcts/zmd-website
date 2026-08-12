@@ -1,0 +1,546 @@
+/* =============================================================================
+   SOLUTIONS PAGE STYLES
+
+   Matches Solutions.jsx in visual order: hero, application index, reference
+   architecture, detailed deployment sections, and the closing enquiry.
+   ============================================================================= */
+
+/* Solutions page motion: network propagation, scene discovery and deployment paths. */
+.solutions-page {
+  --solutions-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --solutions-motion-step: 155ms;
+}
+
+.solutions-motion-ready .solutions-motion-item {
+  will-change: opacity, transform, clip-path;
+}
+
+/* =============================================================================
+   SOLUTIONS HERO SECTION
+
+   Controls the opening ecosystem image, message, action, and entrance motion.
+   ============================================================================= */
+.solutions-motion-ready .page-hero__copy h1.solutions-motion-item {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transform: translate3d(-34px, 38px, 0);
+}
+
+.solutions-motion-ready .page-hero__copy h1.is-solutions-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 900ms ease 160ms, clip-path 1500ms var(--solutions-motion-ease) 160ms, transform 1500ms var(--solutions-motion-ease) 160ms;
+}
+
+.solutions-motion-ready .page-hero__copy > p.solutions-motion-item {
+  opacity: 0;
+  transform: translate3d(-30px, 0, 0);
+}
+
+.solutions-motion-ready .page-hero__copy > p.is-solutions-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 850ms ease 430ms, transform 1350ms var(--solutions-motion-ease) 430ms;
+}
+
+.solutions-motion-ready .page-hero__actions .button.solutions-motion-item {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translate3d(-22px, 0, 0);
+}
+
+.solutions-motion-ready .page-hero__actions .button.is-solutions-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 720ms ease 680ms, clip-path 1200ms var(--solutions-motion-ease) 680ms, transform 1200ms var(--solutions-motion-ease) 680ms, background-color 220ms ease;
+}
+
+.solutions-motion-ready .page-hero__visual.solutions-motion-item {
+  opacity: 0;
+  clip-path: circle(13% at 50% 54%);
+  transform: scale(1.055);
+}
+
+.solutions-motion-ready .page-hero__visual.is-solutions-motion-visible {
+  opacity: 1;
+  clip-path: circle(78% at 50% 54%);
+  transform: scale(1);
+  transition: opacity 950ms ease 100ms, clip-path 1950ms var(--solutions-motion-ease) 100ms, transform 1800ms var(--solutions-motion-ease) 100ms;
+}
+
+.solutions-motion-ready .page-hero__visual.is-solutions-motion-visible img {
+  animation: solutionsNetworkBreathe 15s ease-in-out 2050ms infinite alternate both;
+}
+
+/* =============================================================================
+   APPLICATION AREAS INDEX
+
+   Styles the six linked application cards and their distinct media reveals.
+   ============================================================================= */
+.solutions-motion-ready .solution-index-section .section-intro h2.solutions-motion-item {
+  opacity: 0;
+  letter-spacing: 0.04em;
+  transform: translate3d(-38px, 0, 0);
+}
+
+.solutions-motion-ready .solution-index-section .section-intro h2.is-solutions-motion-visible {
+  opacity: 1;
+  letter-spacing: -0.035em;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 820ms ease, letter-spacing 1400ms var(--solutions-motion-ease), transform 1400ms var(--solutions-motion-ease);
+}
+
+.solutions-motion-ready .solution-preview-card.solutions-motion-item {
+  contain: paint;
+  opacity: 0;
+  clip-path: polygon(8% 0, 100% 0, 100% 88%, 92% 100%, 0 100%, 0 12%);
+  transform: scale(0.965);
+}
+
+.solutions-motion-ready .solution-preview-card.is-solutions-motion-visible {
+  opacity: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transform: scale(1);
+  transition: opacity 800ms ease calc(var(--solutions-motion-order) * var(--solutions-motion-step)), clip-path 1450ms var(--solutions-motion-ease) calc(var(--solutions-motion-order) * var(--solutions-motion-step)), transform 1350ms var(--solutions-motion-ease) calc(var(--solutions-motion-order) * var(--solutions-motion-step)), box-shadow 220ms ease;
+}
+
+.solutions-motion-ready .solution-preview-card .solution-preview-card__body > * {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+}
+
+.solutions-motion-ready .solution-preview-card.is-solutions-motion-visible .solution-preview-card__body > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 700ms ease 620ms, transform 1100ms var(--solutions-motion-ease) 620ms;
+}
+
+.solutions-motion-ready .solution-preview-card.is-solutions-motion-visible .solution-preview-card__visual img {
+  animation: solutionsSceneDrift 16s ease-in-out 1700ms infinite alternate both;
+}
+
+/* =============================================================================
+   SHARED REFERENCE ARCHITECTURE
+
+   Defines ownership bands, hardware stages, connectors, and stage activation.
+   ============================================================================= */
+.solutions-motion-ready .solution-architecture-section .section-intro :is(h2, p).solutions-motion-item {
+  opacity: 0;
+  transform: translate3d(0, 34px, 0);
+}
+
+.solutions-motion-ready .solution-architecture-section .section-intro :is(h2, p).is-solutions-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 820ms ease calc(var(--solutions-motion-order) * 110ms), transform 1350ms var(--solutions-motion-ease) calc(var(--solutions-motion-order) * 110ms);
+}
+
+.solutions-motion-ready .physical-ai-story--solutions .physical-ai-story__group.solutions-motion-item {
+  opacity: 0;
+  transform: translate3d(0, 42px, 0);
+}
+
+.solutions-motion-ready .physical-ai-story--solutions .physical-ai-story__group.is-solutions-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 850ms ease calc(var(--solutions-motion-order) * 180ms), transform 1450ms var(--solutions-motion-ease) calc(var(--solutions-motion-order) * 180ms);
+}
+
+.solutions-motion-ready .physical-ai-story--solutions .physical-ai-story__stage.solutions-motion-item {
+  opacity: 0;
+  clip-path: inset(12% 0 0 0);
+  transform: translate3d(0, 34px, 0);
+}
+
+.solutions-motion-ready .physical-ai-story--solutions .physical-ai-story__stage.is-solutions-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 760ms ease calc(380ms + var(--solutions-motion-order) * 125ms), clip-path 1300ms var(--solutions-motion-ease) calc(380ms + var(--solutions-motion-order) * 125ms), transform 1300ms var(--solutions-motion-ease) calc(380ms + var(--solutions-motion-order) * 125ms), background-color 220ms ease;
+}
+
+.solutions-motion-ready .physical-ai-story--solutions .physical-ai-story__connectors span {
+  animation: solutionsConnectorFlow 4.2s ease-in-out infinite;
+}
+
+.solutions-motion-ready .physical-ai-story--solutions .physical-ai-story__connectors span:last-child {
+  animation-delay: 760ms;
+}
+
+.solutions-motion-ready .solution-architecture-caption.solutions-motion-item {
+  opacity: 0;
+  transform: translate3d(28px, 0, 0);
+}
+
+.solutions-motion-ready .solution-architecture-caption.is-solutions-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 780ms ease 260ms, transform 1250ms var(--solutions-motion-ease) 260ms;
+}
+
+/* =============================================================================
+   DETAILED APPLICATION SECTIONS
+
+   Styles alternating deployment stories, application lists, and hardware rails.
+   ============================================================================= */
+.solutions-motion-ready .solution-module__header.solutions-motion-item {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translate3d(-42px, 0, 0);
+}
+
+.solutions-motion-ready .solution-module__header.is-solutions-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 800ms ease, clip-path 1400ms var(--solutions-motion-ease), transform 1400ms var(--solutions-motion-ease);
+}
+
+.solutions-motion-ready .solution-module__visual.solutions-motion-item {
+  contain: paint;
+  opacity: 0;
+  clip-path: inset(0 28% 0 0);
+  transform: translate3d(-52px, 0, 0);
+}
+
+.solutions-motion-ready .solution-vertical--reverse .solution-module__visual.solutions-motion-item {
+  clip-path: none;
+  transform: none;
+}
+
+.solutions-motion-ready .solution-vertical--reverse .solution-module__visual.is-solutions-motion-visible {
+  clip-path: none;
+  transform: none;
+  transition: opacity 900ms ease 120ms;
+}
+
+.solutions-motion-ready .solution-module__visual.is-solutions-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 850ms ease 120ms, clip-path 1550ms var(--solutions-motion-ease) 120ms, transform 1450ms var(--solutions-motion-ease) 120ms;
+}
+
+.solutions-motion-ready .solution-module__visual.is-solutions-motion-visible img {
+  animation: solutionsDetailDrift 17s ease-in-out 1650ms infinite alternate both;
+}
+
+.solutions-motion-ready .solution-module__applications.solutions-motion-item {
+  opacity: 0;
+  transform: translate3d(42px, 0, 0);
+}
+
+.solutions-motion-ready .solution-vertical--reverse .solution-module__applications.solutions-motion-item {
+  clip-path: none;
+  transform: none;
+}
+
+.solutions-motion-ready .solution-vertical--reverse .solution-module__applications.is-solutions-motion-visible {
+  clip-path: none;
+  transform: none;
+  transition: opacity 850ms ease 220ms;
+}
+
+.solutions-motion-ready .solution-module__applications.is-solutions-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 800ms ease 220ms, clip-path 1250ms var(--solutions-motion-ease) 220ms, transform 1400ms var(--solutions-motion-ease) 220ms;
+}
+
+.solutions-motion-ready .solution-module__applications li.solutions-motion-item {
+  opacity: 0;
+  transform: translate3d(24px, 0, 0);
+}
+
+.solutions-motion-ready .solution-vertical--reverse .solution-module__applications li.solutions-motion-item {
+  transform: none;
+}
+
+.solutions-motion-ready .solution-vertical--reverse .solution-module__applications li.is-solutions-motion-visible {
+  transform: none;
+  transition: opacity 680ms ease calc(380ms + var(--solutions-motion-order) * 105ms);
+}
+
+.solutions-motion-ready .solution-module__applications li.is-solutions-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 680ms ease calc(380ms + var(--solutions-motion-order) * 105ms), transform 1100ms var(--solutions-motion-ease) calc(380ms + var(--solutions-motion-order) * 105ms);
+}
+
+.solutions-motion-ready .solution-module__hardware-intro.solutions-motion-item,
+.solutions-motion-ready .solution-module__hardware-path > div.solutions-motion-item {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+}
+
+.solutions-motion-ready .solution-module__hardware-intro.is-solutions-motion-visible,
+.solutions-motion-ready .solution-module__hardware-path > div.is-solutions-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transition: opacity 700ms ease calc(var(--solutions-motion-order) * 115ms), clip-path 1250ms var(--solutions-motion-ease) calc(var(--solutions-motion-order) * 115ms);
+}
+
+/* =============================================================================
+   SOLUTIONS ENQUIRY SECTION
+
+   Styles the final hardware-configuration message and contact action.
+   ============================================================================= */
+.solutions-motion-ready .solutions-contact-section__copy.solutions-motion-item {
+  opacity: 0;
+  transform: translate3d(-46px, 0, 0);
+}
+
+.solutions-motion-ready .solutions-contact-section .button.solutions-motion-item {
+  opacity: 0;
+  transform: translate3d(46px, 0, 0);
+}
+
+.solutions-motion-ready .solutions-contact-section .is-solutions-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 820ms ease calc(var(--solutions-motion-order) * 110ms), transform 1400ms var(--solutions-motion-ease) calc(var(--solutions-motion-order) * 110ms), background-color 220ms ease;
+}
+
+@keyframes solutionsNetworkBreathe {
+  from { transform: scale(1.002) translate3d(0, 0, 0); }
+  to { transform: scale(1.018) translate3d(-0.25%, -0.35%, 0); }
+}
+
+@keyframes solutionsSceneDrift {
+  from { transform: scale(1.002) translate3d(0, 0, 0); }
+  to { transform: scale(1.035) translate3d(0, -0.65%, 0); }
+}
+
+@keyframes solutionsDetailDrift {
+  from { transform: scale(1.002) translate3d(0, 0, 0); }
+  to { transform: scale(1.025) translate3d(-0.35%, -0.45%, 0); }
+}
+
+@keyframes solutionsConnectorFlow {
+  0%, 100% { opacity: 0.32; transform: scaleX(0.2); transform-origin: left; }
+  44%, 64% { opacity: 1; transform: scaleX(1); transform-origin: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solutions-page,
+  .solutions-page *,
+  .solutions-page *::before,
+  .solutions-page *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .solutions-motion-ready .solutions-motion-item,
+  .solutions-motion-ready .solution-preview-card .solution-preview-card__body > * {
+    opacity: 1 !important;
+    clip-path: none !important;
+    transform: none !important;
+  }
+}
+
+/* =============================================================================
+   SOLUTIONS PAGE — IPAD PRO LAYOUT
+
+   Keeps the visual story in webpage order while sizing solution cards,
+   architecture stages, application details, and actions for iPad Pro.
+   ============================================================================= */
+@media (min-width: 681px) and (max-width: 1024px),
+       (min-width: 1025px) and (max-width: 1366px) and (hover: none) and (pointer: coarse) {
+  .solutions-page .page-hero__inner {
+    min-height: 480px;
+    grid-template-columns: minmax(330px, 0.84fr) minmax(0, 1.16fr);
+    gap: 36px;
+  }
+
+  .solutions-page .solution-showcase--six {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .solutions-page .solution-module__body {
+    min-height: 470px;
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 0.9fr);
+  }
+
+  .solutions-page .solution-module__visual {
+    min-height: 470px;
+  }
+
+  .solutions-page .solution-module__content {
+    padding: 24px 28px;
+  }
+
+  .solutions-page .solution-module__hardware {
+    grid-template-columns: 176px minmax(0, 1fr);
+  }
+
+  .solutions-page .solution-module__hardware-path > div {
+    padding: 18px;
+  }
+
+  .solutions-page .solutions-contact-section__inner {
+    gap: 32px;
+  }
+}
+
+/* iPad Pro portrait stacks each detailed solution image above its application
+   list and restores natural source order for alternating desktop sections. */
+@media (min-width: 681px) and (max-width: 1024px) {
+  .solutions-page .page-hero.page-hero--dark {
+    min-height: 0;
+    background: #101214;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__inner {
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__visual {
+    position: relative;
+    order: 1;
+    visibility: visible;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border: 0;
+    background: #f5f5f5;
+    pointer-events: auto;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__visual::after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    inset: auto 0 0;
+    height: clamp(78px, 12vw, 120px);
+    background: linear-gradient(
+      to bottom,
+      rgba(16, 18, 20, 0) 0%,
+      rgba(16, 18, 20, 0.16) 32%,
+      rgba(16, 18, 20, 0.74) 72%,
+      #101214 100%
+    );
+    pointer-events: none;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__visual img {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    display: block;
+    object-fit: contain;
+    object-position: center center;
+    transform: scale(1.18);
+    transform-origin: center;
+    filter: none;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__copy {
+    order: 2;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    padding: 42px clamp(28px, 5vw, 52px) 46px;
+    background: #101214;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__copy h1 {
+    max-width: 760px;
+    margin-bottom: 18px;
+    color: #fff;
+    font-size: clamp(2.75rem, 5.4vw, 3.65rem);
+    line-height: 0.98;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__copy > p {
+    max-width: 760px;
+    color: #c7c9cc;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__actions {
+    margin-top: 24px;
+  }
+
+  .solutions-motion-ready .page-hero__visual.is-solutions-motion-visible img {
+    animation: none;
+    transform: scale(1.18);
+  }
+
+  .solutions-page .solution-module__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .solutions-page .solution-module__visual,
+  .solutions-page .solution-vertical--reverse .solution-module__visual {
+    order: 1;
+    min-height: 390px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .solutions-page .solution-module__content,
+  .solutions-page .solution-vertical--reverse .solution-module__content {
+    order: 2;
+  }
+
+  .solutions-page .solution-module__hardware {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .solutions-page .solution-module__hardware-intro {
+    flex-direction: row;
+    align-items: center;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+/* Tablet and iPad Pro portrait share the artwork's own pale surface through
+   the complete hero, with the ecosystem shifted slightly left. */
+@media (min-width: 681px) and (max-width: 1024px) {
+  .solutions-page .page-hero.page-hero--dark,
+  .solutions-page .page-hero.page-hero--dark .page-hero__copy {
+    background: #f5f5f5;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__visual::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(245, 245, 245, 0) 0%,
+      rgba(245, 245, 245, 0.52) 48%,
+      #f5f5f5 100%
+    );
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__visual img,
+  .solutions-motion-ready .page-hero__visual.is-solutions-motion-visible img {
+    transform: translate3d(-3.5%, 0, 0) scale(1.18);
+    transform-origin: center;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__copy h1 {
+    color: #15171a;
+    text-shadow: none;
+  }
+
+  .solutions-page .page-hero.page-hero--dark .page-hero__copy > p {
+    color: #5b6065;
+    text-shadow: none;
+  }
+}

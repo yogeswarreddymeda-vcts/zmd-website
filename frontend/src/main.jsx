@@ -1,7 +1,13 @@
+// =============================================================================
+// FRONTEND APPLICATION ENTRY POINT
+// =============================================================================
+
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, HashRouter } from 'react-router-dom'
-import './assets/css/base.css'
+import './components/Header/Header.css'
+import './components/Footer/Footer.css'
+import './index.css'
 import App from './App.jsx'
 
 const Router = window.location.protocol === 'file:' ? HashRouter : BrowserRouter

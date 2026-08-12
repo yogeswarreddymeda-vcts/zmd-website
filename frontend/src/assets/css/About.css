@@ -1,0 +1,518 @@
+/* =============================================================================
+   ABOUT PAGE STYLES
+
+   Matches About.jsx in visual order: hero, company story, customer engagement,
+   and office locations. Includes entrance motion and responsive fallbacks.
+   ============================================================================= */
+
+/* About page motion: editorial progression, product depth and organizational assembly. */
+.about-page {
+  --about-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --about-motion-step: 160ms;
+}
+
+.about-motion-ready .about-motion-item {
+  will-change: opacity, transform, clip-path;
+}
+
+/* =============================================================================
+   ABOUT HERO SECTION
+
+   Animates the opening statement, action, and product-lineup artwork. Also
+   controls how the dark hero image blends into its surrounding surface.
+   ============================================================================= */
+.about-motion-ready .about-hero__copy h1.about-motion-item {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transform: translate3d(0, 48px, 0);
+}
+
+.about-motion-ready .about-hero__copy h1.is-about-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 900ms ease 150ms, clip-path 1550ms var(--about-motion-ease) 150ms, transform 1500ms var(--about-motion-ease) 150ms;
+}
+
+.about-motion-ready .about-hero__copy > p.about-motion-item {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translate3d(-32px, 0, 0);
+}
+
+.about-motion-ready .about-hero__copy > p.is-about-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 850ms ease 420ms, clip-path 1350ms var(--about-motion-ease) 420ms, transform 1350ms var(--about-motion-ease) 420ms;
+}
+
+.about-motion-ready .about-hero__actions .button.about-motion-item {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0) scaleX(0.92);
+}
+
+.about-motion-ready .about-hero__actions .button.is-about-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scaleX(1);
+  transition: opacity 720ms ease 680ms, transform 1200ms var(--about-motion-ease) 680ms, background-color 220ms ease, border-color 220ms ease;
+}
+
+.about-motion-ready .about-hero__product-lineup.about-motion-item {
+  opacity: 0;
+  clip-path: polygon(24% 0, 100% 0, 100% 100%, 12% 100%, 0 78%, 0 20%);
+}
+
+.about-motion-ready .about-hero__product-lineup.is-about-motion-visible {
+  opacity: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transition: opacity 950ms ease 100ms, clip-path 1850ms var(--about-motion-ease) 100ms;
+}
+
+.about-motion-ready .about-hero__product-lineup.is-about-motion-visible img {
+  animation: aboutPortfolioDepth 16s ease-in-out 1950ms infinite alternate both;
+}
+
+/* The dark portfolio scene dissolves into the hero surface at every edge. */
+.about-page .about-hero.surface-band--ink {
+  background-color: #030506 !important;
+  background-image: none !important;
+}
+
+.about-page .about-hero__product-lineup {
+  background: #030506;
+}
+
+.about-page .about-hero__product-lineup::before {
+  background: none;
+}
+
+.about-page .about-hero__product-lineup img {
+  object-position: right center;
+  filter: none;
+}
+
+/* About hero: image-first, overlap-free phone composition. */
+@media (max-width: 680px) {
+  .about-page .about-hero__inner {
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 280px auto;
+    gap: 0;
+    padding: 0;
+  }
+
+  .about-page .about-hero__product-lineup {
+    position: relative;
+    inset: auto;
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 280px;
+    min-height: 280px;
+    overflow: hidden;
+    aspect-ratio: auto;
+  }
+
+  .about-page .about-hero__product-lineup::before {
+    display: block;
+    z-index: 2;
+    background: linear-gradient(180deg, transparent 58%, rgba(3, 5, 6, 0.58) 82%, #030506 100%);
+  }
+
+  .about-page .about-hero__product-lineup::after {
+    right: 0;
+    bottom: 0;
+    width: 116px;
+    height: 3px;
+  }
+
+  .about-page .about-hero__product-lineup img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 92% center;
+  }
+
+  .about-page .about-hero__copy {
+    grid-area: 2 / 1;
+    z-index: 3;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 30px 20px 38px;
+    background: #030506;
+  }
+
+  .about-page .about-hero__copy > p {
+    max-width: none;
+  }
+
+  .about-page .about-hero__actions .button {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* =============================================================================
+   OUR STORY SECTION
+
+   Styles the editorial narrative, connected-hardware illustration, supporting
+   paragraphs, and links to Products and Solutions.
+   ============================================================================= */
+.about-motion-ready .about-story > .site-container > .section-heading.about-motion-item {
+  opacity: 0;
+  letter-spacing: 0.055em;
+  transform: translate3d(-42px, 0, 0);
+}
+
+.about-motion-ready .about-story > .site-container > .section-heading.is-about-motion-visible {
+  opacity: 1;
+  letter-spacing: -0.035em;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 820ms ease, letter-spacing 1450ms var(--about-motion-ease), transform 1450ms var(--about-motion-ease);
+}
+
+.about-motion-ready .about-story__prose h3.about-motion-item {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translate3d(-36px, 0, 0);
+}
+
+.about-motion-ready .about-story__prose h3.is-about-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 800ms ease, clip-path 1400ms var(--about-motion-ease), transform 1400ms var(--about-motion-ease);
+}
+
+.about-motion-ready .about-story__prose p.about-motion-item {
+  opacity: 0;
+  clip-path: inset(0 0 18% 0);
+  transform: translate3d(0, 34px, 0);
+}
+
+.about-motion-ready .about-story__prose p.is-about-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 900ms ease 180ms, clip-path 1500ms var(--about-motion-ease) 180ms, transform 1450ms var(--about-motion-ease) 180ms;
+}
+
+.about-motion-ready .about-story__illustration.about-motion-item {
+  contain: paint;
+  opacity: 0;
+  clip-path: inset(0 50% 0 50%);
+  transform: scaleX(0.975);
+}
+
+.about-motion-ready .about-story__illustration.is-about-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: scaleX(1);
+  transition: opacity 850ms ease 100ms, clip-path 1700ms var(--about-motion-ease) 100ms, transform 1550ms var(--about-motion-ease) 100ms, box-shadow 220ms ease;
+}
+
+.about-motion-ready .about-story__illustration .about-story__illustration-caption > * {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+}
+
+.about-motion-ready .about-story__illustration.is-about-motion-visible .about-story__illustration-caption > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 760ms ease 820ms, transform 1200ms var(--about-motion-ease) 820ms;
+}
+
+.about-motion-ready .about-story__illustration.is-about-motion-visible img {
+  animation: aboutStoryPanorama 18s ease-in-out 1850ms infinite alternate both;
+}
+
+.about-page .about-story__illustration img {
+  aspect-ratio: 16 / 9;
+  object-position: center;
+}
+
+.about-motion-ready .about-story__actions .button.about-motion-item {
+  opacity: 0;
+  transform: translate3d(calc((var(--about-motion-order) - 4) * 10px), 24px, 0);
+}
+
+.about-motion-ready .about-story__actions .button.is-about-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 720ms ease calc(var(--about-motion-order) * 105ms), transform 1200ms var(--about-motion-ease) calc(var(--about-motion-order) * 105ms), background-color 220ms ease, border-color 220ms ease;
+}
+
+/* =============================================================================
+   CUSTOMER ENGAGEMENT SECTION
+
+   Defines the three engagement paths and their sequential reveal behavior.
+   ============================================================================= */
+.about-motion-ready .about-engagement__intro h2.about-motion-item {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transform: translate3d(0, 38px, 0);
+}
+
+.about-motion-ready .about-engagement__intro h2.is-about-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 820ms ease, clip-path 1400ms var(--about-motion-ease), transform 1400ms var(--about-motion-ease);
+}
+
+.about-motion-ready .about-engagement__grid article.about-motion-item {
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+}
+
+.about-motion-ready .about-engagement__grid article.is-about-motion-visible {
+  opacity: 1;
+  clip-path: inset(0);
+  transition: opacity 720ms ease calc(var(--about-motion-order) * var(--about-motion-step)), clip-path 1350ms var(--about-motion-ease) calc(var(--about-motion-order) * var(--about-motion-step)), background-color 220ms ease;
+}
+
+.about-motion-ready .about-engagement__grid article > * {
+  opacity: 0;
+  transform: translate3d(-20px, 0, 0);
+}
+
+.about-motion-ready .about-engagement__grid article.is-about-motion-visible > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 700ms ease 600ms, transform 1100ms var(--about-motion-ease) 600ms;
+}
+
+/* =============================================================================
+   OFFICE LOCATIONS SECTION
+
+   Styles the office grid, plotted location treatment, and contact links.
+   ============================================================================= */
+#locations .office-grid {
+  box-shadow: 0 24px 52px -28px rgba(12, 18, 24, 0.32);
+}
+
+.about-motion-ready #locations > .site-container > .section-heading.about-motion-item {
+  opacity: 0;
+  transform: translate3d(-38px, 0, 0);
+}
+
+.about-motion-ready #locations > .site-container > .section-heading.is-about-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 820ms ease, transform 1400ms var(--about-motion-ease);
+}
+
+.about-motion-ready #locations .office-grid article.about-motion-item {
+  opacity: 0;
+  clip-path: circle(8% at 22% 28%);
+}
+
+.about-motion-ready #locations .office-grid article.is-about-motion-visible {
+  opacity: 1;
+  clip-path: circle(112% at 22% 28%);
+  transition: opacity 760ms ease calc(var(--about-motion-order) * var(--about-motion-step)), clip-path 1450ms var(--about-motion-ease) calc(var(--about-motion-order) * var(--about-motion-step));
+}
+
+.about-motion-ready #locations .office-grid article > * {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+}
+
+.about-motion-ready #locations .office-grid article.is-about-motion-visible > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 700ms ease 650ms, transform 1100ms var(--about-motion-ease) 650ms;
+}
+
+@keyframes aboutPortfolioDepth {
+  from { transform: scale(1.002) translate3d(0, 0, 0); }
+  to { transform: scale(1.016) translate3d(-0.35%, -0.3%, 0); }
+}
+
+@keyframes aboutStoryPanorama {
+  from { transform: scale(1.002) translate3d(0, 0, 0); }
+  to { transform: scale(1.026) translate3d(-0.45%, -0.4%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-page,
+  .about-page *,
+  .about-page *::before,
+  .about-page *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .about-motion-ready .about-motion-item,
+  .about-motion-ready .about-story__illustration-caption > *,
+  .about-motion-ready .about-engagement__grid article > *,
+  .about-motion-ready #locations .office-grid article > * {
+    opacity: 1 !important;
+    clip-path: none !important;
+    transform: none !important;
+  }
+}
+
+/* =============================================================================
+   ABOUT PAGE — IPAD PRO LAYOUT
+
+   Balances the hero artwork, story media, engagement cards, and locations on
+   touch-first iPad Pro screens without changing desktop or phone layouts.
+   ============================================================================= */
+@media (min-width: 681px) and (max-width: 1024px),
+       (min-width: 1025px) and (max-width: 1366px) and (hover: none) and (pointer: coarse) {
+  .about-page .about-hero__inner {
+    min-height: 590px;
+    padding-block: 56px;
+  }
+
+  .about-page .about-hero__copy {
+    width: 52%;
+    max-width: 620px;
+  }
+
+  .about-page .about-hero h1 {
+    font-size: clamp(3.25rem, 5.4vw, 4.75rem);
+  }
+
+  .about-page .about-hero__product-lineup {
+    width: min(76vw, 1100px);
+  }
+
+  .about-page .about-story__illustration-caption {
+    grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr);
+    gap: 24px;
+    padding: 64px 24px 22px;
+  }
+
+  .about-page .about-engagement__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .about-page #locations .office-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* iPad Pro portrait gives the introduction more room and changes the three
+   engagement paths into a readable two-column card layout. */
+@media (min-width: 681px) and (max-width: 1024px) {
+  .about-page .about-hero__inner {
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: clamp(460px, 53vw, 540px) auto;
+    gap: 0;
+    padding: 0;
+  }
+
+  .about-page .about-hero__copy {
+    grid-area: 2 / 1;
+    width: 100%;
+    max-width: none;
+    min-height: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 52px clamp(32px, 8vw, 88px) 56px;
+    background: #030506;
+    text-align: center;
+  }
+
+  .about-page .about-hero__copy h1 {
+    width: min(100%, 760px);
+    margin: 0 auto 20px;
+  }
+
+  .about-page .about-hero__copy > p {
+    width: min(100%, 700px);
+    margin: 0 auto;
+  }
+
+  .about-page .about-hero__actions {
+    width: fit-content;
+    margin: 26px auto 0;
+    justify-content: center;
+  }
+
+  .about-page .about-hero__product-lineup {
+    position: relative;
+    inset: auto;
+    grid-area: 1 / 1;
+    width: 100%;
+    height: clamp(460px, 53vw, 540px);
+    min-height: clamp(460px, 53vw, 540px);
+    transform: none;
+  }
+
+  .about-page .about-hero__product-lineup::before {
+    display: block;
+    z-index: 2;
+    background: linear-gradient(180deg, transparent 64%, rgba(3, 5, 6, 0.54) 84%, #030506 100%);
+  }
+
+  .about-page .about-hero__product-lineup img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 76% center;
+    transform: translate3d(-6%, 0, 0) scale(1.34);
+    transform-origin: 76% center;
+  }
+
+  .about-motion-ready .about-hero__product-lineup.is-about-motion-visible img {
+    animation: none;
+  }
+
+  .about-page .about-engagement__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-page .about-engagement__grid article:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Regular tablet layout stays compact and independent from the larger
+   iPad Pro composition above. */
+@media (min-width: 681px) and (max-width: 900px) {
+  .about-page .about-hero__inner {
+    grid-template-rows: 390px auto;
+  }
+
+  .about-page .about-hero__product-lineup {
+    height: 390px;
+    min-height: 390px;
+  }
+
+  .about-page .about-hero__product-lineup img {
+    object-position: 72% center;
+    transform: translate3d(-6%, 0, 0) scale(1.24);
+    transform-origin: 72% center;
+  }
+
+  .about-page .about-hero__copy {
+    min-height: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 42px 30px 48px;
+    text-align: center;
+  }
+
+  .about-page .about-hero__actions {
+    justify-content: center;
+  }
+}
