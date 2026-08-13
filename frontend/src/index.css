@@ -3262,8 +3262,8 @@ p {
   .site-footer__lead .button { padding-inline: 10px; font-size: 0.82rem; }
 }
 
-/* The supplied logo has intentional whitespace in its source canvas. Crop to
-   the complete visible mark without clipping the arrow or the wordmark. */
+/* The optimized logo assets are pre-cropped so they render sharply without
+   transform-based subpixel positioning. */
 .brand,
 .brand__crop {
   width: 160px;
@@ -3272,8 +3272,10 @@ p {
 
 .brand__crop img {
   width: 100%;
-  max-width: none;
-  transform: translateY(-24%);
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  transform: none;
 }
 
 .site-footer .brand {
@@ -3290,7 +3292,9 @@ p {
 
 .site-footer .brand__crop img {
   width: 100%;
-  transform: translateY(-24%);
+  height: 100%;
+  object-fit: contain;
+  transform: none;
 }
 
 @media (max-width: 980px) {

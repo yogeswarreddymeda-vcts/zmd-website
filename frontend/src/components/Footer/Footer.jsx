@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logoDark from '../../assets/images/shared/zmd-logo-dark.webp';
+import logoDark from '../../assets/images/shared/zmd-logo-dark-optimized.png';
 
 
 // =============================================================================

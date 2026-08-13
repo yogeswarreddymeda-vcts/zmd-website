@@ -28,6 +28,6 @@ php artisan serve
 
 ```bash
 npm --prefix frontend install
-npm run dev -- --host
+npm --prefix frontend run dev
 ```
 * The React dev server will start on **`http://localhost:5173`** and will also be available on the local network.
