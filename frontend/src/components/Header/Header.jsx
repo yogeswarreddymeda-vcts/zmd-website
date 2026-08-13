@@ -12,7 +12,7 @@ import parkingSensorContext from '../../assets/images/custom-iot/parking-sensor-
 import cameraStudio from '../../assets/images/shared/product-family/camera-studio-v2.webp';
 import parkingSensorStudio from '../../assets/images/shared/product-family/parking-sensor-studio-v1.webp';
 import homeServerIndustrial from '../../assets/images/home/home-server-context-v2.webp';
-import logo from '../../assets/images/shared/zmd-logo-light-optimized.png';
+import logo from '../../assets/images/shared/zmd-logo-light-optimized.webp';
 
 const contact = {
   email: 'sales@zmd.tech',
