@@ -5,6 +5,8 @@
 import React from 'react';
 import '../assets/css/Contact.css';
 
+const companyName = 'Zetta Micro Devices Co., Ltd.';
+
 const contact = {
   email: 'sales@zmd.tech',
   phone: '+91 99403 52194',
@@ -13,7 +15,12 @@ const contact = {
     { city: 'Bengaluru', address: 'Sy. No. 65/6, Nallurahalli Main Road, Mourya Building, near HP Petrol Pump, Whitefield, Bengaluru, Karnataka 560066' },
     { city: 'Hyderabad', address: '4th Floor, Plot No. 6, Sector 3, HUDA Techno Enclave, Madhapur, Hyderabad, Telangana, India 500081' },
     { city: 'Taiwan', address: '13F, No. 102, Sec. 2, Zhongcheng Road, Shilin District, Taipei City 111019, Taiwan (R.O.C.)' },
-    { city: 'China' },
+    {
+      city: 'China',
+      company: companyName,
+      address: '21st Floor, No. 969 Zhongshannan Road,',
+      addressLine2: 'Huangpu District, Shanghai, China',
+    },
   ],
 };
 
@@ -24,7 +31,7 @@ function OfficeGrid() {
         <article className={!office.address ? 'office-grid__item--location-only' : undefined} key={office.city}>
           <h3>{office.city}{office.label && <small>{office.label}</small>}</h3>
           {office.address
-            ? <p>{office.address}</p>
+            ? <p>{office.company && <><strong>{office.company}</strong><br /></>}{office.address}{office.addressLine2 && <><br />{office.addressLine2}</>}</p>
             : <a className="office-grid__request" href={`mailto:${contact.email}?subject=${encodeURIComponent(`${office.city} office details`)}`}>Address available on request <span aria-hidden="true">↗</span></a>}
         </article>
       ))}

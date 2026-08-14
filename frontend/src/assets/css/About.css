@@ -296,10 +296,6 @@
 
    Styles the office grid, plotted location treatment, and contact links.
    ============================================================================= */
-#locations .office-grid {
-  box-shadow: 0 24px 52px -28px rgba(12, 18, 24, 0.32);
-}
-
 .about-motion-ready #locations > .site-container > .section-heading.about-motion-item {
   opacity: 0;
   transform: translate3d(-38px, 0, 0);
